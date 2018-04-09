@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace Child_Talker
 {
@@ -23,6 +24,7 @@ namespace Child_Talker
     {
         private Timer timer;
         private int i = 0;
+        private bool scanning = false;
 
         public PageViewer()
         {
@@ -35,6 +37,7 @@ namespace Child_Talker
 
         public void StartAutoScan()
         {
+            scanning = true;
             i = 0;
             ((Item)this.items.Children[i]).AutoSelected = true;
             timer.Start();
@@ -42,7 +45,12 @@ namespace Child_Talker
 
         public void StopAutoScan()
         {
-            ((Item)this.items.Children[i]).AutoSelected = false;
+            scanning = false;
+            if (this.items.Children.Count != 0)
+            {
+                ((Item)this.items.Children[i]).AutoSelected = false;
+            }
+
             timer.Stop();
         }
 
@@ -57,15 +65,60 @@ namespace Child_Talker
             });
         }
 
+        public void LoadFromXml(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+
+            XmlNode node = doc.DocumentElement.SelectSingleNode("/profile/items");
+            List<ChildTalkerItem> items = new List<ChildTalkerItem>();
+            foreach (XmlNode item in node.ChildNodes)
+            {
+                items.Add(LoadItem(item));
+            }
+
+            SetItems(items);
+        }
+
+        public ChildTalkerItem LoadItem(XmlNode node)
+        {
+            ChildTalkerItem item = new ChildTalkerItem(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText);
+            Console.WriteLine(item.Text);
+
+            List<ChildTalkerItem> children = new List<ChildTalkerItem>();
+            foreach (XmlNode child in node.ChildNodes)
+            {
+                children.Add(LoadItem(child));
+            }
+
+            if (children.Count != 0)
+            {
+                item.SetChildren(children);
+            }
+
+            return item;
+        }
+
         public void SetItems(List<ChildTalkerItem> items)
         {
+            bool wasScanning = scanning;
+            if (wasScanning)
+            {
+                StopAutoScan();
+            }
+
             this.items.Children.Clear();
             foreach (ChildTalkerItem item in items)
             {
                 Item ui = new Item();
-                ui.SetText(item.Text);
-                ui.SetImage(item.ImagePath);
+                ui.SetItem(item);
+                ui.SetParent(this);
                 this.items.Children.Add(ui);
+            }
+
+            if (wasScanning)
+            {
+                StartAutoScan();
             }
         }
     }

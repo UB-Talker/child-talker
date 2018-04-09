@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -21,6 +22,10 @@ namespace Child_Talker
     public partial class Item : UserControl
     {
         public static readonly DependencyProperty AutoSelectedProperty = DependencyProperty.RegisterAttached("AutoSelected", typeof(bool), typeof(Item), new PropertyMetadata(false));
+        private static SpeechSynthesizer synth = new SpeechSynthesizer();
+
+        private ChildTalkerItem item;
+        private PageViewer parent;
 
         public bool AutoSelected
         {
@@ -33,16 +38,31 @@ namespace Child_Talker
             InitializeComponent();
         }
 
-        public void SetText(string text)
+        public void SetParent(PageViewer parent)
         {
-            label.Content = text;
+            this.parent = parent;
         }
 
-        public void SetImage(string path)
+        public void SetItem(ChildTalkerItem item)
         {
+            this.item = item;
+
+            label.Content = item.Text;
             image.Width = 200;
             image.Height = 200;
-            image.Source = new BitmapImage(new Uri(path));
+            image.Source = new BitmapImage(new Uri(item.ImagePath));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.item.IsLink())
+            {
+                this.parent.SetItems(this.item.Children);
+            }
+            else
+            {
+                synth.SpeakAsync(label.Content.ToString());
+            }
         }
     }
 }

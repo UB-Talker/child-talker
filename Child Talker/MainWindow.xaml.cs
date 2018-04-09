@@ -24,21 +24,7 @@ namespace Child_Talker
         {
             InitializeComponent();
 
-            List<ChildTalkerItem> items = new List<ChildTalkerItem>();
-            items.Add(new ChildTalkerItem("Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Also Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("This might be Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("I hope his image isn't copyrighted", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Mr. Dr. Professor. Kris Schindler MD.", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Need more Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Can't stop the Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Just adding more Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Testing with Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("AHHHHHHHHH IT'S KRIS", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("add $Kris, $Kris, $Kris", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-            items.Add(new ChildTalkerItem("Is Kris here yet?", @"C:\Users\Jeremy\Pictures\kris.jpg"));
-
-            viewer.SetItems(items);
+            viewer.LoadFromXml(@"C:\Users\Jeremy\source\repos\Child Talker\Child Talker\Resources\example.xml");
             viewer.StartAutoScan();
         }
     }
