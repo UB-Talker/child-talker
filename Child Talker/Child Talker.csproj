@@ -34,9 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -67,7 +69,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChildTalkerFolder.cs" />
     <Compile Include="ChildTalkerItem.cs" />
+    <Compile Include="ChildTalkerBackButton.cs" />
+    <Compile Include="ChildTalkerItemAdder.cs" />
+    <Compile Include="IChildTalkerTile.cs" />
     <Compile Include="Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
@@ -116,6 +122,18 @@
     <Resource Include="Resources\example.xml">
       <SubType>Designer</SubType>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\back.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\folder.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\whelpegg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\whelp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

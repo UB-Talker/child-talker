@@ -24,8 +24,10 @@ namespace Child_Talker
         {
             InitializeComponent();
 
-            viewer.LoadFromXml(@"C:\Users\Jeremy\source\repos\Child Talker\Child Talker\Resources\example.xml");
+            viewer.LoadFromXml("../../Resources/example.xml");
             viewer.StartAutoScan();
+
+            
         }
     }
 }

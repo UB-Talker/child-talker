@@ -1,29 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <profile name="Test Profile">
-  <items>
-    <item name="Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Also Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="This might be Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Mr. Dr. Professor. Kris Schindler MD." image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Need more Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Can't stop the Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Just adding more Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Testing with Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="AHHHHHHHHH IT'S KRIS" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="add $Kris, $Kris, $Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Is Kris here yet?" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-    <item name="Inside Kris" image="C:\Users\Jeremy\Pictures\kris.jpg">
-      <item name="I am inside Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-      <item name="There is much Kris in here" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-      <item name="Such Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-      <item name="Much Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-      <item name="Wow Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-      <item name="We can go deeper inside Kris" image="C:\Users\Jeremy\Pictures\kris.jpg">
-        <item name="The deepest, darkest parts of Kris" image="C:\Users\Jeremy\Pictures\kris.jpg" />
-        <item name="Kris's badger" image="C:\Users\Jeremy\Pictures\photo_2018-01-31_14-26-51.jpg" />
-        <item name="Kris's ... Chandola? Why is he here?" image="C:\Users\Jeremy\Pictures\chandola.png" />
-        <item name="DON'T PUSH TO MASTER KRIS" image="C:\Users\Jeremy\Pictures\jesse.jpg" />
+   <items>
+      <item name="Kris" image="../../Resources/kris.jpg" />
+      <item name="Also Kris" image="../../Resources/kris.jpg" />
+      <item name="This might be Kris" image="../../Resources/kris.jpg" />
+      <item name="Mr. Dr. Professor. Kris Schindler MD." image="../../Resources/kris.jpg" />
+      <item name="Need more Kris" image="../../Resources/kris.jpg" />
+      <item name="Can't stop the Kris" image="../../Resources/kris.jpg" />
+      <item name="Just adding more Kris" image="../../Resources/kris.jpg" />
+      <item name="Testing with Kris" image="../../Resources/kris.jpg" />
+      <item name="AHHHHHHHHH IT'S KRIS" image="../../Resources/kris.jpg" />
+      <item name="add $Kris, $Kris, $Kris" image="../../Resources/kris.jpg" />
+      <item name="Is Kris here yet?" image="../../Resources/kris.jpg" />
+      <item name="Inside Kris" image="../../Resources/kris.jpg"/>
+      <item name="I am inside Kris" image="../../Resources/kris.jpg" />
+      <item name="There is much Kris in here" image="../../Resources/kris.jpg" />
+      <item name="Such Kris" image="../../Resources/folder.jpg">
+        <item name="Much Kris" image="../../Resources/folder.jpg">
+            <item name="Wow Kris" image="../../Resources/kris.jpg" />
+        </item>
+        <item name="We can go deeper inside Kris" image="../../Resources/kris.jpg"/>
       </item>
-    </item>
-  </items>
+      <item name="The deepest, darkest parts of Kris" image="../../Resources/kris.jpg" />
+      <item name="Kris's badger" image="../../Resources/kris.jpg" />
+      <item name="Kris's ... Chandola? Why is he here?" image="../../Resources/kris.jpg" />
+      <item name="DON'T PUSH TO MASTER KRIS" image="../../Resources/kris.jpg" />
+   </items>
 </profile>

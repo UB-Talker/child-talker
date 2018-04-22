@@ -1,32 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Speech.Synthesis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Timers;
 
 namespace Child_Talker
 {
-
-    public class ChildTalkerItem : IChildTalkerTile
+    class ChildTalkerBackButton : IChildTalkerTile
     {
-        private static SpeechSynthesizer synth = new SpeechSynthesizer();
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public UriKind UriKind { get; set; }
         public IChildTalkerTile Parent { get; set; }
-        private Timer timer;
+        private PageViewer Root;
 
-
-        public ChildTalkerItem(string text, string imagePath, UriKind uriKind = UriKind.Relative)
+        public ChildTalkerBackButton(string text, string imagePath, PageViewer root, UriKind uriKind = UriKind.Relative)
         {
-            timer = new Timer();
             Text = text;
             ImagePath = imagePath;
             UriKind = uriKind;
-            timer.Interval = 1000;
-            timer.AutoReset = false;
+            Root = root;
         }
 
         public bool IsLink()
@@ -36,11 +29,7 @@ namespace Child_Talker
 
         public void PerformAction()
         {
-            if (!timer.Enabled)
-            {
-                synth.SpeakAsync(Text);
-                timer.Start();
-            }
+            Root.PopFolderView();
         }
     }
 }

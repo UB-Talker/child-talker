@@ -24,7 +24,7 @@ namespace Child_Talker
         public static readonly DependencyProperty AutoSelectedProperty = DependencyProperty.RegisterAttached("AutoSelected", typeof(bool), typeof(Item), new PropertyMetadata(false));
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
 
-        private ChildTalkerItem item;
+        private IChildTalkerTile item;
         private PageViewer parent;
 
         public bool AutoSelected
@@ -43,26 +43,20 @@ namespace Child_Talker
             this.parent = parent;
         }
 
-        public void SetItem(ChildTalkerItem item)
+        public void SetItem(IChildTalkerTile item)
         {
             this.item = item;
 
             label.Content = item.Text;
             image.Width = 200;
             image.Height = 200;
-            image.Source = new BitmapImage(new Uri(item.ImagePath));
+            image.Source = new BitmapImage(new Uri(item.ImagePath, item.UriKind));
+           
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.item.IsLink())
-            {
-                this.parent.SetItems(this.item.Children);
-            }
-            else
-            {
-                synth.SpeakAsync(label.Content.ToString());
-            }
+        {  
+            item.PerformAction();
         }
     }
 }

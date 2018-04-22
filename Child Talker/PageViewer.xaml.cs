@@ -25,6 +25,9 @@ namespace Child_Talker
         private Timer timer;
         private int i = 0;
         private bool scanning = false;
+        private Stack<List<IChildTalkerTile>> folderTrace = new Stack<List<IChildTalkerTile>>();
+        private IChildTalkerTile backItem, addItemItem;
+        private List<IChildTalkerTile> currentChildren;
 
         public PageViewer()
         {
@@ -33,6 +36,9 @@ namespace Child_Talker
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
+
+            backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
+            addItemItem = new ChildTalkerItemAdder("Click to Add Item", "../../Resources/whelpegg.png", this);
         }
 
         public void StartAutoScan()
@@ -71,7 +77,7 @@ namespace Child_Talker
             doc.Load(path);
 
             XmlNode node = doc.DocumentElement.SelectSingleNode("/profile/items");
-            List<ChildTalkerItem> items = new List<ChildTalkerItem>();
+            List<IChildTalkerTile> items = new List<IChildTalkerTile>();
             foreach (XmlNode item in node.ChildNodes)
             {
                 items.Add(LoadItem(item));
@@ -80,12 +86,21 @@ namespace Child_Talker
             SetItems(items);
         }
 
-        public ChildTalkerItem LoadItem(XmlNode node)
+        public IChildTalkerTile LoadItem(XmlNode node)
         {
-            ChildTalkerItem item = new ChildTalkerItem(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText);
-            Console.WriteLine(item.Text);
-
-            List<ChildTalkerItem> children = new List<ChildTalkerItem>();
+            IChildTalkerTile item;
+            if (node.ChildNodes.Count != 0 )
+            {
+                item = new ChildTalkerFolder(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText, this);
+                Console.WriteLine(item.Text);
+            }
+            else
+            {
+                item = new ChildTalkerItem(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText);
+                Console.WriteLine(item.Text);
+            }
+            
+            List<IChildTalkerTile> children = new List<IChildTalkerTile>();
             foreach (XmlNode child in node.ChildNodes)
             {
                 children.Add(LoadItem(child));
@@ -93,13 +108,14 @@ namespace Child_Talker
 
             if (children.Count != 0)
             {
-                item.SetChildren(children);
+               
+                ((ChildTalkerFolder)item).SetChildren(children);
             }
 
             return item;
         }
 
-        public void SetItems(List<ChildTalkerItem> items)
+        public void SetItems(List<IChildTalkerTile> items, Boolean setFromBackButton = false)
         {
             bool wasScanning = scanning;
             if (wasScanning)
@@ -107,8 +123,26 @@ namespace Child_Talker
                 StopAutoScan();
             }
 
+            if (currentChildren != null)
+            {
+                if (!setFromBackButton)
+                {
+                    folderTrace.Push(currentChildren);
+                }
+                if (!items.Contains(backItem))
+                {
+                    items.Add(backItem);
+                }
+                
+            }
+            if (!items.Contains(addItemItem))
+            {
+                items.Add(addItemItem);
+            }
+
+            currentChildren = items;
             this.items.Children.Clear();
-            foreach (ChildTalkerItem item in items)
+            foreach (IChildTalkerTile item in items)
             {
                 Item ui = new Item();
                 ui.SetItem(item);
@@ -119,6 +153,35 @@ namespace Child_Talker
             if (wasScanning)
             {
                 StartAutoScan();
+            }
+        }
+
+        public void AddSingleItem(IChildTalkerTile itemToAdd)
+        {
+            bool wasScanning = scanning;
+            if (wasScanning)
+            {
+                StopAutoScan();
+            }
+
+            Item ui = new Item();
+            ui.SetItem(itemToAdd);
+            ui.SetParent(this);
+            this.items.Children.Add(ui);
+
+            currentChildren.Add(itemToAdd);
+
+            if (wasScanning)
+            {
+                StartAutoScan();
+            }
+        }
+
+        public void PopFolderView()
+        {
+            if (folderTrace.Count > 0)
+            {
+                SetItems(folderTrace.Pop(), true);
             }
         }
     }

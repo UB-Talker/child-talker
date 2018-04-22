@@ -6,6 +6,6 @@
              xmlns:local="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <WrapPanel x:Name="items" Orientation="Horizontal">
+    <WrapPanel x:Name="items" Orientation="Horizontal" Background="DarkRed">
     </WrapPanel>
 </UserControl>
