@@ -48,6 +48,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml.Serialization" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -73,6 +74,8 @@
     <Compile Include="ChildTalkerItem.cs" />
     <Compile Include="ChildTalkerBackButton.cs" />
     <Compile Include="ChildTalkerItemAdder.cs" />
+    <Compile Include="ChildTalkerXml.cs" />
+    <Compile Include="ChildTalkerXmlWrapper.cs" />
     <Compile Include="IChildTalkerTile.cs" />
     <Compile Include="Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
@@ -134,6 +137,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\whelp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\example2.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

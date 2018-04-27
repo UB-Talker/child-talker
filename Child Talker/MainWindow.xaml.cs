@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Child_Talker
 {
@@ -22,12 +23,11 @@ namespace Child_Talker
     {
         public MainWindow()
         {
+
             InitializeComponent();
 
-            viewer.LoadFromXml("../../Resources/example.xml");
-            viewer.StartAutoScan();
-
-            
+            viewer.LoadFromXml("../../Resources/example2.xml");
+            //viewer.StartAutoScan();
         }
     }
 }

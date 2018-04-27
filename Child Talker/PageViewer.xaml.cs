@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
+using System.Xml.Serialization;
 
 namespace Child_Talker
 {
@@ -73,46 +74,48 @@ namespace Child_Talker
 
         public void LoadFromXml(string path)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path);
-
-            XmlNode node = doc.DocumentElement.SelectSingleNode("/profile/items");
-            List<IChildTalkerTile> items = new List<IChildTalkerTile>();
-            foreach (XmlNode item in node.ChildNodes)
+            XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
+            ChildTalkerXmlWrapper wrapper;
+            using (XmlReader reader = XmlReader.Create(path))
             {
-                items.Add(LoadItem(item));
+                wrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
+            }
+
+            List<IChildTalkerTile> items = new List<IChildTalkerTile>();
+            foreach (var child in wrapper.Children)
+            {
+                items.Add(ParseNode(child));
             }
 
             SetItems(items);
         }
 
-        public IChildTalkerTile LoadItem(XmlNode node)
+        public void SaveToXml(string path, ChildTalkerXmlWrapper wrapper)
         {
-            IChildTalkerTile item;
-            if (node.ChildNodes.Count != 0 )
+            XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
+            using (XmlWriter writer = XmlWriter.Create(path))
             {
-                item = new ChildTalkerFolder(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText, this);
-                Console.WriteLine(item.Text);
+                serializer.Serialize(writer, wrapper);
             }
-            else
-            {
-                item = new ChildTalkerItem(node.Attributes["name"].InnerText, node.Attributes["image"].InnerText);
-                Console.WriteLine(item.Text);
-            }
-            
-            List<IChildTalkerTile> children = new List<IChildTalkerTile>();
-            foreach (XmlNode child in node.ChildNodes)
-            {
-                children.Add(LoadItem(child));
-            }
+        }
 
-            if (children.Count != 0)
+        public IChildTalkerTile ParseNode(ChildTalkerXml node)
+        {
+            if (node.Children.Count == 0)
             {
-               
-                ((ChildTalkerFolder)item).SetChildren(children);
+                return new ChildTalkerItem(node.Text, node.ImagePath, UriKind.RelativeOrAbsolute);
+            } else
+            {
+                List<IChildTalkerTile> items = new List<IChildTalkerTile>();
+                foreach (var child in node.Children)
+                {
+                    items.Add(ParseNode(child));
+                }
+                ChildTalkerFolder folder = new ChildTalkerFolder(node.Text, node.ImagePath, this);
+                folder.UriKind = UriKind.RelativeOrAbsolute;
+                folder.Children = items;
+                return folder;
             }
-
-            return item;
         }
 
         public void SetItems(List<IChildTalkerTile> items, Boolean setFromBackButton = false)
