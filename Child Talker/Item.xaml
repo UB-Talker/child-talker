@@ -22,7 +22,7 @@
     </UserControl.Resources>
     <Border>
         <Grid Margin="10">
-            <Button Width="250" Height="250" Click="Button_Click">
+            <Button Width="250" Height="250" Click="Button_Click" MouseRightButtonDown="Button_MouseRightButtonDown">
                 <StackPanel>
                     <Label x:Name="label" />
                     <Image x:Name="image" />

@@ -58,5 +58,10 @@ namespace Child_Talker
         {  
             item.PerformAction();
         }
+
+        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("Right clicked");
+        }
     }
 }
