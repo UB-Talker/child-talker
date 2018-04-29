@@ -50,7 +50,7 @@ namespace Child_Talker
             label.Content = item.Text;
             image.Width = 200;
             image.Height = 200;
-            image.Source = new BitmapImage(new Uri(item.ImagePath, item.UriKind));
+            image.Source = new BitmapImage(new Uri(item.ImagePath, UriKind.RelativeOrAbsolute));
            
         }
 

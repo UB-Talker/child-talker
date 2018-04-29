@@ -10,15 +10,13 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        public UriKind UriKind { get; set; }
         public IChildTalkerTile Parent { get; set; }
         private PageViewer Root;
 
-        public ChildTalkerBackButton(string text, string imagePath, PageViewer root, UriKind uriKind = UriKind.Relative)
+        public ChildTalkerBackButton(string text, string imagePath, PageViewer root)
         {
             Text = text;
             ImagePath = imagePath;
-            UriKind = uriKind;
             Root = root;
         }
 

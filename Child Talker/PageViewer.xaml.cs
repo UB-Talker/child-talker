@@ -27,7 +27,7 @@ namespace Child_Talker
         private int i = 0;
         private bool scanning = false;
         private Stack<List<IChildTalkerTile>> folderTrace = new Stack<List<IChildTalkerTile>>();
-        private IChildTalkerTile backItem, addItemItem;
+        private IChildTalkerTile backItem, addItemItem, addFolderItem;
         private List<IChildTalkerTile> currentChildren;
 
         public PageViewer()
@@ -40,6 +40,7 @@ namespace Child_Talker
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
             addItemItem = new ChildTalkerItemAdder("Click to Add Item", "../../Resources/whelpegg.png", this);
+            addFolderItem = new ChildTalkerFolderAdder("Click to Add Folder", "../../Resources/whelpegg.png", this);
         }
 
         public void StartAutoScan()
@@ -103,7 +104,7 @@ namespace Child_Talker
         {
             if (node.Children.Count == 0)
             {
-                return new ChildTalkerItem(node.Text, node.ImagePath, UriKind.RelativeOrAbsolute);
+                return new ChildTalkerItem(node.Text, node.ImagePath);
             } else
             {
                 List<IChildTalkerTile> items = new List<IChildTalkerTile>();
@@ -112,7 +113,6 @@ namespace Child_Talker
                     items.Add(ParseNode(child));
                 }
                 ChildTalkerFolder folder = new ChildTalkerFolder(node.Text, node.ImagePath, this);
-                folder.UriKind = UriKind.RelativeOrAbsolute;
                 folder.Children = items;
                 return folder;
             }
@@ -132,7 +132,7 @@ namespace Child_Talker
                 {
                     folderTrace.Push(currentChildren);
                 }
-                if (!items.Contains(backItem))
+                if (!items.Contains(backItem) && folderTrace.Count > 0)
                 {
                     items.Add(backItem);
                 }
@@ -141,6 +141,10 @@ namespace Child_Talker
             if (!items.Contains(addItemItem))
             {
                 items.Add(addItemItem);
+            }
+            if (!items.Contains(addFolderItem))
+            {
+                items.Add(addFolderItem);
             }
 
             currentChildren = items;

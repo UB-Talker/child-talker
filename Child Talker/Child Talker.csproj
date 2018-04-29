@@ -71,6 +71,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChildTalkerFolder.cs" />
+    <Compile Include="ChildTalkerFolderAdder.cs" />
     <Compile Include="ChildTalkerItem.cs" />
     <Compile Include="ChildTalkerBackButton.cs" />
     <Compile Include="ChildTalkerItemAdder.cs" />

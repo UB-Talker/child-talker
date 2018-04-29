@@ -10,30 +10,21 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        public UriKind UriKind { get; set; }
         public List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
         public PageViewer Root;
         public IChildTalkerTile Parent { get; set; }
 
-        public ChildTalkerFolder(string text, string imagePath, List<IChildTalkerTile> children, PageViewer root, UriKind uriKind = UriKind.Relative)
+        public ChildTalkerFolder(string text, string imagePath, PageViewer root, List<IChildTalkerTile> children = null)
         {
             Text = text;
             ImagePath = imagePath;
-            UriKind = uriKind;
             SetChildren(children);
             Root = root;
         }
 
-        public ChildTalkerFolder(string text, string imagePath, PageViewer parent)
-        {
-            Text = text;
-            ImagePath = imagePath;
-            Root = parent;
-        }
-
         public bool IsLink()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void PerformAction()
@@ -43,11 +34,14 @@ namespace Child_Talker
 
         public void SetChildren(List<IChildTalkerTile> children)
         {
-            Children = children;
-
-            foreach (IChildTalkerTile child in Children)
+            if (children != null)
             {
-                child.Parent = this;
+                Children = children;
+
+                foreach (IChildTalkerTile child in Children)
+                {
+                    child.Parent = this;
+                }
             }
         }
     }

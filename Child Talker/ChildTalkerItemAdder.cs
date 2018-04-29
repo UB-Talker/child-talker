@@ -13,15 +13,13 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        public UriKind UriKind { get; set; }
         public IChildTalkerTile Parent { get; set; }
         private PageViewer Root;
 
-        public ChildTalkerItemAdder(string text, string imagePath, PageViewer root, UriKind uriKind = UriKind.Relative)
+        public ChildTalkerItemAdder(string text, string imagePath, PageViewer root)
         {
             Text = text;
             ImagePath = imagePath;
-            UriKind = UriKind;
             Root = root;
         }
 
@@ -38,7 +36,7 @@ namespace Child_Talker
                 String imagePath = PromptFileExplorer();
                 if (imagePath != "")
                 {
-                    ChildTalkerItem ctItem = new ChildTalkerItem(inputPhrase, imagePath, UriKind.Absolute);
+                    ChildTalkerItem ctItem = new ChildTalkerItem(inputPhrase, imagePath);
                     Root.AddSingleItem(ctItem);
                 }
             }

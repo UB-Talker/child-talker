@@ -14,17 +14,15 @@ namespace Child_Talker
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        public UriKind UriKind { get; set; }
         public IChildTalkerTile Parent { get; set; }
         private Timer timer;
 
 
-        public ChildTalkerItem(string text, string imagePath, UriKind uriKind = UriKind.Relative)
+        public ChildTalkerItem(string text, string imagePath)
         {
             timer = new Timer();
             Text = text;
             ImagePath = imagePath;
-            UriKind = uriKind;
             timer.Interval = 1000;
             timer.AutoReset = false;
         }

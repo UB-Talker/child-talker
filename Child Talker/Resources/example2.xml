@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <ChildTalkerXmlWrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Children>
-    <ChildTalkerXml Text="test" ImagePath="C:\Users\Jeremy\Pictures\kris.jpg">
+    <ChildTalkerXml Text="test" ImagePath="../../Resources/folder.jpg">
       <Children>
-        <ChildTalkerXml Text="testing" ImagePath="C:\Users\Jeremy\Pictures\kris.jpg" />
+        <ChildTalkerXml Text="testing" ImagePath="../../Resources/kris.jpg" />
       </Children>
     </ChildTalkerXml>
   </Children>

@@ -12,7 +12,6 @@ namespace Child_Talker
         void PerformAction();
         string Text { get; set; }
         string ImagePath { get; set; }
-        UriKind UriKind { get; set; }
         IChildTalkerTile Parent { get; set; }
     }
 }
