@@ -27,8 +27,10 @@ namespace Child_Talker
         private int i = 0;
         private bool scanning = false;
         private Stack<List<IChildTalkerTile>> folderTrace = new Stack<List<IChildTalkerTile>>();
+        private ChildTalkerXmlWrapper XmlWrapper;
         private IChildTalkerTile backItem, addItemItem, addFolderItem;
         private List<IChildTalkerTile> currentChildren;
+        private string ProfilePath;
 
         public PageViewer()
         {
@@ -37,9 +39,10 @@ namespace Child_Talker
             timer = new Timer();
             timer.Interval = 1000;
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
+            ProfilePath = "../../Resources/example2.xml";
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
-            addItemItem = new ChildTalkerItemAdder("Click to Add Item", "../../Resources/whelpegg.png", this);
+            addItemItem = new ChildTalkerTileAdder("Click to Add Item", "../../Resources/whelpegg.png", this);
             addFolderItem = new ChildTalkerFolderAdder("Click to Add Folder", "../../Resources/whelpegg.png", this);
         }
 
@@ -47,78 +50,79 @@ namespace Child_Talker
         {
             scanning = true;
             i = 0;
-            ((Item)this.items.Children[i]).AutoSelected = true;
+            ((Item)items.Children[i]).AutoSelected = true;
             timer.Start();
         }
 
         public void StopAutoScan()
         {
             scanning = false;
-            if (this.items.Children.Count != 0)
+            if (items.Children.Count != 0)
             {
-                ((Item)this.items.Children[i]).AutoSelected = false;
+                ((Item)items.Children[i]).AutoSelected = false;
             }
 
             timer.Stop();
         }
 
-        private void OnElapsedTime(object source, ElapsedEventArgs e)
+        private void OnElapsedTime(object _source, ElapsedEventArgs e)
         {
             this.Dispatcher.Invoke(() =>
             {
                 Console.WriteLine($"{i} / {items.Children.Count}");
-                ((Item)this.items.Children[i]).AutoSelected = false;
-                i = (i + 1) % this.items.Children.Count;
-                ((Item)this.items.Children[i]).AutoSelected = true;
+                ((Item)items.Children[i]).AutoSelected = false;
+                i = (i + 1) % items.Children.Count;
+                ((Item)items.Children[i]).AutoSelected = true;
             });
         }
 
-        public void LoadFromXml(string path)
+        public void LoadFromXml(string _path)
         {
+            ProfilePath = _path;
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
             ChildTalkerXmlWrapper wrapper;
-            using (XmlReader reader = XmlReader.Create(path))
+            using (XmlReader reader = XmlReader.Create(_path))
             {
                 wrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
             }
 
-            List<IChildTalkerTile> items = new List<IChildTalkerTile>();
+            List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
             foreach (var child in wrapper.Children)
             {
-                items.Add(ParseNode(child));
+                ctTiles.Add(ParseNode(child));
             }
 
-            SetItems(items);
+            AddMultipleItems(ctTiles);
         }
 
-        public void SaveToXml(string path, ChildTalkerXmlWrapper wrapper)
+        public void SaveToXml(string _path)
         {
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            using (XmlWriter writer = XmlWriter.Create(path))
+            using (XmlWriter writer = XmlWriter.Create(_path))
             {
-                serializer.Serialize(writer, wrapper);
+                serializer.Serialize(writer, XmlWrapper);
             }
         }
 
-        public IChildTalkerTile ParseNode(ChildTalkerXml node)
+        public IChildTalkerTile ParseNode(ChildTalkerXml _node)
         {
-            if (node.Children.Count == 0)
+            if (_node.Children.Count == 0)
             {
-                return new ChildTalkerItem(node.Text, node.ImagePath);
+                return new ChildTalkerTile(_node.Text, _node.ImagePath);
             } else
             {
-                List<IChildTalkerTile> items = new List<IChildTalkerTile>();
-                foreach (var child in node.Children)
+                List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
+                foreach (var child in _node.Children)
                 {
-                    items.Add(ParseNode(child));
+                    ctTiles.Add(ParseNode(child));
                 }
-                ChildTalkerFolder folder = new ChildTalkerFolder(node.Text, node.ImagePath, this);
-                folder.Children = items;
+                ChildTalkerFolder folder = new ChildTalkerFolder(_node.Text, _node.ImagePath, this);
+                folder.Children = ctTiles;
                 return folder;
             }
         }
 
-        public void SetItems(List<IChildTalkerTile> items, Boolean setFromBackButton = false)
+        public void AddMultipleItems(List<IChildTalkerTile> _ctTiles, Boolean setFromBackButton = false)
         {
             bool wasScanning = scanning;
             if (wasScanning)
@@ -132,29 +136,29 @@ namespace Child_Talker
                 {
                     folderTrace.Push(currentChildren);
                 }
-                if (!items.Contains(backItem) && folderTrace.Count > 0)
+                if (!_ctTiles.Contains(backItem) && folderTrace.Count > 0)
                 {
-                    items.Add(backItem);
+                    _ctTiles.Add(backItem);
                 }
                 
             }
-            if (!items.Contains(addItemItem))
+            if (!_ctTiles.Contains(addItemItem))
             {
-                items.Add(addItemItem);
+                _ctTiles.Add(addItemItem);
             }
-            if (!items.Contains(addFolderItem))
+            if (!_ctTiles.Contains(addFolderItem))
             {
-                items.Add(addFolderItem);
+                _ctTiles.Add(addFolderItem);
             }
 
-            currentChildren = items;
-            this.items.Children.Clear();
-            foreach (IChildTalkerTile item in items)
+            currentChildren = _ctTiles;
+            items.Children.Clear();
+            foreach (IChildTalkerTile item in _ctTiles)
             {
                 Item ui = new Item();
                 ui.SetItem(item);
                 ui.SetParent(this);
-                this.items.Children.Add(ui);
+                items.Children.Add(ui);
             }
 
             if (wasScanning)
@@ -163,7 +167,7 @@ namespace Child_Talker
             }
         }
 
-        public void AddSingleItem(IChildTalkerTile itemToAdd)
+        public void AddSingleItem(IChildTalkerTile _ctTileToAdd)
         {
             bool wasScanning = scanning;
             if (wasScanning)
@@ -172,11 +176,28 @@ namespace Child_Talker
             }
 
             Item ui = new Item();
-            ui.SetItem(itemToAdd);
+            ui.SetItem(_ctTileToAdd);
             ui.SetParent(this);
-            this.items.Children.Add(ui);
+            items.Children.Add(ui);
 
-            currentChildren.Add(itemToAdd);
+            currentChildren.Add(_ctTileToAdd);
+
+            if (wasScanning)
+            {
+                StartAutoScan();
+            }
+        }
+
+        public void RemoveSingleTile(Item _itemToRemove)
+        {
+            bool wasScanning = scanning;
+            if (wasScanning)
+            {
+                StopAutoScan();
+            }
+
+            items.Children.Remove(_itemToRemove);
+            currentChildren.Remove(_itemToRemove.CtTile);
 
             if (wasScanning)
             {
@@ -188,7 +209,7 @@ namespace Child_Talker
         {
             if (folderTrace.Count > 0)
             {
-                SetItems(folderTrace.Pop(), true);
+                AddMultipleItems(folderTrace.Pop(), true);
             }
         }
     }

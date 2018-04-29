@@ -9,18 +9,23 @@ using System.Windows.Forms;
 
 namespace Child_Talker
 {
-    class ChildTalkerItemAdder : IChildTalkerTile
+    class ChildTalkerTileAdder : IChildTalkerTile
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }
+        public ChildTalkerXml Xml { get; set; }
+
         private PageViewer Root;
 
-        public ChildTalkerItemAdder(string text, string imagePath, PageViewer root)
+        public ChildTalkerTileAdder(string _text, string _imagePath, PageViewer _root)
         {
-            Text = text;
-            ImagePath = imagePath;
-            Root = root;
+            Text = _text;
+            ImagePath = _imagePath;
+            Root = _root;
+            Xml = new ChildTalkerXml();
+            Xml.Text = Text;
+            Xml.ImagePath = ImagePath;
         }
 
         public bool IsLink()
@@ -36,7 +41,7 @@ namespace Child_Talker
                 String imagePath = PromptFileExplorer();
                 if (imagePath != "")
                 {
-                    ChildTalkerItem ctItem = new ChildTalkerItem(inputPhrase, imagePath);
+                    ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath);
                     Root.AddSingleItem(ctItem);
                 }
             }

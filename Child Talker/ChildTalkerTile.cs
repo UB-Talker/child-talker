@@ -5,26 +5,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Xml.Serialization;
 
 namespace Child_Talker
 {
-
-    public class ChildTalkerItem : IChildTalkerTile
+    
+    public class ChildTalkerTile : IChildTalkerTile
     {
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }
+        public ChildTalkerXml Xml { get; set; }
         private Timer timer;
 
 
-        public ChildTalkerItem(string text, string imagePath)
+        public ChildTalkerTile(string _text, string _imagePath)
         {
             timer = new Timer();
-            Text = text;
-            ImagePath = imagePath;
+            Text = _text;
+            ImagePath = _imagePath;
             timer.Interval = 1000;
             timer.AutoReset = false;
+            Xml = new ChildTalkerXml();
+            Xml.Text = Text;
+            Xml.ImagePath = ImagePath;
         }
 
         public bool IsLink()

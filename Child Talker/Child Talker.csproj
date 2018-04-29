@@ -72,9 +72,9 @@
     </Compile>
     <Compile Include="ChildTalkerFolder.cs" />
     <Compile Include="ChildTalkerFolderAdder.cs" />
-    <Compile Include="ChildTalkerItem.cs" />
+    <Compile Include="ChildTalkerTile.cs" />
     <Compile Include="ChildTalkerBackButton.cs" />
-    <Compile Include="ChildTalkerItemAdder.cs" />
+    <Compile Include="ChildTalkerTileAdder.cs" />
     <Compile Include="ChildTalkerXml.cs" />
     <Compile Include="ChildTalkerXmlWrapper.cs" />
     <Compile Include="IChildTalkerTile.cs" />

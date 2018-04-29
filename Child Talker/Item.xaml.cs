@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.VisualBasic;
 
 namespace Child_Talker
 {
@@ -24,8 +25,8 @@ namespace Child_Talker
         public static readonly DependencyProperty AutoSelectedProperty = DependencyProperty.RegisterAttached("AutoSelected", typeof(bool), typeof(Item), new PropertyMetadata(false));
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
 
-        private IChildTalkerTile item;
-        private PageViewer parent;
+        public IChildTalkerTile CtTile { get; set; }
+        private PageViewer Root;
 
         public bool AutoSelected
         {
@@ -38,30 +39,37 @@ namespace Child_Talker
             InitializeComponent();
         }
 
-        public void SetParent(PageViewer parent)
+        public void SetParent(PageViewer _parent)
         {
-            this.parent = parent;
+            Root = _parent;
         }
 
-        public void SetItem(IChildTalkerTile item)
+        public void SetItem(IChildTalkerTile _ctItem)
         {
-            this.item = item;
+            CtTile = _ctItem;
 
-            label.Content = item.Text;
+            label.Content = _ctItem.Text;
             image.Width = 200;
             image.Height = 200;
-            image.Source = new BitmapImage(new Uri(item.ImagePath, UriKind.RelativeOrAbsolute));
+            image.Source = new BitmapImage(new Uri(_ctItem.ImagePath, UriKind.RelativeOrAbsolute));
            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void LeftMouseButton_Click(object sender, RoutedEventArgs e)
         {  
-            item.PerformAction();
+            CtTile.PerformAction();
         }
 
-        private void Button_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        private void RightMouseButton_Up(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Right clicked");
+            if (!(CtTile is ChildTalkerBackButton) && !(CtTile is ChildTalkerFolderAdder) && !(CtTile is ChildTalkerTileAdder))
+            {
+                MsgBoxResult response = Interaction.MsgBox("Would you like to delete this tile?", MsgBoxStyle.YesNo, "Delete Tile");
+                if (response == MsgBoxResult.Yes)
+                {
+                    Root.RemoveSingleTile(this);
+                }
+            }
         }
     }
 }

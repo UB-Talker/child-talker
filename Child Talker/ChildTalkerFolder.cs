@@ -11,15 +11,21 @@ namespace Child_Talker
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
+        private List<ChildTalkerXml> XmlChildren = new List<ChildTalkerXml>();
         public PageViewer Root;
         public IChildTalkerTile Parent { get; set; }
+        public ChildTalkerXml Xml { get; set; }
 
-        public ChildTalkerFolder(string text, string imagePath, PageViewer root, List<IChildTalkerTile> children = null)
+        public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
         {
-            Text = text;
-            ImagePath = imagePath;
-            SetChildren(children);
-            Root = root;
+            Text = _text;
+            ImagePath = _imagePath;
+            SetChildren(_children);
+            Root = _root;
+            Xml = new ChildTalkerXml();
+            Xml.Text = Text;
+            Xml.ImagePath = ImagePath;
+            Xml.Children = XmlChildren;
         }
 
         public bool IsLink()
@@ -29,18 +35,20 @@ namespace Child_Talker
 
         public void PerformAction()
         {
-            Root.SetItems(Children);
+            Root.AddMultipleItems(Children);
         }
 
-        public void SetChildren(List<IChildTalkerTile> children)
+        public void SetChildren(List<IChildTalkerTile> _children)
         {
-            if (children != null)
+            if (_children != null)
             {
-                Children = children;
+                Children = _children;
+                XmlChildren.Clear();
 
                 foreach (IChildTalkerTile child in Children)
                 {
                     child.Parent = this;
+                    XmlChildren.Add(child.Xml);
                 }
             }
         }

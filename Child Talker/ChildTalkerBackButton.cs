@@ -11,13 +11,18 @@ namespace Child_Talker
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }
+        public ChildTalkerXml Xml { get; set; }
+
         private PageViewer Root;
 
-        public ChildTalkerBackButton(string text, string imagePath, PageViewer root)
+        public ChildTalkerBackButton(string _text, string _imagePath, PageViewer _root)
         {
-            Text = text;
-            ImagePath = imagePath;
-            Root = root;
+            Text = _text;
+            ImagePath = _imagePath;
+            Root = _root;
+            Xml = new ChildTalkerXml();
+            Xml.Text = Text;
+            Xml.ImagePath = ImagePath;
         }
 
         public bool IsLink()
