@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Child_Talker
 {
-    class ChildTalkerFolder : IChildTalkerTile
+    public class ChildTalkerFolder : IChildTalkerTile
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        public List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
+        private List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
         private List<ChildTalkerXml> XmlChildren = new List<ChildTalkerXml>();
         public PageViewer Root;
         public IChildTalkerTile Parent { get; set; }
@@ -35,6 +35,7 @@ namespace Child_Talker
 
         public void PerformAction()
         {
+            Root.ViewParents.Push(this);
             Root.AddMultipleItems(Children);
         }
 
@@ -50,6 +51,26 @@ namespace Child_Talker
                     child.Parent = this;
                     XmlChildren.Add(child.Xml);
                 }
+            }
+        }
+
+        public void AddChild(IChildTalkerTile _child)
+        {
+            if (_child != null)
+            {
+                _child.Parent = this;
+                Children.Add(_child);
+                XmlChildren.Add(_child.Xml);
+            }
+        }
+
+        public void RemoveChild(IChildTalkerTile _child)
+        {
+            if (_child != null)
+            {
+                _child.Parent = null;
+                Children.Remove(_child);
+                XmlChildren.Remove(_child.Xml);
             }
         }
     }

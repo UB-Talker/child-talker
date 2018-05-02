@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Serialization;
+using Microsoft.VisualBasic;
 
 namespace Child_Talker
 {
@@ -28,9 +30,11 @@ namespace Child_Talker
         private bool scanning = false;
         private Stack<List<IChildTalkerTile>> folderTrace = new Stack<List<IChildTalkerTile>>();
         private ChildTalkerXmlWrapper XmlWrapper;
-        private IChildTalkerTile backItem, addItemItem, addFolderItem;
+        private IChildTalkerTile backItem;
         private List<IChildTalkerTile> currentChildren;
         private string ProfilePath;
+        public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
+        private List<IChildTalkerTile> RootChildren = new List<IChildTalkerTile>();
 
         public PageViewer()
         {
@@ -40,10 +44,9 @@ namespace Child_Talker
             timer.Interval = 1000;
             timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
             ProfilePath = "../../Resources/example2.xml";
+            scanning = false;
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
-            addItemItem = new ChildTalkerTileAdder("Click to Add Item", "../../Resources/whelpegg.png", this);
-            addFolderItem = new ChildTalkerFolderAdder("Click to Add Folder", "../../Resources/whelpegg.png", this);
         }
 
         public void StartAutoScan()
@@ -80,19 +83,19 @@ namespace Child_Talker
         {
             ProfilePath = _path;
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            ChildTalkerXmlWrapper wrapper;
+            //ChildTalkerXmlWrapper wrapper;
             using (XmlReader reader = XmlReader.Create(_path))
             {
-                wrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
+                XmlWrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
             }
 
             List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
-            foreach (var child in wrapper.Children)
+            foreach (var child in XmlWrapper.Children)
             {
                 ctTiles.Add(ParseNode(child));
             }
 
-            AddMultipleItems(ctTiles);
+            AddMultipleItems(ctTiles, false, true);
         }
 
         public void SaveToXml(string _path)
@@ -117,12 +120,12 @@ namespace Child_Talker
                     ctTiles.Add(ParseNode(child));
                 }
                 ChildTalkerFolder folder = new ChildTalkerFolder(_node.Text, _node.ImagePath, this);
-                folder.Children = ctTiles;
+                folder.SetChildren(ctTiles);
                 return folder;
             }
         }
 
-        public void AddMultipleItems(List<IChildTalkerTile> _ctTiles, Boolean setFromBackButton = false)
+        public void AddMultipleItems(List<IChildTalkerTile> _ctTiles, Boolean setFromBackButton = false, Boolean calledFromLoad = false)
         {
             bool wasScanning = scanning;
             if (wasScanning)
@@ -138,17 +141,8 @@ namespace Child_Talker
                 }
                 if (!_ctTiles.Contains(backItem) && folderTrace.Count > 0)
                 {
-                    _ctTiles.Add(backItem);
-                }
-                
-            }
-            if (!_ctTiles.Contains(addItemItem))
-            {
-                _ctTiles.Add(addItemItem);
-            }
-            if (!_ctTiles.Contains(addFolderItem))
-            {
-                _ctTiles.Add(addFolderItem);
+                    _ctTiles.Insert(0, backItem);
+                }  
             }
 
             currentChildren = _ctTiles;
@@ -161,6 +155,16 @@ namespace Child_Talker
                 items.Children.Add(ui);
             }
 
+            if (calledFromLoad)
+            {
+                RootChildren = _ctTiles;
+                XmlWrapper.Children = new List<ChildTalkerXml>();
+                foreach (IChildTalkerTile rootChild in RootChildren)
+                {
+                    XmlWrapper.Children.Add(rootChild.Xml);
+                }
+            }
+
             if (wasScanning)
             {
                 StartAutoScan();
@@ -169,12 +173,21 @@ namespace Child_Talker
 
         public void AddSingleItem(IChildTalkerTile _ctTileToAdd)
         {
-            bool wasScanning = scanning;
-            if (wasScanning)
+           
+            if (false)
             {
                 StopAutoScan();
             }
 
+            if (ViewParents.Count > 0)
+            {
+                ViewParents.Peek().AddChild(_ctTileToAdd);
+            }
+            else
+            {
+                RootChildren.Add(_ctTileToAdd);
+                XmlWrapper.Children.Add(_ctTileToAdd.Xml);
+            }
             Item ui = new Item();
             ui.SetItem(_ctTileToAdd);
             ui.SetParent(this);
@@ -182,10 +195,16 @@ namespace Child_Talker
 
             currentChildren.Add(_ctTileToAdd);
 
-            if (wasScanning)
+            SaveToXml(ProfilePath);
+            if (false)
             {
                 StartAutoScan();
             }
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         public void RemoveSingleTile(Item _itemToRemove)
@@ -198,7 +217,16 @@ namespace Child_Talker
 
             items.Children.Remove(_itemToRemove);
             currentChildren.Remove(_itemToRemove.CtTile);
+            if (ViewParents.Count > 0)
+            {
+                ViewParents.Peek().RemoveChild(_itemToRemove.CtTile);
+            }
+            else
+            {
+                RootChildren.Remove(_itemToRemove.CtTile);
+            }
 
+            SaveToXml(ProfilePath);
             if (wasScanning)
             {
                 StartAutoScan();
@@ -211,6 +239,58 @@ namespace Child_Talker
             {
                 AddMultipleItems(folderTrace.Pop(), true);
             }
+        }
+
+        private void InsertFolderTile_Click(Object sender, RoutedEventArgs e)
+        {
+            String inputPhrase = Interaction.InputBox("Enter name for the folder you would like to add", "Enter Phrase", "Hello World!");
+            if (inputPhrase != "")
+            {
+                ChildTalkerFolder ctFolder = new ChildTalkerFolder(inputPhrase, "../../Resources/folder.jpg", this);
+                AddSingleItem(ctFolder);
+            }
+        }
+
+        private void InsertTalkerTile_Click(Object sender, RoutedEventArgs e)
+        {
+            String inputPhrase = Interaction.InputBox("Enter the phrase you would like to add", "Enter Phrase", "Hello World!");
+            if (inputPhrase != "")
+            {
+                String imagePath = PromptFileExplorer();
+                if (imagePath != "")
+                {
+                    ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath);
+                    AddSingleItem(ctItem);
+                }
+            }
+        }
+
+        private String PromptFileExplorer()
+        {
+            Stream myStream = null;
+            System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
+
+            ofd.InitialDirectory = "c:\\";
+            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+            ofd.FilterIndex = 0;
+            ofd.RestoreDirectory = true;
+
+            String imagePath = "";
+            if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    if ((myStream = ofd.OpenFile()) != null)
+                    {
+                        imagePath = ofd.FileName;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                }
+            }
+            return imagePath;
         }
     }
 }

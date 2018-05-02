@@ -21,8 +21,8 @@ namespace Child_Talker
             ImagePath = _imagePath;
             Root = _root;
             Xml = new ChildTalkerXml();
-            Xml.Text = Text;
-            Xml.ImagePath = ImagePath;
+            Xml.Text = null;
+            Xml.ImagePath = null;
         }
 
         public bool IsLink()
@@ -32,6 +32,7 @@ namespace Child_Talker
 
         public void PerformAction()
         {
+            Root.ViewParents.Pop();
             Root.PopFolderView();
         }
     }

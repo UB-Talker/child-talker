@@ -6,6 +6,31 @@
              xmlns:local="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
-    <WrapPanel x:Name="items" Orientation="Horizontal" Background="DarkRed">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+    <DockPanel Grid.Row="0" Grid.ColumnSpan="5">
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Insert">
+                <MenuItem Header="Talker Tile" Click="InsertTalkerTile_Click"/>
+                <MenuItem Header="Folder Tile" Click="InsertFolderTile_Click"/>
+                </MenuItem>
+        </Menu>
+        <StackPanel></StackPanel>
+    </DockPanel>
+    <WrapPanel x:Name="items" Orientation="Horizontal" Background="DarkRed" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="5">
     </WrapPanel>
+    </Grid>
 </UserControl>
