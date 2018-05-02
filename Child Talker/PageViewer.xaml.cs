@@ -28,13 +28,11 @@ namespace Child_Talker
         private Timer timer;
         private int i = 0;
         private bool scanning = false;
-        private Stack<List<IChildTalkerTile>> folderTrace = new Stack<List<IChildTalkerTile>>();
         private ChildTalkerXmlWrapper XmlWrapper;
         private IChildTalkerTile backItem;
-        private List<IChildTalkerTile> currentChildren;
         private string ProfilePath;
+        private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
-        private List<IChildTalkerTile> RootChildren = new List<IChildTalkerTile>();
 
         public PageViewer()
         {
@@ -82,8 +80,8 @@ namespace Child_Talker
         public void LoadFromXml(string _path)
         {
             ProfilePath = _path;
+            ViewParents = new Stack<ChildTalkerFolder>();
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            //ChildTalkerXmlWrapper wrapper;
             using (XmlReader reader = XmlReader.Create(_path))
             {
                 XmlWrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
@@ -95,7 +93,7 @@ namespace Child_Talker
                 ctTiles.Add(ParseNode(child));
             }
 
-            AddMultipleItems(ctTiles, false, true);
+            LoadTiles(ctTiles, true);
         }
 
         public void SaveToXml(string _path)
@@ -125,7 +123,7 @@ namespace Child_Talker
             }
         }
 
-        public void AddMultipleItems(List<IChildTalkerTile> _ctTiles, Boolean setFromBackButton = false, Boolean calledFromLoad = false)
+        public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
         {
             bool wasScanning = scanning;
             if (wasScanning)
@@ -133,19 +131,19 @@ namespace Child_Talker
                 StopAutoScan();
             }
 
-            if (currentChildren != null)
+            if (calledFromLoad)
             {
-                if (!setFromBackButton)
-                {
-                    folderTrace.Push(currentChildren);
-                }
-                if (!_ctTiles.Contains(backItem) && folderTrace.Count > 0)
+                rootChildren = _ctTiles;
+            }
+            else
+            {
+                if(!_ctTiles.Contains(backItem) && ViewParents.Count > 0)
                 {
                     _ctTiles.Insert(0, backItem);
-                }  
+                    ViewParents.Peek().SetChildren(_ctTiles);
+                }
             }
 
-            currentChildren = _ctTiles;
             items.Children.Clear();
             foreach (IChildTalkerTile item in _ctTiles)
             {
@@ -157,9 +155,8 @@ namespace Child_Talker
 
             if (calledFromLoad)
             {
-                RootChildren = _ctTiles;
                 XmlWrapper.Children = new List<ChildTalkerXml>();
-                foreach (IChildTalkerTile rootChild in RootChildren)
+                foreach (IChildTalkerTile rootChild in _ctTiles)
                 {
                     XmlWrapper.Children.Add(rootChild.Xml);
                 }
@@ -173,8 +170,8 @@ namespace Child_Talker
 
         public void AddSingleItem(IChildTalkerTile _ctTileToAdd)
         {
-           
-            if (false)
+            bool wasScanning = scanning;
+            if (wasScanning)
             {
                 StopAutoScan();
             }
@@ -185,7 +182,7 @@ namespace Child_Talker
             }
             else
             {
-                RootChildren.Add(_ctTileToAdd);
+                rootChildren.Add(_ctTileToAdd);
                 XmlWrapper.Children.Add(_ctTileToAdd.Xml);
             }
             Item ui = new Item();
@@ -193,10 +190,8 @@ namespace Child_Talker
             ui.SetParent(this);
             items.Children.Add(ui);
 
-            currentChildren.Add(_ctTileToAdd);
-
             SaveToXml(ProfilePath);
-            if (false)
+            if (wasScanning)
             {
                 StartAutoScan();
             }
@@ -216,14 +211,14 @@ namespace Child_Talker
             }
 
             items.Children.Remove(_itemToRemove);
-            currentChildren.Remove(_itemToRemove.CtTile);
             if (ViewParents.Count > 0)
             {
                 ViewParents.Peek().RemoveChild(_itemToRemove.CtTile);
             }
             else
             {
-                RootChildren.Remove(_itemToRemove.CtTile);
+                rootChildren.Remove(_itemToRemove.CtTile);
+                XmlWrapper.Children.Remove(_itemToRemove.CtTile.Xml);
             }
 
             SaveToXml(ProfilePath);
@@ -235,9 +230,16 @@ namespace Child_Talker
 
         public void PopFolderView()
         {
-            if (folderTrace.Count > 0)
+            if (ViewParents.Count < 2)
             {
-                AddMultipleItems(folderTrace.Pop(), true);
+                ViewParents.Pop();
+                LoadTiles(rootChildren);
+            }
+            else
+            {
+                ViewParents.Pop();
+                List<IChildTalkerTile> children = ViewParents.Peek().Children;
+                LoadTiles(children);
             }
         }
 

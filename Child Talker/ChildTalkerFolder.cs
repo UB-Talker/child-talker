@@ -10,7 +10,7 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
-        private List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
+        public List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
         private List<ChildTalkerXml> XmlChildren = new List<ChildTalkerXml>();
         public PageViewer Root;
         public IChildTalkerTile Parent { get; set; }
@@ -36,7 +36,7 @@ namespace Child_Talker
         public void PerformAction()
         {
             Root.ViewParents.Push(this);
-            Root.AddMultipleItems(Children);
+            Root.LoadTiles(Children);
         }
 
         public void SetChildren(List<IChildTalkerTile> _children)

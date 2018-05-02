@@ -32,7 +32,6 @@ namespace Child_Talker
 
         public void PerformAction()
         {
-            Root.ViewParents.Pop();
             Root.PopFolderView();
         }
     }
