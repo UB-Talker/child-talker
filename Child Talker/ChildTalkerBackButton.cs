@@ -20,9 +20,9 @@ namespace Child_Talker
             Text = _text;
             ImagePath = _imagePath;
             Root = _root;
-            Xml = new ChildTalkerXml();
-            Xml.Text = null;
-            Xml.ImagePath = null;
+            Xml = null;
+            //Xml.Text = null;
+            //Xml.ImagePath = null;
         }
 
         public bool IsLink()

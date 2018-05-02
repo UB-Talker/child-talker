@@ -49,7 +49,10 @@ namespace Child_Talker
                 foreach (IChildTalkerTile child in Children)
                 {
                     child.Parent = this;
-                    XmlChildren.Add(child.Xml);
+                    if (child.Xml != null)
+                    {
+                        XmlChildren.Add(child.Xml);
+                    }
                 }
             }
         }
@@ -60,7 +63,10 @@ namespace Child_Talker
             {
                 _child.Parent = this;
                 Children.Add(_child);
-                XmlChildren.Add(_child.Xml);
+                if (_child.Xml != null)
+                {
+                    XmlChildren.Add(_child.Xml);
+                }
             }
         }
 
