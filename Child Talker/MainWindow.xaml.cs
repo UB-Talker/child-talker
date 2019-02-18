@@ -28,6 +28,11 @@ namespace Child_Talker
 
             viewer.LoadFromXml("../../Resources/example2.xml");
             //viewer.StartAutoScan();
+
+            //uncomment to display specific window change WindowHistory to desired Window
+            //WindowHistory temp = new WindowHistory();
+            //temp.Show();
+            //this.Close();
         }
     }
 }
