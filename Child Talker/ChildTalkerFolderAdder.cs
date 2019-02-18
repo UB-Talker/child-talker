@@ -27,6 +27,7 @@ namespace Child_Talker
             Xml = new ChildTalkerXml();
             Xml.Text = Text;
             Xml.ImagePath = ImagePath;
+            Xml.TileType = ChildTalkerXml.Tile.folder;
         }
 
         public bool IsLink()

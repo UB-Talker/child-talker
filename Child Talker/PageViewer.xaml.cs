@@ -107,7 +107,7 @@ namespace Child_Talker
 
         public IChildTalkerTile ParseNode(ChildTalkerXml _node)
         {
-            if (_node.Children.Count == 0)
+            if (_node.TileType == ChildTalkerXml.Tile.talker)
             {
                 return new ChildTalkerTile(_node.Text, _node.ImagePath);
             } else
