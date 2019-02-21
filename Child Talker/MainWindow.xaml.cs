@@ -26,13 +26,15 @@ namespace Child_Talker
 
             InitializeComponent();
 
-            viewer.LoadFromXml("../../Resources/example2.xml");
+            //viewer.LoadFromXml("../../Resources/example2.xml");
             //viewer.StartAutoScan();
 
             //uncomment to display specific window change WindowHistory to desired Window
-            //WindowHistory temp = new WindowHistory();
-            //temp.Show();
-            //this.Close();
+            WindowHistory temp = new WindowHistory();
+            //Keyboard temp = new Keyboard();
+            //MenuPage temp = new MenuPage();
+            temp.Show();
+            this.Close();
         }
     }
 }
