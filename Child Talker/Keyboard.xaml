@@ -12,7 +12,7 @@
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="112.6,-10,296.2,9.8">
             <Grid.RowDefinitions>
                 <RowDefinition Height="35*"/>
                 <RowDefinition Height="15*"/>
@@ -22,6 +22,8 @@
                 <ScrollViewer.Resources>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
                 </ScrollViewer.Resources>
+
+
                 <StackPanel x:Name="autofill" Background="#FF990000" Width="Auto" Orientation="Horizontal" >
                     <Border>
                         <TextBlock Background="#60FF0000" Padding="15" Margin="25" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
@@ -35,7 +37,7 @@
                     <Border>
                         <TextBlock Background="#60FF0000" Padding="15" Margin="25" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
-                    <Border>
+                    <Border Width="426" RenderTransformOrigin="0.867,0.505">
                         <TextBlock Background="#60FF0000" Padding="15" Margin="25" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
@@ -81,62 +83,70 @@
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="0">1</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="1">2</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="2">3</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="3">4</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="4">5</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="5">6</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="6">7</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="7">8</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="8">9</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="9">0</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Click="Button_Click" >1</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Click="Button_Click">2</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Click="Button_Click">3</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Click="Button_Click">4</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="4" Click="Button_Click">5</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="5" Click="Button_Click">6</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="6" Click="Button_Click">7</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="7" Click="Button_Click">8</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="8" Click="Button_Click">9</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="9" Click="Button_Click">0</Button>
 
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="0">Q</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="1">W</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="2">E</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="3">R</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="4">T</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="5">Y</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="6">U</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="7">I</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="8">O</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="9">P</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Click="Button_Click">Q</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Click="Button_Click">W</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="2" Click="Button_Click">E</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="3" Click="Button_Click">R</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="4" Click="Button_Click">T</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="5" Click="Button_Click">Y</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="6" Click="Button_Click">U</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="7" Click="Button_Click">I</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="8" Click="Button_Click">O</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="1" Grid.Column="9" Click="Button_Click">P</Button>
 
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="0">A</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="1">S</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="2">D</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="3">F</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="4">G</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="5">H</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="6">J</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="7">K</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="8">L</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="9">ENTER</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="0" Click="Button_Click">A</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="1" Click="Button_Click">S</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="2" Click="Button_Click">D</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="3" Click="Button_Click">F</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="4" Click="Button_Click">G</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="5" Click="Button_Click">H</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="6" Click="Button_Click">J</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="7" Click="Button_Click">K</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="8" Click="Button_Click">L</Button>
+                <Button Padding="0,-10,0,0" Margin="15.4,14.8,-245.8,14.8" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="9" Click="Button_Click">ENTER</Button>
 
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="0">Z</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="1">X</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="2">C</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="3">V</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="4">B</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="5">N</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="6">M</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="7">,</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="8">,</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="9">.</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="0" Click="Button_Click">Z</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="1" Click="Button_Click">X</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="2" Click="Button_Click">C</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="3" Click="Button_Click">V</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="4" Click="Button_Click">B</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="5" Click="Button_Click">N</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="6" Click="Button_Click">M</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="7" Click="Button_Click">,</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="8" Click="Button_Click">,</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="9" Click="Button_Click">.</Button>
 
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="0">SP1</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1">SP2</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2">SP3</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3">S</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="4">P</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="5">A</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="6">C</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,15,0" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="7">E</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8">SP4</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="9">SP5</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Click="Button_Click">SP1</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Click="Button_Click">SP2</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2" Click="Button_Click">SP3</Button>
+                <Button Padding="0,-10,0,0" Margin="15.2,15.2,15,2.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="5">SPACE</Button>
+                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8" Click="Button_Click">SP4</Button>
+                <Button Padding="0,-10,0,0" Margin="10,10.2,-67.8,20.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Column="9" Click="Button_Click" Content="BACK" Grid.Row="4"/>
 
             </Grid>
+            <ScrollViewer  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Margin="-9,359,10,269.4" Grid.RowSpan="2" >
+
+
+                <StackPanel x:Name="autofill1"  Width="Auto" Orientation="Horizontal" >
+
+                    <TextBlock x:Name="greetingOutput" Foreground="White" FontSize="100" Text="" Width="1791">
+                      
+                    </TextBlock >
+
+                </StackPanel>
+
+            </ScrollViewer>
 
 
         </Grid>
