@@ -96,6 +96,9 @@
     <Compile Include="EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Remote_popup.xaml.cs">
+      <DependentUpon>Remote_popup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
@@ -119,14 +122,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ChildTalkerFolder.cs" />
-    <Compile Include="ChildTalkerFolderAdder.cs" />
-    <Compile Include="ChildTalkerTile.cs" />
-    <Compile Include="ChildTalkerBackButton.cs" />
-    <Compile Include="ChildTalkerTileAdder.cs" />
-    <Compile Include="ChildTalkerXml.cs" />
-    <Compile Include="ChildTalkerXmlWrapper.cs" />
-    <Compile Include="IChildTalkerTile.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerFolder.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerFolderAdder.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerTile.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerBackButton.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerTileAdder.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerXml.cs" />
+    <Compile Include="ChildTalkerTile\ChildTalkerXmlWrapper.cs" />
+    <Compile Include="ChildTalkerTile\IChildTalkerTile.cs" />
     <Compile Include="Item.xaml.cs">
       <DependentUpon>Item.xaml</DependentUpon>
     </Compile>
@@ -142,6 +145,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PageViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Remote_popup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -223,9 +230,8 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\EnvControl_images\autoscan-blue.png" />
-    <Resource Include="Resources\EnvControl_images\back-blue.png" />
     <Resource Include="Resources\EnvControl_images\LightBulb-blue.png" />
-    <Resource Include="Resources\EnvControl_images\MENU.png" />
+    <Resource Include="Resources\EnvControl_images\menu-blue.png" />
     <Resource Include="Resources\EnvControl_images\outlet-blue.png" />
     <Resource Include="Resources\EnvControl_images\power-button-blue.png" />
     <Resource Include="Resources\EnvControl_images\radio-blue.png" />
@@ -233,6 +239,9 @@
     <Resource Include="Resources\EnvControl_images\VOL-down-blue.png" />
     <Resource Include="Resources\EnvControl_images\VOL-mute-blue.png" />
     <Resource Include="Resources\EnvControl_images\VOL-up-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\EnvControl_images\back-blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

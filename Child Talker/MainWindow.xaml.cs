@@ -30,9 +30,10 @@ namespace Child_Talker
             //viewer.StartAutoScan();
 
             //uncomment to display specific window change WindowHistory to desired Window
-            WindowHistory temp = new WindowHistory();
+            //WindowHistory temp = new WindowHistory();
             //Keyboard temp = new Keyboard();
             //MenuPage temp = new MenuPage();
+            EnvControls temp = new EnvControls();
             temp.Show();
             this.Close();
         }
