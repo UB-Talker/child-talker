@@ -30,11 +30,41 @@ namespace Child_Talker
             //viewer.StartAutoScan();
 
             //uncomment to display specific window change WindowHistory to desired Window
-            WindowHistory temp = new WindowHistory();
+            //WindowHistory temp = new WindowHistory();
             //Keyboard temp = new Keyboard();
-            //MenuPage temp = new MenuPage();
-            temp.Show();
-            this.Close();
+            
+            //temp.Show();
+            //this.Close();
+        }
+
+        private void Keyboard_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Phrases_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void StoryMode_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Autoscan_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

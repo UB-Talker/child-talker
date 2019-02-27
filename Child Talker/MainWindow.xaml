@@ -5,7 +5,156 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker"
         mc:Ignorable="d"
-        Title="UB Child Talker" Height="1080" Width="1920"
-        WindowState="Maximized">
-    <local:PageViewer x:Name="viewer" />
+        Title="UB Child Talker" Height="912" Width="1368" Background="Black">
+    <Window.Resources>
+        <Style x:Key="blackRedScheme">
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="Control.FontSize" Value="80px"/>
+            <Setter Property="Control.FontWeight" Value="Bold"/>
+            <Setter Property="Control.Background" Value="Black"/>
+            <Setter Property="Control.Margin" Value="20"/>
+            <Setter Property="Control.BorderThickness" Value="10"/>
+            <Setter Property="Control.BorderBrush" Value="Red"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="FontSize" Value="40px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF00CFF3"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
+    <Grid x:Name="GridLayout" Style="{StaticResource blackRedScheme}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid x:Name="row0" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="85*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="White" Margin="30,30,0,30">
+                <TextBlock x:Name="InputText" Text="Text Goes Here" FontSize="100" Margin="50,0,0,0" HorizontalAlignment="Left" Foreground="Black" VerticalAlignment="Center"/>
+            </Border>
+            <Button x:Name="help" Grid.Column="1" Click="Help_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="Resources/MainMenu_images/alarm-blue.png"/>
+                    <TextBlock Grid.Row="1">HELP</TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="row1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="back" Grid.Column="0" Click="Back_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="65*"/>
+                        <RowDefinition Height="35*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="Resources/MainMenu_images/back-blue.png"/>
+                    <TextBlock Grid.Row="1">back</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="thing1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="Resources/MainMenu_images/../whelp.png"/>
+                    <TextBlock Grid.Row="1">unknown</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="EnvControls" Grid.Column="2" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="Resources/MainMenu_images/EnvControls-blue.png"/>
+                    <TextBlock Grid.Row="1">Interaction</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="keyboard" Grid.Column="3" Click="Keyboard_Click">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="70*"/>
+                        <RowDefinition Height="30*"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Source="Resources/MainMenu_images/keyboard-blue.png"/>
+                    <TextBlock Grid.Row="1">keyboard</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="autoscan" Grid.Column="4" Click="Autoscan_Click">
+                <Image Source="Resources/MainMenu_images/autoscan-blue.png" Margin="10"/>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="row2" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="453*"/>
+                <ColumnDefinition Width="454*"/>
+                <ColumnDefinition Width="453"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Phrases" Grid.Column="0" Click="Phrases_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="60*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="Resources/MainMenu_images/phrases-blue.png" Margin="10"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30"> Phrases</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="history" Grid.Column="1" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="40*"/>
+                        <ColumnDefinition Width="60*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="15" Source="Resources/MainMenu_images/history-blue.png"/>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">HISTORY</TextBlock>
+                </Grid>
+            </Button>
+            <Button x:Name="storyMode" Grid.Column="2" Click="StoryMode_Click">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Margin="5" Source="Resources/MainMenu_images/book-blue.png"/>
+                    <TextBlock Grid.Column="1" Margin="40,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Story Mode</TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
+
+        <Grid x:Name="row3" Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="unknownA" Grid.Column="0" ></Button>
+            <Button x:Name="unknownB" Grid.Column="1" ></Button>
+            <Button x:Name="unknownC" Grid.Column="2" ></Button>
+        </Grid>
+    </Grid>
 </Window>

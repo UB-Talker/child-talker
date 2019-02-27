@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 namespace Child_Talker
 {
     /// <summary>
-    /// Interaction logic for MenuPage.xaml
+    /// Interaction logic for PhrasesPage.xaml
     /// </summary>
-    public partial class MenuPage : Window
+    public partial class PhrasesPage : Window
     {
-        public MenuPage()
+        public PhrasesPage()
         {
             InitializeComponent();
+            viewer.LoadFromXml("../../Resources/example2.xml");
         }
     }
 }

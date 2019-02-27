@@ -96,6 +96,9 @@
     <Compile Include="EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PhrasesPage.xaml.cs">
+      <DependentUpon>PhrasesPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
@@ -137,13 +140,13 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="MenuPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="PageViewer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PhrasesPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="WindowHistory.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -151,9 +154,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuPage.xaml.cs">
-      <DependentUpon>MenuPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="PageViewer.xaml.cs">
       <DependentUpon>PageViewer.xaml</DependentUpon>
     </Compile>
@@ -233,6 +233,22 @@
     <Resource Include="Resources\EnvControl_images\VOL-down-blue.png" />
     <Resource Include="Resources\EnvControl_images\VOL-mute-blue.png" />
     <Resource Include="Resources\EnvControl_images\VOL-up-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MainMenu_images\autoscan-blue.png" />
+    <Resource Include="Resources\MainMenu_images\book-blue.png" />
+    <Resource Include="Resources\MainMenu_images\clear-blue.png" />
+    <Resource Include="Resources\MainMenu_images\EnvControls-blue.png" />
+    <Resource Include="Resources\MainMenu_images\History-blue.png" />
+    <Resource Include="Resources\MainMenu_images\keyboard-blue.png" />
+    <Resource Include="Resources\MainMenu_images\phrases-blue.png" />
+    <Resource Include="Resources\MainMenu_images\speech-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MainMenu_images\alarm-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MainMenu_images\back-blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
