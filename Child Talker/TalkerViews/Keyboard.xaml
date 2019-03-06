@@ -134,10 +134,6 @@
                 <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1">SP2</Button>
                 <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2">SP3</Button>
                 <Button Padding="0,-10,0,0" Margin="15,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="5">SPACE</Button>
-                <!-- <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="4">P</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="5">A</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="6">C</Button>
-                <Button Padding="0,-10,0,0" Margin="0,15,15,0" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="7">E</Button> -->
                 <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8">SP4</Button>
                 <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="9">SP5</Button>
 
@@ -145,6 +141,7 @@
 
 
         </Grid>
-        <Button x:Name="home" Grid.Column="2" Width="200" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME"/>
+        <Button x:Name="home" Grid.Column="2" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
+        <Button x:Name="back" Grid.Column="2" Height="200" Margin="40" Content="BACK" Click="openPreviousView"/>
     </Grid>
 </local:TalkerView>

@@ -17,6 +17,11 @@ namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for UserControl1.xaml
+    /// 
+    /// 
+    /// This is Sam's attempt at designing a keyboard. Based off of Ian's original design. I tried to make the spacing of the keys
+    /// look similar to that of a QWERTY keyboard.
+    /// 
     /// </summary>
     public partial class UserControl1 : TalkerView
     {
@@ -25,27 +30,6 @@ namespace Child_Talker.TalkerViews
         public UserControl1()
         {
             InitializeComponent();
-        }
-
-
-        public void type(object sender, RoutedEventArgs args)
-        {
-            Button button = (Button)sender;
-            string key = button.ContentStringFormat;
-
-            if(key == "SPACE")
-            {
-                text += " ";
-            } else if(key == "Backspace" && text.Length > 0)
-            {
-                text = text.Substring(0, text.Length - 1);
-            } else
-            {
-                text += key;
-            }
-
-            _Text.Text = text;
-            
         }
 
     }

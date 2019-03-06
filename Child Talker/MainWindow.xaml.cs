@@ -36,21 +36,11 @@ namespace Child_Talker
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;
             previousViews.Push(startScreen);
-
-            //viewer.LoadFromXml("../../Resources/example2.xml");
-            //viewer.StartAutoScan();
-
-            //uncomment to display specific window change WindowHistory to desired Window
-            //WindowHistory temp = new WindowHistory();
-            //Keyboard temp = new Keyboard();
-            
-            //temp.Show();
-            //this.Close();
         }
 
 
         /*
-         * Change the view to the previous view
+         * Change the view to the previous view. The views will be maintained in a stack of TalkerViews.
          */
         public void back()
         {
@@ -60,7 +50,8 @@ namespace Child_Talker
 
 
         /*
-         * Sets the previous view to a reference of a TalkerView
+         * Sets the previous view to a reference of a TalkerView.
+         * This view is pushed to the top of the previousViews Stack
          */
         public void setPreviousView(TalkerView view)
         {

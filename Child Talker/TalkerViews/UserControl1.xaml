@@ -59,17 +59,17 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="_1" Content="1" Grid.Column="0" Click="type"/>
-                    <Button x:Name="_2" Content="2" Grid.Column="1" Click="type"/>
-                    <Button x:Name="_3" Content="3" Grid.Column="2" Click="type"/>
-                    <Button x:Name="_4" Content="4" Grid.Column="3" Click="type"/>
-                    <Button x:Name="_5" Content="5" Grid.Column="4" Click="type"/>
-                    <Button x:Name="_6" Content="6" Grid.Column="5" Click="type"/>
-                    <Button x:Name="_7" Content="7" Grid.Column="6" Click="type"/>
-                    <Button x:Name="_8" Content="8" Grid.Column="7" Click="type"/>
-                    <Button x:Name="_9" Content="9" Grid.Column="8" Click="type"/>
-                    <Button x:Name="_0" Content="0" Grid.Column="9" Click="type"/>
-                    <Button x:Name="_Backspace" Content="Backspace" Grid.Column="10" Grid.ColumnSpan="2" Click="type"/>
+                    <Button x:Name="_1" Content="1" Grid.Column="0" />
+                    <Button x:Name="_2" Content="2" Grid.Column="1" />
+                    <Button x:Name="_3" Content="3" Grid.Column="2" />
+                    <Button x:Name="_4" Content="4" Grid.Column="3" />
+                    <Button x:Name="_5" Content="5" Grid.Column="4" />
+                    <Button x:Name="_6" Content="6" Grid.Column="5" />
+                    <Button x:Name="_7" Content="7" Grid.Column="6" />
+                    <Button x:Name="_8" Content="8" Grid.Column="7" />
+                    <Button x:Name="_9" Content="9" Grid.Column="8" />
+                    <Button x:Name="_0" Content="0" Grid.Column="9" />
+                    <Button x:Name="_Backspace" Content="Backspace" Grid.Column="10" Grid.ColumnSpan="2" />
                 </Grid>
 
                 <!-- First row of letters -->
@@ -87,16 +87,16 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button x:Name="_Q" Content="Q" Grid.Column="0" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_W" Content="W" Grid.Column="1" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_E" Content="E" Grid.Column="2" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_R" Content="R" Grid.Column="3" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_T" Content="T" Grid.Column="4" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_Y" Content="Y" Grid.Column="5" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_U" Content="U" Grid.Column="6" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_I" Content="I" Grid.Column="7" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_O" Content="O" Grid.Column="8" Grid.Row="1" Click="type"/>
-                    <Button x:Name="_P" Content="P" Grid.Column="9" Grid.Row="1" Click="type"/>
+                    <Button x:Name="_Q" Content="Q" Grid.Column="0" Grid.Row="1" />
+                    <Button x:Name="_W" Content="W" Grid.Column="1" Grid.Row="1" />
+                    <Button x:Name="_E" Content="E" Grid.Column="2" Grid.Row="1" />
+                    <Button x:Name="_R" Content="R" Grid.Column="3" Grid.Row="1" />
+                    <Button x:Name="_T" Content="T" Grid.Column="4" Grid.Row="1" />
+                    <Button x:Name="_Y" Content="Y" Grid.Column="5" Grid.Row="1" />
+                    <Button x:Name="_U" Content="U" Grid.Column="6" Grid.Row="1" />
+                    <Button x:Name="_I" Content="I" Grid.Column="7" Grid.Row="1" />
+                    <Button x:Name="_O" Content="O" Grid.Column="8" Grid.Row="1" />
+                    <Button x:Name="_P" Content="P" Grid.Column="9" Grid.Row="1" />
 
                 </Grid>
                 

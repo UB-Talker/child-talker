@@ -87,7 +87,7 @@
             </Grid.RowDefinitions>
             <Button x:Name="menu" Grid.Row="0" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >MENU</Button>
             <Button x:Name="Favorite" Grid.Row="1" Margin="25"  Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >Favorites</Button>
-            <Button x:Name="toKeyboard" Grid.Row="2" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openKeyboard" Content="KEYBOARD"/>
+            <Button x:Name="toKeyboard" Grid.Row="2" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openKeyboardWithText" Content="KEYBOARD"/>
             <Button x:Name="speak" Grid.Row="3" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="speakSelectedText">SPEAK</Button>
             <Button x:Name="unknown" Grid.Row="4" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openPreviousView">??</Button>
 

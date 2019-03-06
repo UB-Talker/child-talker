@@ -18,7 +18,7 @@ namespace Child_Talker.TalkerViews
         /*
          * Helper method that returns a reference to the current MainWindow
          */
-        private MainWindow getWindow()
+        public MainWindow getWindow()
         {
             return (MainWindow)Window.GetWindow(this);
         }
@@ -46,7 +46,7 @@ namespace Child_Talker.TalkerViews
             MainWindow window = getWindow();
             window.setPreviousView(this);
 
-            window.DataContext = new UserControl1();
+            window.DataContext = new Keyboard();
         }
 
 
@@ -77,6 +77,7 @@ namespace Child_Talker.TalkerViews
 
         /*
          * This functionality will be assigned to the back button on the pages that implement it.
+         * See MainWindow.back method to see more information.
          */
         public void openPreviousView(object sender, RoutedEventArgs args)
         { 

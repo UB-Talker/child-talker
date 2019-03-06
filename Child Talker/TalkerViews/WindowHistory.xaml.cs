@@ -21,9 +21,9 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class WindowHistory : TalkerView
     {
-        private SpeechSynthesizer synth;
-        private String selectedText;
-        private Button selectedButton;
+        private SpeechSynthesizer synth; //Used to speak the currently selected text
+        private string selectedText; //Is set when the user chooses one of the phrases in the menu
+        private Button selectedButton; //The currently pressed button
 
 
         public WindowHistory()
@@ -35,9 +35,14 @@ namespace Child_Talker.TalkerViews
         }
 
 
+        /*
+         * If there is text selected, the keyboard will open up with the text in its TextBlock
+         */
         public void openKeyboardWithText(object sender, RoutedEventArgs args)
         {
-            Window.GetWindow(this).DataContext = new Keyboard(selectedText);
+            MainWindow window = getWindow();
+            window.setPreviousView(this);
+            window.DataContext = new Keyboard(selectedText);
         }
 
 

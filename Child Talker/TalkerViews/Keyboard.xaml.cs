@@ -24,7 +24,10 @@ namespace Child_Talker.TalkerViews
             InitializeComponent();
         }
 
-
+        /*
+         * Constructor for the keyboard. This passes a string to set the text for the Keyboard. It is currently used by the History page
+         * to send a selected piece of text to the keyboard.
+         */ 
         public Keyboard(string text)
         {
             InitializeComponent();
