@@ -140,9 +140,9 @@
 
                 <StackPanel x:Name="autofill1"  Width="Auto" Orientation="Horizontal" >
 
-                    <TextBlock x:Name="greetingOutput" Foreground="White" FontSize="100" Text="" Width="1791">
+                    <TextBox x:Name="greetingOutput" Foreground="black" FontSize="100" Text="" Width="1791">
                       
-                    </TextBlock >
+                    </TextBox >
 
                 </StackPanel>
 
