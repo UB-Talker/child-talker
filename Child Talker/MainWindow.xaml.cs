@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
@@ -21,10 +22,20 @@ namespace Child_Talker
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Stack<TalkerView> previousViews;
+
+
         public MainWindow()
         {
 
             InitializeComponent();
+
+            previousViews = new Stack<TalkerView>();
+
+            TalkerView startScreen = new MainMenu();
+            DataContext = startScreen;
+            previousViews.Push(startScreen);
 
             //viewer.LoadFromXml("../../Resources/example2.xml");
             //viewer.StartAutoScan();
@@ -37,34 +48,33 @@ namespace Child_Talker
             //this.Close();
         }
 
-        private void Keyboard_Click(object sender, RoutedEventArgs e)
-        {
 
+        /*
+         * Change the view to the previous view
+         */
+        public void back()
+        {
+            DataContext = previousViews.Peek();
+            previousViews.Pop();
         }
 
-        private void Phrases_Click(object sender, RoutedEventArgs e)
-        {
 
+        /*
+         * Sets the previous view to a reference of a TalkerView
+         */
+        public void setPreviousView(TalkerView view)
+        {
+            previousViews.Push(view);
         }
 
-        private void Help_Click(object sender, RoutedEventArgs e)
+
+
+        /*
+         * Resets the Stack of TalkerViews. Used when the user returns straight to the MainMenu
+         */
+        public void resetStack()
         {
-
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void StoryMode_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Autoscan_Click(object sender, RoutedEventArgs e)
-        {
-
+            previousViews = new Stack<TalkerView>();
         }
     }
 }

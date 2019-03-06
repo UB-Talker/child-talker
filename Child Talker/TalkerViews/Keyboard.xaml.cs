@@ -12,17 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
-    /// Interaction logic for PhrasesPage.xaml
+    /// Interaction logic for Keyboard.xaml
     /// </summary>
-    public partial class PhrasesPage : Window
+    public partial class Keyboard : TalkerView
     {
-        public PhrasesPage()
+        public Keyboard()
         {
             InitializeComponent();
-            viewer.LoadFromXml("../../Resources/example2.xml");
+        }
+
+
+        public Keyboard(string text)
+        {
+            InitializeComponent();
+            TextArea.Text = text;
         }
     }
 }

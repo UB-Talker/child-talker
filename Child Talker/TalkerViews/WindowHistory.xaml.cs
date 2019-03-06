@@ -14,12 +14,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for WindowHistory.xaml
     /// </summary>
-    public partial class WindowHistory : Window
+    public partial class WindowHistory : TalkerView
     {
         private SpeechSynthesizer synth;
         private String selectedText;
@@ -32,6 +32,12 @@ namespace Child_Talker
             
             synth = new SpeechSynthesizer();
             selectedText = "";
+        }
+
+
+        public void openKeyboardWithText(object sender, RoutedEventArgs args)
+        {
+            Window.GetWindow(this).DataContext = new Keyboard(selectedText);
         }
 
 
