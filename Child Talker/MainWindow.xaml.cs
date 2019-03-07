@@ -28,7 +28,7 @@ namespace Child_Talker
 
         public MainWindow()
         {
-            
+
             InitializeComponent();
 
             previousViews = new Stack<TalkerView>();
