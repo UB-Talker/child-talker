@@ -26,37 +26,37 @@
 
                 <StackPanel x:Name="autofill" Background="#FF990000" Width="Auto" Orientation="Horizontal" >
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border Width="426" RenderTransformOrigin="0.867,0.505">
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10"" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
+                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
 
                 </StackPanel>
