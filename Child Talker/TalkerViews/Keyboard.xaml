@@ -7,17 +7,17 @@
         mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="auto" Width="auto" Background="Black">
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Margin="112.6,-10,296.2,9.8">
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="35*"/>
-                <RowDefinition Height="15*"/>
+                <RowDefinition Height="38*"/>
+                <RowDefinition Height="12*"/>
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
 
@@ -28,20 +28,11 @@
                 <ScrollViewer.Resources>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
                 </ScrollViewer.Resources>
-                <StackPanel x:Name="autofill" Background="#FF990000" Width="789.2" Orientation="Horizontal" >
+                <StackPanel x:Name="autofill" Background="#FF990000" Orientation="Horizontal" Width="auto" >
                     <Border>
                         <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
-                    </Border>
-                    <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
-                    </Border>
-                    <Border>
-                        <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
-                    </Border>
-                    <Border Width="426" RenderTransformOrigin="0.867,0.505">
                         <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
                     <Border>
@@ -62,11 +53,12 @@
                     <Border>
                         <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
-
+                    
+                    
                 </StackPanel>
 
             </ScrollViewer>
-      
+
             <!-- this is the keyboard layout -->
             <Grid x:Name="keyboardGrid" Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -119,7 +111,7 @@
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="6" Click="Button_Click">J</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="7" Click="Button_Click">K</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="8" Click="Button_Click">L</Button>
-                <Button Padding="0,-10,0,0" Margin="15.4,14.8,-245.8,14.8" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="9" Click="Button_Click">ENTER</Button>
+                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="2" Grid.Column="9" Click="Button_Click">?</Button>
 
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="0" Click="Button_Click">Z</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="1" Click="Button_Click">X</Button>
@@ -132,12 +124,11 @@
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="8" Click="Button_Click">,</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="9" Click="Button_Click">.</Button>
 
-                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Click="Button_Click">SP1</Button>
-                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Click="Button_Click">SP2</Button>
-                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2" Click="Button_Click">SP3</Button>
-                <Button Padding="0,-10,0,0" Margin="15.2,15.2,15,2.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="5">SPACE</Button>
-                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8" Click="Button_Click">SP4</Button>
-                <Button Padding="0,-10,0,0" Margin="10,10.2,-67.8,20.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Column="9" Click="Button_Click" Content="BACK" Grid.Row="4"/>
+                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="9" Click="Button_Click">SP</Button>
+                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2" Click="Button_Click">SP</Button>
+                <Button Padding="0,-10,0,0" Margin="10,6,10,6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="4">SPACE</Button>
+                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="7" Click="Button_Click" Grid.ColumnSpan="2">ENTER</Button>
+                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Column="0" Click="Button_Click" Content="BACK" Grid.Row="4" Grid.ColumnSpan="2"/>
 
             </Grid>
         </Grid>
