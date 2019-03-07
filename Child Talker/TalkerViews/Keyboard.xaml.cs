@@ -62,14 +62,16 @@ namespace Child_Talker.TalkerViews
             }
             else if (s.Equals("SPACE"))
             {
-                greetingOutput.Text += " ";
+                sb.text += " ";
+                greetingOutput.Text = sb.text;
                 return;
             }
             else if (s.Equals("BACK"))
             {
                 try
                 {
-                    greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1); //deletes a character
+                    sb.text = sb.text.Substring(0, sb.text.Length - 1);
+                    greetingOutput.Text = sb.text; //deletes a character
                 }
                 catch (System.ArgumentOutOfRangeException)
                 {
