@@ -54,36 +54,31 @@ namespace Child_Talker.TalkerViews
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string s = (sender as Button).Content.ToString();
+          
+            switch (s)
+            {
+                case "SPACE":
+                    sb.text += " ";
+                    break;
+                case "BACK":
+                    try { 
+                        sb.text = sb.text.Substring(0, sb.text.Length - 1);
+                    }
+                    catch (System.ArgumentOutOfRangeException)
+                    {
+                        Console.WriteLine("There are no characters to delete!");
+                    }
+                    break;
+                case "ENTER":
+                    EnterPress();
+                    break;
+                default:
+                    sb.text += s;
+                    break;
 
-            if (s.Equals("ENTER"))
-            {
-                EnterPress();
-                return;
             }
-            else if (s.Equals("SPACE"))
-            {
-                sb.text += " ";
-                greetingOutput.Text = sb.text;
-                return;
-            }
-            else if (s.Equals("BACK"))
-            {
-                try
-                {
-                    sb.text = sb.text.Substring(0, sb.text.Length - 1);
-                    greetingOutput.Text = sb.text; //deletes a character
-                }
-                catch (System.ArgumentOutOfRangeException)
-                {
-                    Console.WriteLine("There are no characters to delete!");
-                }
-                Console.WriteLine(sb.text);
-                return;
-            }
-
-            sb.text += s;
+            
             greetingOutput.Text = sb.text;
-            Console.WriteLine(sb.text);
         }
 
         private void EnterPress()
