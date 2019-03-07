@@ -23,7 +23,7 @@ namespace Child_Talker
     {
         public MainWindow()
         {
-
+            
             InitializeComponent();
 
             //viewer.LoadFromXml("../../Resources/example2.xml");

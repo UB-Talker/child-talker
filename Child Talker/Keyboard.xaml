@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker"
         mc:Ignorable="d"
-        Title="Keyboard"   Height="912" Width="1368" Background="Black">
+        Title="Keyboard" Topmost="True"  Height="912" Width="1368" Background="Black">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20*"/>
@@ -18,13 +18,15 @@
                 <RowDefinition Height="15*"/>
                 <RowDefinition Height="50*"/>
             </Grid.RowDefinitions>
+
+            <TextBox x:Name="greetingOutput" Grid.Row="0" Foreground="black" FontSize="50" Text=""/>
+
+
             <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
                 <ScrollViewer.Resources>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
                 </ScrollViewer.Resources>
-
-
-                <StackPanel x:Name="autofill" Background="#FF990000" Width="Auto" Orientation="Horizontal" >
+                <StackPanel x:Name="autofill" Background="#FF990000" Width="789.2" Orientation="Horizontal" >
                     <Border>
                         <TextBlock Background="#60FF0000" Padding="15" Margin="10" Height="125" FontSize="60" VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold"> Suggestion</TextBlock>
                     </Border>
@@ -62,6 +64,7 @@
                 </StackPanel>
 
             </ScrollViewer>
+      
             <!-- this is the keyboard layout -->
             <Grid x:Name="keyboardGrid" Grid.Row="2">
                 <Grid.ColumnDefinitions>
@@ -83,7 +86,7 @@
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Click="Button_Click" >1</Button>
+                <Button x:Name="zeroKey" Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="0" Click="Button_Click" >1</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="1" Click="Button_Click">2</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="2" Click="Button_Click">3</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="0" Grid.Column="3" Click="Button_Click">4</Button>
@@ -135,20 +138,6 @@
                 <Button Padding="0,-10,0,0" Margin="10,10.2,-67.8,20.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Column="9" Click="Button_Click" Content="BACK" Grid.Row="4"/>
 
             </Grid>
-            <ScrollViewer  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" Margin="-9,359,10,269.4" Grid.RowSpan="2" >
-
-
-                <StackPanel x:Name="autofill1"  Width="Auto" Orientation="Horizontal" >
-
-                    <TextBox x:Name="greetingOutput" Foreground="black" FontSize="100" Text="" Width="1791">
-                      
-                    </TextBox >
-
-                </StackPanel>
-
-            </ScrollViewer>
-
-
         </Grid>
 
     </Grid>

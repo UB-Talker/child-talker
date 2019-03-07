@@ -26,29 +26,39 @@ namespace Child_Talker
         {
             sb = new StringBuild();
             InitializeComponent();
+            this.KeyDown += physicalKeyboard;
+            //zeroKey.Click += Button_Click; //add to routedEventhandler
+            //zeroKey.Click -= Button_Click; //remove from routedEventhandler
+        }
+
+        private void physicalKeyboard(object sender, KeyEventArgs e)
+        {
+            Key k = e.Key;
+            if (k == Key.Enter)
+            {
+                EnterPress();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
             string s = (sender as Button).Content.ToString();
            
             if (s.Equals("ENTER"))
             {
-                synth.SpeakAsync(sb.text);
-                sb.text = "";
+                EnterPress();
                 return;
             }
             else if (s.Equals("SPACE"))
             {
-                sb.text += " ";          
+                greetingOutput.Text += " ";          
                 return;
             }
             else if (s.Equals("BACK"))
             {
                 try
                 {
-                    sb.text = sb.text.Substring(0, sb.text.Length - 1); //deletes a character
+                    greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1); //deletes a character
                 }
                 catch (System.ArgumentOutOfRangeException)
                 {
@@ -59,8 +69,19 @@ namespace Child_Talker
             }
 
             sb.text += s;
-            greetingOutput.Text = "Hello";
+            greetingOutput.Text = sb.text;
             Console.WriteLine(sb.text);
         }
+
+        private void EnterPress()
+        {
+            sb.text = greetingOutput.Text;
+            synth.SpeakAsync(sb.text);
+            sb.text = "";
+            greetingOutput.Text = "";
+            return;
+        }
     }
+
+    
 }
