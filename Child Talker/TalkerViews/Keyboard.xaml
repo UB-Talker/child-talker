@@ -36,6 +36,10 @@
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
+        
+        <Button x:Name="home" Grid.Column="2" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
+        <Button x:Name="back" Grid.Column="2" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
+
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="38*"/>
@@ -44,8 +48,6 @@
             </Grid.RowDefinitions>
 
             <TextBox x:Name="greetingOutput" Grid.Row="0" Foreground="black" Margin="20" FontSize="50" Text=""/>
-
-
             <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
                 <ScrollViewer.Resources>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
@@ -143,11 +145,9 @@
                 <Button Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="4" >SPACE</Button>
                 <Button Grid.Row="4" Grid.Column="7" Click="Button_Click">SP</Button>
                 <Button Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2" >ENTER</Button>
-                
+
 
             </Grid>
         </Grid>
-        <Button x:Name="home" Grid.Column="2" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
-        <Button x:Name="back" Grid.Column="2" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
     </Grid>
 </local:TalkerView>
