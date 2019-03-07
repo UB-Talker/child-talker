@@ -17,13 +17,14 @@ using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Serialization;
 using Microsoft.VisualBasic;
+using Child_Talker;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for PageViewer.xaml
     /// </summary>
-    public partial class PageViewer : UserControl
+    public partial class PageViewer : TalkerView
     {
         private Timer timer;
         private int i = 0;
@@ -45,6 +46,17 @@ namespace Child_Talker
             scanning = false;
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
+
+            this.LoadFromXml("../../Resources/example2.xml");
+        }
+
+
+        /*
+         * Getter Method for ViewParents
+         */
+        public Stack<ChildTalkerFolder> getViewParents()
+        {
+            return ViewParents;
         }
 
         public void StartAutoScan()

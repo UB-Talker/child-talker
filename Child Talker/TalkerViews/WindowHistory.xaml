@@ -1,0 +1,98 @@
+<local:TalkerView x:Class="Child_Talker.TalkerViews.WindowHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        d:DesignHeight="1080" d:DesignWidth="1920"
+        Height="Auto" Width="Auto" Background="Black">
+    <local:TalkerView.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Padding" Value="10" />
+            <Setter Property="Height" Value="150" />
+            <Setter Property="Width" Value="1000" />
+            <Setter Property="Margin" Value="60,30,60,30" />
+            <Setter Property="Background" Value="#FFB80000" />
+            <Setter Property="Foreground" Value="#FF00ECEC" />
+            <Setter Property="FontSize" Value="35" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+        </Style>
+
+        
+    </local:TalkerView.Resources>
+    
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Margin="0,0,50,0" Grid.Column="0">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
+            </ScrollViewer.Resources>
+            <StackPanel>
+              
+                <Button Background="#000000" Click="selectText">
+                  <Button.Content>
+                    <TextBlock>Hello</TextBlock>
+                  </Button.Content>
+                </Button>
+
+                <Button Background="#000000" Click="selectText">
+                  <Button.Content>
+                    <TextBlock>How are you?</TextBlock>
+                  </Button.Content>
+                </Button>
+
+                <Button Background="#000000" Click="selectText">
+                  <Button.Content>
+                    <TextBlock>I am good</TextBlock>
+                  </Button.Content>
+                </Button>
+
+                <Button Background="#000000" Click="selectText">
+                  <Button.Content>
+                    <TextBlock>The weather is beautiful today</TextBlock>
+                  </Button.Content>
+                </Button>
+
+                <Button Background="#000000" Click="selectText">
+                  <Button.Content>
+                    <TextBlock>See you later!</TextBlock>
+                  </Button.Content>
+                </Button>
+              
+              <!--  Ian's old TextBlocks
+                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
+                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
+                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
+                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
+                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
+              -->
+            
+            
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="menu" Grid.Row="0" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >MENU</Button>
+            <Button x:Name="Favorite" Grid.Row="1" Margin="25"  Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >Favorites</Button>
+            <Button x:Name="toKeyboard" Grid.Row="2" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openKeyboardWithText" Content="KEYBOARD"/>
+            <Button x:Name="speak" Grid.Row="3" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="speakSelectedText">SPEAK</Button>
+            <Button x:Name="unknown" Grid.Row="4" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openPreviousView">??</Button>
+
+        </Grid>
+
+    </Grid>
+</local:TalkerView>
+

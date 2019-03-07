@@ -11,18 +11,23 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
-    /// Interaction logic for Keyboard.xaml
+    /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class Keyboard : Window
+    public partial class MainMenu : TalkerView
     {
+<<<<<<< HEAD:Child Talker/Keyboard.xaml.cs
         StringBuild sb;
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
         public Keyboard()
+=======
+        public MainMenu()
+>>>>>>> MainMenu:Child Talker/TalkerViews/MainMenu.xaml.cs
         {
             sb = new StringBuild();
             InitializeComponent();

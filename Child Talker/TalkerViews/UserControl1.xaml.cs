@@ -10,19 +10,27 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
-    /// Interaction logic for PhrasesPage.xaml
+    /// Interaction logic for UserControl1.xaml
+    /// 
+    /// 
+    /// This is Sam's attempt at designing a keyboard. Based off of Ian's original design. I tried to make the spacing of the keys
+    /// look similar to that of a QWERTY keyboard.
+    /// 
     /// </summary>
-    public partial class PhrasesPage : Window
+    public partial class UserControl1 : TalkerView
     {
-        public PhrasesPage()
+        private string text;
+
+        public UserControl1()
         {
             InitializeComponent();
-            viewer.LoadFromXml("../../Resources/example2.xml");
         }
+
     }
 }

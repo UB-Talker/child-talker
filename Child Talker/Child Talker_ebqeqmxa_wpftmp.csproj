@@ -67,67 +67,17 @@
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Speech" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Xml.Serialization" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="ConsoleControls.cs" />
     <Compile Include="EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViewModels\WindowHistoryModel.cs" />
-    <Compile Include="TalkerViews\MainMenu.xaml.cs">
-      <DependentUpon>MainMenu.xaml</DependentUpon>
-    </Compile>
-<<<<<<< HEAD
-    <Compile Include="StringBuild.cs" />
-    <Compile Include="WindowHistory.xaml.cs">
-=======
     <Compile Include="TalkerViews\TalkerView.cs" />
-    <Compile Include="TalkerViews\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TalkerViews\WindowHistory.xaml.cs">
->>>>>>> MainMenu
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
-    <Page Include="EnvControls.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Item.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TalkerViews\Keyboard.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -150,22 +100,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TalkerViews\MainMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TalkerViews\PageViewer.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TalkerViews\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TalkerViews\WindowHistory.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TalkerViews\PageViewer.xaml.cs">
@@ -199,29 +133,18 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\kris.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\example.xml">
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\back.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\folder.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\whelpegg.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\whelp.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\example2.xml">
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">
@@ -236,33 +159,42 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EnvControl_images\autoscan-blue.png" />
-    <Resource Include="Resources\EnvControl_images\back-blue.png" />
-    <Resource Include="Resources\EnvControl_images\LightBulb-blue.png" />
-    <Resource Include="Resources\EnvControl_images\MENU.png" />
-    <Resource Include="Resources\EnvControl_images\outlet-blue.png" />
-    <Resource Include="Resources\EnvControl_images\power-button-blue.png" />
-    <Resource Include="Resources\EnvControl_images\radio-blue.png" />
-    <Resource Include="Resources\EnvControl_images\TV-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-down-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-mute-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-up-blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MainMenu_images\autoscan-blue.png" />
-    <Resource Include="Resources\MainMenu_images\book-blue.png" />
-    <Resource Include="Resources\MainMenu_images\clear-blue.png" />
-    <Resource Include="Resources\MainMenu_images\EnvControls-blue.png" />
-    <Resource Include="Resources\MainMenu_images\History-blue.png" />
-    <Resource Include="Resources\MainMenu_images\keyboard-blue.png" />
-    <Resource Include="Resources\MainMenu_images\phrases-blue.png" />
-    <Resource Include="Resources\MainMenu_images\speech-blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MainMenu_images\alarm-blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MainMenu_images\back-blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\Microsoft.VisualBasic.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\mscorlib.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Speech.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Xml.Serialization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\WindowsBase.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\EnvControls.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\Item.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\TalkerViews\Keyboard.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\TalkerViews\PageViewer.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\TalkerViews\WindowHistory.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\App.g.cs" />
+    <Compile Include="C:\Users\Sam\source\repos\UB-Talker\child-talker\Child Talker\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
 </Project>
