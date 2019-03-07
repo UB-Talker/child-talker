@@ -133,21 +133,12 @@
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="8" Click="Button_Click">,</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="3" Grid.Column="9" Click="Button_Click">.</Button>
 
-<<<<<<< HEAD:Child Talker/Keyboard.xaml
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="0" Click="Button_Click">SP1</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1" Click="Button_Click">SP2</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2" Click="Button_Click">SP3</Button>
                 <Button Padding="0,-10,0,0" Margin="15.2,15.2,15,2.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="5">SPACE</Button>
                 <Button Padding="0,-10,0,0" Margin="6" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8" Click="Button_Click">SP4</Button>
                 <Button Padding="0,-10,0,0" Margin="10,10.2,-67.8,20.4" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Column="9" Click="Button_Click" Content="BACK" Grid.Row="4"/>
-=======
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="0">SP1</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="1">SP2</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="2">SP3</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,0,2" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="5">SPACE</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="8">SP4</Button>
-                <Button Padding="0,-10,0,0" Margin="15,15,15,15" FontSize="70" Background="#FFA60505" Foreground="#FF00D5EA" FontWeight="Bold" Grid.Row="4" Grid.Column="9">SP5</Button>
->>>>>>> MainMenu:Child Talker/TalkerViews/Keyboard.xaml
 
             </Grid>
         </Grid>

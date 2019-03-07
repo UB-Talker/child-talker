@@ -33,14 +33,6 @@ namespace Child_Talker
 
             previousViews = new Stack<TalkerView>();
 
-<<<<<<< HEAD
-            //uncomment to display specific window change WindowHistory to desired Window
-            //WindowHistory temp = new WindowHistory();
-            Keyboard temp = new Keyboard();
-            //MenuPage temp = new MenuPage();
-            temp.Show();
-            this.Close();
-=======
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;
             previousViews.Push(startScreen);
@@ -74,7 +66,6 @@ namespace Child_Talker
         public void resetStack()
         {
             previousViews = new Stack<TalkerView>();
->>>>>>> MainMenu
         }
     }
 }

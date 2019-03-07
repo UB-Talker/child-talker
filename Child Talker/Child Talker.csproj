@@ -100,16 +100,12 @@
     <Compile Include="TalkerViews\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="StringBuild.cs" />
-    <Compile Include="WindowHistory.xaml.cs">
-=======
     <Compile Include="TalkerViews\TalkerView.cs" />
     <Compile Include="TalkerViews\UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViews\WindowHistory.xaml.cs">
->>>>>>> MainMenu
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
     <Page Include="EnvControls.xaml">
