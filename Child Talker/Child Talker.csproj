@@ -99,6 +99,7 @@
     <Compile Include="PhrasesPage.xaml.cs">
       <DependentUpon>PhrasesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StringBuild.cs" />
     <Compile Include="WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
