@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualBasic;
 using System.Windows.Forms;
+using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {

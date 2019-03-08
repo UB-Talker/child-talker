@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.VisualBasic;
+using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {

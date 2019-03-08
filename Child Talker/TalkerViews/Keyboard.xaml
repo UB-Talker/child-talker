@@ -1,0 +1,153 @@
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.Keyboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+        mc:Ignorable="d"
+        d:DesignHeight="1080" d:DesignWidth="1920"
+        Height="auto" Width="auto" Background="Black">
+
+    <local:TalkerView.Resources>
+        
+        <Style x:Key="blackRedScheme">
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+            <Setter Property="Padding" Value="0,-10,0,0"/>
+            <Setter Property="Foreground" Value="#FF00D5EA"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF00CFF3"/>
+        </Style>
+
+    </local:TalkerView.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Button x:Name="home" Grid.Column="2" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
+        <Button x:Name="back" Grid.Column="2" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="38*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="50*"/>
+            </Grid.RowDefinitions>
+
+            <TextBox x:Name="greetingOutput" Grid.Row="0" Foreground="black" Margin="20" FontSize="50" Text=""/>
+            <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
+                <ScrollViewer.Resources>
+                    <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
+                </ScrollViewer.Resources>
+                <StackPanel x:Name="autofill" Background="#FF990000" Orientation="Horizontal" Width="auto" >
+                    <Border>
+                        <Button Foreground="#FF00D5EA">Suggestion</Button>
+                    </Border>
+                    <Border>
+                        <Button Foreground="#FF00D5EA">Suggestion</Button>
+                    </Border>
+                    <Border>
+                        <Button Foreground="#FF00D5EA">Suggestion</Button>
+                    </Border>
+                    <Border>
+                        <Button Foreground="#FF00D5EA">Suggestion</Button>
+                    </Border>
+                    <Border>
+                        <Button Foreground="#FF00D5EA">Suggestion</Button>
+                    </Border>
+
+
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+            <!-- this is the keyboard layout -->
+            <Grid x:Name="keyboardGrid" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                    <RowDefinition Height="20*"/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Grid.Column="0" Click="Button_Click" >1</Button>
+                <Button Grid.Row="0" Grid.Column="1" Click="Button_Click">2</Button>
+                <Button Grid.Row="0" Grid.Column="2" Click="Button_Click">3</Button>
+                <Button Grid.Row="0" Grid.Column="3" Click="Button_Click">4</Button>
+                <Button Grid.Row="0" Grid.Column="4" Click="Button_Click">5</Button>
+                <Button Grid.Row="0" Grid.Column="5" Click="Button_Click">6</Button>
+                <Button Grid.Row="0" Grid.Column="6" Click="Button_Click">7</Button>
+                <Button Grid.Row="0" Grid.Column="7" Click="Button_Click">8</Button>
+                <Button Grid.Row="0" Grid.Column="8" Click="Button_Click">9</Button>
+                <Button Grid.Row="0" Grid.Column="9" Click="Button_Click">0</Button>
+
+                <Button Grid.Row="1" Grid.Column="0" Click="Button_Click">Q</Button>
+                <Button Grid.Row="1" Grid.Column="1" Click="Button_Click">W</Button>
+                <Button Grid.Row="1" Grid.Column="2" Click="Button_Click">E</Button>
+                <Button Grid.Row="1" Grid.Column="3" Click="Button_Click">R</Button>
+                <Button Grid.Row="1" Grid.Column="4" Click="Button_Click">T</Button>
+                <Button Grid.Row="1" Grid.Column="5" Click="Button_Click">Y</Button>
+                <Button Grid.Row="1" Grid.Column="6" Click="Button_Click">U</Button>
+                <Button Grid.Row="1" Grid.Column="7" Click="Button_Click">I</Button>
+                <Button Grid.Row="1" Grid.Column="8" Click="Button_Click">O</Button>
+                <Button Grid.Row="1" Grid.Column="9" Click="Button_Click">P</Button>
+
+                <Button Grid.Row="2" Grid.Column="0" Click="Button_Click">A</Button>
+                <Button Grid.Row="2" Grid.Column="1" Click="Button_Click">S</Button>
+                <Button Grid.Row="2" Grid.Column="2" Click="Button_Click">D</Button>
+                <Button Grid.Row="2" Grid.Column="3" Click="Button_Click">F</Button>
+                <Button Grid.Row="2" Grid.Column="4" Click="Button_Click">G</Button>
+                <Button Grid.Row="2" Grid.Column="5" Click="Button_Click">H</Button>
+                <Button Grid.Row="2" Grid.Column="6" Click="Button_Click">J</Button>
+                <Button Grid.Row="2" Grid.Column="7" Click="Button_Click">K</Button>
+                <Button Grid.Row="2" Grid.Column="8" Click="Button_Click">L</Button>
+                <Button Grid.Row="2" Grid.Column="9" Click="Button_Click">?</Button>
+
+                <Button Grid.Row="3" Grid.Column="0" Click="Button_Click">Z</Button>
+                <Button Grid.Row="3" Grid.Column="1" Click="Button_Click">X</Button>
+                <Button Grid.Row="3" Grid.Column="2" Click="Button_Click">C</Button>
+                <Button Grid.Row="3" Grid.Column="3" Click="Button_Click">V</Button>
+                <Button Grid.Row="3" Grid.Column="4" Click="Button_Click">B</Button>
+                <Button Grid.Row="3" Grid.Column="5" Click="Button_Click">N</Button>
+                <Button Grid.Row="3" Grid.Column="6" Click="Button_Click">M</Button>
+                <Button Grid.Row="3" Grid.Column="7" Click="Button_Click">,</Button>
+                <Button Grid.Row="3" Grid.Column="8" Click="Button_Click">,</Button>
+                <Button Grid.Row="3" Grid.Column="9" Click="Button_Click">.</Button>
+
+                <Button Grid.Row="4" Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="2" >BACK</Button>
+                <Button Grid.Row="4" Grid.Column="2" Click="Button_Click">SP</Button>
+                <Button Grid.Row="4" Grid.Column="3" Click="Button_Click" Grid.ColumnSpan="4" >SPACE</Button>
+                <Button Grid.Row="4" Grid.Column="7" Click="Button_Click">SP</Button>
+                <Button Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2" >ENTER</Button>
+
+
+            </Grid>
+        </Grid>
+    </Grid>
+</local:TalkerView>

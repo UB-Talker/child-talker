@@ -4,9 +4,37 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker"
+        xmlns:viewmodels="clr-namespace:Child_Talker.TalkerViewModels"
+        xmlns:views="clr-namespace:Child_Talker.TalkerViews"
         mc:Ignorable="d"
-        Title="UB Child Talker" Height="1080" Width="1920"
-        WindowState="Maximized">
-    <local:PageViewer x:Name="viewer" />
-</Window>
+        Title="UB Child Talker" Background="Black" Height="1080" Width="1920" WindowState="Maximized">
+    <Window.Resources>
+        <Style x:Key="blackRedScheme">
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF00CFF3"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="MainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding}" />
+    </Grid>
     
+</Window>

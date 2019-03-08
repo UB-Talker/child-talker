@@ -1,9 +1,9 @@
-﻿<UserControl x:Class="Child_Talker.PageViewer"
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.PageViewer"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Child_Talker"
+             xmlns:local="clr-namespace:Child_Talker.TalkerViews"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <Grid>
@@ -15,22 +15,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-    <DockPanel Grid.Row="0" Grid.ColumnSpan="5">
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="Insert">
-                <MenuItem Header="Talker Tile" Click="InsertTalkerTile_Click"/>
-                <MenuItem Header="Folder Tile" Click="InsertFolderTile_Click"/>
-                </MenuItem>
-        </Menu>
-        <StackPanel></StackPanel>
-    </DockPanel>
-    <WrapPanel x:Name="items" Orientation="Horizontal" Background="DarkRed" Grid.Row="1" Grid.RowSpan="4" Grid.ColumnSpan="5">
+
+        <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="5">
+            <StackPanel x:Name="Controls" Background="DarkRed" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
+                <Button x:Name="AddFolder" Content="Add a Folder Button" Click="InsertFolderTile_Click" />
+                <Button x:Name="AddTalker" Content="Add a Talker Button" Click="InsertTalkerTile_Click" />
+                <Button x:Name="BackToHome" Content="Main Menu" Click="backToHome" />
+            </StackPanel>
+        </Border>
+
+        <WrapPanel x:Name="items" Orientation="Horizontal" Background="DarkRed" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
     </WrapPanel>
     </Grid>
-</UserControl>
+</local:TalkerView>
