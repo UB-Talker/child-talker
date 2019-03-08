@@ -20,7 +20,6 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class Keyboard : TalkerView
     {
-        StringBuild sb;
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
         public Keyboard()
         {
@@ -33,8 +32,7 @@ namespace Child_Talker.TalkerViews
         public Keyboard(String selectedText)
         {
             InitializeComponent();
-            sb = new StringBuild();
-            sb.text = selectedText;
+            greetingOutput.Text = selectedText;
             greetingOutput.Text = selectedText;
             this.KeyDown += physicalKeyboard;
             //zeroKey.Click += Button_Click; //add to routedEventhandler
@@ -58,11 +56,11 @@ namespace Child_Talker.TalkerViews
             switch (s)
             {
                 case "SPACE":
-                    sb.text += " ";
+                    greetingOutput.Text += " ";
                     break;
                 case "BACK":
-                    try { 
-                        sb.text = sb.text.Substring(0, sb.text.Length - 1);
+                    try {
+                        greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1);
                     }
                     catch (System.ArgumentOutOfRangeException)
                     {
@@ -73,19 +71,15 @@ namespace Child_Talker.TalkerViews
                     EnterPress();
                     break;
                 default:
-                    sb.text += s;
+                    greetingOutput.Text += s;
                     break;
 
             }
-            
-            greetingOutput.Text = sb.text;
         }
 
         private void EnterPress()
         {
-            sb.text = greetingOutput.Text;
-            synth.SpeakAsync(sb.text);
-            sb.text = "";
+            synth.SpeakAsync(greetingOutput.Text);
             greetingOutput.Text = "";
             return;
         }
