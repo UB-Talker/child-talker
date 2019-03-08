@@ -44,7 +44,7 @@ namespace Child_Talker
             cmd.StartInfo.FileName = @"C:\Program Files\PuTTY\plink.exe";
             cmd.StartInfo.UseShellExecute = false;
             cmd.StartInfo.RedirectStandardInput = true;
-            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.RedirectStandardOutput = false;
             cmd.StartInfo.Arguments = "-ssh pi@192.168.1.11 -pw 9404CSE453 ";
             cmd.StartInfo.CreateNoWindow = false;
             cmd.Start();
@@ -58,7 +58,7 @@ namespace Child_Talker
             cmd.StandardInput.WriteLine("irsend send_stop " + remote + " " + remoteKey);
             Thread.Sleep(200);
             cmd.StandardInput.WriteLine("exit");
-            string output = cmd.StandardOutput.ReadToEnd();
+            //string output = cmd.StandardOutput.ReadToEnd();
         }
 
     }

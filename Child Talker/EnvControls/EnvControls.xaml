@@ -42,7 +42,7 @@
         <TextBlock Grid.Column="0"  Grid.Row="2" Foreground="Red" Padding="50,0,0,0" Grid.ColumnSpan="4" Margin="0,0,0,0">TELEVISION CONTROLS</TextBlock>
 
         <Button x:Name="autoscan" Grid.Column="0" Grid.Row="1" Click="Autoscan_Click">
-            <Image Grid.Row="0" Source="Resources/EnvControl_images/autoscan-blue.png" />
+            <Image Grid.Row="0" Source="../Resources/EnvControl_images/autoscan-blue.png" />
         </Button>
         <Button x:Name="switch1" Tag="1" Grid.Column="1" Grid.Row="1" Click="relayControl">
             <Grid Margin="0,20,0,0">
@@ -50,7 +50,7 @@
                     <RowDefinition Height="70*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/outlet-blue.png" />
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/outlet-blue.png" />
                 <TextBlock Grid.Row="1">Switch 1</TextBlock>
             </Grid>
         </Button>
@@ -60,7 +60,7 @@
                     <RowDefinition Height="70*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/outlet-blue.png"/>
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/outlet-blue.png"/>
                 <TextBlock Grid.Row="1"><Run Text="Switch 2"/></TextBlock>
             </Grid>
         </Button>
@@ -70,24 +70,24 @@
                     <RowDefinition Height="70*"/>
                     <RowDefinition Height="30*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/outlet-blue.png"/>
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/outlet-blue.png"/>
                 <TextBlock Grid.Row="1" Foreground="#FF00CFF3"> Switch 3</TextBlock>
             </Grid>
         </Button>
-        <Button x:Name="power" Tag="KEY_POWER" Grid.Column="0" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Foreground="{x:Null}" Background="Black" Click="powerControl">
-            <Image Margin="15" Source="Resources/EnvControl_images/power-button-blue.png"/>
+        <Button x:Name="power" Tag="KEY_POWER" Grid.Column="0" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Foreground="{x:Null}" Background="Black" Click="TV_Controls">
+            <Image Margin="15" Source="../Resources/EnvControl_images/power-button-blue.png"/>
         </Button>
         <Button x:Name="volume" Grid.Column="1" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Foreground="{x:Null}" Background="Black" Click="Volume_Click">
-            <Image Margin="15" Source="Resources/EnvControl_images/VOL-up-blue.png" Stretch="Uniform"/>
+            <Image Margin="15" Source="../Resources/EnvControl_images/VOL-up-blue.png" Stretch="Uniform"/>
         </Button>
-        <Button x:Name="channel" Grid.Column="2" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Foreground="#FF00CFF3" Background="Black" Content="CH" FontSize="180"></Button>
+        <Button x:Name="channel" Grid.Column="2" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Foreground="#FF00CFF3" Background="Black" Content="CH" FontSize="180" Click="Channel_Click"></Button>
         <Button x:Name="more_remotes" Grid.Column="3" Grid.Row="3" Margin="20" BorderThickness="10" BorderBrush="Red" Background="{x:Null}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="80*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/menu-blue.png" Stretch="Uniform"></Image>
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/menu-blue.png" Stretch="Uniform"></Image>
                 <TextBlock Grid.Row="1" Foreground="#FF00A0F3" FontSize="40" TextAlignment="Center" FontWeight="Bold" TextWrapping="Wrap"> More Remotes</TextBlock>
             </Grid>
         </Button>

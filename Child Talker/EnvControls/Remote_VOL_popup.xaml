@@ -1,4 +1,4 @@
-﻿<Window x:Class="Child_Talker.Remote_popup"
+﻿<Window x:Class="Child_Talker.Remote_VOL_popup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -42,35 +42,35 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Row="1" Grid.Column="0" >
+        <Button Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/VOL-down-blue.png" />
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/VOL-down-blue.png" />
                 <TextBlock Grid.Row="1" Text="VOL DOWN"></TextBlock>
             </Grid>
         </Button>
 
-        <Button Grid.Row="1" Grid.Column="1">
+        <Button Tag="KEY_VOLUMEUP" Grid.Row="1" Grid.Column="1" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/VOL-up-blue.png" />
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/VOL-up-blue.png" />
                 <TextBlock Grid.Row="1" Text="VOL UP"></TextBlock>
             </Grid>
         </Button>
 
-        <Button Grid.Row="1" Grid.Column="2">
+        <Button Tag="KEY_MUTE" Grid.Row="1" Grid.Column="2" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="Resources/EnvControl_images/VOL-mute-blue.png" />
+                <Image Grid.Row="0" Source="../Resources/EnvControl_images/VOL-mute-blue.png" />
                 <TextBlock Grid.Row="1" Text="MUTE"></TextBlock>
             </Grid>
         </Button>
@@ -81,7 +81,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Margin="-15,15,15,15" Source="Resources/EnvControl_images/back-blue.png"/>
+                <Image Grid.Column="0" Margin="-15,15,15,15" Source="../Resources/EnvControl_images/back-blue.png"/>
                 <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
             </Grid>
         </Button>

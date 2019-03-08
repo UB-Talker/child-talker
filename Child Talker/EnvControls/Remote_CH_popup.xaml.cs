@@ -17,12 +17,14 @@ namespace Child_Talker
     /// <summary>
     /// Interaction logic for Remote_popup.xaml
     /// </summary>
-    public partial class Remote_popup : Window
+    public partial class Remote_CH_popup : Window
     {
-        public Remote_popup()
+        EnvControls parent;
+        public Remote_CH_popup(EnvControls _parent)
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
+            parent = _parent;
         }
 
         private void Close_Button(object sender, RoutedEventArgs e)
@@ -30,5 +32,9 @@ namespace Child_Talker
             this.Close();
         }
 
+        private void TV_controls(object sender, RoutedEventArgs e)
+        {
+            parent.TV_Controls(sender, e);
+        }
     }
 }

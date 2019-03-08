@@ -11,6 +11,7 @@ using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Button = System.Windows.Controls.Button;
 using System;
 using System.ComponentModel;
+using System.Threading;
 
 namespace Child_Talker
 {
@@ -27,7 +28,8 @@ namespace Child_Talker
         private Button highlightedButton;
         private int indexHighlighted;
 
-        Remote_popup rp = new Remote_popup();
+        Remote_VOL_popup vol;
+        Remote_CH_popup ch;
 
         public EnvControls()
         {
@@ -39,6 +41,8 @@ namespace Child_Talker
             runTimer(); //initializes timer
 
             this.Closed += terminate_program;
+            vol = new Remote_VOL_popup(this);
+            ch = new Remote_CH_popup(this);
 
         }
         // adds all child objects of type T to logicalCollection
@@ -62,24 +66,36 @@ namespace Child_Talker
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
 
-            rp.Show();
+            vol.Show();
             List<Button> temp = new List<Button>();
-            GetLogicalChildCollection(rp, temp);
+            GetLogicalChildCollection(vol, temp);
             currentButtons = temp;
-            rp.Closing += popup_closed;
-            rp.KeyDown += Key_down;
+            vol.Closing += popup_closed;
+            vol.KeyDown += Key_down;
+            indexHighlighted = 0;
+        }
+        private void Channel_Click(object sender, RoutedEventArgs e)
+        {
+            ch.Show();
+            List<Button> temp = new List<Button>();
+            GetLogicalChildCollection(ch, temp);
+            currentButtons = temp;
+            ch.Closing += popup_closed;
+            ch.KeyDown += Key_down;
             indexHighlighted = 0;
         }
         private void popup_closed(object sender, CancelEventArgs e)
         {
             currentButtons = thisButtons;
-            rp.KeyDown -= Key_down;
+            vol.KeyDown -= Key_down;
+            ch.KeyDown -= Key_down;
             indexHighlighted = 0;
 
             // Cancel Window closing 
             e.Cancel = true;
             // Hide Window instead
-            rp.Hide();
+            vol.Hide();
+            ch.Hide();
         }
 
         private void relayControl(object sender, RoutedEventArgs e)
@@ -87,12 +103,21 @@ namespace Child_Talker
             string _tag = (((Button)sender).Tag).ToString();
             int _t = int.Parse(_tag);
             Debug.Print(_t.ToString());
-            cc.relayControl(_t);
+            
+            new Thread(() => cc.relayControl(_t))
+            {
+                IsBackground = true
+            }.Start();
         }
 
-        private void powerControl(object sender, RoutedEventArgs e)
+        public void TV_Controls(object sender, RoutedEventArgs e)
         {
-            cc.remoteControlSend("STV", "KEY_POWER");
+            var button = sender as Button;
+            string command = button.Tag.ToString();
+            new Thread( () => cc.remoteControlSend( "STV", command) ){
+                IsBackground = true
+            }.Start();
+            
         }
 
         //using System.Timers
@@ -173,17 +198,17 @@ namespace Child_Talker
                     break;
                 case Key.E:
                     highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    this.Dispatcher.Invoke(() => {
+                        highlightedButton.Background = Brushes.DarkRed;
+                    });
                     break;
             }
 
         }
 
-
         private void terminate_program(object sender, EventArgs e)
         {
             App.Current.Shutdown();
         }
-
-
     }
 }

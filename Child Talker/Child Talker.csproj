@@ -93,18 +93,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ConsoleControls.cs" />
-    <Compile Include="EnvControls.xaml.cs">
+    <Compile Include="EnvControls\EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Remote_popup.xaml.cs">
-      <DependentUpon>Remote_popup.xaml</DependentUpon>
+    <Compile Include="EnvControls\Remote_CH_popup.xaml.cs">
+      <DependentUpon>Remote_CH_popup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EnvControls\Remote_VOL_popup.xaml.cs">
+      <DependentUpon>Remote_VOL_popup.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
-    <Page Include="EnvControls.xaml">
+    <Page Include="EnvControls\EnvControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EnvControls\Remote_CH_popup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Item.xaml">
       <SubType>Designer</SubType>
@@ -148,7 +155,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Remote_popup.xaml">
+    <Page Include="EnvControls\Remote_VOL_popup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +249,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\EnvControl_images\back-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\EnvControl_images\CH-down-blue.png" />
+    <Resource Include="Resources\EnvControl_images\CH-up-blue.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
