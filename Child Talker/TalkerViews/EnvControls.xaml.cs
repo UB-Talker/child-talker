@@ -190,16 +190,17 @@ namespace Child_Talker.TalkerViews
             switch (k)
             {
                 case Key.Q:
-                    indexHighlighted -= 2; // go back 2 buttons
+                    indexHighlighted -= 3; // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index
                     if (indexHighlighted < 0)
                     {
-                        //aTimer.Stop(); //tried to reset timer didn't work
                         indexHighlighted += currentButtons.Count; // loops the index if it goes negative
-                        //aTimer.Start();
                     }
+                    autoscaningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
+                    aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
+                    aTimer.Start();
                     break;
                 case Key.E:
-                    highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+                    highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
                     this.Dispatcher.Invoke(() => {
                         highlightedButton.Background = Brushes.DarkRed;
                     });

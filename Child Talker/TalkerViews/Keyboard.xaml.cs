@@ -24,7 +24,6 @@ namespace Child_Talker.TalkerViews
         public Keyboard()
         {
             InitializeComponent();
-            sb = new StringBuild();
             this.KeyDown += physicalKeyboard;
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
