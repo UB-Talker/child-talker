@@ -73,7 +73,13 @@ namespace Child_Talker.TalkerViews
             window.DataContext = new PageViewer();
         }
 
+        public void openEnvControls(object sender, RoutedEventArgs args)
+        {
+            MainWindow window = getWindow();
+            window.setPreviousView(this);
 
+            window.DataContext = new EnvControls();
+        }
 
         /*
          * This functionality will be assigned to the back button on the pages that implement it.

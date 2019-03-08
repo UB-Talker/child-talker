@@ -11,7 +11,7 @@
         <Style x:Name="a" TargetType="Border">
             <Setter Property="BorderBrush" Value="White" />
             <Setter Property="BorderThickness" Value="2" />
-            
+
             <Style.Triggers>
                 <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type local:Item}}, Path=AutoSelected}" Value="True">
                     <Setter Property="BorderBrush" Value="Red" />
@@ -19,14 +19,23 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style TargetType="Label">
+            <Setter Property="FontSize" Value="40px"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Foreground" Value="#FF00CFF3"/>
+        </Style>
     </UserControl.Resources>
     <Border>
         <Grid Margin="10">
             <Button Width="250" Height="250" Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up">
-                <StackPanel>
-                    <Label x:Name="label" />
-                    <Image x:Name="image" />
-                </StackPanel>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="70*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" x:Name="label"/>
+                    <Image Grid.Row="1" x:Name="image" />
+                </Grid>
             </Button>
         </Grid>
     </Border>

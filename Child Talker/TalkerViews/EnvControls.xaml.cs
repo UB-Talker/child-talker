@@ -12,13 +12,15 @@ using Button = System.Windows.Controls.Button;
 using System;
 using System.ComponentModel;
 using System.Threading;
+using Child_Talker;
+using Child_Talker.TalkerViews;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for EnvControls.xaml
     /// </summary>
-    public partial class EnvControls : Window
+    public partial class EnvControls : TalkerView
     {
         private ConsoleControls cc = new ConsoleControls();
         private List<Button> thisButtons = new List<Button>();
@@ -34,13 +36,13 @@ namespace Child_Talker
         public EnvControls()
         {
             InitializeComponent();
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             GetLogicalChildCollection(this, thisButtons);
             currentButtons = thisButtons;
             runTimer(); //initializes timer
 
-            this.Closed += terminate_program;
+            //this.Closed += terminate_program;
             vol = new Remote_VOL_popup(this);
             ch = new Remote_CH_popup(this);
 

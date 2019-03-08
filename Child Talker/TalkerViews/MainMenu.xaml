@@ -83,7 +83,7 @@
                     <TextBlock Grid.Row="1">unknown</TextBlock>
                 </Grid>
             </Button>
-            <Button x:Name="EnvControls" Grid.Column="2" >
+            <Button x:Name="EnvControls" Grid.Column="2" Click="openEnvControls">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
