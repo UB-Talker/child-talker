@@ -1,18 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Speech.Synthesis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
 using System.Xml.Serialization;
+using Child_Talker.Utilities;
 
 namespace Child_Talker
 {
     
     public class ChildTalkerTile : IChildTalkerTile
     {
-        private static SpeechSynthesizer synth = new SpeechSynthesizer();
+        private static TextUtility util = TextUtility.Instance;
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }
@@ -42,7 +42,7 @@ namespace Child_Talker
         {
             if (!timer.Enabled)
             {
-                synth.SpeakAsync(Text);
+                util.speak(Text);
                 timer.Start();
             }
         }
