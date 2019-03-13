@@ -89,7 +89,7 @@ namespace Child_Talker.TalkerViews
 
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
-            getWindow().startAutoscan(sender, e);
+            getWindow().toggleAutoscan(sender, e);
         }
 
     }

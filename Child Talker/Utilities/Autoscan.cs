@@ -29,7 +29,6 @@ namespace Child_Talker
         private Button highlightedButton;
         private int indexHighlighted;
 
-        private List<Button> thisButtons = new List<Button>();
         private List<Button> currentButtons = new List<Button>(); //buttons being autoscanned
 
         private Autoscan()
@@ -37,16 +36,28 @@ namespace Child_Talker
             aTimer = new Timer(1000);
             aTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
             aTimer.AutoReset = true;
-            aTimer.Enabled = false;
-             
+            aTimer.Enabled = false;           
         }
-
 
         public void startAutoscan(MainWindow _w)
         {
             w = _w;
             currentView = _w.DataContext as TalkerView;
+            List<Button> thisButtons = new List<Button>();
             GetLogicalChildCollection(currentView, thisButtons);
+            currentButtons = thisButtons;
+
+            indexHighlighted = 0; // index of element in List<Buttons>
+            aTimer.Enabled = true;
+            currentView.KeyDown += Key_down;
+        }
+
+        public void updateAutoscan(DependencyObject parent)
+        {
+            stopAutoscan();
+
+            List<Button> thisButtons = new List<Button>();
+            GetLogicalChildCollection(parent, thisButtons);
             currentButtons = thisButtons;
 
             indexHighlighted = 0; // index of element in List<Buttons>
@@ -86,7 +97,6 @@ namespace Child_Talker
                 }
             }
         }
-
         public static Autoscan _instance
         {
             get

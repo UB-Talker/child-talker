@@ -54,11 +54,19 @@ namespace Child_Talker
             previousViews.Pop();
         }
 
-        public void startAutoscan(object source, RoutedEventArgs e)
+        public void toggleAutoscan(object source, RoutedEventArgs e)
         {
-            autosc = Autoscan._instance; //singleton cannot call constructor, call instance
-            autosc.startAutoscan(this); //updates autoscan on what the current view is
-          
+            if (autosc == null)
+            {
+                autosc = Autoscan._instance; //singleton cannot call constructor, call instance
+            }
+            if (autosc.isScanning())
+            {
+                autosc.stopAutoscan();
+            }else
+            {
+                autosc.startAutoscan(this); //updates autoscan on what the current view is
+            }
         }
 
         // Method to change TalkerView, primarily called by TalkerView itself
@@ -77,6 +85,7 @@ namespace Child_Talker
          * Sets the previous view to a reference of a TalkerView.
          * This view is pushed to the top of the previousViews Stack
          */
+
         public void setPreviousView(TalkerView view)
         {
             previousViews.Push(view);

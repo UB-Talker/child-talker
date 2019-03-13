@@ -45,7 +45,6 @@ namespace Child_Talker.TalkerViews
             //this.Closed += terminate_program;
             vol = new Remote_VOL_popup(this);
             ch = new Remote_CH_popup(this);
-
         }
         
         // adds all child objects of type T to logicalCollection
