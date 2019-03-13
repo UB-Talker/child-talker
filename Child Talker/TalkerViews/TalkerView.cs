@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -55,10 +55,7 @@ namespace Child_Talker.TalkerViews
          */
         public void openHistory(object sender, RoutedEventArgs args)
         {
-            MainWindow window = getWindow();
-            window.setPreviousView(this);
-
-            window.DataContext = new WindowHistory();
+            getWindow().changeView(new WindowHistory());
         }
 
 
@@ -67,18 +64,18 @@ namespace Child_Talker.TalkerViews
          */
         public void openPhrases(object sender, RoutedEventArgs args)
         {
-            MainWindow window = getWindow();
-            window.setPreviousView(this);
-
-            window.DataContext = new PageViewer();
+            getWindow().changeView(new PageViewer());
         }
 
         public void openEnvControls(object sender, RoutedEventArgs args)
         {
+            /*
             MainWindow window = getWindow();
             window.setPreviousView(this);
 
             window.DataContext = new EnvControls();
+            */
+            getWindow().changeView(new EnvControls());
         }
 
         /*
@@ -90,6 +87,10 @@ namespace Child_Talker.TalkerViews
             getWindow().back();
         }
 
+        public void autoscanButton_click(object sender, RoutedEventArgs e)
+        {
+            getWindow().startAutoscan(sender, e);
+        }
 
     }
 }

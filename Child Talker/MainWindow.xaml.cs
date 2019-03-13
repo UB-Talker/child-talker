@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,6 +26,8 @@ namespace Child_Talker
 
         private Stack<TalkerView> previousViews;
         private TextUtility util;
+       
+        Autoscan autosc;
 
         public MainWindow()
         {
@@ -36,8 +38,8 @@ namespace Child_Talker
             previousViews = new Stack<TalkerView>();
 
             TalkerView startScreen = new MainMenu();
-            DataContext = startScreen;
-            previousViews.Push(startScreen);
+            DataContext = startScreen;  //DataContext will give you the current view
+            previousViews.Push(startScreen); //should this be pushing here?
 
             this.Closing += save;
         }
@@ -52,6 +54,24 @@ namespace Child_Talker
             previousViews.Pop();
         }
 
+        public void startAutoscan(object source, RoutedEventArgs e)
+        {
+            autosc = Autoscan._instance; //singleton cannot call constructor, call instance
+            autosc.startAutoscan(this); //updates autoscan on what the current view is
+          
+        }
+
+        // Method to change TalkerView, primarily called by TalkerView itself
+        public void changeView(TalkerView view)
+        {
+            setPreviousView(this.DataContext as TalkerView);
+            DataContext = view;
+
+            if(autosc != null && autosc.isScanning())
+            {
+              autosc.stopAutoscan();
+            }
+        }
 
         /*
          * Sets the previous view to a reference of a TalkerView.

@@ -95,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\Autoscan.cs" />
     <Compile Include="ConsoleControls.cs" />
     <Compile Include="TalkerViews\EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
