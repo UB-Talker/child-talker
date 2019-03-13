@@ -28,8 +28,7 @@ namespace Child_Talker.TalkerViews
 
         public WindowHistory()
         {
-            InitializeComponent();
-            
+            InitializeComponent();        
             util = TextUtility.Instance;
             selectedText = "";
         }

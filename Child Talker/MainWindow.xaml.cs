@@ -39,7 +39,7 @@ namespace Child_Talker
 
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;  //DataContext will give you the current view
-            previousViews.Push(startScreen); //should this be pushing here?
+            //previousViews.Push(startScreen); //should this be pushing here?
 
             this.Closing += save;
         }
@@ -78,6 +78,7 @@ namespace Child_Talker
             if(autosc != null && autosc.isScanning())
             {
               autosc.stopAutoscan();
+              autosc.startAutoscan(this);
             }
         }
 
