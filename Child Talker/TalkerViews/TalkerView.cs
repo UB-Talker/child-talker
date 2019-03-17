@@ -44,9 +44,8 @@ namespace Child_Talker.TalkerViews
         public void openKeyboard(object sender, RoutedEventArgs args)
         {
             MainWindow window = getWindow();
-            window.setPreviousView(this);
+            getWindow().changeView(new Keyboard());
 
-            window.DataContext = new Keyboard();
         }
 
 

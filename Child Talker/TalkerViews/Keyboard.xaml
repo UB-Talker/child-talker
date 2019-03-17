@@ -36,7 +36,7 @@
             <ColumnDefinition Width="65*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Button x:Name="home" Grid.Column="2" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
         <Button x:Name="back" Grid.Column="2" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
 
@@ -62,13 +62,6 @@
                     <Border>
                         <Button Foreground="#FF00D5EA">Suggestion</Button>
                     </Border>
-                    <Border>
-                        <Button Foreground="#FF00D5EA">Suggestion</Button>
-                    </Border>
-                    <Border>
-                        <Button Foreground="#FF00D5EA">Suggestion</Button>
-                    </Border>
-
 
 
                 </StackPanel>
