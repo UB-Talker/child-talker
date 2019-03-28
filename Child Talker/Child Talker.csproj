@@ -284,5 +284,8 @@
   <ItemGroup>
     <Resource Include="Utilities\SpeechHistory.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\WordCount.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
