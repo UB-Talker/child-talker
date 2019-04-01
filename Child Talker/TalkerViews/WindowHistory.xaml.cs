@@ -31,6 +31,9 @@ namespace Child_Talker.TalkerViews
             InitializeComponent();        
             util = TextUtility.Instance;
             selectedText = "";
+
+            addPhrases();
+            scrollViewer.ScrollToEnd();
         }
 
 
@@ -77,6 +80,46 @@ namespace Child_Talker.TalkerViews
          */
         public void speakSelectedText(object sender, RoutedEventArgs args){
             util.speak(selectedText);
+            update();
+        }
+
+
+        /*
+         * Adds the stored list of historically spoken phrases to the GUI as Buttons
+         */
+        private void addPhrases()
+        {
+            foreach (Tuple<DateTime, string> pair in util.getSpokenPhrases())
+            {
+                Button phraseButton = new Button();
+                TextBlock phrase = new TextBlock();
+                phrase.Text = pair.Item2;
+
+                phraseButton.Background = Brushes.Black;
+                phraseButton.Click += selectText;
+                phraseButton.Content = phrase;
+
+                phraseStack.Children.Add(phraseButton);
+            }
+        }
+
+
+
+        /*
+         * This is used if the user navigates "Back" to this page. The list of buttons
+         * on the GUI must be refreshed if the user were to speak new phrases.
+         * 
+         * *** EFFICIENCY ISSUES ***
+         * This could be made more efficient. Some ideas:
+         * 
+         * 1). Maintain a list of phrases that were spoken while the application was running
+         *     and add those to the GUI when needed instead of deleting and readding all of the
+         *     Butttons.
+         */
+        override public void update()
+        {
+            phraseStack.Children.Clear();
+            addPhrases();
         }
     }
 }

@@ -30,11 +30,11 @@
             <ColumnDefinition Width="85*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
-        <ScrollViewer Margin="0,0,50,0" Grid.Column="0">
+        <ScrollViewer x:Name="scrollViewer" Margin="0,0,50,0" Grid.Column="0">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
-            <StackPanel>
+            <StackPanel x:Name="phraseStack" >
               
                 <Button Background="#000000" Click="selectText">
                   <Button.Content>

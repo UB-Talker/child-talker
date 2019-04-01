@@ -117,6 +117,7 @@
     <Compile Include="TalkerViews\WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ParseTree.cs" />
     <Compile Include="Utilities\TextUtility.cs" />
     <Page Include="TalkerViews\EnvControls.xaml">
       <SubType>Designer</SubType>

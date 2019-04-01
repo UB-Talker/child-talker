@@ -17,6 +17,7 @@ namespace Child_Talker.Utilities
         private List<Tuple<DateTime, string>> spokenPhrases;
         private Dictionary<string, int> wordCounts;
         private SpeechSynthesizer synth;
+        private ParseTree parseTree;
 
         private TextUtility()
         {
@@ -30,6 +31,8 @@ namespace Child_Talker.Utilities
             {
                 wordCounts = new Dictionary<string, int>();
             }
+
+            parseTree = new ParseTree(wordCounts);
 
             synth = new SpeechSynthesizer();
         }
@@ -80,8 +83,7 @@ namespace Child_Talker.Utilities
                 }
             }
         }
-
-
+        
         /*
          * !!!!!! USE ONLY WHEN THE WINDOW IS CLOSING !!!!!!!!!!
          * Writes contents of spokenPhrases to SpeechHistory.txt
@@ -96,5 +98,11 @@ namespace Child_Talker.Utilities
             System.IO.File.WriteAllText("../../Utilities/WordCount.txt", wordCountData);
         }
 
+
+
+        public List<Tuple<DateTime, string>> getSpokenPhrases()
+        {
+            return spokenPhrases;
+        }
     }
 }

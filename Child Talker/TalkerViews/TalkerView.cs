@@ -86,10 +86,18 @@ namespace Child_Talker.TalkerViews
             getWindow().back();
         }
 
+
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
             getWindow().toggleAutoscan(sender, e);
         }
+
+
+        /* May be needed to update some views when navigating between them.
+         * This method is 'virtual' because it allows subclasses to override
+         * this definition
+         */
+        virtual public void update() { }
 
     }
 }

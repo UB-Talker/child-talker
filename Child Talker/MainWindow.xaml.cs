@@ -50,8 +50,10 @@ namespace Child_Talker
          */
         public void back()
         {
-            DataContext = previousViews.Peek();
+            TalkerView prev = previousViews.Peek();
             previousViews.Pop();
+            prev.update();
+            DataContext = prev;
         }
 
         public void toggleAutoscan(object source, RoutedEventArgs e)
