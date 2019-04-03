@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Speech.Synthesis;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Child_Talker.Utilities;
 
 
 namespace Child_Talker.TalkerViews
@@ -21,16 +21,15 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class WindowHistory : TalkerView
     {
-        private SpeechSynthesizer synth; //Used to speak the currently selected text
+        private TextUtility util; //Used to speak the currently selected text
         private string selectedText; //Is set when the user chooses one of the phrases in the menu
         private Button selectedButton; //The currently pressed button
 
 
         public WindowHistory()
         {
-            InitializeComponent();
-            
-            synth = new SpeechSynthesizer();
+            InitializeComponent();        
+            util = TextUtility.Instance;
             selectedText = "";
         }
 
@@ -77,7 +76,7 @@ namespace Child_Talker.TalkerViews
          * selectedText instance variable.
          */
         public void speakSelectedText(object sender, RoutedEventArgs args){
-            synth.Speak(selectedText);
+            util.speak(selectedText);
         }
     }
 }

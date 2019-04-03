@@ -61,12 +61,12 @@
                 </Button>
 
                 <Button Background="#000000" Click="selectText">
-                  <Button.Content>
-                    <TextBlock>See you later!</TextBlock>
-                  </Button.Content>
+                    <Button.Content>
+                        <TextBlock>See you later!</TextBlock>
+                    </Button.Content>
                 </Button>
-              
-              <!--  Ian's old TextBlocks
+
+                <!--  Ian's old TextBlocks
                 <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
                 <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
                 <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
@@ -85,11 +85,11 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="menu" Grid.Row="0" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >MENU</Button>
+            <Button x:Name="menu" Grid.Row="0" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="backToHome">MENU</Button>
             <Button x:Name="Favorite" Grid.Row="1" Margin="25"  Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >Favorites</Button>
             <Button x:Name="toKeyboard" Grid.Row="2" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openKeyboardWithText" Content="KEYBOARD"/>
             <Button x:Name="speak" Grid.Row="3" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="speakSelectedText">SPEAK</Button>
-            <Button x:Name="unknown" Grid.Row="4" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openPreviousView">??</Button>
+            <Button x:Name="autoscan" Grid.Row="4" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="autoscanButton_click">AUTOSCAN</Button>
 
         </Grid>
 

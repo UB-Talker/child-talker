@@ -1,7 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Speech.Synthesis;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews
 {
@@ -20,11 +20,14 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class Keyboard : TalkerView
     {
-        private static SpeechSynthesizer synth = new SpeechSynthesizer();
+        private TextUtility util;
+
+
         public Keyboard()
         {
             InitializeComponent();
             this.KeyDown += physicalKeyboard;
+            util = TextUtility.Instance;
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
         }
@@ -34,6 +37,7 @@ namespace Child_Talker.TalkerViews
             greetingOutput.Text = selectedText;
             greetingOutput.Text = selectedText;
             this.KeyDown += physicalKeyboard;
+            util = TextUtility.Instance;
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
         }
@@ -78,7 +82,7 @@ namespace Child_Talker.TalkerViews
 
         private void EnterPress()
         {
-            synth.SpeakAsync(greetingOutput.Text);
+            util.speak(greetingOutput.Text);
             greetingOutput.Text = "";
             return;
         }

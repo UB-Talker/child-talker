@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 using Child_Talker.TalkerViews;
+using Child_Talker.Utilities;
 
 namespace Child_Talker
 {
@@ -24,18 +25,23 @@ namespace Child_Talker
     {
 
         private Stack<TalkerView> previousViews;
-
+        private TextUtility util;
+       
+        Autoscan autosc;
 
         public MainWindow()
         {
 
             InitializeComponent();
 
+            util = TextUtility.Instance;
             previousViews = new Stack<TalkerView>();
 
             TalkerView startScreen = new MainMenu();
-            DataContext = startScreen;
-            previousViews.Push(startScreen);
+            DataContext = startScreen;  //DataContext will give you the current view
+            //previousViews.Push(startScreen); //should this be pushing here?
+
+            this.Closing += save;
         }
 
 
@@ -48,11 +54,39 @@ namespace Child_Talker
             previousViews.Pop();
         }
 
+        public void toggleAutoscan(object source, RoutedEventArgs e)
+        {
+            if (autosc == null)
+            {
+                autosc = Autoscan._instance; //singleton cannot call constructor, call instance
+            }
+            if (autosc.isScanning())
+            {
+                autosc.stopAutoscan();
+            }else
+            {
+                autosc.startAutoscan(this); //updates autoscan on what the current view is
+            }
+        }
+
+        // Method to change TalkerView, primarily called by TalkerView itself
+        public void changeView(TalkerView view)
+        {
+            setPreviousView(this.DataContext as TalkerView);
+            DataContext = view;
+
+            if(autosc != null && autosc.isScanning())
+            {
+              autosc.stopAutoscan();
+              autosc.startAutoscan(this);
+            }
+        }
 
         /*
          * Sets the previous view to a reference of a TalkerView.
          * This view is pushed to the top of the previousViews Stack
          */
+
         public void setPreviousView(TalkerView view)
         {
             previousViews.Push(view);
@@ -65,6 +99,15 @@ namespace Child_Talker
         public void resetStack()
         {
             previousViews = new Stack<TalkerView>();
+        }
+
+
+        /*
+         * Save speech history when closed
+         */
+        private void save(object sender, EventArgs args)
+        {
+            util.save();
         }
     }
 }

@@ -68,6 +68,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -92,6 +95,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilities\Autoscan.cs" />
     <Compile Include="ConsoleControls.cs" />
     <Compile Include="TalkerViews\EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
@@ -102,7 +106,6 @@
     <Compile Include="TalkerViews\EnvControls\Remote_VOL_popup.xaml.cs">
       <DependentUpon>Remote_VOL_popup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViewModels\WindowHistoryModel.cs" />
     <Compile Include="TalkerViews\MainMenu.xaml.cs">
       <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,7 @@
     <Compile Include="TalkerViews\WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\TextUtility.cs" />
     <Page Include="TalkerViews\EnvControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +203,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Child Talker_TemporaryKey.pfx" />
+    <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -275,6 +280,12 @@
     <Resource Include="Resources\EnvControl_images\CH-down-blue.png" />
     <Resource Include="Resources\EnvControl_images\CH-up-blue.png" />
     <Resource Include="Resources\MainMenu_images\back-blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\SpeechHistory.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\WordCount.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

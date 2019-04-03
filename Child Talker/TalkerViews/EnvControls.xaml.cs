@@ -38,15 +38,15 @@ namespace Child_Talker.TalkerViews
             InitializeComponent();
             //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
-            GetLogicalChildCollection(this, thisButtons);
-            currentButtons = thisButtons;
-            runTimer(); //initializes timer
-
+            //GetLogicalChildCollection(this, thisButtons);
+            //currentButtons = thisButtons;
+            //runTimer(); //initializes timer
+        
             //this.Closed += terminate_program;
             vol = new Remote_VOL_popup(this);
             ch = new Remote_CH_popup(this);
-
         }
+        
         // adds all child objects of type T to logicalCollection
         private static void GetLogicalChildCollection<T>(DependencyObject parent, List<T> logicalCollection) where T : DependencyObject
         {
@@ -64,7 +64,7 @@ namespace Child_Talker.TalkerViews
                 }
             }
         }
-
+        
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
 
@@ -121,7 +121,7 @@ namespace Child_Talker.TalkerViews
             }.Start();
             
         }
-
+        /*
         //using System.Timers
         public void runTimer()
         {
@@ -182,13 +182,14 @@ namespace Child_Talker.TalkerViews
             }
             
         }
-
+       */
         // key press eventHandler
         private void Key_down(object sender, KeyEventArgs e)
         {
             Key k = e.Key;
             switch (k)
             {
+                /*
                 case Key.Q:
                     indexHighlighted -= 3; // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index
                     if (indexHighlighted < 0)
@@ -199,16 +200,18 @@ namespace Child_Talker.TalkerViews
                     aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
                     aTimer.Start();
                     break;
+                    */
                 case Key.E:
                     highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
                     this.Dispatcher.Invoke(() => {
                         highlightedButton.Background = Brushes.DarkRed;
                     });
                     break;
+                
             }
 
         }
-
+ 
         private void terminate_program(object sender, EventArgs e)
         {
             App.Current.Shutdown();

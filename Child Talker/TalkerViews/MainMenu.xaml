@@ -103,7 +103,7 @@
                     <TextBlock Grid.Row="1">keyboard</TextBlock>
                 </Grid>
             </Button>
-            <Button x:Name="autoscan" Grid.Column="4">
+            <Button x:Name="autoscanButton" Grid.Column="4" Click="autoscanButton_click">
                 <Image Source="../Resources/MainMenu_images/autoscan-blue.png" Margin="10"/>
             </Button>
         </Grid>
