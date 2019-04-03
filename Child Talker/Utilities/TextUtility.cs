@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Speech.Synthesis;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Child_Talker.Utilities
 {
@@ -33,7 +35,6 @@ namespace Child_Talker.Utilities
             }
 
             parseTree = new ParseTree(wordCounts);
-
             synth = new SpeechSynthesizer();
         }
 
@@ -81,6 +82,7 @@ namespace Child_Talker.Utilities
                 {
                     wordCounts.Add(currentWord, 1);
                 }
+                parseTree.addString(currentWord);
             }
         }
         
@@ -99,10 +101,69 @@ namespace Child_Talker.Utilities
         }
 
 
-
+        /*
+         * Returns a list of the spokenPhrases. Currently used in the History page to 
+         * display the list of spoken phrases.
+         */
         public List<Tuple<DateTime, string>> getSpokenPhrases()
         {
             return spokenPhrases;
+        }
+
+
+        /*
+         * Gets the next suggestions based on the given input c
+         */
+        public List<Button> getNextSuggestion(char c)
+        {
+            if (c == '_')
+            {
+                parseTree.goUpTree();
+            }
+            else
+            {
+                parseTree.goDownTree(char.ToLower(c));
+            }
+            return getNSuggestions(3);
+        }
+
+        public List<Button> getNextSuggestionsForString(string s)
+        {
+            if (parseTree.isTreeReset())
+            {
+                parseTree.goDownTree(s);
+            }
+            return getNSuggestions(3);
+        }
+        /*
+         * Generate n buttons that will be used as suggestions
+         */
+        private List<Button> getNSuggestions(int n)
+        {
+            List<Button> retVal = new List<Button>();
+            List<KeyValuePair<string, int>> suggestions = parseTree.getSuggestions();
+
+            int i = 0;
+            while (i < n && i < suggestions.Count)
+            {
+                Button b = new Button();
+                BrushConverter bc = new BrushConverter();
+                b.Foreground = (Brush)bc.ConvertFrom("#FF00D5EA");
+                b.Content = suggestions[i].Key;
+                retVal.Add(b);
+                i++;
+            }
+
+            return retVal;
+        }
+
+
+        /*
+         * Resets the autocorrect when necessary
+         */
+        public void resetAutocorrect()
+        {
+            parseTree.resetTree();
         }
     }
 }

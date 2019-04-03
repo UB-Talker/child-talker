@@ -40,7 +40,7 @@ namespace Child_Talker.Utilities.Tests
 
             Assert.AreEqual(tree.getCurrentNodeCount(), 4);
 
-            tree.goToHead();
+            tree.resetTree();
 
             tree.goDownTree('t');tree.goDownTree('h');tree.goDownTree('e');
             Assert.AreEqual(tree.getCurrentNodeCount(), 2);
@@ -88,7 +88,7 @@ namespace Child_Talker.Utilities.Tests
             Assert.AreEqual(answer[1], suggestions[1]);
 
             //Check that "hello" is no longer considered as a suggestion after 't' is input
-            tree.goToHead();
+            tree.resetTree();
             tree.goDownTree('t');
             suggestions = tree.getSuggestions();
             Assert.AreEqual(1, suggestions.Count);

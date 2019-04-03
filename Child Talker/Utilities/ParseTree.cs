@@ -14,8 +14,19 @@ namespace Child_Talker.Utilities
         //Used to traverse through the tree
         private ParseNode currentNode;
 
+        //Stores the last non null node
+        private ParseNode nonNullNode;
+
         //Stores the currently typed string
         private string currentInput;
+
+        //Store how many times the currentNode should remain null
+        //i.e. g->o->o->d->null is stored in the tree and the user types "goodbye"
+        //nullNodes will be 3
+        private int nullNodes;
+
+        //Indicates whether or not the ParseTree is reset
+        private bool isReset;
 
 
         /*
@@ -45,6 +56,7 @@ namespace Child_Talker.Utilities
                 currentNode = headNode;
 
             }
+            isReset = true;
         }
 
 
@@ -56,9 +68,8 @@ namespace Child_Talker.Utilities
             headNode = new ParseNode('_', 0, null);
             currentNode = headNode;
             currentInput = "";
+            isReset = true;
         }
-
-
 
 
 
@@ -67,8 +78,32 @@ namespace Child_Talker.Utilities
          */
         public void goDownTree(char c)
         {
-            currentNode = currentNode.getNextNode(c);
+            isReset = false;
+            if (currentNode != null)
+            {
+                nonNullNode = currentNode;
+                currentNode = currentNode.getNextNode(c);
+            }
+
+            if(currentNode == null)
+            {
+                nullNodes += 1;
+            }
+
             currentInput += c;
+        }
+
+
+        /*
+         * Traverse down the tree to the node with the given string
+         */
+        public void goDownTree(string s)
+        {
+            s = s.ToLower();
+            foreach(char c in s)
+            {
+                goDownTree(c);
+            }
         }
 
 
@@ -79,8 +114,25 @@ namespace Child_Talker.Utilities
         {
             if(currentNode != headNode)
             {
-                currentNode = currentNode.getPrevNode();
+                nullNodes -= 1;
+                if (nullNodes <= 0)
+                {
+                    if (currentNode == null)
+                    {
+                        currentNode = nonNullNode;
+                    }
+                    else
+                    {
+                        currentNode = currentNode.getPrevNode();
+                    }
+                    nullNodes = 0;
+                }
                 currentInput = currentInput.Substring(0, currentInput.Length - 1);
+            }
+
+            if(currentNode == headNode)
+            {
+                isReset = true;
             }
         }
 
@@ -98,10 +150,21 @@ namespace Child_Talker.Utilities
         /*
          * Sets the currentNode to headNode
          */
-        public void goToHead()
+        public void resetTree()
         {
             currentNode = headNode;
             currentInput = "";
+            nullNodes = 0;
+            isReset = true;
+        }
+
+        /*
+         * Returns if true if the tree is reset.
+         * In other words if the currentNode is at the head.
+         */
+        public bool isTreeReset()
+        {
+            return isReset;
         }
 
 
@@ -115,6 +178,25 @@ namespace Child_Talker.Utilities
         }
 
 
+        /*
+         * When a string is spoken, each word is added to the parse tree
+         */
+        public void addString(string s)
+        {
+            currentNode = headNode;
+            foreach(char c in s)
+            {
+                if(currentNode.getNextNode(c) == null)
+                {
+                    currentNode.setNextNode(c, 0);
+                }
+                currentNode = currentNode.getNextNode(c);
+            }
+            currentNode.incrementCount();
+            resetTree();
+        }
+
+
 
         /*
          * Generates the list of suggested words based on the current input.
@@ -123,6 +205,11 @@ namespace Child_Talker.Utilities
         public List<KeyValuePair<string, int>> getSuggestions()
         {
             List<KeyValuePair<string, int>> suggestions = new List<KeyValuePair<string, int>>();
+
+            if(currentNode == null || currentNode == headNode)
+            {
+                return suggestions;
+            }
 
             foreach(ParseNode n in currentNode.getNodes())
             {
@@ -249,9 +336,21 @@ namespace Child_Talker.Utilities
             }
 
 
+            /*
+             * Traverse to the parent node
+             */
             public ParseNode getPrevNode()
             {
                 return parent;
+            }
+
+
+            /*
+             * Increments the count of the current node by one
+             */
+            public void incrementCount()
+            {
+                timesTerminatedHere++;
             }
         }
     }

@@ -28,9 +28,12 @@ namespace Child_Talker.TalkerViews
             InitializeComponent();
             this.KeyDown += physicalKeyboard;
             util = TextUtility.Instance;
+            util.resetAutocorrect();
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
         }
+
+
         public Keyboard(String selectedText)
         {
             InitializeComponent();
@@ -38,6 +41,7 @@ namespace Child_Talker.TalkerViews
             greetingOutput.Text = selectedText;
             this.KeyDown += physicalKeyboard;
             util = TextUtility.Instance;
+            util.resetAutocorrect();
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
         }
@@ -60,10 +64,15 @@ namespace Child_Talker.TalkerViews
             {
                 case "SPACE":
                     greetingOutput.Text += " ";
+                    util.resetAutocorrect();
+                    autofill.Children.Clear();
                     break;
                 case "BACK":
                     try {
                         greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1);
+                        addAutoFill('_');
+                        string[] words = greetingOutput.Text.Split(' ');
+                        addAutoFill(words.Last<string>());
                     }
                     catch (System.ArgumentOutOfRangeException)
                     {
@@ -75,6 +84,7 @@ namespace Child_Talker.TalkerViews
                     break;
                 default:
                     greetingOutput.Text += s;
+                    addAutoFill(s[0]);
                     break;
 
             }
@@ -85,6 +95,41 @@ namespace Child_Talker.TalkerViews
             util.speak(greetingOutput.Text);
             greetingOutput.Text = "";
             return;
+        }
+
+
+        /*
+         * Gets autofill suggestions after the char c is typed
+         */
+        private void addAutoFill(char c)
+        {
+            autofill.Children.Clear();
+            foreach (Button b in util.getNextSuggestion(c))
+            {
+                Border border = new Border();
+                border.Child = b;
+                autofill.Children.Add(border);
+            }
+        }
+
+        /*
+         * Gets autofill suggestions for a given string
+         */
+        private void addAutoFill(string s)
+        {
+            autofill.Children.Clear();
+            foreach(Button b in util.getNextSuggestionsForString(s))
+            {
+                Border border = new Border();
+                border.Child = b;
+                autofill.Children.Add(border);
+            }
+        }
+
+
+        override public void update()
+        {
+            util.resetAutocorrect();
         }
     }
 }
