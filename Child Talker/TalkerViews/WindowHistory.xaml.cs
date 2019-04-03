@@ -31,7 +31,6 @@ namespace Child_Talker.TalkerViews
             InitializeComponent();        
             util = TextUtility.Instance;
             selectedText = "";
-
             addPhrases();
             scrollViewer.ScrollToEnd();
         }
@@ -48,6 +47,10 @@ namespace Child_Talker.TalkerViews
         }
 
 
+        public void changeFocus()
+        {
+            System.Windows.Input.Keyboard.Focus(this);
+        }
 
         /*
          * When one of the items in the scroll pane are selected, the selectedText instance/member variable will assume

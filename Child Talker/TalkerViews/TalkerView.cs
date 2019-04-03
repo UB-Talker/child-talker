@@ -13,7 +13,10 @@ namespace Child_Talker.TalkerViews
         
 
 
-        public TalkerView(){}
+        public TalkerView(){
+            this.Focusable = true;
+
+        }
 
         /*
          * Helper method that returns a reference to the current MainWindow
@@ -23,6 +26,10 @@ namespace Child_Talker.TalkerViews
             return (MainWindow)Window.GetWindow(this);
         }
 
+        public void scrollDown()
+        {
+
+        }
 
         /*
          * Set the current view to the main menu and clear the Stack maintained by the
@@ -33,7 +40,8 @@ namespace Child_Talker.TalkerViews
         {
             MainWindow window = getWindow();
             window.resetStack();
-            window.DataContext = new MainMenu();
+            getWindow().changeView(new MainMenu());
+          
         }
 
 
@@ -54,9 +62,12 @@ namespace Child_Talker.TalkerViews
          */
         public void openHistory(object sender, RoutedEventArgs args)
         {
-            getWindow().changeView(new WindowHistory());
+            WindowHistory newHist = new WindowHistory();
+            getWindow().changeView(newHist);
+            //newHist.focusOnHistory();
         }
 
+       
 
         /*
          * Sets the current view to the Phrases view.

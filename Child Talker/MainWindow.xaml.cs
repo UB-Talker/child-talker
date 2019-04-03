@@ -39,7 +39,6 @@ namespace Child_Talker
 
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;  //DataContext will give you the current view
-            //previousViews.Push(startScreen); //should this be pushing here?
 
             this.Closing += save;
         }
@@ -50,10 +49,11 @@ namespace Child_Talker
          */
         public void back()
         {
-            TalkerView prev = previousViews.Peek();
+
+            TalkerView lastView = previousViews.Peek();
             previousViews.Pop();
-            prev.update();
-            DataContext = prev;
+            lastView.update();
+            changeView(lastView);
         }
 
         public void toggleAutoscan(object source, RoutedEventArgs e)
@@ -79,10 +79,20 @@ namespace Child_Talker
 
             if(autosc != null && autosc.isScanning())
             {
-              autosc.stopAutoscan();
-              autosc.startAutoscan(this);
+                IInputElement what = System.Windows.Input.Keyboard.FocusedElement;
+                // increments index for next button 
+                autosc.stopAutoscan();
+                autosc.startAutoscan(this);
+
+                //view.Focusable = true;
+                //view.Focus();
+                IInputElement what2 = System.Windows.Input.Keyboard.FocusedElement;
+                // increments index for next button
             }
+
         }
+
+       
 
         /*
          * Sets the previous view to a reference of a TalkerView.

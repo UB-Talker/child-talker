@@ -28,15 +28,23 @@ namespace Child_Talker
         private Timer aTimer;
         private Button highlightedButton;
         private int indexHighlighted;
+        
 
         private List<Button> currentButtons = new List<Button>(); //buttons being autoscanned
+        
+        private bool scrollableView { get; set; }
 
         private Autoscan()
         {
             aTimer = new Timer(1000);
             aTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
             aTimer.AutoReset = true;
-            aTimer.Enabled = false;           
+            aTimer.Enabled = false;
+            scrollableView = false;
+
+            //System.Windows.Input.Keyboard.KeyDownEvent()
+            //EventManager.RegisterClassHandler(typeof(Window), System.Windows.Input.Keyboard.KeyDownEvent, new KeyEventHandler(Key_down), true);
+
         }
 
         public void startAutoscan(MainWindow _w)
@@ -46,30 +54,42 @@ namespace Child_Talker
             List<Button> thisButtons = new List<Button>();
             GetLogicalChildCollection(currentView, thisButtons);
             currentButtons = thisButtons;
-
+           
             indexHighlighted = 0; // index of element in List<Buttons>
             aTimer.Enabled = true;
-            currentView.KeyDown += Key_down;
+            w.KeyDown += Key_down;
+            highlightedButton = null;       //resets button so first button on new screens isn't skipped
+          
         }
 
         public void updateAutoscan(DependencyObject parent)
         {
             stopAutoscan();
-
+           
             List<Button> thisButtons = new List<Button>();
             GetLogicalChildCollection(parent, thisButtons);
             currentButtons = thisButtons;
-
             indexHighlighted = 0; // index of element in List<Buttons>
+ 
+            w.KeyDown += Key_down;
             aTimer.Enabled = true;
-            currentView.KeyDown += Key_down;
+        }
+
+        public void scanParents(List<DependencyObject> parents) 
+        {
+            if(aTimer.Enabled)
+            {
+                aTimer.Enabled = false;
+            }
+            //currentButtons = parents;
+
         }
 
         public void stopAutoscan()
         {
             if (aTimer.Enabled)
             {
-                currentView.KeyDown -= Key_down;
+                w.KeyDown -= Key_down;
                 aTimer.Enabled = false;
             }
         }
@@ -81,7 +101,6 @@ namespace Child_Talker
        
         private static void GetLogicalChildCollection<T>(DependencyObject parent, List<T> logicalCollection) where T : DependencyObject
         {
-
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             
             foreach (object child in children)
@@ -97,6 +116,7 @@ namespace Child_Talker
                 }
             }
         }
+
         public static Autoscan _instance
         {
             get
@@ -104,6 +124,7 @@ namespace Child_Talker
                 if(instance == null)
                 {
                     instance = new Autoscan();
+
                 }
                 return instance;
             }
@@ -113,32 +134,37 @@ namespace Child_Talker
         // it changes the currently highlighted button for autoscanning
         public void autoscanningButtons(object source, EventArgs e)
         {
-            // increments index for next button
-            if (indexHighlighted < currentButtons.Count - 1) { indexHighlighted++; }
-            else { indexHighlighted = 0; }
+           if (highlightedButton != null)
+            {
+                if (indexHighlighted < currentButtons.Count - 1) { indexHighlighted++; }
+                else { indexHighlighted = 0; }
 
             //currently highlighted button reverts to black background
-            if (highlightedButton != null)
-            {
+            
                 currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
                     highlightedButton.Background = Brushes.Black;
                 });
-                //highlightedButton.Click -= Autoscan_Click;
+                
             }
 
             // change to next highlighted button
             highlightedButton = currentButtons[indexHighlighted];
-            //highlightedButton.Click += Autoscan_Click;
+            
+            
             currentView.Dispatcher.Invoke(() => {
                 highlightedButton.Background = Brushes.Red;
             });
 
+            //if(scrollableView) { currentView.scrollDown(); }
            
         }
+
+      
 
         // key press eventHandler
         private void Key_down(object sender, KeyEventArgs e)
         {
+            
             Key k = e.Key;
             switch (k)
             {
@@ -153,11 +179,14 @@ namespace Child_Talker
                     aTimer.Start();
                     break;
                 case Key.E:
-                    highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
+                    Button oldHighlightedButton = highlightedButton;
+                    oldHighlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
                     currentView.Dispatcher.Invoke(() => {
-                        highlightedButton.Background = Brushes.DarkRed;
+                        oldHighlightedButton.Background = Brushes.Black;
+                        
                     });
                     break;
+                
             }
 
         }

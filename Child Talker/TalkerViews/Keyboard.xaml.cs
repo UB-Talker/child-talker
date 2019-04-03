@@ -29,6 +29,7 @@ namespace Child_Talker.TalkerViews
             this.KeyDown += physicalKeyboard;
             util = TextUtility.Instance;
             util.resetAutocorrect();
+
             //zeroKey.Click += Button_Click; //add to routedEventhandler
             //zeroKey.Click -= Button_Click; //remove from routedEventhandler
         }

@@ -35,8 +35,7 @@
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
             <StackPanel x:Name="phraseStack" >
-              
-                <Button Background="#000000" Click="selectText">
+                <Button Background="#000000" Click="selectText" >
                   <Button.Content>
                     <TextBlock>Hello</TextBlock>
                   </Button.Content>
@@ -77,7 +76,7 @@
             
             </StackPanel>
         </ScrollViewer>
-        <Grid Grid.Column="1">
+        <Grid Grid.Column="1" Name ="sidePanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>

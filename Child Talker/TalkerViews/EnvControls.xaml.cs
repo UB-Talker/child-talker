@@ -102,6 +102,7 @@ namespace Child_Talker.TalkerViews
 
         private void relayControl(object sender, RoutedEventArgs e)
         {
+          
             string _tag = (((Button)sender).Tag).ToString();
             int _t = int.Parse(_tag);
             Debug.Print(_t.ToString());

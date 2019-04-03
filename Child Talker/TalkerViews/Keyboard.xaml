@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
         mc:Ignorable="d"
+                 
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="auto" Width="auto" Background="Black">
 
