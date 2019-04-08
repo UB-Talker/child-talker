@@ -67,7 +67,7 @@ namespace Child_Talker
                 autosc.stopAutoscan();
             }else
             {
-                autosc.startAutoscan(this); //updates autoscan on what the current view is
+                autosc.startAutoscan<Button>(this); //updates autoscan on what the current view is
             }
         }
 
@@ -82,7 +82,7 @@ namespace Child_Talker
                 IInputElement what = System.Windows.Input.Keyboard.FocusedElement;
                 // increments index for next button 
                 autosc.stopAutoscan();
-                autosc.startAutoscan(this);
+                autosc.startAutoscan<Button>(this);
 
                 //view.Focusable = true;
                 //view.Focus();

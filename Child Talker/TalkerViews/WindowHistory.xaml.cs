@@ -25,7 +25,6 @@ namespace Child_Talker.TalkerViews
         private string selectedText; //Is set when the user chooses one of the phrases in the menu
         private Button selectedButton; //The currently pressed button
 
-
         public WindowHistory()
         {
             InitializeComponent();        

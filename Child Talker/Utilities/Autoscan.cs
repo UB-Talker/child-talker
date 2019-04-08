@@ -22,15 +22,15 @@ namespace Child_Talker
     class Autoscan
     {
         private static Autoscan instance;
-        private MainWindow w;
+        private Window w;
         private TalkerView currentView;
 
         private Timer aTimer;
-        private Button highlightedButton;
+        private DependencyObject highlightedButton;
         private int indexHighlighted;
         
 
-        private List<Button> currentButtons = new List<Button>(); //buttons being autoscanned
+        private List<DependencyObject> currentButtons = new List<DependencyObject>(); //buttons being autoscanned
         
         private bool scrollableView { get; set; }
 
@@ -47,12 +47,12 @@ namespace Child_Talker
 
         }
 
-        public void startAutoscan(MainWindow _w)
+        public void startAutoscan<T>(Window _w) where T : DependencyObject
         {
             w = _w;
             currentView = _w.DataContext as TalkerView;
-            List<Button> thisButtons = new List<Button>();
-            GetLogicalChildCollection(currentView, thisButtons);
+            List<DependencyObject> thisButtons = new List<DependencyObject>();
+            GetLogicalChildCollection<T>(currentView, thisButtons);
             currentButtons = thisButtons;
            
             indexHighlighted = 0; // index of element in List<Buttons>
@@ -62,17 +62,18 @@ namespace Child_Talker
           
         }
 
-        public void updateAutoscan(DependencyObject parent)
+        public void updateAutoscan<T>(Panel parent) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
             stopAutoscan();
            
-            List<Button> thisButtons = new List<Button>();
-            GetLogicalChildCollection(parent, thisButtons);
+            List<DependencyObject> thisButtons = new List<DependencyObject>();
+            GetLogicalChildCollection<T>(parent, thisButtons);
             currentButtons = thisButtons;
+
             indexHighlighted = 0; // index of element in List<Buttons>
- 
-            w.KeyDown += Key_down;
             aTimer.Enabled = true;
+            w.KeyDown += Key_down;
+            highlightedButton = null;       //resets button so first button on new screens isn't skipped
         }
 
         public void scanParents(List<DependencyObject> parents) 
@@ -99,7 +100,7 @@ namespace Child_Talker
             return (aTimer.Enabled);
         }
        
-        private static void GetLogicalChildCollection<T>(DependencyObject parent, List<T> logicalCollection) where T : DependencyObject
+        private static void GetLogicalChildCollection<T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
         {
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             
@@ -110,9 +111,9 @@ namespace Child_Talker
                     DependencyObject depChild = child as DependencyObject;
                     if (child is T)         //searching for type "T" which is usually Button
                     {
-                        logicalCollection.Add(child as T);
+                        logicalCollection.Add(child as DependencyObject);
                     }
-                    GetLogicalChildCollection(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
+                    GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
                 }
             }
         }
@@ -142,19 +143,35 @@ namespace Child_Talker
             //currently highlighted button reverts to black background
             
                 currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
-                    highlightedButton.Background = Brushes.Black;
+                    if (highlightedButton is Control)
+                    {
+                        (highlightedButton as Control).Background = Brushes.Black;
+                    }
+                    if (highlightedButton is Panel)
+                    {
+                    (highlightedButton as Panel).Background = Brushes.Black;
+                    }
                 });
                 
             }
 
             // change to next highlighted button
             highlightedButton = currentButtons[indexHighlighted];
-            
-            
-            currentView.Dispatcher.Invoke(() => {
-                highlightedButton.Background = Brushes.Red;
-            });
 
+            if (highlightedButton != null)
+            {
+                currentView.Dispatcher.Invoke(() =>
+                {
+                    if (highlightedButton is Control)
+                    {
+                        (highlightedButton as Control).Background = Brushes.Red;
+                    }
+                    if (highlightedButton is Panel)
+                    {
+                        (highlightedButton as Panel).Background = Brushes.Red;
+                    }
+                });
+            }
             //if(scrollableView) { currentView.scrollDown(); }
            
         }
@@ -179,12 +196,17 @@ namespace Child_Talker
                     aTimer.Start();
                     break;
                 case Key.E:
-                    Button oldHighlightedButton = highlightedButton;
-                    oldHighlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-                    currentView.Dispatcher.Invoke(() => {
-                        oldHighlightedButton.Background = Brushes.Black;
-                        
-                    });
+                    if (highlightedButton is Control)
+                    {
+                        Control oldHighlightedButton = (highlightedButton as Control);
+                        oldHighlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
+
+                        currentView.Dispatcher.Invoke(() =>
+                        {
+                            oldHighlightedButton.Background = Brushes.Black;
+                        });
+                    }
+
                     break;
                 
             }

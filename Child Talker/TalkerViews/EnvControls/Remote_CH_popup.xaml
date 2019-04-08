@@ -50,7 +50,7 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Margin="-15,15,15,15" Source="../Resources/EnvControl_images/back-blue.png"/>
+                    <Image Grid.Column="0" Margin="-15,15,15,15" Source="../../Resources/EnvControl_images/back-blue.png"/>
                     <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
                 </Grid>
             </Button>
@@ -70,7 +70,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/EnvControl_images/CH-down-blue.png" />
+                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-down-blue.png" />
                     <TextBlock Grid.Row="1" Text="CH DOWN"></TextBlock>
                 </Grid>
             </Button>
@@ -81,7 +81,7 @@
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/EnvControl_images/CH-up-blue.png" />
+                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-up-blue.png" />
                     <TextBlock Grid.Row="1" Text="CH UP"></TextBlock>
                 </Grid>
             </Button>
