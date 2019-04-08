@@ -52,7 +52,7 @@ namespace Child_Talker
             w = _w;
             currentView = _w.DataContext as TalkerView;
             List<DependencyObject> thisButtons = new List<DependencyObject>();
-            GetLogicalChildCollection<Grid>(currentView, thisButtons);
+            GetLogicalChildCollection<T>(currentView, thisButtons);
             currentButtons = thisButtons;
            
             indexHighlighted = 0; // index of element in List<Buttons>
