@@ -52,7 +52,7 @@ namespace Child_Talker
             w = _w;
             currentView = _w.DataContext as TalkerView;
             List<DependencyObject> thisButtons = new List<DependencyObject>();
-            GetLogicalChildCollection<T>(currentView, thisButtons);
+            GetLogicalChildCollection<Grid>(currentView, thisButtons);
             currentButtons = thisButtons;
            
             indexHighlighted = 0; // index of element in List<Buttons>
@@ -113,7 +113,9 @@ namespace Child_Talker
                     {
                         logicalCollection.Add(child as DependencyObject);
                     }
-                    GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
+                    if (!(child is Control)){
+                        GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
+                    }
                 }
             }
         }
