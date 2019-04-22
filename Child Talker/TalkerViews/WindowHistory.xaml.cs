@@ -31,6 +31,7 @@ namespace Child_Talker.TalkerViews
             util = TextUtility.Instance;
             selectedText = "";
             addPhrases();
+            phraseStack.ScrollOwner = scrollViewer;
             scrollViewer.ScrollToEnd();
         }
 
@@ -40,15 +41,7 @@ namespace Child_Talker.TalkerViews
          */
         public void openKeyboardWithText(object sender, RoutedEventArgs args)
         {
-            MainWindow window = getWindow();
-            window.setPreviousView(this);
-            window.DataContext = new Keyboard(selectedText);
-        }
-
-
-        public void changeFocus()
-        {
-            System.Windows.Input.Keyboard.Focus(this);
+            getWindow().changeView(new Keyboard(selectedText));
         }
 
         /*
@@ -72,6 +65,12 @@ namespace Child_Talker.TalkerViews
                 selectedText = textBlock.Text;
                 button.Background = Brushes.DarkGray;
                 selectedButton = button;
+            }
+
+            if(getWindow().isScanning()) //stops autoscan so selected text can be used
+            {
+                Autoscan sc = getWindow().toggleAutoscan(); //stops autoscan
+                sc.partialAutoscan<DependencyObject>(sidePanel,getWindow()); //partial scans side panel
             }
         }
 
@@ -122,6 +121,18 @@ namespace Child_Talker.TalkerViews
         {
             phraseStack.Children.Clear();
             addPhrases();
+        }
+
+        /* Used for autoscan, please update if xaml is changed
+         * Must return the panels to iterate through when autoscan is first initialized on this page
+         * Currently goes between the phrase stack and side menu
+         */
+        override public List<DependencyObject> getParents()
+        {
+            List<DependencyObject> parents = new List<DependencyObject>();
+            parents.Add(phraseStack);
+            parents.Add(sidePanel);
+            return (parents);
         }
     }
 }
