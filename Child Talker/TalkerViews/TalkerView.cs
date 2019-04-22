@@ -10,13 +10,8 @@ namespace Child_Talker.TalkerViews
 {
     public class TalkerView : UserControl
     {
-        
-
-
-        public TalkerView(){
-            this.Focusable = true;
-
-        }
+       
+        public TalkerView(){}
 
         /*
          * Helper method that returns a reference to the current MainWindow
@@ -26,10 +21,6 @@ namespace Child_Talker.TalkerViews
             return (MainWindow)Window.GetWindow(this);
         }
 
-        public void scrollDown()
-        {
-
-        }
 
         /*
          * Set the current view to the main menu and clear the Stack maintained by the
@@ -43,8 +34,6 @@ namespace Child_Talker.TalkerViews
             getWindow().changeView(new MainMenu());
           
         }
-
-
 
         /*
          * Set the current view to the keyboard.
@@ -64,7 +53,6 @@ namespace Child_Talker.TalkerViews
         {
             WindowHistory newHist = new WindowHistory();
             getWindow().changeView(newHist);
-            //newHist.focusOnHistory();
         }
 
        
@@ -100,7 +88,7 @@ namespace Child_Talker.TalkerViews
 
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
-            getWindow().toggleAutoscan(sender, e);
+            getWindow().toggleAutoscan(); 
         }
 
 
@@ -110,5 +98,6 @@ namespace Child_Talker.TalkerViews
          */
         virtual public void update() { }
 
+        virtual public List<DependencyObject> getParents() { return (null); }
     }
 }

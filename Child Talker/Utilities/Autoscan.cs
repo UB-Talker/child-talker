@@ -19,7 +19,7 @@ using Child_Talker.TalkerViews;
 namespace Child_Talker
 {
    
-    class Autoscan
+    public class Autoscan
     {
         private static Autoscan instance;
         private Window w;
@@ -27,12 +27,12 @@ namespace Child_Talker
 
         private Timer aTimer;
         private DependencyObject highlightedButton;
+        private Panel parentPanel;
         private int indexHighlighted;
+        private bool scanReversed = false;
         
 
         private List<DependencyObject> currentButtons = new List<DependencyObject>(); //buttons being autoscanned
-        
-        private bool scrollableView { get; set; }
 
         private Autoscan()
         {
@@ -40,51 +40,54 @@ namespace Child_Talker
             aTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
             aTimer.AutoReset = true;
             aTimer.Enabled = false;
-            scrollableView = false;
-
-            //System.Windows.Input.Keyboard.KeyDownEvent()
-            //EventManager.RegisterClassHandler(typeof(Window), System.Windows.Input.Keyboard.KeyDownEvent, new KeyEventHandler(Key_down), true);
-
+            
         }
 
+        
         public void startAutoscan<T>(Window _w) where T : DependencyObject
         {
+        //called to iterate through view's "parent objects" which is a method getParents that the view should have
+        //do not call on views that don't have getParents, only meant for views that need parent iteration for autoscan
+            stopAutoscan();
             w = _w;
             currentView = _w.DataContext as TalkerView;
-            List<DependencyObject> thisButtons = new List<DependencyObject>();
-            GetLogicalChildCollection<T>(currentView, thisButtons);
-            currentButtons = thisButtons;
-           
+            currentButtons = currentView.getParents(); //sets currentButtons at parent objects to be scanned
+            w.KeyDown += Key_down;
+
             indexHighlighted = 0; // index of element in List<Buttons>
             aTimer.Enabled = true;
-            w.KeyDown += Key_down;
+            
             highlightedButton = null;       //resets button so first button on new screens isn't skipped
-          
         }
 
-        public void updateAutoscan<T>(Panel parent) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
+        /* Finds objects(buttons usually) in Panel and starts autoscan on then
+         * Only used when a specific panel needs to be scanned
+         * Window param added bc there are certain instances in EnvControls that need to switch to a new window, and key_down stops working
+        */
+        public void partialAutoscan<T>(Panel parent, Window _w) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
             stopAutoscan();
-           
+            w = _w;
+            w.KeyDown += Key_down;
             List<DependencyObject> thisButtons = new List<DependencyObject>();
-            GetLogicalChildCollection<T>(parent, thisButtons);
+            parentPanel = parent;
+            GetLogicalChildCollection<Button>(parent, thisButtons);
             currentButtons = thisButtons;
 
-            indexHighlighted = 0; // index of element in List<Buttons>
+            if (String.Equals(parent.Name, "phraseStack")) //to reverse autoscan and start from bottom in history
+            {
+                indexHighlighted = currentButtons.Count - 1;
+                scanReversed = true;
+            }
+            else
+            {
+                indexHighlighted = 0; // index of element in List<Buttons>
+            }
+            
             aTimer.Enabled = true;
-            w.KeyDown += Key_down;
             highlightedButton = null;       //resets button so first button on new screens isn't skipped
         }
 
-        public void scanParents(List<DependencyObject> parents) 
-        {
-            if(aTimer.Enabled)
-            {
-                aTimer.Enabled = false;
-            }
-            //currentButtons = parents;
-
-        }
 
         public void stopAutoscan()
         {
@@ -92,6 +95,8 @@ namespace Child_Talker
             {
                 w.KeyDown -= Key_down;
                 aTimer.Enabled = false;
+                scanReversed = false;
+                parentPanel = null;
             }
         }
 
@@ -100,6 +105,7 @@ namespace Child_Talker
             return (aTimer.Enabled);
         }
        
+        //magic method, given a DependencyObject, will return a list of the children of type T in Parent
         private static void GetLogicalChildCollection<T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
         {
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
@@ -120,6 +126,8 @@ namespace Child_Talker
             }
         }
 
+        //autoscan is a singleton class, calling it requires _instance instead of the constructor call
+        //maintains only one instance at all times
         public static Autoscan _instance
         {
             get
@@ -137,13 +145,17 @@ namespace Child_Talker
         // it changes the currently highlighted button for autoscanning
         public void autoscanningButtons(object source, EventArgs e)
         {
-           if (highlightedButton != null)
+        
+            if (highlightedButton != null)
             {
-                if (indexHighlighted < currentButtons.Count - 1) { indexHighlighted++; }
+                if (indexHighlighted < currentButtons.Count - 1 && !scanReversed) { indexHighlighted++; }
+                else if (indexHighlighted >= currentButtons.Count && scanReversed) { indexHighlighted = 0; }
+                else if (indexHighlighted > 0 && scanReversed) { indexHighlighted--; }
+                else if (indexHighlighted <= 0 && scanReversed) { indexHighlighted = currentButtons.Count - 1; }
                 else { indexHighlighted = 0; }
 
-            //currently highlighted button reverts to black background
-            
+                //currently highlighted button reverts to black background
+
                 currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
                     if (highlightedButton is Control)
                     {
@@ -162,6 +174,7 @@ namespace Child_Talker
 
             if (highlightedButton != null)
             {
+
                 currentView.Dispatcher.Invoke(() =>
                 {
                     if (highlightedButton is Control)
@@ -174,12 +187,20 @@ namespace Child_Talker
                     }
                 });
             }
-            //if(scrollableView) { currentView.scrollDown(); }
+            
+           
+            if (parentPanel != null) {
+                currentView.Dispatcher.Invoke(() =>
+                {
+                    (highlightedButton as Control).BringIntoView();
+                });
+               
+            }
+            
            
         }
 
-      
-
+    
         // key press eventHandler
         private void Key_down(object sender, KeyEventArgs e)
         {
@@ -188,7 +209,8 @@ namespace Child_Talker
             switch (k)
             {
                 case Key.Q:
-                    indexHighlighted -= 3; // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index
+                    if (scanReversed) { indexHighlighted += 3; }
+                    else { indexHighlighted -= 3; } // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index           
                     if (indexHighlighted < 0)
                     {
                         indexHighlighted += currentButtons.Count; // loops the index if it goes negative
@@ -198,7 +220,16 @@ namespace Child_Talker
                     aTimer.Start();
                     break;
                 case Key.E:
-                    if (highlightedButton is Control)
+                    if (highlightedButton is Panel)
+                    {
+                        Panel oldHighlightedButton = (highlightedButton as Panel);
+                        partialAutoscan<DependencyObject>(oldHighlightedButton, w); //pass in panel that was clicked
+                        currentView.Dispatcher.Invoke(() =>
+                        {
+                            oldHighlightedButton.Background = Brushes.Black;
+                        });
+                    }
+                    else
                     {
                         Control oldHighlightedButton = (highlightedButton as Control);
                         oldHighlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
@@ -208,9 +239,18 @@ namespace Child_Talker
                             oldHighlightedButton.Background = Brushes.Black;
                         });
                     }
-
                     break;
-                
+                case Key.S:
+                    if (parentPanel != null && highlightedButton is Control)
+                        {
+                        Control oldHighlightedButton = (highlightedButton as Control);
+                        startAutoscan<DependencyObject>(w);
+                        currentView.Dispatcher.Invoke(() =>
+                            {
+                                oldHighlightedButton.Background = Brushes.Black;
+                            });
+                        }
+                    break;
             }
 
         }
