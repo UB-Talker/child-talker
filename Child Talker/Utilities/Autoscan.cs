@@ -74,10 +74,17 @@ namespace Child_Talker
             GetLogicalChildCollection<Button>(parent, thisButtons);
             currentButtons = thisButtons;
 
+            //special case code, panels that need a unique scanning process
+            //kind of brute forcing, there's a better way to do this
             if (String.Equals(parent.Name, "phraseStack")) //to reverse autoscan and start from bottom in history
             {
                 indexHighlighted = currentButtons.Count - 1;
                 scanReversed = true;
+            }
+            else if(String.Equals(parent.Name,"keyboardGrid"))
+            {
+               indexHighlighted = 0;
+               currentButtons = (currentView as Child_Talker.TalkerViews.Keyboard).getRows();
             }
             else
             {
@@ -189,7 +196,7 @@ namespace Child_Talker
             }
             
            
-            if (parentPanel != null) {
+            if (parentPanel != null && highlightedButton is Control) {
                 currentView.Dispatcher.Invoke(() =>
                 {
                     (highlightedButton as Control).BringIntoView();
@@ -223,7 +230,9 @@ namespace Child_Talker
                     if (highlightedButton is Panel)
                     {
                         Panel oldHighlightedButton = (highlightedButton as Panel);
-                        partialAutoscan<DependencyObject>(oldHighlightedButton, w); //pass in panel that was clicked
+
+                        partialAutoscan<DependencyObject>(oldHighlightedButton, w);  //pass in panel that was clicked 
+           
                         currentView.Dispatcher.Invoke(() =>
                         {
                             oldHighlightedButton.Background = Brushes.Black;
@@ -242,14 +251,23 @@ namespace Child_Talker
                     break;
                 case Key.S:
                     if (parentPanel != null && highlightedButton is Control)
-                        {
+                    {
                         Control oldHighlightedButton = (highlightedButton as Control);
                         startAutoscan<DependencyObject>(w);
                         currentView.Dispatcher.Invoke(() =>
                             {
                                 oldHighlightedButton.Background = Brushes.Black;
                             });
-                        }
+                    }
+                    else if(highlightedButton is Panel)
+                    {
+                        Panel oldHighlightedPanel = (highlightedButton as Panel);
+                        startAutoscan<DependencyObject>(w);
+                        currentView.Dispatcher.Invoke(() =>
+                        {
+                            oldHighlightedPanel.Background = Brushes.Black;
+                        });
+                    }
                     break;
             }
 
