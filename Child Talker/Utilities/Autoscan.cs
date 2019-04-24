@@ -142,7 +142,6 @@ namespace Child_Talker
                 if(instance == null)
                 {
                     instance = new Autoscan();
-
                 }
                 return instance;
             }

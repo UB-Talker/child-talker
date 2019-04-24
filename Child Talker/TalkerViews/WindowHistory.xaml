@@ -67,16 +67,6 @@
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <!--  Ian's old TextBlocks
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-              -->
-
-
-
         </ScrollViewer>
         <Grid Grid.Column="1" Name ="sidePanel">
             <Grid.RowDefinitions>

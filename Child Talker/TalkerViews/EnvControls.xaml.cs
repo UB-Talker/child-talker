@@ -141,21 +141,6 @@ namespace Child_Talker.TalkerViews
             return(parents);
         }
 
-        //private void Key_down(object sender, KeyEventArgs e)
-        //{
-        //    Key k = e.Key;
-        //    switch (k)
-        //    {
-        //        case Key.E:
-        //            highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-        //            this.Dispatcher.Invoke(() => {
-        //                highlightedButton.Background = Brushes.DarkRed;
-        //            });
-        //            break;
-                
-        //    }
-
-        //}
  
         private void terminate_program(object sender, EventArgs e)
         {
