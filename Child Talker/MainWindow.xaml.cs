@@ -27,7 +27,7 @@ namespace Child_Talker
         private Stack<TalkerView> previousViews;
         private TextUtility util;
        
-        Autoscan autosc;
+        Autoscan autosc = Autoscan._instance;
 
         public MainWindow()
         {
