@@ -57,6 +57,7 @@ namespace Child_Talker.Utilities
 
             }
             isReset = true;
+           
         }
 
 
@@ -79,7 +80,17 @@ namespace Child_Talker.Utilities
         public void goDownTree(char c)
         {
             isReset = false;
-            if (currentNode != null)
+
+            if(c >= '0' && c <= '9')
+            {
+                if(currentNode != null)
+                {
+                    nonNullNode = currentNode;
+                }
+                currentNode = null;
+            }
+
+            else if (currentNode != null)
             {
                 nonNullNode = currentNode;
                 currentNode = currentNode.getNextNode(c);
@@ -276,7 +287,6 @@ namespace Child_Talker.Utilities
                 {
                     followingChars.Add(i, null);
                 }
-
             }
 
 

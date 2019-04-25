@@ -68,7 +68,7 @@ namespace Child_Talker.Utilities
             spokenPhrases.Add(phraseData);
 
             synth.SpeakAsync(text);
-
+            text = removePunctuation(text);
             string[] words = text.Split(' ');
             
             for(int i  = 0; i < words.Length; i++)
@@ -85,6 +85,21 @@ namespace Child_Talker.Utilities
                 parseTree.addString(currentWord);
             }
         }
+
+
+
+        private string removePunctuation(string s)
+        {
+            string empty = "";
+            string[] punctuation = {".", ","};
+            
+            foreach(string p in punctuation)
+            {
+                s = s.Replace(p, empty);
+            }
+
+            return s;
+        }
         
         /*
          * !!!!!! USE ONLY WHEN THE WINDOW IS CLOSING !!!!!!!!!!
@@ -98,6 +113,9 @@ namespace Child_Talker.Utilities
 
             string wordCountData = JsonConvert.SerializeObject(wordCounts);
             System.IO.File.WriteAllText("../../Utilities/WordCount.txt", wordCountData);
+
+            string tree = JsonConvert.SerializeObject(parseTree);
+            System.IO.File.WriteAllText("../../Utilities/Tree.txt",tree);
         }
 
 
@@ -124,7 +142,7 @@ namespace Child_Talker.Utilities
             {
                 parseTree.goDownTree(char.ToLower(c));
             }
-            return getNSuggestions(3);
+            return getNSuggestions(10);
         }
 
         public List<Button> getNextSuggestionsForString(string s)

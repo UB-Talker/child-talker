@@ -288,5 +288,8 @@
   <ItemGroup>
     <Resource Include="Utilities\WordCount.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\Tree.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

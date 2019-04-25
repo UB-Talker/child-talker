@@ -71,7 +71,7 @@ namespace Child_Talker.TalkerViews
                 case "BACK":
                     try {
                         greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1);
-                        addAutoFill('_');
+                        addAutocorrect('_');
                         string[] words = greetingOutput.Text.Split(' ');
                         addAutoFill(words.Last<string>());
                     }
@@ -85,7 +85,7 @@ namespace Child_Talker.TalkerViews
                     break;
                 default:
                     greetingOutput.Text += s;
-                    addAutoFill(s[0]);
+                    addAutocorrect(s[0]);
                     break;
 
             }
@@ -102,11 +102,12 @@ namespace Child_Talker.TalkerViews
         /*
          * Gets autofill suggestions after the char c is typed
          */
-        private void addAutoFill(char c)
+        private void addAutocorrect(char c)
         {
             autofill.Children.Clear();
             foreach (Button b in util.getNextSuggestion(c))
             {
+                b.Click += autoCorrectButton;
                 Border border = new Border();
                 border.Child = b;
                 autofill.Children.Add(border);
@@ -121,6 +122,7 @@ namespace Child_Talker.TalkerViews
             autofill.Children.Clear();
             foreach(Button b in util.getNextSuggestionsForString(s))
             {
+                b.Click += autoCorrectButton;
                 Border border = new Border();
                 border.Child = b;
                 autofill.Children.Add(border);
@@ -128,9 +130,26 @@ namespace Child_Talker.TalkerViews
         }
 
 
+        /*
+         * Used to update the autocorrect when the page is loaded to ensure that 
+         * it is working properly.
+         */
         override public void update()
         {
             util.resetAutocorrect();
+        }
+
+
+        private void autoCorrectButton(object sender, RoutedEventArgs args)
+        {
+            Button b = sender as Button;
+            string s = greetingOutput.Text;
+            int i = s.LastIndexOf(' ');
+            s = s.Substring(0, i + 1);
+            s += (string)b.Content + ' ';
+            greetingOutput.Text = s;
+            util.resetAutocorrect();
+            autofill.Children.Clear();
         }
     }
 }
