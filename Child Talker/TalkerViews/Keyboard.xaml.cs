@@ -100,7 +100,7 @@ namespace Child_Talker.TalkerViews
                     break;
                 default:
                     greetingOutput.Text += s;
-                    addAutoFill(s[0]);
+                    addAutocorrect(s[0]);
                     if(getWindow().isScanning()) //autoscan
                     {
                         Autoscan sc = getWindow().toggleAutoscan();

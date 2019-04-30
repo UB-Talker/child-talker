@@ -81,16 +81,9 @@ namespace Child_Talker.Utilities
         {
             isReset = false;
 
-            if(c >= '0' && c <= '9')
-            {
-                if(currentNode != null)
-                {
-                    nonNullNode = currentNode;
-                }
-                currentNode = null;
-            }
+           
 
-            else if (currentNode != null)
+            if (currentNode != null)
             {
                 nonNullNode = currentNode;
                 currentNode = currentNode.getNextNode(c);
@@ -282,11 +275,6 @@ namespace Child_Talker.Utilities
                 this.parent = parent;
 
                 followingChars = new Dictionary<char, ParseNode>();
-
-                for(char i = 'a'; i <= 'z'; i++)
-                {
-                    followingChars.Add(i, null);
-                }
             }
 
 
@@ -296,7 +284,11 @@ namespace Child_Talker.Utilities
              */
             public ParseNode getNextNode(char c)
             {
-                return followingChars[c];
+                if (followingChars.ContainsKey(c))
+                {
+                    return followingChars[c];
+                }
+                return null;
             }
 
 
@@ -306,7 +298,10 @@ namespace Child_Talker.Utilities
              */
             public void setNextNode(char c, int count)
             {
-                followingChars[c] = new ParseNode(c, count, this);
+                if (!followingChars.ContainsKey(c))
+                {
+                    followingChars.Add(c, new ParseNode(c, count, this));
+                }
             }
 
 
