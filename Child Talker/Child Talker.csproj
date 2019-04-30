@@ -299,5 +299,8 @@
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedReferences\Newtonsoft.Json.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\Tree.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
