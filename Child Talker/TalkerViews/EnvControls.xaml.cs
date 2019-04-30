@@ -26,10 +26,6 @@ namespace Child_Talker.TalkerViews
         private List<Button> thisButtons = new List<Button>();
         private List<Button> currentButtons = new List<Button>(); //buttons being autoscanned
 
-        private Timer aTimer;
-        private Button highlightedButton;
-        private int indexHighlighted;
-
         Remote_VOL_popup vol;
         Remote_CH_popup ch;
 
@@ -69,12 +65,17 @@ namespace Child_Talker.TalkerViews
         {
 
             vol.Show();
-            List<Button> temp = new List<Button>();
-            GetLogicalChildCollection(vol, temp);
-            currentButtons = temp;
+            //List<Button> temp = new List<Button>();
+            //GetLogicalChildCollection(vol, temp);
+            //currentButtons = temp;
             vol.Closing += popup_closed;
-            vol.KeyDown += Key_down;
-            indexHighlighted = 0;
+            //vol.KeyDown += Key_down;
+       
+            if(getWindow().isScanning())
+            {
+                Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
+                sc.partialAutoscan<DependencyObject>(vol.gridLayout, vol);
+            }
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
@@ -83,21 +84,31 @@ namespace Child_Talker.TalkerViews
             GetLogicalChildCollection(ch, temp);
             currentButtons = temp;
             ch.Closing += popup_closed;
-            ch.KeyDown += Key_down;
-            indexHighlighted = 0;
+            //ch.KeyDown += Key_down;
+
+            if (getWindow().isScanning())
+            {
+                Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
+                sc.partialAutoscan<DependencyObject>(ch.gridLayout, ch);
+            }
         }
         private void popup_closed(object sender, CancelEventArgs e)
         {
             currentButtons = thisButtons;
-            vol.KeyDown -= Key_down;
-            ch.KeyDown -= Key_down;
-            indexHighlighted = 0;
+            //vol.KeyDown -= Key_down;
+            //ch.KeyDown -= Key_down;
+        
 
             // Cancel Window closing 
             e.Cancel = true;
             // Hide Window instead
             vol.Hide();
             ch.Hide();
+            if(getWindow().isScanning())
+            {
+                Autoscan sc = getWindow().toggleAutoscan(); //stops autoscan if its on
+                sc.startAutoscan<DependencyObject>(getWindow());
+            }
         }
 
         private void relayControl(object sender, RoutedEventArgs e)
@@ -122,96 +133,14 @@ namespace Child_Talker.TalkerViews
             }.Start();
             
         }
-        /*
-        //using System.Timers
-        public void runTimer()
+        override public List<DependencyObject> getParents()
         {
-            aTimer = new Timer(1000); //
-
-            aTimer.Elapsed += new ElapsedEventHandler(autoscaningButtons);// when timer is triggerred 'autoscaningButtons()' runs
-            aTimer.AutoReset = true;
-            aTimer.Enabled = false;
-            indexHighlighted = 0; // index of element in List<Buttons> 
-
-
+            List<DependencyObject> parents = new List<DependencyObject>();
+            parents.Add(row1);
+            parents.Add(row2);
+            return(parents);
         }
 
-        // This method will get called by the timer until the timer stops or the program exits.
-        // it changes the currently highlighted button for autoscanning
-        public void autoscaningButtons(object source, ElapsedEventArgs e)
-        {
-            // increments index for next button
-            if (indexHighlighted < currentButtons.Count - 1) { indexHighlighted++; }
-            else { indexHighlighted = 0; }
-
-            //currently highlighted button reverts to black background
-            if (highlightedButton != null)
-            {
-                this.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
-                    highlightedButton.Background = Brushes.Black;
-                });
-            }
-            // change to next highlighted button
-            highlightedButton = currentButtons[indexHighlighted];
-            this.Dispatcher.Invoke(() => {
-                highlightedButton.Background = Brushes.Red;
-            });
-        }
-
-        //eventHandler for autscan button on XAML 
-        private void Autoscan_Click(object sender, EventArgs e)
-        {
-            aTimer.Enabled = !aTimer.Enabled; //if timer is running disable it
-            // enable key listeners
-            if (aTimer.Enabled) //if timer is running
-            {
-                this.KeyDown += Key_down; // buttonPress EventHandler  -->  run "Key_down()" when any button is pressed on keyboard
-
-            }
-            else
-            {
-                this.KeyDown -= Key_down; // remove "Key_down" from KeyPressEvents
-
-                //restore the highlighted key to original color
-                if (highlightedButton != null)
-                {
-                    this.Dispatcher.Invoke(() =>
-                    {
-                        highlightedButton.Background = Brushes.Black;
-                    });
-                }
-            }
-            
-        }
-       */
-        // key press eventHandler
-        private void Key_down(object sender, KeyEventArgs e)
-        {
-            Key k = e.Key;
-            switch (k)
-            {
-                /*
-                case Key.Q:
-                    indexHighlighted -= 3; // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index
-                    if (indexHighlighted < 0)
-                    {
-                        indexHighlighted += currentButtons.Count; // loops the index if it goes negative
-                    }
-                    autoscaningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
-                    aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
-                    aTimer.Start();
-                    break;
-                    */
-                case Key.E:
-                    highlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-                    this.Dispatcher.Invoke(() => {
-                        highlightedButton.Background = Brushes.DarkRed;
-                    });
-                    break;
-                
-            }
-
-        }
  
         private void terminate_program(object sender, EventArgs e)
         {

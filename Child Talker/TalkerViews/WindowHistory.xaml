@@ -30,33 +30,35 @@
             <ColumnDefinition Width="85*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
+
         <ScrollViewer x:Name="scrollViewer" Margin="0,0,50,0" Grid.Column="0">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
+
             <StackPanel x:Name="phraseStack" >
                 <Button Background="#000000" Click="selectText" >
-                  <Button.Content>
-                    <TextBlock>Hello</TextBlock>
-                  </Button.Content>
+                    <Button.Content>
+                        <TextBlock>Hello</TextBlock>
+                    </Button.Content>
                 </Button>
 
                 <Button Background="#000000" Click="selectText">
-                  <Button.Content>
-                    <TextBlock>How are you?</TextBlock>
-                  </Button.Content>
+                    <Button.Content>
+                        <TextBlock>How are you?</TextBlock>
+                    </Button.Content>
                 </Button>
 
                 <Button Background="#000000" Click="selectText">
-                  <Button.Content>
-                    <TextBlock>I am good</TextBlock>
-                  </Button.Content>
+                    <Button.Content>
+                        <TextBlock>I am good</TextBlock>
+                    </Button.Content>
                 </Button>
 
                 <Button Background="#000000" Click="selectText">
-                  <Button.Content>
-                    <TextBlock>The weather is beautiful today</TextBlock>
-                  </Button.Content>
+                    <Button.Content>
+                        <TextBlock>The weather is beautiful today</TextBlock>
+                    </Button.Content>
                 </Button>
 
                 <Button Background="#000000" Click="selectText">
@@ -64,16 +66,6 @@
                         <TextBlock>See you later!</TextBlock>
                     </Button.Content>
                 </Button>
-
-                <!--  Ian's old TextBlocks
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-                <TextBlock Padding="20" Height="300" Margin="60,30,60,30" Background="#FFB80000" Foreground="#FF00ECEC" FontSize="70" FontWeight="Bold" TextWrapping="Wrap">THIS IS A TEerawerehdrtyngklsdfgkjsdnfkgnsfkjdgST HISTORY</TextBlock>
-              -->
-            
-            
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Column="1" Name ="sidePanel">

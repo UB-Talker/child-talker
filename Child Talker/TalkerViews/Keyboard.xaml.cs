@@ -67,6 +67,11 @@ namespace Child_Talker.TalkerViews
                     greetingOutput.Text += " ";
                     util.resetAutocorrect();
                     autofill.Children.Clear();
+                    if (getWindow().isScanning()) //autoscan
+                    {
+                        Autoscan sc = getWindow().toggleAutoscan();
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                    }
                     break;
                 case "BACK":
                     try {
@@ -79,13 +84,28 @@ namespace Child_Talker.TalkerViews
                     {
                         Console.WriteLine("There are no characters to delete!");
                     }
+                    if (getWindow().isScanning()) //autoscan
+                    {
+                        Autoscan sc = getWindow().toggleAutoscan();
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                    }
                     break;
                 case "ENTER":
                     EnterPress();
+                    if (getWindow().isScanning()) //autoscan
+                    {
+                        Autoscan sc = getWindow().toggleAutoscan();
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                    }
                     break;
                 default:
                     greetingOutput.Text += s;
-                    addAutocorrect(s[0]);
+                    addAutoFill(s[0]);
+                    if(getWindow().isScanning()) //autoscan
+                    {
+                        Autoscan sc = getWindow().toggleAutoscan();
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                    }
                     break;
 
             }
@@ -130,10 +150,30 @@ namespace Child_Talker.TalkerViews
         }
 
 
-        /*
-         * Used to update the autocorrect when the page is loaded to ensure that 
-         * it is working properly.
-         */
+        /* Used for autoscan, please update if xaml is changed
+        * Must return the panels to iterate through when autoscan is first initialized on this page
+        */
+        override public List<DependencyObject> getParents()
+        {
+            List<DependencyObject> parents = new List<DependencyObject>();
+            parents.Add(sidePanel);
+            parents.Add(autofill);
+            parents.Add(keyboardGrid);
+           
+            return (parents);
+        }
+
+        public List<DependencyObject> getRows()
+        {
+            List<DependencyObject> parents = new List<DependencyObject>();
+            parents.Add(row0);
+            parents.Add(row1);
+            parents.Add(row2);
+            parents.Add(row3);
+            parents.Add(row4);
+            return (parents);
+        }
+
         override public void update()
         {
             util.resetAutocorrect();

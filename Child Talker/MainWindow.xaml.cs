@@ -27,7 +27,7 @@ namespace Child_Talker
         private Stack<TalkerView> previousViews;
         private TextUtility util;
        
-        Autoscan autosc;
+        Autoscan autosc = Autoscan._instance;
 
         public MainWindow()
         {
@@ -49,26 +49,36 @@ namespace Child_Talker
          */
         public void back()
         {
-
             TalkerView lastView = previousViews.Peek();
             previousViews.Pop();
             lastView.update();
             changeView(lastView);
         }
 
-        public void toggleAutoscan(object source, RoutedEventArgs e)
+        public Autoscan getAutoscan()
         {
-            if (autosc == null)
-            {
-                autosc = Autoscan._instance; //singleton cannot call constructor, call instance
-            }
-            if (autosc.isScanning())
+            return (autosc);
+        }
+        //if autoscan is on, turns it off. If it's off, turns it on
+        public Autoscan toggleAutoscan()
+        {
+            autosc = Autoscan._instance; //singleton cannot call constructor, call instance
+            if (isScanning())
             {
                 autosc.stopAutoscan();
-            }else
-            {
-                autosc.startAutoscan(this); //updates autoscan on what the current view is
+                return (autosc);
             }
+            else
+            {
+                autosc.startAutoscan<DependencyObject>(this); //updates autoscan on what the current view i
+                return (autosc);
+            }
+          
+        }
+
+        public bool isScanning()
+        {
+            return (autosc.isScanning());
         }
 
         // Method to change TalkerView, primarily called by TalkerView itself
@@ -77,22 +87,12 @@ namespace Child_Talker
             setPreviousView(this.DataContext as TalkerView);
             DataContext = view;
 
-            if(autosc != null && autosc.isScanning())
+            if (autosc != null && autosc.isScanning())
             {
-                IInputElement what = System.Windows.Input.Keyboard.FocusedElement;
-                // increments index for next button 
-                autosc.stopAutoscan();
-                autosc.startAutoscan(this);
-
-                //view.Focusable = true;
-                //view.Focus();
-                IInputElement what2 = System.Windows.Input.Keyboard.FocusedElement;
-                // increments index for next button
+                autosc.startAutoscan<DependencyObject>(this);
             }
 
         }
-
-       
 
         /*
          * Sets the previous view to a reference of a TalkerView.
