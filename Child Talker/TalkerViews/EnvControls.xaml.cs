@@ -24,7 +24,7 @@ namespace Child_Talker.TalkerViews
     {
         private ConsoleControls cc = new ConsoleControls();
         private List<Button> thisButtons = new List<Button>();
-        private List<Button> currentButtons = new List<Button>(); //buttons being autoscanned
+        private List<Button> currentObject = new List<Button>(); //buttons being autoscanned
 
         Remote_VOL_popup vol;
         Remote_CH_popup ch;
@@ -35,7 +35,7 @@ namespace Child_Talker.TalkerViews
             //this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
 
             //GetLogicalChildCollection(this, thisButtons);
-            //currentButtons = thisButtons;
+            //currentObject = thisButtons;
             //runTimer(); //initializes timer
         
             //this.Closed += terminate_program;
@@ -67,7 +67,7 @@ namespace Child_Talker.TalkerViews
             vol.Show();
             //List<Button> temp = new List<Button>();
             //GetLogicalChildCollection(vol, temp);
-            //currentButtons = temp;
+            //currentObject = temp;
             vol.Closing += popup_closed;
             //vol.KeyDown += Key_down;
        
@@ -82,7 +82,7 @@ namespace Child_Talker.TalkerViews
             ch.Show();
             List<Button> temp = new List<Button>();
             GetLogicalChildCollection(ch, temp);
-            currentButtons = temp;
+            currentObject = temp;
             ch.Closing += popup_closed;
             //ch.KeyDown += Key_down;
 
@@ -94,7 +94,7 @@ namespace Child_Talker.TalkerViews
         }
         private void popup_closed(object sender, CancelEventArgs e)
         {
-            currentButtons = thisButtons;
+            currentObject = thisButtons;
             //vol.KeyDown -= Key_down;
             //ch.KeyDown -= Key_down;
         

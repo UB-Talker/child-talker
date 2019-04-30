@@ -18,21 +18,29 @@ using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
+    
    
     public class Autoscan
     {
+        private class HighlightedElementInfo //this was added to organize the data a more
+        {
+            public Panel parentPanel;
+            public DependencyObject highlightedObject;
+            public Brush originalColor;
+            public Brush highlightColor = Brushes.Red;
+            public int indexHighlighted;
+        }
+
+        private HighlightedElementInfo hei = new HighlightedElementInfo();
+
         private static Autoscan instance;
         private Window w;
         private TalkerView currentView;
 
         private Timer aTimer;
-        private DependencyObject highlightedButton;
-        private Panel parentPanel;
-        private int indexHighlighted;
         private bool scanReversed = false;
-        
 
-        private List<DependencyObject> currentButtons = new List<DependencyObject>(); //buttons being autoscanned
+        private List<DependencyObject> currentObjectList = new List<DependencyObject>(); //buttons being autoscanned
 
         private Autoscan()
         {
@@ -51,13 +59,13 @@ namespace Child_Talker
             stopAutoscan();
             w = _w;
             currentView = _w.DataContext as TalkerView;
-            currentButtons = currentView.getParents(); //sets currentButtons at parent objects to be scanned
+            currentObjectList = currentView.getParents(); //sets currentObjectList at parent objects to be scanned
             w.KeyDown += Key_down;
 
-            indexHighlighted = 0; // index of element in List<Buttons>
+            hei.indexHighlighted = 0; // index of element in List<Buttons>
             aTimer.Enabled = true;
             
-            highlightedButton = null;       //resets button so first button on new screens isn't skipped
+            hei.highlightedObject = null;       //resets button so first button on new screens isn't skipped
         }
 
         /* Finds objects(buttons usually) in Panel and starts autoscan on then
@@ -66,33 +74,38 @@ namespace Child_Talker
         */
         public void partialAutoscan<T>(Panel parent, Window _w) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
-            stopAutoscan();
-            w = _w;
-            w.KeyDown += Key_down;
-            List<DependencyObject> thisButtons = new List<DependencyObject>();
-            parentPanel = parent;
-            GetLogicalChildCollection<Button>(parent, thisButtons);
-            currentButtons = thisButtons;
-
-            //special case code, panels that need a unique scanning process
-            //kind of brute forcing, there's a better way to do this
-            if (String.Equals(parent.Name, "phraseStack")) //to reverse autoscan and start from bottom in history
-            {
-                indexHighlighted = currentButtons.Count - 1;
-                scanReversed = true;
-            }
-            else if(String.Equals(parent.Name,"keyboardGrid"))
-            {
-               indexHighlighted = 0;
-               currentButtons = (currentView as Child_Talker.TalkerViews.Keyboard).getRows();
-            }
-            else
-            {
-                indexHighlighted = 0; // index of element in List<Buttons>
-            }
+            List<DependencyObject> tempObjectList = new List<DependencyObject>();
             
-            aTimer.Enabled = true;
-            highlightedButton = null;       //resets button so first button on new screens isn't skipped
+            GetLogicalChildCollection<Button>(parent, tempObjectList);
+
+            if (tempObjectList.Count !=0)
+            {
+                hei.parentPanel = parent;
+                stopAutoscan();
+                w = _w;
+                w.KeyDown += Key_down;
+                currentObjectList = tempObjectList;
+
+                //special case code, panels that need a unique scanning process
+                //kind of brute forcing, there's a better way to do this
+                if (String.Equals(parent.Name, "phraseStack")) //to reverse autoscan and start from bottom in history
+                {
+                    hei.indexHighlighted = currentObjectList.Count - 1;
+                    scanReversed = true;
+                }
+                else if (String.Equals(parent.Name, "keyboardGrid"))
+                {
+                    hei.indexHighlighted = 0;
+                    currentObjectList = (currentView as Child_Talker.TalkerViews.Keyboard).getRows();
+                }
+                else
+                {
+                    hei.indexHighlighted = 0; // index of element in List<Buttons>
+                }
+
+                aTimer.Enabled = true;
+                hei.highlightedObject = null;       //resets button so first button on new screens isn't skipped
+            }
         }
 
 
@@ -103,7 +116,7 @@ namespace Child_Talker
                 w.KeyDown -= Key_down;
                 aTimer.Enabled = false;
                 scanReversed = false;
-                parentPanel = null;
+                hei.parentPanel = null;
             }
         }
 
@@ -152,53 +165,56 @@ namespace Child_Talker
         public void autoscanningButtons(object source, EventArgs e)
         {
         
-            if (highlightedButton != null)
+            if (hei.highlightedObject != null)
             {
-                if (indexHighlighted < currentButtons.Count - 1 && !scanReversed) { indexHighlighted++; }
-                else if (indexHighlighted >= currentButtons.Count && scanReversed) { indexHighlighted = 0; }
-                else if (indexHighlighted > 0 && scanReversed) { indexHighlighted--; }
-                else if (indexHighlighted <= 0 && scanReversed) { indexHighlighted = currentButtons.Count - 1; }
-                else { indexHighlighted = 0; }
+                if (hei.indexHighlighted < currentObjectList.Count - 1 && !scanReversed) { hei.indexHighlighted++; }
+                else if (hei.indexHighlighted >= currentObjectList.Count && scanReversed) { hei.indexHighlighted = 0; }
+                else if (hei.indexHighlighted > 0 && scanReversed) { hei.indexHighlighted--; }
+                else if (hei.indexHighlighted <= 0 && scanReversed) { hei.indexHighlighted = currentObjectList.Count - 1; }
+                else { hei.indexHighlighted = 0; }
 
                 //currently highlighted button reverts to black background
 
                 currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
-                    if (highlightedButton is Control)
+                    if (hei.highlightedObject is Control)
                     {
-                        (highlightedButton as Control).Background = Brushes.Black;
+                        (hei.highlightedObject as Control).Background = hei.originalColor;
                     }
-                    if (highlightedButton is Panel)
+                    if (hei.highlightedObject is Panel)
                     {
-                    (highlightedButton as Panel).Background = Brushes.Black;
+                    (hei.highlightedObject as Panel).Background = hei.originalColor;
                     }
                 });
                 
             }
 
             // change to next highlighted button
-            highlightedButton = currentButtons[indexHighlighted];
+            hei.highlightedObject = currentObjectList[hei.indexHighlighted];
 
-            if (highlightedButton != null)
+            if (hei.highlightedObject != null)
             {
 
                 currentView.Dispatcher.Invoke(() =>
                 {
-                    if (highlightedButton is Control)
+                    if (hei.highlightedObject is Control)
                     {
-                        (highlightedButton as Control).Background = Brushes.Red;
+                        
+                        hei.originalColor = (hei.highlightedObject as Control).Background;
+                        (hei.highlightedObject as Control).Background = hei.highlightColor;
                     }
-                    if (highlightedButton is Panel)
+                    if (hei.highlightedObject is Panel)
                     {
-                        (highlightedButton as Panel).Background = Brushes.Red;
+                        hei.originalColor = (hei.highlightedObject as Panel).Background;
+                        (hei.highlightedObject as Panel).Background = hei.highlightColor;
                     }
                 });
             }
             
            
-            if (parentPanel != null && highlightedButton is Control) {
+            if (hei.parentPanel != null && hei.highlightedObject is Control) {
                 currentView.Dispatcher.Invoke(() =>
                 {
-                    (highlightedButton as Control).BringIntoView();
+                    (hei.highlightedObject as Control).BringIntoView();
                 });
                
             }
@@ -215,56 +231,56 @@ namespace Child_Talker
             switch (k)
             {
                 case Key.Q:
-                    if (scanReversed) { indexHighlighted += 3; }
-                    else { indexHighlighted -= 3; } // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index           
-                    if (indexHighlighted < 0)
+                    if (scanReversed) { hei.indexHighlighted += 3; }
+                    else { hei.indexHighlighted -= 3; } // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index           
+                    if (hei.indexHighlighted < 0)
                     {
-                        indexHighlighted += currentButtons.Count; // loops the index if it goes negative
+                        hei.indexHighlighted += currentObjectList.Count; // loops the index if it goes negative
                     }
                     autoscanningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
                     aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
                     aTimer.Start();
                     break;
                 case Key.E:
-                    if (highlightedButton is Panel)
+                    if (hei.highlightedObject is Panel)
                     {
-                        Panel oldHighlightedButton = (highlightedButton as Panel);
+                        Panel oldhighlightedObject = (hei.highlightedObject as Panel);
 
-                        partialAutoscan<DependencyObject>(oldHighlightedButton, w);  //pass in panel that was clicked 
+                        partialAutoscan<DependencyObject>(oldhighlightedObject, w);  //pass in panel that was clicked 
            
                         currentView.Dispatcher.Invoke(() =>
                         {
-                            oldHighlightedButton.Background = Brushes.Black;
+                            oldhighlightedObject.Background = hei.originalColor;
                         });
                     }
                     else
                     {
-                        Control oldHighlightedButton = (highlightedButton as Control);
-                        oldHighlightedButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
+                        Control oldhighlightedObject = (hei.highlightedObject as Control);
+                        oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
 
                         currentView.Dispatcher.Invoke(() =>
                         {
-                            oldHighlightedButton.Background = Brushes.Black;
+                            oldhighlightedObject.Background = hei.originalColor;
                         });
                     }
                     break;
                 case Key.S:
-                    if (parentPanel != null && highlightedButton is Control)
+                    if (hei.parentPanel != null && hei.highlightedObject is Control)
                     {
-                        Control oldHighlightedButton = (highlightedButton as Control);
+                        Control oldhighlightedObject = (hei.highlightedObject as Control);
                         startAutoscan<DependencyObject>(w);
                         currentView.Dispatcher.Invoke(() =>
                             {
-                                oldHighlightedButton.Background = Brushes.Black;
+                                oldhighlightedObject.Background = hei.originalColor;
                             });
                     }
-                    else if(highlightedButton is Panel)
+                    else if(hei.highlightedObject is Panel)
                     {
-                        Panel oldHighlightedPanel = (highlightedButton as Panel);
+                        Panel oldHighlightedPanel = (hei.highlightedObject as Panel);
                         startAutoscan<DependencyObject>(w);
                         currentView.Dispatcher.Invoke(() =>
                         {
-                            oldHighlightedPanel.Background = Brushes.Black;
+                            oldHighlightedPanel.Background = hei.originalColor;
                         });
                     }
                     break;
