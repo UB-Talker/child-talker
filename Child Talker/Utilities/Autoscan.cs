@@ -75,13 +75,13 @@ namespace Child_Talker
         public void partialAutoscan<T>(Panel parent, Window _w) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
             List<DependencyObject> tempObjectList = new List<DependencyObject>();
-            
+
             GetLogicalChildCollection<Button>(parent, tempObjectList);
 
             if (tempObjectList.Count !=0)
             {
-                hei.parentPanel = parent;
                 stopAutoscan();
+                hei.parentPanel = parent;
                 w = _w;
                 w.KeyDown += Key_down;
                 currentObjectList = tempObjectList;

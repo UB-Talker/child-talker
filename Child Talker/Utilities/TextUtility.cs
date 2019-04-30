@@ -24,8 +24,8 @@ namespace Child_Talker.Utilities
         private TextUtility()
         {
             //Loads the saved list of speech history from SpeechHistory.txt once the application launches.
-            string spokenPhrasesText = Properties.Resources.SpeechHistory;
-            string wordCountText = Properties.Resources.WordCount;
+            string spokenPhrasesText = System.IO.File.ReadAllText("../../Utilities/SpeechHistory.txt");
+            string wordCountText = System.IO.File.ReadAllText("../../Utilities/WordCount.txt");
             spokenPhrases = JsonConvert.DeserializeObject<List<Tuple<DateTime, string>>>(spokenPhrasesText);
             wordCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordCountText);
 
