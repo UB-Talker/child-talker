@@ -6,9 +6,9 @@
 *.user
 *.userosscache
 *.sln.docstates
-*/TextUtility.txt
-*/*/TextUtility.txt
-*/*/*/TextUtility.txt
+*/SpeechHistor.txt
+*/*/SpeechHistory.txt
+*/*/*/speechHistory.txt
 */WordCount.txt
 */*/WordCount.txt
 */*/*/WordCount.txt
