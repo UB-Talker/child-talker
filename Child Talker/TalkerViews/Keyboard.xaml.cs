@@ -99,7 +99,7 @@ namespace Child_Talker.TalkerViews
                     }
                     break;
                 default:
-                    greetingOutput.Text += s;
+                    greetingOutput.Text += s.ToLower();
                     addAutocorrect(s[0]);
                     if(getWindow().isScanning()) //autoscan
                     {

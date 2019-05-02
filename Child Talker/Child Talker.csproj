@@ -223,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\kris.jpg" />
+    <Resource Include="Utilities\SpeechHistory.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\example.xml">
@@ -290,23 +291,13 @@
     <Resource Include="Resources\MainMenu_images\back-blue.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Utilities\SpeechHistory.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Utilities\WordCount.txt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <EmbeddedResource Include="EmbeddedReferences\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Utilities\Tree.txt" />
+    <Resource Include="talkerlogo_772_12.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="talkerlogo_772_12.ico" />
+    <Resource Include="Utilities\WordCount.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
