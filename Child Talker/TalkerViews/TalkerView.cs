@@ -62,17 +62,13 @@ namespace Child_Talker.TalkerViews
          */
         public void openPhrases(object sender, RoutedEventArgs args)
         {
+            getWindow().toggleAutoscan(); //stops autoscan for stable build, eventually delete and actually autoscan phrases
             getWindow().changeView(new PageViewer());
+            
         }
 
         public void openEnvControls(object sender, RoutedEventArgs args)
         {
-            /*
-            MainWindow window = getWindow();
-            window.setPreviousView(this);
-
-            window.DataContext = new EnvControls();
-            */
             getWindow().changeView(new EnvControls());
         }
 
