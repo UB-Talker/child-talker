@@ -4,33 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:custom="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
 
     <local:TalkerView.Resources>
-        <Style x:Key="blackRedScheme">
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="Control.FontSize" Value="80px"/>
-            <Setter Property="Control.FontWeight" Value="Bold"/>
-            <Setter Property="Control.Background" Value="Black"/>
-            <Setter Property="Control.Margin" Value="20"/>
-            <Setter Property="Control.BorderThickness" Value="10"/>
-            <Setter Property="Control.BorderBrush" Value="Red"/>
-        </Style>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="40px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF00CFF3"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
     </local:TalkerView.Resources>
-    <Grid x:Name="GridLayout" Style="{StaticResource blackRedScheme}">
+    <Grid x:Name="GridLayout">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -43,7 +34,7 @@
             <Border Grid.Column="0" Background="White" Margin="30,30,0,30">
                 <TextBlock x:Name="InputText" Text="Text Goes Here" FontSize="100" Margin="50,0,0,0" HorizontalAlignment="Left" Foreground="Black" VerticalAlignment="Center"/>
             </Border>
-            <Button x:Name="help" Grid.Column="1" >
+            <custom:TlkrBTN x:Name="help" Grid.Column="1" >
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
@@ -52,7 +43,7 @@
                     <Image Grid.Row="0" Source="../Resources/MainMenu_images/alarm-blue.png"/>
                     <TextBlock Grid.Row="1">HELP</TextBlock>
                 </Grid>
-            </Button>
+            </custom:TlkrBTN>
         </Grid>
 
         <Grid x:Name="row1" Grid.Row="1">
@@ -61,19 +52,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="back" Grid.Column="0">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="65*"/>
-                        <RowDefinition Height="35*"/>
-                    </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/MainMenu_images/back-blue.png"/>
-                    <TextBlock Grid.Row="1">back</TextBlock>
-                </Grid>
-            </Button>
-            <Button x:Name="thing1" Grid.Column="1">
+            <custom:TlkrBTN x:Name="thing1" Grid.Column="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
@@ -82,8 +62,8 @@
                     <Image Grid.Row="0" Source="../Resources/MainMenu_images/../whelp.png"/>
                     <TextBlock Grid.Row="1">unknown</TextBlock>
                 </Grid>
-            </Button>
-            <Button x:Name="EnvControls" Grid.Column="2" Click="openEnvControls">
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="EnvControls" Grid.Column="1" Click="openEnvControls">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
@@ -92,8 +72,8 @@
                     <Image Grid.Row="0" Source="../Resources/MainMenu_images/EnvControls-blue.png"/>
                     <TextBlock Grid.Row="1">Interaction</TextBlock>
                 </Grid>
-            </Button>
-            <Button x:Name="keyboard" Grid.Column="3" Click="openKeyboard">
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="keyboard" Grid.Column="2" Click="openKeyboard">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
@@ -102,19 +82,19 @@
                     <Image Grid.Row="0" Source="../Resources/MainMenu_images/keyboard-blue.png"/>
                     <TextBlock Grid.Row="1">keyboard</TextBlock>
                 </Grid>
-            </Button>
-            <Button x:Name="autoscanButton" Grid.Column="4" Click="autoscanButton_click">
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="autoscanButton" Grid.Column="3" Click="autoscanButton_click">
                 <Image Source="../Resources/MainMenu_images/autoscan-blue.png" Margin="10"/>
-            </Button>
+            </custom:TlkrBTN>
         </Grid>
 
         <Grid x:Name="row2" Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="453*"/>
-                <ColumnDefinition Width="454*"/>
-                <ColumnDefinition Width="453"/>
+                <ColumnDefinition Width="30*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="28*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="Phrases" Grid.Column="0" Click="openPhrases">
+            <custom:TlkrBTN x:Name="Phrases" Grid.Column="0" Click="openPhrases">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40*"/>
@@ -123,8 +103,8 @@
                     <Image Grid.Column="0" Source="../Resources/MainMenu_images/phrases-blue.png" Margin="10"/>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30"> Phrases</TextBlock>
                 </Grid>
-            </Button>
-            <Button x:Name="history" Grid.Column="1" Click="openHistory">
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="history" Grid.Column="1" Click="openHistory">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="40*"/>
@@ -133,8 +113,8 @@
                     <Image Grid.Column="0" Margin="15" Source="../Resources/MainMenu_images/history-blue.png"/>
                     <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">HISTORY</TextBlock>
                 </Grid>
-            </Button>
-            <Button x:Name="storyMode" Grid.Column="2" >
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="storyMode" Grid.Column="2" >
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -143,7 +123,7 @@
                     <Image Grid.Column="0" Margin="5" Source="../Resources/MainMenu_images/book-blue.png"/>
                     <TextBlock Grid.Column="1" Margin="40,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Story Mode</TextBlock>
                 </Grid>
-            </Button>
+            </custom:TlkrBTN>
         </Grid>
 
         <Grid x:Name="row3" Grid.Row="4">
@@ -152,9 +132,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="unknownA" Grid.Column="0" ></Button>
-            <Button x:Name="unknownB" Grid.Column="1" ></Button>
-            <Button x:Name="unknownC" Grid.Column="2" ></Button>
+            <custom:TlkrBTN x:Name="unknownA" Grid.Column="0" ></custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="unknownB" Grid.Column="1" ></custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="unknownC" Grid.Column="2" ></custom:TlkrBTN>
         </Grid>
     </Grid>
 </local:TalkerView>

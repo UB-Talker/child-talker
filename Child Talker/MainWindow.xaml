@@ -8,21 +8,11 @@
         mc:Ignorable="d"
         Title="UB Child Talker" Background="Black" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
-        <Style x:Key="blackRedScheme">
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="60px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="Margin" Value="20"/>
-            <Setter Property="BorderThickness" Value="10"/>
-            <Setter Property="BorderBrush" Value="Red"/>
-        </Style>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="60px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF00CFF3"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>

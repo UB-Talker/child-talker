@@ -4,18 +4,10 @@
              xmlns:local="clr-namespace:Child_Talker"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Style x:Key="blackRedScheme">
-            <Setter Property="Button.FontSize" Value="80px"/>
-            <Setter Property="Button.FontWeight" Value="Bold"/>
-            <Setter Property="Button.Foreground" Value="#FF00CFF3"/>
-            <Setter Property="Button.Background" Value="Black"/>
-            <Setter Property="Button.Margin" Value="20"/>
-            <Setter Property="Button.BorderThickness" Value="10"/>
-            <Setter Property="Button.BorderBrush" Value="Red"/>
-            <Setter Property="TextBlock.FontSize" Value="40px"/>
-            <Setter Property="TextBlock.FontWeight" Value="Bold"/>
-            <Setter Property="TextBlock.Foreground" Value="#FF00CFF3"/>
-            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -7,23 +7,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <local:TalkerView.Resources>
-        <Style x:Key="blackRedScheme">
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="Control.FontSize" Value="60px"/>
-            <Setter Property="Control.FontWeight" Value="Bold"/>
-            <Setter Property="Control.Background" Value="Black"/>
-            <Setter Property="Control.Foreground" Value="#FF00CFF3"/>
-            <Setter Property="Control.Margin" Value="20"/>
-            <Setter Property="Control.BorderThickness" Value="10"/>
-            <Setter Property="Control.BorderBrush" Value="Red"/>
-        </Style>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="60px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF00CFF3"/>
-            <Setter Property="TextAlignment" Value="Center"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Generic.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource genButton}">
+                        <Setter Property="FontSize" Value="20"/> 
+                    </Style>
+                     
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </local:TalkerView.Resources>
     
     <Grid>
@@ -41,17 +35,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="5">
-            <StackPanel x:Name="Controls" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
-                <Button x:Name="AddFolder"  Click="InsertFolderTile_Click" >
-                    <TextBlock Text="New Folder" TextWrapping="Wrap"/>
+            <Grid x:Name="Controls" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    
+                </Grid.RowDefinitions>
+                <Button x:Name="AddFolder" Margin="20" Padding="5" Grid.Row="0" Click="InsertFolderTile_Click" >
+                    <TextBlock Text="New&#x0a;Folder" TextWrapping="Wrap"/>
                 </Button>
-                <Button x:Name="AddTalker" Click="InsertTalkerTile_Click">
-                    <TextBlock Text="New         Tile" TextWrapping="Wrap"/>
+                <Button x:Name="AddTalker" Margin="20" Padding="5" Grid.Row="1" Click="InsertTalkerTile_Click">
+                    <TextBlock Text="New&#x0a;Tile" TextWrapping="Wrap"/>
                 </Button>
-                <Button x:Name="BackToHome" Click="backToHome">
-                    <TextBlock Text="Main Menu" TextWrapping="Wrap"/>
+                <Button x:Name="BackToHome" Margin="20" Padding="5" Grid.Row="2" Click="backToHome">
+                    <TextBlock Text="Main&#x0a;Menu" TextWrapping="Wrap"/>
                 </Button>
-            </StackPanel>
+            </Grid>
         </Border>
 
         <WrapPanel x:Name="items" Orientation="Horizontal" Background="Black" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4">

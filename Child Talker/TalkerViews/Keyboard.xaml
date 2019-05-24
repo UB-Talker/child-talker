@@ -11,9 +11,7 @@
 
     <local:TalkerView.Resources>
         
-        <Style x:Key="blackRedScheme">
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
+        <Style TargetType="Button">
             <Setter Property="FontSize" Value="60px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Background" Value="Black"/>
@@ -23,7 +21,7 @@
             <Setter Property="Padding" Value="0,-10,0,0"/>
             <Setter Property="Foreground" Value="#FF00D5EA"/>
         </Style>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
+        <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="60px"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="Foreground" Value="#FF00CFF3"/>
@@ -49,7 +47,7 @@
             </Grid.RowDefinitions>
 
             <TextBox x:Name="greetingOutput" Grid.Row="0" Foreground="black" Margin="20" FontSize="50" Text=""/>
-            <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Disabled" >
+            <ScrollViewer Grid.Row="1"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
                 <ScrollViewer.Resources>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
                 </ScrollViewer.Resources>

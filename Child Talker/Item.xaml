@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="350" d:DesignWidth="350"
              Name="self">
     <UserControl.Resources>
         <Style x:Name="a" TargetType="Border">
@@ -20,20 +20,19 @@
             </Style.Triggers>
         </Style>
         <Style TargetType="Label">
-            <Setter Property="FontSize" Value="40px"/>
+            <Setter Property="FontSize" Value="10px"/>
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF00CFF3"/>
         </Style>
     </UserControl.Resources>
     <Border>
         <Grid Margin="10">
-            <Button Width="250" Height="250" Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up">
+            <Button Width="300" Height="300" Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30*"/>
                         <RowDefinition Height="70*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" x:Name="label"/>
+                    <Label Grid.Row="0" FontSize="10" x:Name="label"/>
                     <Image Grid.Row="1" x:Name="image" />
                 </Grid>
             </Button>

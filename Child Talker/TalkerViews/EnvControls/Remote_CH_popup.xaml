@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Child_Talker"
+        xmlns:custom="clr-namespace:Child_Talker"  
         WindowStyle="None"
         mc:Ignorable="d"
         Title="Remote_CH_popup" Height="700" Width="1100" AllowsTransparency="True">
@@ -13,25 +13,19 @@
         <SolidColorBrush Opacity="0.5" Color="#FF00E8FF"/>
     </Window.Background>
     <Window.Resources>
-        <Style x:Key="blackRedScheme">
-        </Style>
-        <Style TargetType="Button" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="60px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Background" Value="Black"/>
-            <Setter Property="Margin" Value="30"/>
-            <Setter Property="BorderThickness" Value="15"/>
-            <Setter Property="BorderBrush" Value="Red"/>
-        </Style>
-        <Style TargetType="TextBlock" BasedOn="{StaticResource blackRedScheme}">
-            <Setter Property="FontSize" Value="50px"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="Foreground" Value="#FF00CFF3"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary x:Name="generic" Source="../../Generic.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource genTextBlock}">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Window.Resources>
-    <Grid x:Name="gridLayout" Background="#B20E2320" Style="{StaticResource blackRedScheme}">
+    <Grid x:Name="gridLayout" Background="#B20E2320">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="50*"/>
@@ -44,7 +38,7 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0" Grid.Column="2" Click="Close_Button">
+            <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Close_Button">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -53,7 +47,7 @@
                     <Image Grid.Column="0" Margin="-15,15,15,15" Source="../../Resources/EnvControl_images/back-blue.png"/>
                     <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
                 </Grid>
-            </Button>
+            </custom:TlkrBTN>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -64,7 +58,7 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
         
-            <Button Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>
@@ -73,9 +67,9 @@
                     <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-down-blue.png" />
                     <TextBlock Grid.Row="1" Text="CH DOWN"></TextBlock>
                 </Grid>
-            </Button>
+            </custom:TlkrBTN>
 
-            <Button Tag="KEY_CHANNELUP" Grid.Row="1" Grid.Column="2" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Row="1" Grid.Column="2" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>
@@ -84,7 +78,7 @@
                     <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-up-blue.png" />
                     <TextBlock Grid.Row="1" Text="CH UP"></TextBlock>
                 </Grid>
-            </Button>
+            </custom:TlkrBTN>
         </Grid>
         
     </Grid>

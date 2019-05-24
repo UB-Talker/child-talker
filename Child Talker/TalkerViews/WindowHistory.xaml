@@ -4,68 +4,72 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+        xmlns:custom="clr-namespace:Child_Talker"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
     <local:TalkerView.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="Padding" Value="10" />
-            <Setter Property="Height" Value="150" />
-            <Setter Property="Width" Value="1000" />
-            <Setter Property="Margin" Value="60,30,60,30" />
-            <Setter Property="Background" Value="#FFB80000" />
-            <Setter Property="Foreground" Value="#FF00ECEC" />
-            <Setter Property="FontSize" Value="35" />
-            <Setter Property="FontWeight" Value="Bold" />
-            <Setter Property="TextWrapping" Value="Wrap" />
-        </Style>
-
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Generic.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource genTextBlock}">
+                        <Setter Property="Padding" Value="10" />
+                        <Setter Property = "Height" Value="150" />
+                        <Setter Property = "Width" Value="1000" />
+                        <Setter Property = "TextWrapping" Value="Wrap" />
+                        <Setter Property = "TextAlignment" Value="Left" />
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
         
     </local:TalkerView.Resources>
     
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="85*"/>
-            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="scrollViewer" Margin="0,0,50,0" Grid.Column="0">
+        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
 
             <StackPanel x:Name="phraseStack" >
-                <Button Background="#000000" Click="selectText" >
-                    <Button.Content>
-                        <TextBlock>Hello</TextBlock>
-                    </Button.Content>
-                </Button>
+                <custom:TlkrBTN Background="#000000" Click="selectText" >
+                    <custom:TlkrBTN.Content>
+                        <TextBlock >Hello</TextBlock>
+                    </custom:TlkrBTN.Content>
+                </custom:TlkrBTN>
 
-                <Button Background="#000000" Click="selectText">
-                    <Button.Content>
+                <custom:TlkrBTN Background="#000000" Click="selectText" >
+                    <custom:TlkrBTN.Content>
                         <TextBlock>How are you?</TextBlock>
-                    </Button.Content>
-                </Button>
+                    </custom:TlkrBTN.Content>
+                </custom:TlkrBTN>
 
-                <Button Background="#000000" Click="selectText">
-                    <Button.Content>
+                <custom:TlkrBTN Background="#000000" Click="selectText">
+                    <custom:TlkrBTN.Content>
                         <TextBlock>I am good</TextBlock>
-                    </Button.Content>
-                </Button>
+                    </custom:TlkrBTN.Content>
+                </custom:TlkrBTN>
 
-                <Button Background="#000000" Click="selectText">
-                    <Button.Content>
+                <custom:TlkrBTN Background="#000000" Click="selectText">
+                    <custom:TlkrBTN.Content>
                         <TextBlock>The weather is beautiful today</TextBlock>
-                    </Button.Content>
-                </Button>
+                    </custom:TlkrBTN.Content>
+                </custom:TlkrBTN>
 
-                <Button Background="#000000" Click="selectText">
-                    <Button.Content>
+                <custom:TlkrBTN Background="#000000" Click="selectText">
+                    <custom:TlkrBTN.Content>
                         <TextBlock>See you later!</TextBlock>
-                    </Button.Content>
-                </Button>
+                    </custom:TlkrBTN.Content>
+                </custom:TlkrBTN>
             </StackPanel>
         </ScrollViewer>
         <Grid Grid.Column="1" Name ="sidePanel">
@@ -76,11 +80,11 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="menu" Grid.Row="0" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="backToHome">MENU</Button>
-            <Button x:Name="Favorite" Grid.Row="1" Margin="25"  Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" >Favorites</Button>
-            <Button x:Name="toKeyboard" Grid.Row="2" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="openKeyboardWithText" Content="KEYBOARD"/>
-            <Button x:Name="speak" Grid.Row="3" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="speakSelectedText">SPEAK</Button>
-            <Button x:Name="autoscan" Grid.Row="4" Margin="25" Background="#FFB80000" FontSize="35" FontWeight="Bold" Foreground="#FF00ECEC" Click="autoscanButton_click">AUTOSCAN</Button>
+            <custom:TlkrBTN x:Name="menu"       Grid.Row="0" Click="backToHome"             >Menu       </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites  </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="toKeyboard" Grid.Row="2" Click="openKeyboardWithText"   >Keyboard   </custom:TlkrBTN> 
+            <custom:TlkrBTN x:Name="speak"      Grid.Row="3" Click="speakSelectedText"      >Speak      </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="autoscan"   Grid.Row="4" Click="autoscanButton_click"   >Autoscan   </custom:TlkrBTN>
 
         </Grid>
 

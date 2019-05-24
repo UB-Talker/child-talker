@@ -46,8 +46,11 @@ namespace Child_Talker.TalkerViews
             scanning = false;
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
-
-            this.LoadFromXml("../../Resources/example2.xml");
+            if (!File.Exists(ProfilePath))
+            {
+                File.Create(ProfilePath);
+            } 
+            this.LoadFromXml(ProfilePath);
         }
 
 

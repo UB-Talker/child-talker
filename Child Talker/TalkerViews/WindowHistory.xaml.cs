@@ -94,6 +94,8 @@ namespace Child_Talker.TalkerViews
             {
                 Button phraseButton = new Button();
                 TextBlock phrase = new TextBlock();
+
+
                 phrase.Text = pair.Item2;
 
                 phraseButton.Background = Brushes.Black;
@@ -103,8 +105,17 @@ namespace Child_Talker.TalkerViews
                 phraseStack.Children.Add(phraseButton);
             }
         }
-
-
+        /*
+                <Style TargetType = "TextBlock" >
+            < Setter Property="Padding" Value="10" />
+            <Setter Property = "Height" Value="150" />
+            <Setter Property = "Width" Value="1000" />
+            <Setter Property = "Margin" Value="60,30,60,30" />
+            <Setter Property = "Foreground" Value="#FF00ECEC" />
+            <Setter Property = "FontSize" Value="45" />
+            <Setter Property = "TextWrapping" Value="Wrap" />
+        </Style>
+*/
 
         /*
          * This is used if the user navigates "Back" to this page. The list of buttons
