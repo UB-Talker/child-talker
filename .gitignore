@@ -6,6 +6,17 @@
 *.user
 *.userosscache
 *.sln.docstates
+*/SpeechHistor.txt
+*/*/SpeechHistory.txt
+*/*/*/speechHistory.txt
+*/WordCount.txt
+*/*/WordCount.txt
+*/*/*/WordCount.txt
+*/Tree.txt
+*/*/Tree.txt
+*/*/*/Tree.txt
+
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs

@@ -76,23 +76,5 @@ namespace Child_Talker.Properties {
                 return ResourceManager.GetString("example", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to [{&quot;Item1&quot;:&quot;2019-03-11T15:09:57.6440494-04:00&quot;,&quot;Item2&quot;:&quot;HELLO&quot;},{&quot;Item1&quot;:&quot;2019-03-11T15:10:04.579664-04:00&quot;,&quot;Item2&quot;:&quot;MY NAME IS SAM&quot;},{&quot;Item1&quot;:&quot;2019-03-11T15:11:13.1550664-04:00&quot;,&quot;Item2&quot;:&quot;I GOT THE SAVE FEATURE WORKING&quot;},{&quot;Item1&quot;:&quot;2019-03-11T17:54:59.1929236-04:00&quot;,&quot;Item2&quot;:&quot;Hello World!&quot;},{&quot;Item1&quot;:&quot;2019-03-11T17:56:35.8291765-04:00&quot;,&quot;Item2&quot;:&quot;Hello World Everyone!&quot;},{&quot;Item1&quot;:&quot;2019-03-11T17:56:45.533234-04:00&quot;,&quot;Item2&quot;:&quot;HI&quot;},{&quot;Item1&quot;:&quot;2019-03-11T17:56:50.0779903-04:00&quot;,&quot;Item2&quot;:&quot;How are you?&quot;},{&quot;Item1&quot;:&quot;2019-03- [rest of string was truncated]&quot;;.
-        /// </summary>
-        internal static string SpeechHistory {
-            get {
-                return ResourceManager.GetString("SpeechHistory", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {&quot;hello&quot;:12,&quot;world&quot;:1,&quot;hi&quot;:3,&quot;hey&quot;:3,&quot;there&quot;:1,&quot;howdy&quot;:4,&quot;my&quot;:3,&quot;name&quot;:3,&quot;is&quot;:3,&quot;sam&quot;:3,&quot;free&quot;:3,&quot;so&quot;:1,&quot;oh&quot;:1,&quot;no&quot;:1}.
-        /// </summary>
-        internal static string WordCount {
-            get {
-                return ResourceManager.GetString("WordCount", resourceCulture);
-            }
-        }
     }
 }

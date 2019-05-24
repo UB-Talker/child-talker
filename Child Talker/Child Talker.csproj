@@ -223,6 +223,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\kris.jpg" />
+    <Resource Include="Utilities\SpeechHistory.txt" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\example.xml">

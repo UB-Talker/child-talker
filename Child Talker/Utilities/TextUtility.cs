@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Speech.Synthesis;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.IO;
 
 namespace Child_Talker.Utilities
 {
@@ -24,10 +25,25 @@ namespace Child_Talker.Utilities
         private TextUtility()
         {
             //Loads the saved list of speech history from SpeechHistory.txt once the application launches.
-            string spokenPhrasesText = System.IO.File.ReadAllText("../../Utilities/SpeechHistory.txt");
-            string wordCountText = System.IO.File.ReadAllText("../../Utilities/WordCount.txt");
+            if (!File.Exists("../../Utilities/SpeechHistory.txt"))
+            {
+                File.Create("../../Utilities/SpeechHistory.txt");
+            }
+            string spokenPhrasesText = File.ReadAllText("../../Utilities/SpeechHistory.txt");
+
+            if (!File.Exists("../../Utilities/WordCount.txt"))
+            {
+                File.Create("../../Utilities/WordCount.txt");
+            }
+            string wordCountText = File.ReadAllText("../../Utilities/WordCount.txt");
+
             spokenPhrases = JsonConvert.DeserializeObject<List<Tuple<DateTime, string>>>(spokenPhrasesText);
             wordCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordCountText);
+
+            if(spokenPhrases == null)
+            {
+                spokenPhrases = new List<Tuple<DateTime, string>>();
+            }
 
             if(wordCounts == null)
             {
@@ -109,13 +125,11 @@ namespace Child_Talker.Utilities
         public void save()
         {
             string speechHistoryData = JsonConvert.SerializeObject(spokenPhrases);
-            System.IO.File.WriteAllText("../../Utilities/SpeechHistory.txt", speechHistoryData);
+            File.WriteAllText("../../Utilities/SpeechHistory.txt", speechHistoryData);
 
             string wordCountData = JsonConvert.SerializeObject(wordCounts);
-            System.IO.File.WriteAllText("../../Utilities/WordCount.txt", wordCountData);
-
-            string tree = JsonConvert.SerializeObject(parseTree);
-            System.IO.File.WriteAllText("../../Utilities/Tree.txt",tree);
+            File.WriteAllText("../../Utilities/WordCount.txt", wordCountData);
+            
         }
 
 
