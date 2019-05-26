@@ -49,9 +49,21 @@ namespace Child_Talker.TalkerViews
             if (!File.Exists(ProfilePath))
             {
                 File.Create(ProfilePath);
-            } 
-            this.LoadFromXml(ProfilePath);
+            }
+            else
+            {
+                this.LoadFromXml(ProfilePath);
+            }
         }
+
+        override public List<DependencyObject> getParents()
+        {
+            List<DependencyObject> parents = new List<DependencyObject>();
+            parents.Add(Controls);
+            parents.Add(items);
+            return (parents);
+        }
+
 
 
         /*

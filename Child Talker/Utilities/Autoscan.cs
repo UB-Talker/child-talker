@@ -139,6 +139,13 @@ namespace Child_Talker
                     {
                         logicalCollection.Add(child as DependencyObject);
                     }
+                    else if (typeof(T) == typeof(Button))
+                    {
+                       if (child is Item)
+                       {
+                            logicalCollection.Add(child as DependencyObject);
+                       } 
+                    }
                     if (!(child is Control)){
                         GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
                     }
@@ -253,11 +260,11 @@ namespace Child_Talker
                             oldhighlightedObject.Background = hei.originalColor;
                         });
                     }
-                    else
+                    else if (hei.highlightedObject is Button)
                     {
                         Control oldhighlightedObject = (hei.highlightedObject as Control);
+                        
                         oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-
                         currentView.Dispatcher.Invoke(() =>
                         {
                             oldhighlightedObject.Background = hei.originalColor;

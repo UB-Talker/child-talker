@@ -62,8 +62,8 @@ namespace Child_Talker.TalkerViews
          */
         public void openPhrases(object sender, RoutedEventArgs args)
         {
-            getWindow().toggleAutoscan(); //stops autoscan for stable build, eventually delete and actually autoscan phrases
-            getWindow().changeView(new PageViewer());
+            PageViewer pv = new PageViewer();
+            getWindow().changeView(pv);
             
         }
 
