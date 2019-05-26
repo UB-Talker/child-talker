@@ -1,15 +1,20 @@
-﻿using System.Windows;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace Child_Talker
 {
-    public class TlkrBTN : Button 
+    public class TlkrScrollViewer : ScrollViewer
     {
         // this is a property that is viewed on the XAML 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text",                             // Name of property on XAML
             typeof(string),                     // type of property on XAML
-            typeof(TlkrBTN),                    // who inherits this property
+            typeof(TlkrScrollViewer),                    // who inherits this property
             new UIPropertyMetadata(null)); 
 
 
@@ -19,5 +24,4 @@ namespace Child_Talker
             set { SetValue(TextProperty, value); }
         }
     }
-
 }

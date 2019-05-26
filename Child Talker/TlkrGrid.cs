@@ -3,13 +3,13 @@ using System.Windows.Controls;
 
 namespace Child_Talker
 {
-    public class TlkrBTN : Button 
+    public class TlkrGrid : Grid
     {
         // this is a property that is viewed on the XAML 
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             "Text",                             // Name of property on XAML
             typeof(string),                     // type of property on XAML
-            typeof(TlkrBTN),                    // who inherits this property
+            typeof(TlkrGrid),                    // who inherits this property
             new UIPropertyMetadata(null)); 
 
 
@@ -18,6 +18,6 @@ namespace Child_Talker
             get { return (string)GetValue(TextProperty); } 
             set { SetValue(TextProperty, value); }
         }
-    }
 
+    }
 }

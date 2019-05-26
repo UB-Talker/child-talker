@@ -24,10 +24,9 @@
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
-        
+
+
     </local:TalkerView.Resources>
-    
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -35,7 +34,7 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
+        <custom:TlkrScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
@@ -71,23 +70,23 @@
                     </custom:TlkrBTN.Content>
                 </custom:TlkrBTN>
             </StackPanel>
-        </ScrollViewer>
-        <Grid Grid.Column="1" Name ="sidePanel">
+        </custom:TlkrScrollViewer>
+        
+        <custom:TlkrGrid Grid.Column="1" x:Name ="sidePanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
-                <RowDefinition Height="20*"/>
+                <!-- <RowDefinition Height="20*"/> -->
             </Grid.RowDefinitions>
-            <custom:TlkrBTN x:Name="menu"       Grid.Row="0" Click="backToHome"             >Menu       </custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites  </custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="toKeyboard" Grid.Row="2" Click="openKeyboardWithText"   >Keyboard   </custom:TlkrBTN> 
-            <custom:TlkrBTN x:Name="speak"      Grid.Row="3" Click="speakSelectedText"      >Speak      </custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="autoscan"   Grid.Row="4" Click="autoscanButton_click"   >Autoscan   </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="menu"       Grid.Row="0" Click="backToHome"             >Menu</custom:TlkrBTN>
+            <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
+            <custom:TlkrBTN x:Name="toKeyboard" Grid.Row="1" Click="openKeyboardWithText"   >Keyboard</custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="speak"      Grid.Row="2" Click="speakSelectedText"      >Speak</custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="autoscan"   Grid.Row="3" Click="autoscanButton_click"   >Autoscan</custom:TlkrBTN>
 
-        </Grid>
+        </custom:TlkrGrid>
 
     </Grid>
 </local:TalkerView>
-

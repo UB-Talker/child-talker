@@ -27,8 +27,18 @@
         <Setter Property="Foreground" Value="#FF00ECEC" />
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
+    <Style x:Key="genTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="FontSize" Value="50px"/>
+        <Setter Property="CharacterCasing" Value="Lower"/>
+        <Setter Property="TextWrapping" Value="Wrap"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="TextAlignment" Value="Left"/>
+    </Style>
     
     <Style TargetType= "{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genTlkrBTN}"/>
     <Style TargetType="{x:Type Button}" BasedOn="{StaticResource genButton}"/>
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource genTextBlock}"/>
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource genTextBox}"/>
 </ResourceDictionary>

@@ -55,7 +55,7 @@
             </Grid>
         </Border>
 
-        <WrapPanel x:Name="items" Orientation="Horizontal" Background="Black" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
+        <WrapPanel x:Name="items" Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
     </WrapPanel>
     </Grid>
 </local:TalkerView>

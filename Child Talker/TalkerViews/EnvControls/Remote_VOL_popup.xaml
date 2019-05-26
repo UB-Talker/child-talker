@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Child_Talker"
+        xmlns:custom="clr-namespace:Child_Talker"
         WindowStyle="None"
         mc:Ignorable="d"
         Title="Remote_popup" Height="700" Width="1100" AllowsTransparency="True">
@@ -36,7 +36,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -45,9 +45,9 @@
                 <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-down-blue.png" />
                 <TextBlock Grid.Row="1" Text="VOL DOWN"></TextBlock>
             </Grid>
-        </Button>
+        </custom:TlkrBTN>
 
-        <Button Tag="KEY_VOLUMEUP" Grid.Row="1" Grid.Column="1" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_VOLUMEUP" Grid.Row="1" Grid.Column="1" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -56,9 +56,9 @@
                 <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-up-blue.png" />
                 <TextBlock Grid.Row="1" Text="VOL UP"></TextBlock>
             </Grid>
-        </Button>
+        </custom:TlkrBTN>
 
-        <Button Tag="KEY_MUTE" Grid.Row="1" Grid.Column="2" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_MUTE" Grid.Row="1" Grid.Column="2" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -67,9 +67,9 @@
                 <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-mute-blue.png" />
                 <TextBlock Grid.Row="1" Text="MUTE"></TextBlock>
             </Grid>
-        </Button>
+        </custom:TlkrBTN>
 
-        <Button Grid.Row="0" Grid.Column="2" Click="Close_Button">
+        <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Close_Button">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -78,6 +78,6 @@
                 <Image Grid.Column="0" Margin="-15,15,15,15" Source="../../Resources/EnvControl_images/back-blue.png"/>
                 <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
             </Grid>
-        </Button>
+        </custom:TlkrBTN>
     </Grid>
 </Window>

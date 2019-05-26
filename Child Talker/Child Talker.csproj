@@ -99,7 +99,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="tlkrBTN.cs" />
+    <Compile Include="TlkrBTN.cs" />
+    <Compile Include="TlkrGrid.cs" />
+    <Compile Include="TlkrScrollViewer.cs" />
+    <Compile Include="TlkrStackPanel.cs" />
     <Compile Include="Utilities\Autoscan.cs" />
     <Compile Include="ConsoleControls.cs" />
     <Compile Include="TalkerViews\EnvControls.xaml.cs">
