@@ -51,6 +51,10 @@ namespace Child_Talker
             
         }
 
+        public Panel getPanel()
+        {
+            return hei.parentPanel;
+        }
         
         public void startAutoscan<T>(Window _w) where T : DependencyObject
         {
@@ -72,17 +76,16 @@ namespace Child_Talker
          * Only used when a specific panel needs to be scanned
          * Window param added bc there are certain instances in EnvControls that need to switch to a new window, and key_down stops working
         */
-        public void partialAutoscan<T>(Panel parent, Window _w) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
+        public void partialAutoscan<T>(Panel parent) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
             List<DependencyObject> tempObjectList = new List<DependencyObject>();
 
-            GetLogicalChildCollection<Button>(parent, tempObjectList);
+            GetLogicalChildCollection<T>(parent, tempObjectList);
 
             if (tempObjectList.Count !=0)
             {
                 stopAutoscan();
                 hei.parentPanel = parent;
-                w = _w;
                 w.KeyDown += Key_down;
                 currentObjectList = tempObjectList;
 
@@ -113,12 +116,24 @@ namespace Child_Talker
         {
             if (aTimer.Enabled)
             {
+                currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
+                    if (hei.highlightedObject is Control)
+                    {
+                        (hei.highlightedObject as Control).Background = hei.originalColor;
+                    }
+                    if (hei.highlightedObject is Panel)
+                    {
+                    (hei.highlightedObject as Panel).Background = hei.originalColor;
+                    }
+                });
+
                 w.KeyDown -= Key_down;
                 aTimer.Enabled = false;
                 scanReversed = false;
                 hei.parentPanel = null;
             }
         }
+
 
         public bool isScanning()
         {
@@ -253,7 +268,7 @@ namespace Child_Talker
                     {
                         Panel oldhighlightedObject = (hei.highlightedObject as Panel);
 
-                        partialAutoscan<DependencyObject>(oldhighlightedObject, w);  //pass in panel that was clicked 
+                        partialAutoscan<Button>(oldhighlightedObject);  //pass in panel that was clicked 
            
                         currentView.Dispatcher.Invoke(() =>
                         {
@@ -265,6 +280,16 @@ namespace Child_Talker
                         Control oldhighlightedObject = (hei.highlightedObject as Control);
                         
                         oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
+                        currentView.Dispatcher.Invoke(() =>
+                        {
+                            oldhighlightedObject.Background = hei.originalColor;
+                        });
+                    }
+                    else if (hei.highlightedObject is Item)
+                    {
+                        Item oldhighlightedObject = (hei.highlightedObject as Item);
+
+                        oldhighlightedObject.CtTile.PerformAction();
                         currentView.Dispatcher.Invoke(() =>
                         {
                             oldhighlightedObject.Background = hei.originalColor;

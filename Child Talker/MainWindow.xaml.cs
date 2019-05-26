@@ -41,6 +41,13 @@ namespace Child_Talker
             DataContext = startScreen;  //DataContext will give you the current view
 
             this.Closing += save;
+            //this.Closing += terminate_program; //TODO verify that save still completes successfully
+        }
+
+
+        private void terminate_program(object sender, EventArgs e)
+        {
+            App.Current.Shutdown();
         }
 
 

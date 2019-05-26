@@ -70,7 +70,7 @@ namespace Child_Talker.TalkerViews
                     if (getWindow().isScanning()) //autoscan
                     {
                         Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
                     }
                     break;
                 case "BACK":
@@ -87,7 +87,7 @@ namespace Child_Talker.TalkerViews
                     if (getWindow().isScanning()) //autoscan
                     {
                         Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
                     }
                     break;
                 case "ENTER":
@@ -95,7 +95,7 @@ namespace Child_Talker.TalkerViews
                     if (getWindow().isScanning()) //autoscan
                     {
                         Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
                     }
                     break;
                 default:
@@ -104,7 +104,7 @@ namespace Child_Talker.TalkerViews
                     if(getWindow().isScanning()) //autoscan
                     {
                         Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid, getWindow());
+                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
                     }
                     break;
 

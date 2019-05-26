@@ -40,74 +40,40 @@ namespace Child_Talker.TalkerViews
         
             //this.Closed += terminate_program;
             vol = new Remote_VOL_popup(this);
+            vol.Closing += popup_closed;
             ch = new Remote_CH_popup(this);
-        }
-        
-        // adds all child objects of type T to logicalCollection
-        private static void GetLogicalChildCollection<T>(DependencyObject parent, List<T> logicalCollection) where T : DependencyObject
-        {
-            IEnumerable children = LogicalTreeHelper.GetChildren(parent);
-            foreach (object child in children)
-            {
-                if (child is DependencyObject)
-                {
-                    DependencyObject depChild = child as DependencyObject;
-                    if (child is T)
-                    {
-                        logicalCollection.Add(child as T);
-                    }
-                    GetLogicalChildCollection(depChild, logicalCollection);
-                }
-            }
+            ch.Closing += popup_closed;
         }
         
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
 
             vol.Show();
-            //List<Button> temp = new List<Button>();
-            //GetLogicalChildCollection(vol, temp);
-            //currentObject = temp;
-            vol.Closing += popup_closed;
-            //vol.KeyDown += Key_down;
-       
             if(getWindow().isScanning())
             {
                 Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
-                sc.partialAutoscan<DependencyObject>(vol.gridLayout, vol);
+                sc.partialAutoscan<Button>(vol.gridLayout);
             }
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
             ch.Show();
-            List<Button> temp = new List<Button>();
-            GetLogicalChildCollection(ch, temp);
-            currentObject = temp;
-            ch.Closing += popup_closed;
-            //ch.KeyDown += Key_down;
-
             if (getWindow().isScanning())
             {
                 Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
-                sc.partialAutoscan<DependencyObject>(ch.gridLayout, ch);
+                sc.partialAutoscan<Button>(ch.gridLayout);
             }
         }
         private void popup_closed(object sender, CancelEventArgs e)
         {
-            currentObject = thisButtons;
-            //vol.KeyDown -= Key_down;
-            //ch.KeyDown -= Key_down;
-        
-
-            // Cancel Window closing 
             e.Cancel = true;
-            // Hide Window instead
-            vol.Hide();
-            ch.Hide();
+
+            if( sender is Remote_VOL_popup) vol.Hide();
+            if( sender is Remote_CH_popup) ch.Hide();
             if(getWindow().isScanning())
             {
                 Autoscan sc = getWindow().toggleAutoscan(); //stops autoscan if its on
-                sc.startAutoscan<DependencyObject>(getWindow());
+                sc.startAutoscan<Button>(getWindow());
             }
         }
 
@@ -145,6 +111,27 @@ namespace Child_Talker.TalkerViews
         private void terminate_program(object sender, EventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void backButton(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                vol.Closing -= popup_closed;
+                vol.Close();
+                Console.WriteLine("vol closed");
+            }
+            catch { Console.Error.WriteLine("vol failed to close"); }
+
+            try
+            {
+                ch.Closing -= popup_closed;
+                ch.Close();
+                Console.WriteLine("ch closed");
+            }
+            catch { Console.Error.WriteLine("ch failed to close"); }
+
+            openPreviousView(sender, e);
         }
     }
 }

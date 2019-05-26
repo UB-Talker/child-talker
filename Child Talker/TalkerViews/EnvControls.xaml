@@ -37,7 +37,7 @@
                 <ColumnDefinition Width="25*"/>
                 <ColumnDefinition Width="25*"/>
             </Grid.ColumnDefinitions>
-            <custom:TlkrBTN x:Name="back" Grid.Column="0" Grid.Row="1" Click="openPreviousView">
+            <custom:TlkrBTN x:Name="back" Grid.Column="0" Grid.Row="1" Click="backButton">
                 <Grid Margin="0,20,0,0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>

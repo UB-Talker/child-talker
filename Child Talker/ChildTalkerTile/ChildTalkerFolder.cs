@@ -17,6 +17,8 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
+        private Autoscan _autosc = Autoscan._instance;
+
         public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
         {
             Text = _text;
@@ -39,6 +41,7 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
+            _autosc.partialAutoscan<Item>(_autosc.getPanel());
         }
 
         public void SetChildren(List<IChildTalkerTile> _children)

@@ -22,7 +22,7 @@ namespace Child_Talker.TalkerViews
             parents.Add(row0);
             parents.Add(row1);
             parents.Add(row2);
-            parents.Add(row3);
+//            parents.Add(row3);
             return (parents);
         }
     }
