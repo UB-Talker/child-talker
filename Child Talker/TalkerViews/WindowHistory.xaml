@@ -34,43 +34,15 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <custom:TlkrScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
+        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
             <ScrollViewer.Resources>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
 
-            <StackPanel x:Name="phraseStack" >
-                <custom:TlkrBTN Background="#000000" Click="selectText" >
-                    <custom:TlkrBTN.Content>
-                        <TextBlock >Hello</TextBlock>
-                    </custom:TlkrBTN.Content>
-                </custom:TlkrBTN>
+            <custom:TlkrStackPanel x:Name="phraseStack" scanReverse="True">
 
-                <custom:TlkrBTN Background="#000000" Click="selectText" >
-                    <custom:TlkrBTN.Content>
-                        <TextBlock>How are you?</TextBlock>
-                    </custom:TlkrBTN.Content>
-                </custom:TlkrBTN>
-
-                <custom:TlkrBTN Background="#000000" Click="selectText">
-                    <custom:TlkrBTN.Content>
-                        <TextBlock>I am good</TextBlock>
-                    </custom:TlkrBTN.Content>
-                </custom:TlkrBTN>
-
-                <custom:TlkrBTN Background="#000000" Click="selectText">
-                    <custom:TlkrBTN.Content>
-                        <TextBlock>The weather is beautiful today</TextBlock>
-                    </custom:TlkrBTN.Content>
-                </custom:TlkrBTN>
-
-                <custom:TlkrBTN Background="#000000" Click="selectText">
-                    <custom:TlkrBTN.Content>
-                        <TextBlock>See you later!</TextBlock>
-                    </custom:TlkrBTN.Content>
-                </custom:TlkrBTN>
-            </StackPanel>
-        </custom:TlkrScrollViewer>
+            </custom:TlkrStackPanel>
+        </ScrollViewer>
         
         <custom:TlkrGrid Grid.Column="1" x:Name ="sidePanel">
             <Grid.RowDefinitions>

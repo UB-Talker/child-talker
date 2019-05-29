@@ -18,37 +18,113 @@ using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
-    
-   
-    public class Autoscan
+    class IFlags
     {
-        private class HighlightedElementInfo //this was added to organize the data a more
+         bool paused { set; get; }
+        int direction { set; get; }
+
+        uint speed { set; get; }
+        bool isReturnPoint { set; get; }
+        Autoscan.HighlightedElementInfo returnPoint { set; get; }
+    }
+
+
+    public class Autoscan 
+    {
+        internal class HighlightedElementInfo //this was added to organize the data a more
         {
-            public Panel parentPanel;
             public DependencyObject highlightedObject;
-            public Brush originalColor;
-            public Brush highlightColor = Brushes.Red;
+            private Brush originalColor;
+            private Brush highlightColor = Brushes.Red;
             public int indexHighlighted;
+
+            public TalkerView currentView;
+            public Panel parentPanel;
+
+            // sets element to highlighted color
+            public void highlightElement()
+            {//ln226
+                currentView.Dispatcher.Invoke(() =>
+                {
+                    if (highlightedObject is Control)
+                    {
+                        originalColor = (highlightedObject as Control).Background;
+                        (highlightedObject as Control).Background = highlightColor;
+                    }
+                    if (highlightedObject is Panel)
+                    {
+                        originalColor = (highlightedObject as Panel).Background;
+                        (highlightedObject as Panel).Background = highlightColor;
+                    }
+                });
+            }
+            // restores element to original color
+            public void restoreOriginalColor()
+            {
+                currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
+                    if (highlightedObject is Control)
+                    {
+                        (highlightedObject as Control).Background = originalColor;
+                    }
+                    if (highlightedObject is Panel)
+                    {
+                        (highlightedObject as Panel).Background = originalColor;
+                    }
+                });
+
+            }
+        }
+        private HighlightedElementInfo hei = new HighlightedElementInfo();
+        private Panel returnPoint;
+
+        private bool FLAG_paused {
+            set
+            {
+                if (!value)
+                {
+                    if (!aTimer.Enabled) { aTimer.Start(); }
+                }
+                else
+                {
+                    if (aTimer.Enabled) { aTimer.Stop(); }
+                }
+            }
+            get { return !aTimer.Enabled;  }
+        }
+        private int FLAG_direction = 1;
+        private uint FLAG_speed = 1000;
+        private bool isReturnPoint;
+        private bool FLAG_isReturnPoint
+        {
+            set {
+                isReturnPoint = value;
+                if (value) { returnPoint = hei.parentPanel;
+                }
+            }
+            get { return isReturnPoint; }
         }
 
-        private HighlightedElementInfo hei = new HighlightedElementInfo();
 
+
+        public Timer aTimer;
+        
         private static Autoscan instance;
         private Window w;
-        private TalkerView currentView;
-
-        private Timer aTimer;
-        private bool scanReversed = false;
+        private TalkerView currentView
+        {   
+            get { return hei.currentView;  }
+            set { hei.currentView = value; }
+        }
 
         private List<DependencyObject> currentObjectList = new List<DependencyObject>(); //buttons being autoscanned
 
         private Autoscan()
         {
-            aTimer = new Timer(1000);
+            aTimer = new Timer(FLAG_speed);
+
             aTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
             aTimer.AutoReset = true;
-            aTimer.Enabled = false;
-            
+            FLAG_paused = true; 
         }
 
         public Panel getPanel()
@@ -62,6 +138,7 @@ namespace Child_Talker
         //do not call on views that don't have getParents, only meant for views that need parent iteration for autoscan
             stopAutoscan();
             w = _w;
+
             currentView = _w.DataContext as TalkerView;
             currentObjectList = currentView.getParents(); //sets currentObjectList at parent objects to be scanned
             w.KeyDown += Key_down;
@@ -70,6 +147,7 @@ namespace Child_Talker
             aTimer.Enabled = true;
             
             hei.highlightedObject = null;       //resets button so first button on new screens isn't skipped
+            FLAG_direction = 1;
         }
 
         /* Finds objects(buttons usually) in Panel and starts autoscan on then
@@ -78,8 +156,8 @@ namespace Child_Talker
         */
         public void partialAutoscan<T>(Panel parent) where T : DependencyObject // T is a type. this function only works if T is Control type or Control Type dependent
         {
+            hei.indexHighlighted = 0;
             List<DependencyObject> tempObjectList = new List<DependencyObject>();
-
             GetLogicalChildCollection<T>(parent, tempObjectList);
 
             if (tempObjectList.Count !=0)
@@ -91,19 +169,19 @@ namespace Child_Talker
 
                 //special case code, panels that need a unique scanning process
                 //kind of brute forcing, there's a better way to do this
-                if (String.Equals(parent.Name, "phraseStack")) //to reverse autoscan and start from bottom in history
+                if( parent is TlkrGrid )
                 {
-                    hei.indexHighlighted = currentObjectList.Count - 1;
-                    scanReversed = true;
+                    if (!FLAG_isReturnPoint) FLAG_isReturnPoint = (parent as TlkrGrid).isReturnPoint;
+                    FLAG_direction = (parent as TlkrGrid).scanReverse ? -1 : 1 ;
                 }
-                else if (String.Equals(parent.Name, "keyboardGrid"))
+                else if( parent is TlkrStackPanel )
                 {
-                    hei.indexHighlighted = 0;
-                    currentObjectList = (currentView as Child_Talker.TalkerViews.Keyboard).getRows();
+                    if (!FLAG_isReturnPoint) FLAG_isReturnPoint = (parent as TlkrStackPanel).isReturnPoint;
+                    FLAG_direction = (parent as TlkrStackPanel).scanReverse ? -1 : 1 ;
                 }
                 else
                 {
-                    hei.indexHighlighted = 0; // index of element in List<Buttons>
+                    FLAG_direction = 1;
                 }
 
                 aTimer.Enabled = true;
@@ -116,20 +194,10 @@ namespace Child_Talker
         {
             if (aTimer.Enabled)
             {
-                currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
-                    if (hei.highlightedObject is Control)
-                    {
-                        (hei.highlightedObject as Control).Background = hei.originalColor;
-                    }
-                    if (hei.highlightedObject is Panel)
-                    {
-                    (hei.highlightedObject as Panel).Background = hei.originalColor;
-                    }
-                });
+                hei.restoreOriginalColor();
 
                 w.KeyDown -= Key_down;
                 aTimer.Enabled = false;
-                scanReversed = false;
                 hei.parentPanel = null;
             }
         }
@@ -152,7 +220,10 @@ namespace Child_Talker
                     DependencyObject depChild = child as DependencyObject;
                     if (child is T)         //searching for type "T" which is usually Button
                     {
-                        logicalCollection.Add(child as DependencyObject);
+                        if (child is Panel || child is Control )
+                        {
+                            logicalCollection.Add(child as DependencyObject);
+                        }
                     }
                     else if (typeof(T) == typeof(Button))
                     {
@@ -161,8 +232,8 @@ namespace Child_Talker
                             logicalCollection.Add(child as DependencyObject);
                        } 
                     }
-                    if (!(child is Control)){
-                        GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
+                    if (child is Border){
+                       GetLogicalChildCollection<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
                     }
                 }
             }
@@ -178,6 +249,8 @@ namespace Child_Talker
                 {
                     instance = new Autoscan();
                 }
+                instance.FLAG_direction = 1;
+                instance.FLAG_isReturnPoint = false;
                 return instance;
             }
         }
@@ -186,61 +259,38 @@ namespace Child_Talker
         // it changes the currently highlighted button for autoscanning
         public void autoscanningButtons(object source, EventArgs e)
         {
-        
-            if (hei.highlightedObject != null)
+            if (!FLAG_paused)
             {
-                if (hei.indexHighlighted < currentObjectList.Count - 1 && !scanReversed) { hei.indexHighlighted++; }
-                else if (hei.indexHighlighted >= currentObjectList.Count && scanReversed) { hei.indexHighlighted = 0; }
-                else if (hei.indexHighlighted > 0 && scanReversed) { hei.indexHighlighted--; }
-                else if (hei.indexHighlighted <= 0 && scanReversed) { hei.indexHighlighted = currentObjectList.Count - 1; }
-                else { hei.indexHighlighted = 0; }
-
-                //currently highlighted button reverts to black background
-
-                currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
-                    if (hei.highlightedObject is Control)
-                    {
-                        (hei.highlightedObject as Control).Background = hei.originalColor;
-                    }
-                    if (hei.highlightedObject is Panel)
-                    {
-                    (hei.highlightedObject as Panel).Background = hei.originalColor;
-                    }
-                });
-                
-            }
-
-            // change to next highlighted button
-            hei.highlightedObject = currentObjectList[hei.indexHighlighted];
-
-            if (hei.highlightedObject != null)
-            {
-
-                currentView.Dispatcher.Invoke(() =>
+                if (hei.highlightedObject != null)
                 {
-                    if (hei.highlightedObject is Control)
+                    hei.indexHighlighted += FLAG_direction;
+                    if (hei.indexHighlighted < 0 || hei.indexHighlighted >= currentObjectList.Count)
                     {
-                        
-                        hei.originalColor = (hei.highlightedObject as Control).Background;
-                        (hei.highlightedObject as Control).Background = hei.highlightColor;
+                        hei.indexHighlighted -= currentObjectList.Count * FLAG_direction;
                     }
-                    if (hei.highlightedObject is Panel)
-                    {
-                        hei.originalColor = (hei.highlightedObject as Panel).Background;
-                        (hei.highlightedObject as Panel).Background = hei.highlightColor;
-                    }
-                });
-            }
-            
-           
-            if (hei.parentPanel != null && hei.highlightedObject is Control) {
-                currentView.Dispatcher.Invoke(() =>
+                    if (currentObjectList.Count == 1) { hei.indexHighlighted = 0; }
+                    //currently highlighted button reverts to original background
+                    hei.restoreOriginalColor();
+                }
+
+                // change to next highlighted button
+                hei.highlightedObject = currentObjectList[hei.indexHighlighted];
+
+                if (hei.highlightedObject != null)
                 {
-                    (hei.highlightedObject as Control).BringIntoView();
-                });
-               
+                    hei.highlightElement();
+                }
+
+
+                if (hei.parentPanel != null && hei.highlightedObject is Control)
+                {
+                    currentView.Dispatcher.Invoke(() =>
+                    {
+                        (hei.highlightedObject as Control).BringIntoView();
+                    });
+
+                }
             }
-            
            
         }
 
@@ -253,11 +303,10 @@ namespace Child_Talker
             switch (k)
             {
                 case Key.Q:
-                    if (scanReversed) { hei.indexHighlighted += 3; }
-                    else { hei.indexHighlighted -= 3; } // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index           
-                    if (hei.indexHighlighted < 0)
+                    hei.indexHighlighted -= 2*FLAG_direction; // go back 2 buttons (after Key_down autoscaningButtons is called, which adds 1 to index           
+                    if (hei.indexHighlighted < 0 || hei.indexHighlighted >= currentObjectList.Count)
                     {
-                        hei.indexHighlighted += currentObjectList.Count; // loops the index if it goes negative
+                        hei.indexHighlighted += currentObjectList.Count*FLAG_direction; // loops the index if it goes negative
                     }
                     autoscanningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
                     aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
@@ -266,55 +315,75 @@ namespace Child_Talker
                 case Key.E:
                     if (hei.highlightedObject is Panel)
                     {
+                        hei.restoreOriginalColor();
                         Panel oldhighlightedObject = (hei.highlightedObject as Panel);
-
-                        partialAutoscan<Button>(oldhighlightedObject);  //pass in panel that was clicked 
-           
-                        currentView.Dispatcher.Invoke(() =>
-                        {
-                            oldhighlightedObject.Background = hei.originalColor;
-                        });
+                        partialAutoscan<DependencyObject>(oldhighlightedObject);  //pass in panel that was clicked 
                     }
-                    else if (hei.highlightedObject is Button)
+                    else if ((hei.highlightedObject is Button) || (hei.highlightedObject is TlkrBTN))
                     {
                         Control oldhighlightedObject = (hei.highlightedObject as Control);
-                        
+                        DependencyObject temp = hei.highlightedObject;
                         oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-                        currentView.Dispatcher.Invoke(() =>
+                        if (oldhighlightedObject is TlkrBTN && (oldhighlightedObject as TlkrBTN).PauseOnSelect)
                         {
-                            oldhighlightedObject.Background = hei.originalColor;
-                        });
+                            FLAG_paused = true;
+                            hei.highlightedObject = temp;
+                        }
+                        else if (FLAG_isReturnPoint)
+                        {
+                            hei.restoreOriginalColor();
+                            partialAutoscan<DependencyObject>(returnPoint);  //pass in panel that was clicked 
+                        }
                     }
                     else if (hei.highlightedObject is Item)
                     {
+                        hei.restoreOriginalColor();
                         Item oldhighlightedObject = (hei.highlightedObject as Item);
-
                         oldhighlightedObject.CtTile.PerformAction();
-                        currentView.Dispatcher.Invoke(() =>
-                        {
-                            oldhighlightedObject.Background = hei.originalColor;
-                        });
                     }
-                    break;
+                   break;
                 case Key.S:
-                    if (hei.parentPanel != null && hei.highlightedObject is Control)
+                    if (FLAG_paused)
                     {
-                        Control oldhighlightedObject = (hei.highlightedObject as Control);
-                        startAutoscan<DependencyObject>(w);
-                        currentView.Dispatcher.Invoke(() =>
-                            {
-                                oldhighlightedObject.Background = hei.originalColor;
-                            });
-                    }
-                    else if(hei.highlightedObject is Panel)
-                    {
-                        Panel oldHighlightedPanel = (hei.highlightedObject as Panel);
-                        startAutoscan<DependencyObject>(w);
-                        currentView.Dispatcher.Invoke(() =>
+                        FLAG_paused = false;
+                        if (FLAG_isReturnPoint)
                         {
-                            oldHighlightedPanel.Background = hei.originalColor;
-                        });
+                            hei.restoreOriginalColor();
+                            partialAutoscan<DependencyObject>(returnPoint);  //pass in panel that was clicked 
+                        }
                     }
+                    else if (hei.parentPanel is TlkrGrid)
+                    {
+                        if ((hei.parentPanel as TlkrGrid).isReturnPoint && FLAG_isReturnPoint)
+                        {
+                            FLAG_isReturnPoint = false;
+                        }
+                        startAutoscan<DependencyObject>(w);
+                        hei.restoreOriginalColor();
+                    }
+                    else if (hei.parentPanel is TlkrStackPanel){
+                        if ((hei.parentPanel as TlkrStackPanel).isReturnPoint && FLAG_isReturnPoint)
+                        {
+                            FLAG_isReturnPoint = false;
+                        }
+                        startAutoscan<DependencyObject>(w);
+                        hei.restoreOriginalColor();
+                    }
+                    else if (hei.parentPanel==null)
+                    {
+                       // go to previous page 
+                       
+                        // else
+                        startAutoscan<DependencyObject>(w);
+                        hei.restoreOriginalColor();
+                    }
+                    else
+                    {
+                        startAutoscan<DependencyObject>(w);
+                        hei.restoreOriginalColor();
+                    }
+
+                    
                     break;
             }
 

@@ -5,19 +5,39 @@ namespace Child_Talker
 {
     public class TlkrBTN : Button 
     {
-        // this is a property that is viewed on the XAML 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text",                             // Name of property on XAML
-            typeof(string),                     // type of property on XAML
-            typeof(TlkrBTN),                    // who inherits this property
-            new UIPropertyMetadata(null)); 
+        /*
+         *  when this Button is selected the autoscan stops cycling until 'go back' is pressed
+         *     true - pause autoscan
+         *     false - autoscan continues as normal     (default)
+         */
+        public static readonly DependencyProperty pauseOnSelectProperty = DependencyProperty.Register(
+            "PauseOnSelect",                        // Name of property on XAML
+            typeof(bool),                           // type of property on XAML
+            typeof(TlkrBTN),                        // who inherits this property
+            new UIPropertyMetadata(null));
 
+        /*
+         * Tells Autoscan whether or not to scan this element 
+         *     true - autoscan will ignore this item
+         *     false - autoscan continues as normal     (default)
+         */
+        public static readonly DependencyProperty DontScanProperty = DependencyProperty.Register(
+            "DontScan",                             // Name of property on XAML
+            typeof(bool),                           // type of property on XAML
+            typeof(TlkrBTN),                        // who inherits this property
+            new UIPropertyMetadata(null));
 
-        public string Text // Not required but recommended create variable with SAME NAME as Dependecy property
+        public bool PauseOnSelect
         {
-            get { return (string)GetValue(TextProperty); } 
-            set { SetValue(TextProperty, value); }
-        }
+            get { return (bool)GetValue(pauseOnSelectProperty); }
+            set { SetValue(pauseOnSelectProperty, value); }
+        } 
+        
+        public bool DontScan 
+        {
+            get { return (bool)GetValue(DontScanProperty); }
+            set { SetValue(DontScanProperty, value); }
+        } 
     }
 
 }

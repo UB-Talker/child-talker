@@ -1,23 +1,33 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Child_Talker
 {
     public class TlkrGrid : Grid
     {
-        // this is a property that is viewed on the XAML 
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
-            "Text",                             // Name of property on XAML
-            typeof(string),                     // type of property on XAML
-            typeof(TlkrGrid),                    // who inherits this property
-            new UIPropertyMetadata(null)); 
+        
 
-
-        public string Text // Not required but recommended create variable with SAME NAME as Dependecy property
+        //the actual variable used to set and get the dependency property
+        public bool scanReverse 
         {
-            get { return (string)GetValue(TextProperty); } 
-            set { SetValue(TextProperty, value); }
+            get { return (bool)GetValue(TlkrPanel.scanReverseProperty); }
+            set { SetValue(TlkrPanel.scanReverseProperty, value); }
+        } 
+        
+        public bool isReturnPoint 
+        {
+            get { return (bool)GetValue(TlkrPanel.isReturnPointProperty); }
+            set { SetValue(TlkrPanel.isReturnPointProperty, value);
+            }
         }
 
+        public bool DontScan 
+        {
+            get { return (bool)GetValue(TlkrPanel.DontScanProperty); }
+            set { SetValue(TlkrPanel.DontScanProperty, value); }
+        } 
+
+        
     }
 }

@@ -26,7 +26,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="row0" Grid.Row="0">
+        <custom:TlkrGrid x:Name="row0" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="85*"/>
                 <ColumnDefinition Width="15*"/>
@@ -44,16 +44,16 @@
                     <TextBlock Grid.Row="1">HELP</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
-        </Grid>
+        </custom:TlkrGrid>
 
-        <Grid x:Name="row1" Grid.Row="1">
+        <custom:TlkrGrid x:Name="row1" Grid.Row="1" scanReverse="True">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <custom:TlkrBTN x:Name="thing1" Grid.Column="0">
+            <custom:TlkrBTN x:Name="thing1" Grid.Column="0" PauseOnSelect="True">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="70*"/>
@@ -83,12 +83,12 @@
                     <TextBlock Grid.Row="1">keyboard</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="autoscanButton" Grid.Column="3" Click="autoscanButton_click">
+            <custom:TlkrBTN x:Name="autoscanButton" Grid.Column="3" DontScan="True" Click="autoscanButton_click">
                 <Image Source="../Resources/MainMenu_images/autoscan-blue.png" Margin="10"/>
             </custom:TlkrBTN>
-        </Grid>
+        </custom:TlkrGrid>
 
-        <Grid x:Name="row2" Grid.Row="2">
+        <custom:TlkrGrid x:Name="row2" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="35*"/>
@@ -124,9 +124,9 @@
                     <TextBlock Grid.Column="1" Margin="40,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Story Mode</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
-        </Grid>
+        </custom:TlkrGrid>
 
-        <Grid x:Name="row3" Grid.Row="4">
+        <custom:TlkrGrid x:Name="row3" Grid.Row="4">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -135,6 +135,6 @@
             <custom:TlkrBTN x:Name="unknownA" Grid.Column="0" ></custom:TlkrBTN>
             <custom:TlkrBTN x:Name="unknownB" Grid.Column="1" ></custom:TlkrBTN>
             <custom:TlkrBTN x:Name="unknownC" Grid.Column="2" ></custom:TlkrBTN>
-        </Grid>
+        </custom:TlkrGrid>
     </Grid>
 </local:TalkerView>

@@ -23,7 +23,7 @@ namespace Child_Talker.TalkerViews
     {
         private TextUtility util; //Used to speak the currently selected text
         private string selectedText; //Is set when the user chooses one of the phrases in the menu
-        private Button selectedButton; //The currently pressed button
+        private TlkrBTN selectedButton; //The currently pressed button
 
         public WindowHistory()
         {
@@ -50,7 +50,7 @@ namespace Child_Talker.TalkerViews
          * If the currently selected button is clicked again it clears the selectedText variable
          */
         public void selectText(object sender, RoutedEventArgs args){
-            Button button = sender as Button;
+            TlkrBTN button = sender as TlkrBTN;
             TextBlock textBlock = button.Content as TextBlock;
             if(selectedButton == default(Button)){
                 selectedButton = button;
@@ -92,7 +92,7 @@ namespace Child_Talker.TalkerViews
         {
             foreach (Tuple<DateTime, string> pair in util.getSpokenPhrases())
             {
-                Button phraseButton = new Button();
+                TlkrBTN phraseButton = new TlkrBTN();
                 TextBlock phrase = new TextBlock();
 
 

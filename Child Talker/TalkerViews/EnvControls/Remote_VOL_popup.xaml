@@ -36,7 +36,7 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <custom:TlkrBTN Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" PauseOnSelect="True" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -47,7 +47,7 @@
             </Grid>
         </custom:TlkrBTN>
 
-        <custom:TlkrBTN Tag="KEY_VOLUMEUP" Grid.Row="1" Grid.Column="1" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_VOLUMEUP" Grid.Row="1" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>
@@ -58,7 +58,7 @@
             </Grid>
         </custom:TlkrBTN>
 
-        <custom:TlkrBTN Tag="KEY_MUTE" Grid.Row="1" Grid.Column="2" Click="TV_controls">
+        <custom:TlkrBTN Tag="KEY_MUTE" Grid.Row="1" Grid.Column="2" PauseOnSelect="True" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="75*"/>

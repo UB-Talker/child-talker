@@ -101,6 +101,7 @@
     </Page>
     <Compile Include="TlkrBTN.cs" />
     <Compile Include="TlkrGrid.cs" />
+    <Compile Include="TlkrPanel.cs" />
     <Compile Include="TlkrScrollViewer.cs" />
     <Compile Include="TlkrStackPanel.cs" />
     <Compile Include="Utilities\Autoscan.cs" />

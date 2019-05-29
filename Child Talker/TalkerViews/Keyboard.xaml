@@ -67,7 +67,7 @@
             </custom:TlkrScrollViewer>
 
             <!-- this is the keyboard layout -->
-            <custom:TlkrGrid x:Name="keyboardGrid" Grid.Row="2"  >
+            <custom:TlkrGrid x:Name="keyboardGrid" Grid.Row="2" isReturnPoint="True" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20*"/>
@@ -188,7 +188,7 @@
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="4" >SPACE</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" >BACK</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" PauseOnSelect="True">BACK</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" >ENTER</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2">Undo</custom:TlkrBTN>
                 </custom:TlkrGrid>

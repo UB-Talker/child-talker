@@ -67,11 +67,6 @@ namespace Child_Talker.TalkerViews
                     greetingOutput.Text += " ";
                     util.resetAutocorrect();
                     autofill.Children.Clear();
-                    if (getWindow().isScanning()) //autoscan
-                    {
-                        Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
-                    }
                     break;
                 case "BACK":
                     try {
@@ -84,28 +79,13 @@ namespace Child_Talker.TalkerViews
                     {
                         Console.WriteLine("There are no characters to delete!");
                     }
-                    if (getWindow().isScanning()) //autoscan
-                    {
-                        Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
-                    }
                     break;
                 case "ENTER":
                     EnterPress();
-                    if (getWindow().isScanning()) //autoscan
-                    {
-                        Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
-                    }
                     break;
                 default:
                     greetingOutput.Text += s.ToLower();
                     addAutocorrect(s[0]);
-                    if(getWindow().isScanning()) //autoscan
-                    {
-                        Autoscan sc = getWindow().toggleAutoscan();
-                        sc.partialAutoscan<DependencyObject>(keyboardGrid);
-                    }
                     break;
 
             }
@@ -145,7 +125,7 @@ namespace Child_Talker.TalkerViews
                 b.Click += autoCorrectButton;
                 Border border = new Border();
                 border.Child = b;
-                autofill.Children.Add(border);
+                autofill.Children.Add(b);
             }
         }
 

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace Child_Talker
 {
@@ -26,6 +27,7 @@ namespace Child_Talker
             ListEmbeddedResourceNames();
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             app.InitializeComponent();
+
             app.Run();
         }
 

@@ -58,7 +58,7 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
         
-            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>

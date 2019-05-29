@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -11,6 +12,8 @@ namespace Child_Talker.TalkerViews
         public MainMenu()
         {
             InitializeComponent();
+
+            Console.WriteLine(row1.isReturnPoint);
         }
 
         /* Used for autoscan, please update if xaml is changed
