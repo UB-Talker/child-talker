@@ -1,0 +1,63 @@
+<local:TalkerView x:Class="Child_Talker.TalkerViews.SettingsPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+        xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        d:DesignHeight="1080" d:DesignWidth="1920"
+        Height="Auto" Width="Auto" Background="Black">
+    <local:TalkerView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/ColorSchemes/Generic.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="localBTN" TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genTlkrBTN}">
+                <Setter Property="Height" Value="300"/>
+                <Setter Property="Width" Value="300"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </local:TalkerView.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="20*"/>
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer x:Name="scrollViewer" Margin="0" Grid.Column="0">
+            <ScrollViewer.Resources>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
+                <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
+            </ScrollViewer.Resources>
+
+            <WrapPanel x:Name="phraseStack" >
+                
+                <custom:TlkrBTN x:Name="ColorSxheme" Margin="20" Padding="5" Grid.Row="2" Click="backToHome">
+                    <TextBlock Text="Color&#x0a;Scheme" TextWrapping="Wrap"/>
+                </custom:TlkrBTN>
+
+            </WrapPanel>
+        </ScrollViewer>
+        
+        <custom:TlkrGrid Grid.Column="1" x:Name ="sidePanel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <custom:TlkrBTN x:Name="menu"           Grid.Row="0" Click="backToHome"             >Menu</custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="revertChanges"  Grid.Row="1"                                >
+                    <TextBlock Text="Revert&#x0a;Changes" TextWrapping="Wrap"/>
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="applyChanges"   Grid.Row="2"                                >
+                    <TextBlock Text="Apply&#x0a;Changes" TextWrapping="Wrap"/>
+            </custom:TlkrBTN>
+            <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
+
+        </custom:TlkrGrid>
+    </Grid>
+</local:TalkerView>

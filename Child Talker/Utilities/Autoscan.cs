@@ -18,17 +18,6 @@ using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
-    class IFlags
-    {
-         bool paused { set; get; }
-        int direction { set; get; }
-
-        uint speed { set; get; }
-        bool isReturnPoint { set; get; }
-        Autoscan.HighlightedElementInfo returnPoint { set; get; }
-    }
-
-
     public class Autoscan 
     {
         internal class HighlightedElementInfo //this was added to organize the data a more
@@ -131,7 +120,7 @@ namespace Child_Talker
             }
             get { return isReturnPoint; }
         }
-        private static bool FLAG_autoscanActive;
+        private static bool FLAG_autoscanActive = false;
         public static bool isActive() { return FLAG_autoscanActive; }
 
         public Timer aTimer;
@@ -152,7 +141,8 @@ namespace Child_Talker
 
             aTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
             aTimer.AutoReset = true;
-            FLAG_paused = true; 
+            FLAG_paused = true;
+            FLAG_autoscanActive = true;
         }
 
         public Panel getPanel()
@@ -161,10 +151,12 @@ namespace Child_Talker
         }
 
 
-        /* Finds objects(buttons usually) in Panel and starts autoscan on then
-         * Only used when a specific panel needs to be scanned
-         * Window param added bc there are certain instances in EnvControls that need to switch to a new window, and key_down stops working
-        */
+        /* 
+         * this is a manual setup for autoscanning
+         * by providing this with a list of dependency objects 
+         * i.e a combination of buttons and panels
+         * those items will be scanned
+         */
         public void startAutoscan(List<DependencyObject> newObjectList)
         {
             aTimer.Stop();
@@ -181,6 +173,11 @@ namespace Child_Talker
             FLAG_direction = 1;
             aTimer.Start();
         }
+        /*
+         * this is more automated Autoscan function provide it with a parent panel and tell it what you are looking for (Buttons)
+         * and it will isolate all immediate Button children from the parent
+         * in this scenario if the parent has any Panel children they cannot be scanned with this method
+         */
         public void startAutoscan<T>(Panel parent) where T : DependencyObject // allow you to specify a type within a panel or just collect all direct children elements
         {
             hei.indexHighlighted = 0;
@@ -211,6 +208,7 @@ namespace Child_Talker
             }
 
         }
+        
 
         public void stopAutoscan()
         {
@@ -218,7 +216,6 @@ namespace Child_Talker
             {
                 aTimer.Stop();
                 hei.restoreOriginalColor();
-
                 hei.parentPanel = null;
             }
         }
@@ -229,7 +226,7 @@ namespace Child_Talker
         }
        
         // searchs through parent for all children of type T searchs recursively only when designated (i.e. if a border element is found)
-        private static void GetLogicalChildCollection<T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
+        private static List<DependencyObject> GetLogicalChildCollection<T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
         {
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             
@@ -250,8 +247,28 @@ namespace Child_Talker
                     }
                 }
             }
+            return logicalCollection;
         }
 
+        // searchs through parent for all children of type T searchs recursively only when designated (i.e. if a border element is found)
+        // This is being used to as a last ditch scan to find any existing items of type T anywhere on the window
+        public static List<DependencyObject> generateObjectList <T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
+        {
+            IEnumerable children = LogicalTreeHelper.GetChildren(parent);
+            foreach (object child in children)
+            {
+                if (child is DependencyObject)
+                {
+                    DependencyObject depChild = child as DependencyObject;
+                    if (child is T)         //searching for type "T" which is usually Button
+                    {
+                        logicalCollection.Add(child as DependencyObject);
+                    }
+                    generateObjectList<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
+                }
+            }
+            return logicalCollection;
+        }
         //autoscan is a singleton class, calling it requires _instance instead of the constructor call
         //maintains only one instance at all times
         public static Autoscan _instance
@@ -262,8 +279,7 @@ namespace Child_Talker
                 {
                     instance = new Autoscan();
                 }
-                instance.FLAG_direction = 1;
-                instance.FLAG_isReturnPoint = false;
+                instance.FLAG_isReturnPoint = false; // TODO find a more prcise way to deal with this
                 return instance;
             }
         }
@@ -308,13 +324,15 @@ namespace Child_Talker
             }
            
         }
-
+        
+        // when a second window is used the button listeners must be moved to the new window
         public void updateActiveWindow(Window _window)
         {
             if (_window != null)
             {
                 if (hei.highlightedObject != null)
                 {
+                    // just in case color wasn't reset elsewhere
                     hei.restoreOriginalColor();
                 }
 
@@ -322,6 +340,7 @@ namespace Child_Talker
                 {
                     currentWindow.KeyUp -= KeyUp;
                     currentWindow.KeyDown -= KeyDown;
+                    hei.parentPanel = null;
                 }
                 currentWindow = _window;
                 currentWindow.KeyUp += KeyUp;
@@ -329,7 +348,12 @@ namespace Child_Talker
             }
         }
 
-        bool QPressed = false;
+        /*
+         * the KeyDown event occurs once every time the q is pressed it will move the autoscan back once
+         * until it is release autoscan will move in reverse
+         *        (QUESTION should it move faster in the opposite direction)
+         */
+        bool QPressed = false; //keep this in case other keys are added to key down (removing and readding keydown event from window does the same thing)
         private void KeyDown(object sender, KeyEventArgs e)
         {
             Key k = e.Key;
@@ -353,15 +377,19 @@ namespace Child_Talker
                     break;
             }
         }
-        // key press eventHandler
+        // key release eventHandler
+        /* 
+         * when any key is pressed this method is called 
+         * only certain keys wil have an effect
+         */ 
         private void KeyUp(object sender, KeyEventArgs e)
         {
-            
+            currentWindow.KeyUp -= KeyUp;  //added back at end so the event cannot be called twice before completion
             Key k = e.Key;
             switch (k)
             {
                 case Key.Q:
-                    if (QPressed)
+                    if (QPressed) // probably is implied but just to be safe
                     {
                         aTimer.Stop();
                         currentWindow.KeyDown += KeyDown;
@@ -369,16 +397,6 @@ namespace Child_Talker
                         QPressed = false;
                         aTimer.Start();
                     }
-                    /*
-                    hei.indexHighlighted -= 2*FLAG_direction; // go back 2 buttons (after KeyUp autoscaningButtons is called, which adds 1 to index           
-                    if (hei.indexHighlighted < 0 || hei.indexHighlighted >= currentObjectList.Count)
-                    {
-                        hei.indexHighlighted += currentObjectList.Count*FLAG_direction; // loops the index if it goes negative
-                    }
-                    autoscanningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
-                    aTimer.Stop(); //resets timer to give user consist 1000 ms to respond
-                    aTimer.Start();
-                    */
                     break;
                 case Key.E:
                     if (hei.highlightedObject is Panel)
@@ -391,18 +409,22 @@ namespace Child_Talker
                     {
                         Control oldhighlightedObject = (hei.highlightedObject as Control);
                         DependencyObject temp = hei.highlightedObject;
-                        oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
                         if (oldhighlightedObject is TlkrBTN && (oldhighlightedObject as TlkrBTN).PauseOnSelect)
                         {
                             FLAG_paused = true;
                             hei.highlightedObject = temp;
-                            aTimer.Start();
                         }
                         else if (FLAG_isReturnPoint)
                         {
                             hei.restoreOriginalColor();
                             startAutoscan<DependencyObject>(returnPoint);  //pass in panel that was clicked 
+                            aTimer.Start();
+                        } else
+                        {
+                            hei.restoreOriginalColor();
+                            aTimer.Start();
                         }
+                        oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
                     }
                     else if (hei.highlightedObject is Item)
                     {
@@ -437,10 +459,22 @@ namespace Child_Talker
                                 startAutoscan<DependencyObject>(returnPoint);
                             }
                         }
+                        else if (currentWindow is SecondaryWindow)
+                        {
+                            currentWindow.Close();
+                        }
                         else
                         {
-                                hei.restoreOriginalColor();
+                            hei.restoreOriginalColor();
+                            try
+                            {
                                 startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                            }
+                            catch
+                            { 
+                                // if get parents is not defined create list from all top level panels
+                                startAutoscan(GetLogicalChildCollection<Panel>(currentWindow, new List<DependencyObject>()));
+                            }
                         }
 
                     }
@@ -449,8 +483,14 @@ namespace Child_Talker
                        // go to previous page 
                        
                         // else
-                        hei.restoreOriginalColor();
-                        startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                        //startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                        if( currentWindow is MainWindow)
+                        {
+                            if (!( (MainWindow)currentWindow ).backIsEmpty()){
+                                hei.restoreOriginalColor();
+                                ((MainWindow)currentWindow).back();
+                            }
+                        }
                     }
                     else
                     {
@@ -461,6 +501,8 @@ namespace Child_Talker
                     
                     break;
             }
+            
+            currentWindow.KeyUp += KeyUp; 
 
         }
         

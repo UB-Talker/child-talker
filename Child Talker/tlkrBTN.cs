@@ -49,6 +49,11 @@ namespace Child_Talker
         {
             set
             {
+                this.Dispatcher.Invoke(() =>
+                {
+                    this.Foreground = Brushes.Red;
+       
+                });
                 foreach(DependencyObject child in foregroundObjects)
                 {
                     if(child is Border) { (child as Border).Background = value;  }
@@ -58,10 +63,11 @@ namespace Child_Talker
             }
             get
             {
+                if(foregroundObjects.Count == 0) { return this.Foreground; }
                 if (foregroundObjects[0] is Border) { return (foregroundObjects[0] as Border).Background; }
                 else if (foregroundObjects[0] is TextBlock) { return (foregroundObjects[0] as TextBlock).Foreground; }
                 else if (foregroundObjects[0] is Label) { return (foregroundObjects[0] as Label).Foreground; }
-                else return Brushes.Black;
+                else return this.Foreground;
             }
         }
         
@@ -79,6 +85,7 @@ namespace Child_Talker
 
         private static void foregroundCollection(DependencyObject parent, List<DependencyObject> logicalCollection)
         {
+            if (parent == null) { return; }
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             
             foreach (object child in children)

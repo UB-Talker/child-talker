@@ -31,7 +31,6 @@
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-down-blue.png" />
                 <TextBlock Grid.Row="1" Text="VOL DOWN"></TextBlock>
             </Grid>
         </custom:TlkrBTN>

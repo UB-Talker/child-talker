@@ -58,7 +58,7 @@ namespace Child_Talker.TalkerViews
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string s = (sender as Button).Content.ToString();
+            string s = (sender as TlkrBTN).Tag.ToString();
           
             switch (s)
             {
@@ -104,7 +104,7 @@ namespace Child_Talker.TalkerViews
         private void addAutocorrect(char c)
         {
             autofill.Children.Clear();
-            foreach (Button b in util.getNextSuggestion(c))
+            foreach (TlkrBTN b in util.getNextSuggestion(c))
             {
                 b.Click += autoCorrectButton;
                 autofill.Children.Add(b);
@@ -117,7 +117,7 @@ namespace Child_Talker.TalkerViews
         private void addAutoFill(string s)
         {
             autofill.Children.Clear();
-            foreach(Button b in util.getNextSuggestionsForString(s))
+            foreach(TlkrBTN b in util.getNextSuggestionsForString(s))
             {
                 b.Click += autoCorrectButton;
                 autofill.Children.Add(b);
@@ -156,11 +156,11 @@ namespace Child_Talker.TalkerViews
 
         private void autoCorrectButton(object sender, RoutedEventArgs args)
         {
-            Button b = sender as Button;
+            TlkrBTN b = sender as TlkrBTN;
             string s = greetingOutput.Text;
             int i = s.LastIndexOf(' ');
             s = s.Substring(0, i + 1);
-            s += (string)b.Content + ' ';
+            s += (string)b.Tag + ' ';
             greetingOutput.Text = s;
             util.resetAutocorrect();
             autofill.Children.Clear();

@@ -31,11 +31,15 @@
             <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Close_Button">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="350"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Margin="-15,15,20,15" Source="../../Resources/EnvControl_images/back-blue.png" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
+                    <Border Width="200" Height="200"  Grid.Column="0" Background="Cyan" HorizontalAlignment="Center" >
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/EnvControl_images/back.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Column="1" Margin="10">Back</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
         </Grid>
@@ -51,22 +55,30 @@
             <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="75*"/>
-                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="370"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-down-blue.png" Margin="10"/>
-                    <TextBlock Grid.Row="1" Text="CH DOWN"></TextBlock>
+                    <Border Width="370" Grid.Row="0" Background="Cyan" HorizontalAlignment="Center" Margin="0">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/EnvControl_images/CHdown.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Row="1" Margin="10">CH down</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
 
             <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Row="1" Grid.Column="2" Click="TV_controls">
-                <Grid >
+                <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="75*"/>
-                        <RowDefinition Height="25*"/>
+                        <RowDefinition Height="370"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-up-blue.png" Margin="10"/>
-                    <TextBlock Grid.Row="1" Text="CH UP"></TextBlock>
+                    <Border Width="370" Grid.Row="0" Background="Cyan" HorizontalAlignment="Center" Margin="0">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/EnvControl_images/CHup.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Row="1" Margin="10">CH up</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
         </Grid>

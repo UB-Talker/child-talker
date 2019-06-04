@@ -74,16 +74,16 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="160"/>
                     </Grid.ColumnDefinitions>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="0" Click="Button_Click">1</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="1" Click="Button_Click">2</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Button_Click">3</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="3" Click="Button_Click">4</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="4" Click="Button_Click">5</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="5" Click="Button_Click">6</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="6" Click="Button_Click">7</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="7" Click="Button_Click">8</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="8" Click="Button_Click">9</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="0" Grid.Column="9" Click="Button_Click">0</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="0" Click="Button_Click" Tag="1"><TextBlock>1</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="1" Click="Button_Click" Tag="2"><TextBlock>2</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Button_Click" Tag="3"><TextBlock>3</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="3" Click="Button_Click" Tag="4"><TextBlock>4</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="4" Click="Button_Click" Tag="5"><TextBlock>5</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="5" Click="Button_Click" Tag="6"><TextBlock>6</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="6" Click="Button_Click" Tag="7"><TextBlock>7</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="7" Click="Button_Click" Tag="8"><TextBlock>8</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="8" Click="Button_Click" Tag="9"><TextBlock>9</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="0" Grid.Column="9" Click="Button_Click" Tag="0"><TextBlock>0</TextBlock></custom:TlkrBTN>
                 </Grid>
 
                 <Grid x:Name="row1" Grid.Row="1">
@@ -99,16 +99,16 @@
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="0" Click="Button_Click">Q</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="1" Click="Button_Click">W</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="2" Click="Button_Click">E</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="3" Click="Button_Click">R</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="4" Click="Button_Click">T</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="5" Click="Button_Click">Y</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="6" Click="Button_Click">U</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="7" Click="Button_Click">I</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="8" Click="Button_Click">O</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="1" Grid.Column="9" Click="Button_Click">P</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="0" Click="Button_Click" Tag="q"><TextBlock>Q</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="1" Click="Button_Click" Tag="w"><TextBlock>W</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="2" Click="Button_Click" Tag="e"><TextBlock>E</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="3" Click="Button_Click" Tag="r"><TextBlock>R</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="4" Click="Button_Click" Tag="t"><TextBlock>T</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="5" Click="Button_Click" Tag="y"><TextBlock>Y</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="6" Click="Button_Click" Tag="u"><TextBlock>U</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="7" Click="Button_Click" Tag="i"><TextBlock>I</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="8" Click="Button_Click" Tag="o"><TextBlock>O</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="1" Grid.Column="9" Click="Button_Click" Tag="p"><TextBlock>P</TextBlock></custom:TlkrBTN>
                 </Grid>
 
                 <Grid x:Name="row2" Grid.Row="2">
@@ -124,16 +124,16 @@
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="0" Click="Button_Click">A</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="1" Click="Button_Click">S</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="2" Click="Button_Click">D</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="3" Click="Button_Click">F</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="4" Click="Button_Click">G</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="5" Click="Button_Click">H</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="6" Click="Button_Click">J</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="7" Click="Button_Click">K</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="8" Click="Button_Click">L</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="2" Grid.Column="9" Click="Button_Click">?</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="0" Click="Button_Click" Tag="a"><TextBlock>A</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="1" Click="Button_Click" Tag="s"><TextBlock>S</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="2" Click="Button_Click" Tag="d"><TextBlock>D</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="3" Click="Button_Click" Tag="f"><TextBlock>F</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="4" Click="Button_Click" Tag="g"><TextBlock>G</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="5" Click="Button_Click" Tag="h"><TextBlock>H</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="6" Click="Button_Click" Tag="j"><TextBlock>J</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="7" Click="Button_Click" Tag="k"><TextBlock>K</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="8" Click="Button_Click" Tag="l"><TextBlock>L</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="2" Grid.Column="9" Click="Button_Click" Tag=";"><TextBlock>?</TextBlock></custom:TlkrBTN>
                 </Grid>
                 <Grid x:Name="row3" Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -148,16 +148,16 @@
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="0" Click="Button_Click">Z</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="1" Click="Button_Click">X</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="2" Click="Button_Click">C</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="3" Click="Button_Click">V</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="4" Click="Button_Click">B</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="5" Click="Button_Click">N</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="6" Click="Button_Click">M</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="7" Click="Button_Click">,</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="8" Click="Button_Click">,</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="3" Grid.Column="9" Click="Button_Click">.</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="0" Click="Button_Click" Tag="z"><TextBlock>Z</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="1" Click="Button_Click" Tag="x"><TextBlock>X</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="2" Click="Button_Click" Tag="c"><TextBlock>C</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="3" Click="Button_Click" Tag="v"><TextBlock>V</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="4" Click="Button_Click" Tag="b"><TextBlock>B</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="5" Click="Button_Click" Tag="n"><TextBlock>N</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="6" Click="Button_Click" Tag="m"><TextBlock>M</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="7" Click="Button_Click" Tag=","><TextBlock>,</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="8" Click="Button_Click" Tag="."><TextBlock>.</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="3" Grid.Column="9" Click="Button_Click" Tag="/"><TextBlock>/</TextBlock></custom:TlkrBTN>
                 </Grid>
                 <Grid x:Name="row4" Grid.Row="4">
                     <Grid.ColumnDefinitions>
@@ -172,10 +172,10 @@
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
                     </Grid.ColumnDefinitions>
-                    <custom:TlkrBTN Grid.Row="4" Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="4" >SPACE</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" PauseOnSelect="True">BACK</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="4" Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" >ENTER</custom:TlkrBTN>
-                    <custom:TlkrBTN Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2">Undo</custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="4" Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="4" Tag="SPACE"><TextBlock>SPACE</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" Tag="BACK"  PauseOnSelect="True"><TextBlock>BACK</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="4" Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" Tag="ENTER"><TextBlock>ENTER</TextBlock></custom:TlkrBTN>
+                    <custom:TlkrBTN Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2" Tag="UNDO"><TextBlock>Undo</TextBlock></custom:TlkrBTN>
                 </Grid>
             </custom:TlkrGrid>
         </Grid>

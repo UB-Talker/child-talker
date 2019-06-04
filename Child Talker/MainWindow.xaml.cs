@@ -69,10 +69,17 @@ namespace Child_Talker
          */
         public void back()
         {
-            TalkerView lastView = previousViews.Peek();
-            previousViews.Pop();
-            lastView.update();
-            changeView(lastView);
+            if (previousViews.Count != 0)
+            {
+                TalkerView lastView = previousViews.Peek();
+                previousViews.Pop();
+                lastView.update();
+                changeView(lastView);
+            }
+        }
+        public bool backIsEmpty()
+        {
+            return (previousViews.Count == 0);
         }
 
         public Autoscan getAutoscan()

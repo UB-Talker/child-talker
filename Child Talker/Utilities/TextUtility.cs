@@ -149,7 +149,7 @@ namespace Child_Talker.Utilities
         /*
          * Gets the next suggestions based on the given input c
          */
-        public List<Button> getNextSuggestion(char c)
+        public List<TlkrBTN> getNextSuggestion(char c)
         {
             if (c == '_')
             {
@@ -162,7 +162,7 @@ namespace Child_Talker.Utilities
             return getNSuggestions(10);
         }
 
-        public List<Button> getNextSuggestionsForString(string s)
+        public List<TlkrBTN> getNextSuggestionsForString(string s)
         {
             if (parseTree.isTreeReset())
             {
@@ -173,18 +173,21 @@ namespace Child_Talker.Utilities
         /*
          * Generate n buttons that will be used as suggestions
          */
-        private List<Button> getNSuggestions(int n)
+        private List<TlkrBTN> getNSuggestions(int n)
         {
-            List<Button> retVal = new List<Button>();
+            List<TlkrBTN> retVal = new List<TlkrBTN>();
             List<KeyValuePair<string, int>> suggestions = parseTree.getSuggestions();
 
             int i = 0;
             while (i < n && i < suggestions.Count)
             {
-                Button b = new Button();
+                TlkrBTN b = new TlkrBTN();
                 BrushConverter bc = new BrushConverter();
                 b.Foreground = (Brush)bc.ConvertFrom("#FF00D5EA");
-                b.Content = suggestions[i].Key;
+                TextBlock txtblk = new TextBlock();
+                txtblk.Text = suggestions[i].Key;
+                b.Tag = suggestions[i].Key;
+                b.Content = txtblk;
                 retVal.Add(b);
                 i++;
             }

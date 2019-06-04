@@ -67,7 +67,7 @@ namespace Child_Talker.TalkerViews
             if (getWindow().isScanning())
             {
                 scan.updateActiveWindow(sw);
-                scan.startAutoscan<Button>(ch.gridLayout);
+                scan.startAutoscan( Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
             }
         }
         private void popup_closed(object sender, CancelEventArgs e)

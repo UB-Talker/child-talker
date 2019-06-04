@@ -1,0 +1,27 @@
+﻿<Window x:Class="Child_Talker.SecondaryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:views="clr-namespace:Child_Talker.TalkerViews"
+        WindowStyle="None" WindowState="Maximized" 
+        mc:Ignorable="d"
+        Title="popupWindow" Height="1080" Width="1920" AllowsTransparency="True">
+        <!-- Topmost="True" -->
+
+    <Window.Background>
+        <SolidColorBrush Opacity="1" Color="#5F00FFFF"/>
+    </Window.Background>
+    <custom:TlkrGrid x:Name="MainGrid" Margin="300,150,300,150">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding}" />
+    </custom:TlkrGrid>
+    
+</Window>
