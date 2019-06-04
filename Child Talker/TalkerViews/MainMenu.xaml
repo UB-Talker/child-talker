@@ -6,16 +6,18 @@
              xmlns:local="clr-namespace:Child_Talker.TalkerViews"
              xmlns:custom="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
-             d:DesignHeight="1080" d:DesignWidth="1920">
+             d:DesignHeight="810" d:DesignWidth="1380">
 
+<!--resources can be commented out only needed to view properly while testing-->
     <local:TalkerView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Generic.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-        
+        <Style x:Key="localBTN" TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="BorderThickness" Value="10"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
     </local:TalkerView.Resources>
+    
     <Grid x:Name="GridLayout">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -28,25 +30,44 @@
         </Grid.ColumnDefinitions>
         <custom:TlkrGrid x:Name="row0" Grid.Row="0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="85*"/>
-                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="60*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
             </Grid.ColumnDefinitions>
-            <Border Grid.Column="0" Background="White" Margin="30,30,0,30">
+            <Border Grid.Column="0" Background="White" Margin="20,20,10,20">
                 <TextBlock x:Name="InputText" Text="Text Goes Here" FontSize="100" Margin="50,0,0,0" HorizontalAlignment="Left" Foreground="Black" VerticalAlignment="Center"/>
             </Border>
-            <custom:TlkrBTN x:Name="help" Grid.Column="1" >
+            <custom:TlkrBTN x:Name="settings" Grid.Column="1" >
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70*"/>
-                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/MainMenu_images/alarm-blue.png"/>
+                    <Border Height="100" Width="100" Grid.Row="0" Background="Cyan">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/settings.png"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Row="1">SETTINGS</TextBlock>
+                </Grid>
+            </custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="help" Grid.Column="2" >
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border Grid.Row="0" Background="Red" >
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/alarm.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
                     <TextBlock Grid.Row="1">HELP</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
         </custom:TlkrGrid>
 
-        <custom:TlkrGrid x:Name="row1" Grid.Row="1" scanReverse="True">
+        <custom:TlkrGrid x:Name="row1" Grid.Row="1" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -56,35 +77,51 @@
             <custom:TlkrBTN x:Name="thing1" Grid.Column="0" PauseOnSelect="True">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70*"/>
-                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="170"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/MainMenu_images/../whelp.png"/>
+                    <Border Grid.Row="0" Background="Cyan" Margin="6">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/../whelp.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
                     <TextBlock Grid.Row="1">unknown</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="EnvControls" Grid.Column="1" Click="openEnvControls">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70*"/>
-                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="170"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/MainMenu_images/EnvControls-blue.png"/>
+                    <Border Grid.Row="0" Background="Cyan" Margin="-15">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/EnvControls.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
                     <TextBlock Grid.Row="1">Interaction</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="keyboard" Grid.Column="2" Click="openKeyboard">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="70*"/>
-                        <RowDefinition Height="30*"/>
+                        <RowDefinition Height="170"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../Resources/MainMenu_images/keyboard-blue.png"/>
+                    <Border Width="360" Grid.Row="0" Background="Cyan" HorizontalAlignment="Center" Margin="-15">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
                     <TextBlock Grid.Row="1">keyboard</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="autoscanButton" Grid.Column="3" DontScan="True" Click="autoscanButton_click">
-                <Image Source="../Resources/MainMenu_images/autoscan-blue.png" Margin="10"/>
+                    <Border Margin="-120" Grid.Row="0" Background="Cyan">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/autoscan.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
             </custom:TlkrBTN>
         </custom:TlkrGrid>
 
@@ -97,31 +134,43 @@
             <custom:TlkrBTN x:Name="Phrases" Grid.Column="0" Click="openPhrases">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="../Resources/MainMenu_images/phrases-blue.png" Margin="10"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30"> Phrases</TextBlock>
+                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/phrases.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10"> Phrases</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="history" Grid.Column="1" Click="openHistory">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="40*"/>
-                        <ColumnDefinition Width="60*"/>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Margin="15" Source="../Resources/MainMenu_images/history-blue.png"/>
-                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">HISTORY</TextBlock>
+                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/history.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30">History</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="storyMode" Grid.Column="2" >
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Margin="5" Source="../Resources/MainMenu_images/book-blue.png"/>
-                    <TextBlock Grid.Column="1" Margin="40,0,0,0"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Story Mode</TextBlock>
+                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                    </Border>
+                    <TextBlock Grid.Column="1" Margin="10"  HorizontalAlignment="Center" VerticalAlignment="Center" TextWrapping="Wrap" >Story Mode</TextBlock>
                 </Grid>
             </custom:TlkrBTN>
         </custom:TlkrGrid>

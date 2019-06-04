@@ -22,7 +22,6 @@ namespace Child_Talker.TalkerViews
     {
         private TextUtility util;
 
-
         public Keyboard()
         {
             InitializeComponent();
@@ -108,9 +107,7 @@ namespace Child_Talker.TalkerViews
             foreach (Button b in util.getNextSuggestion(c))
             {
                 b.Click += autoCorrectButton;
-                Border border = new Border();
-                border.Child = b;
-                autofill.Children.Add(border);
+                autofill.Children.Add(b);
             }
         }
 
@@ -123,8 +120,6 @@ namespace Child_Talker.TalkerViews
             foreach(Button b in util.getNextSuggestionsForString(s))
             {
                 b.Click += autoCorrectButton;
-                Border border = new Border();
-                border.Child = b;
                 autofill.Children.Add(b);
             }
         }
@@ -158,7 +153,6 @@ namespace Child_Talker.TalkerViews
         {
             util.resetAutocorrect();
         }
-
 
         private void autoCorrectButton(object sender, RoutedEventArgs args)
         {

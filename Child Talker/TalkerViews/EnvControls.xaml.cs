@@ -25,9 +25,11 @@ namespace Child_Talker.TalkerViews
         private ConsoleControls cc = new ConsoleControls();
         private List<Button> thisButtons = new List<Button>();
         private List<Button> currentObject = new List<Button>(); //buttons being autoscanned
+        private SecondaryWindow sw;
 
         Remote_VOL_popup vol;
         Remote_CH_popup ch;
+        Autoscan scan;
 
         public EnvControls()
         {
@@ -37,43 +39,45 @@ namespace Child_Talker.TalkerViews
             //GetLogicalChildCollection(this, thisButtons);
             //currentObject = thisButtons;
             //runTimer(); //initializes timer
-        
+
             //this.Closed += terminate_program;
+            sw = new SecondaryWindow(this.getWindow());
+            sw.Closing += popup_closed;
+            sw.Hide();
+
+            scan = Autoscan._instance; //singleton cannot call constructor, call instance
             vol = new Remote_VOL_popup(this);
-            vol.Closing += popup_closed;
             ch = new Remote_CH_popup(this);
-            ch.Closing += popup_closed;
         }
         
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
-
-            vol.Show();
+            sw.DataContext = vol;
+            sw.Show();
             if(getWindow().isScanning())
             {
-                Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
-                sc.partialAutoscan<Button>(vol.gridLayout);
+                scan.updateActiveWindow(sw);
+                scan.startAutoscan<Button>(vol.gridLayout);
             }
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
-            ch.Show();
+            sw.DataContext = ch;
+            sw.Show();
             if (getWindow().isScanning())
             {
-                Autoscan sc = getWindow().toggleAutoscan(); //if autoscan is on, stop scanning
-                sc.partialAutoscan<Button>(ch.gridLayout);
+                scan.updateActiveWindow(sw);
+                scan.startAutoscan<Button>(ch.gridLayout);
             }
         }
         private void popup_closed(object sender, CancelEventArgs e)
         {
             e.Cancel = true;
-
-            if( sender is Remote_VOL_popup) vol.Hide();
-            if( sender is Remote_CH_popup) ch.Hide();
+            sw.Hide();
             if(getWindow().isScanning())
             {
-                Autoscan sc = getWindow().toggleAutoscan(); //stops autoscan if its on
-                sc.startAutoscan<Button>(getWindow());
+                scan.updateActiveWindow(this.getWindow());
+                scan.startAutoscan(this.getParents());
             }
         }
 
@@ -115,21 +119,8 @@ namespace Child_Talker.TalkerViews
 
         private void backButton(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                vol.Closing -= popup_closed;
-                vol.Close();
-                Console.WriteLine("vol closed");
-            }
-            catch { Console.Error.WriteLine("vol failed to close"); }
-
-            try
-            {
-                ch.Closing -= popup_closed;
-                ch.Close();
-                Console.WriteLine("ch closed");
-            }
-            catch { Console.Error.WriteLine("ch failed to close"); }
+            sw.Closing -= popup_closed;
+            sw.Close();
 
             openPreviousView(sender, e);
         }

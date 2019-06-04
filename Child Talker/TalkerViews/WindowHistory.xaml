@@ -10,22 +10,6 @@
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
     <local:TalkerView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Generic.xaml"/>
-                <ResourceDictionary>
-                    <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource genTextBlock}">
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property = "Height" Value="150" />
-                        <Setter Property = "Width" Value="1000" />
-                        <Setter Property = "TextWrapping" Value="Wrap" />
-                        <Setter Property = "TextAlignment" Value="Left" />
-                    </Style>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-
-
     </local:TalkerView.Resources>
 
     <Grid>
@@ -36,10 +20,17 @@
 
         <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
             <ScrollViewer.Resources>
+                <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey={x:Type TextBlock}}">
+                    <Setter Property = "Padding" Value="10" />
+                    <Setter Property = "Height" Value="150" />
+                    <Setter Property = "Width" Value="1000" />
+                    <Setter Property = "TextWrapping" Value="Wrap" />
+                    <Setter Property = "TextAlignment" Value="Left" />
+                </Style>
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
 
-            <custom:TlkrStackPanel x:Name="phraseStack" scanReverse="True">
+            <custom:TlkrStackPanel x:Name="phraseStack">
 
             </custom:TlkrStackPanel>
         </ScrollViewer>
@@ -56,7 +47,6 @@
             <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
             <custom:TlkrBTN x:Name="toKeyboard" Grid.Row="1" Click="openKeyboardWithText"   >Keyboard</custom:TlkrBTN>
             <custom:TlkrBTN x:Name="speak"      Grid.Row="2" Click="speakSelectedText"      >Speak</custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="autoscan"   Grid.Row="3" Click="autoscanButton_click"   >Autoscan</custom:TlkrBTN>
 
         </custom:TlkrGrid>
 

@@ -13,29 +13,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Child_Talker
+namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for Remote_popup.xaml
     /// </summary>
-    public partial class Remote_CH_popup : Window
+    public partial class Remote_CH_popup : TalkerView 
     {
         EnvControls parent;
         public Remote_CH_popup(EnvControls _parent)
         {
-            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             InitializeComponent();
             parent = _parent;
-        }
-
-        private void Close_Button(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void TV_controls(object sender, RoutedEventArgs e)
         {
             parent.TV_Controls(sender, e);
+        }
+
+        private void Close_Button(object sender, RoutedEventArgs e)
+        {
+            Window.GetWindow(this).Close();
         }
     }
 }

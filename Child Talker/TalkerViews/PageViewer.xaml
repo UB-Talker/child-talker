@@ -4,22 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:custom="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <local:TalkerView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Generic.xaml"/>
-                <ResourceDictionary>
-                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource genButton}">
-                        <Setter Property="FontSize" Value="20"/> 
-                    </Style>
-                     
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
+        <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}"/>
     </local:TalkerView.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -34,7 +29,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" BorderBrush="Black" BorderThickness="5">
+        <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" >
             <Grid x:Name="Controls" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -43,15 +38,15 @@
                     <RowDefinition Height="*"/>
                     
                 </Grid.RowDefinitions>
-                <Button x:Name="AddFolder" Margin="20" Padding="5" Grid.Row="0" Click="InsertFolderTile_Click" >
+                <custom:TlkrBTN x:Name="AddFolder" Grid.Row="0" Click="InsertFolderTile_Click" >
                     <TextBlock Text="New&#x0a;Folder" TextWrapping="Wrap"/>
-                </Button>
-                <Button x:Name="AddTalker" Margin="20" Padding="5" Grid.Row="1" Click="InsertTalkerTile_Click">
+                </custom:TlkrBTN>
+                <custom:TlkrBTN x:Name="AddTalker" Grid.Row="1" Click="InsertTalkerTile_Click">
                     <TextBlock Text="New&#x0a;Tile" TextWrapping="Wrap"/>
-                </Button>
-                <Button x:Name="BackToHome" Margin="20" Padding="5" Grid.Row="2" Click="backToHome">
+                </custom:TlkrBTN>
+                <custom:TlkrBTN x:Name="BackToHome" Grid.Row="2" Click="backToHome">
                     <TextBlock Text="Main&#x0a;Menu" TextWrapping="Wrap"/>
-                </Button>
+                </custom:TlkrBTN>
             </Grid>
         </Border>
 

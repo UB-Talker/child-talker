@@ -35,42 +35,6 @@ namespace Child_Talker.TalkerViews
           
         }
 
-        /*
-         * Set the current view to the keyboard.
-         */
-        public void openKeyboard(object sender, RoutedEventArgs args)
-        {
-            MainWindow window = getWindow();
-            getWindow().changeView(new Keyboard());
-
-        }
-
-
-        /*
-         * Set the current view to the history view.
-         */
-        public void openHistory(object sender, RoutedEventArgs args)
-        {
-            WindowHistory newHist = new WindowHistory();
-            getWindow().changeView(newHist);
-        }
-
-       
-
-        /*
-         * Sets the current view to the Phrases view.
-         */
-        public void openPhrases(object sender, RoutedEventArgs args)
-        {
-            PageViewer pv = new PageViewer();
-            getWindow().changeView(pv);
-            
-        }
-
-        public void openEnvControls(object sender, RoutedEventArgs args)
-        {
-            getWindow().changeView(new EnvControls());
-        }
 
         /*
          * This functionality will be assigned to the back button on the pages that implement it.
@@ -81,10 +45,6 @@ namespace Child_Talker.TalkerViews
             getWindow().back();
         }
 
-        public void autoscanButton_click(object sender, RoutedEventArgs e)
-        {
-            getWindow().toggleAutoscan(); 
-        }
 
 
         /* May be needed to update some views when navigating between them.

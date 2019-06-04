@@ -69,8 +69,9 @@ namespace Child_Talker.TalkerViews
 
             if(getWindow().isScanning()) //stops autoscan so selected text can be used
             {
-                Autoscan sc = getWindow().toggleAutoscan(); //stops autoscan
-                sc.partialAutoscan<DependencyObject>(sidePanel); //partial scans side panel
+                Autoscan sc = Autoscan._instance; //singleton cannot call constructor, call instance
+                sc.stopAutoscan();
+                sc.startAutoscan<Button>(sidePanel);
             }
         }
 

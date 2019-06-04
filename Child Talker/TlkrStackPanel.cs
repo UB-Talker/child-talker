@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace Child_Talker
 {
-    public class TlkrStackPanel : StackPanel
-    { 
-        //the actual variable used to set and get the dependency property
+    class TlkrStackPanel : StackPanel
+    {
         public bool scanReverse 
         {
             get { return (bool)GetValue(TlkrPanel.scanReverseProperty); }
@@ -29,6 +27,5 @@ namespace Child_Talker
             get { return (bool)GetValue(TlkrPanel.DontScanProperty); }
             set { SetValue(TlkrPanel.DontScanProperty, value); }
         } 
-
     }
 }

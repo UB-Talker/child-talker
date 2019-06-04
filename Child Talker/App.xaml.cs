@@ -26,8 +26,8 @@ namespace Child_Talker
             Child_Talker.App app = new Child_Talker.App();
             ListEmbeddedResourceNames();
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            TlkrPanel.addTlkrPanelProperties();
             app.InitializeComponent();
-
             app.Run();
         }
 

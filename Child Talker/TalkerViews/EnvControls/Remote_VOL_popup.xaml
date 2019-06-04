@@ -1,31 +1,14 @@
-﻿<Window x:Class="Child_Talker.Remote_VOL_popup"
+﻿<UserControl x:Class="Child_Talker.TalkerViews.Remote_VOL_popup"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:custom="clr-namespace:Child_Talker"
-        WindowStyle="None"
         mc:Ignorable="d"
-        Title="Remote_popup" Height="700" Width="1100" AllowsTransparency="True">
-    <!---Topmost="True"   -->
+        d:DesignHeight="1080" d:DesignWidth="1920"
+        Height="auto" Width="auto" Background="Black">
 
-    <Window.Background>
-        <SolidColorBrush Opacity="0.5" Color="#FF00E8FF"/>
-    </Window.Background>
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="generic" Source="../../Generic.xaml"/>
-                <ResourceDictionary>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource genTextBlock}">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="VerticalAlignment" Value="Center"/>
-                    </Style>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <Grid x:Name="gridLayout" Background="#B20E2320" >
+    <Grid Name="gridLayout" Background="#B20E2320">
         <Grid.RowDefinitions>
             <RowDefinition Height="25*"/>
             <RowDefinition Height="50*"/>
@@ -36,6 +19,12 @@
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <Style TargetType="TextBlock" BasedOn="{StaticResource genTextBlock}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+        </Grid.Resources>
         <custom:TlkrBTN Tag="KEY_VOLUMEDOWN" Grid.Row="1" Grid.Column="0" PauseOnSelect="True" Click="TV_controls">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
@@ -80,4 +69,4 @@
             </Grid>
         </custom:TlkrBTN>
     </Grid>
-</Window>
+</UserControl>

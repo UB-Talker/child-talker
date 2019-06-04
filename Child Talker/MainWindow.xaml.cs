@@ -26,12 +26,25 @@ namespace Child_Talker
 
         private Stack<TalkerView> previousViews;
         private TextUtility util;
-       
-        Autoscan autosc = Autoscan._instance;
+
+        Autoscan autosc;
+        private static MainWindow mainWindowData;
+        public static MainWindow _mainWindow
+        {
+            get
+            {
+                if (mainWindowData == null)
+                {
+                    mainWindowData = new MainWindow();
+                }
+                return mainWindowData;
+            }
+        }
+
+
 
         public MainWindow()
         {
-
             InitializeComponent();
 
             util = TextUtility.Instance;
@@ -39,9 +52,9 @@ namespace Child_Talker
 
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;  //DataContext will give you the current view
-
+            autosc = Autoscan._instance;
             this.Closing += save;
-            //this.Closing += terminate_program; //TODO verify that save still completes successfully
+            this.Closing += terminate_program; //TODO verify that save still completes successfully
         }
 
 
@@ -66,23 +79,6 @@ namespace Child_Talker
         {
             return (autosc);
         }
-        //if autoscan is on, turns it off. If it's off, turns it on
-        public Autoscan toggleAutoscan()
-        {
-            autosc = Autoscan._instance; //singleton cannot call constructor, call instance
-            if (isScanning())
-            {
-                autosc.stopAutoscan();
-                return (autosc);
-            }
-            else
-            {
-                autosc.startAutoscan<DependencyObject>(this); //updates autoscan on what the current view i
-                return (autosc);
-            }
-          
-        }
-
         public bool isScanning()
         {
             return (autosc.isScanning());
@@ -91,12 +87,13 @@ namespace Child_Talker
         // Method to change TalkerView, primarily called by TalkerView itself
         public void changeView(TalkerView view)
         {
-            setPreviousView(this.DataContext as TalkerView);
+            TalkerView prevView = (DataContext as TalkerView);
+            setPreviousView(prevView);
             DataContext = view;
 
             if (autosc != null && autosc.isScanning())
             {
-                autosc.startAutoscan<DependencyObject>(this);
+                autosc.startAutoscan(view.getParents());
             }
 
         }

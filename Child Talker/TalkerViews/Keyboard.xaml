@@ -6,32 +6,17 @@
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
         xmlns:custom="clr-namespace:Child_Talker"
         mc:Ignorable="d"
-                 
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="auto" Width="auto" Background="Black">
 
     <local:TalkerView.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary x:Name="generic" Source="../Generic.xaml"/>
-                <ResourceDictionary>
-                    <Style x:Key="localBTN" TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genTlkrBTN}">
-                        <Setter Property="FontSize" Value="60px"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="Background" Value="Black"/>
-                        <Setter Property="Margin" Value="6"/>
-                        <Setter Property="BorderThickness" Value="10"/>
-                        <Setter Property="BorderBrush" Value="Red"/>
-                        <Setter Property="Padding" Value="0"/>
-                        <Setter Property="Foreground" Value="#FF00D5EA"/>
-                    </Style>
-
-                    <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-
-
+        <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
+        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}"/>
     </local:TalkerView.Resources>
 
     <Grid>
@@ -40,11 +25,11 @@
             <ColumnDefinition Width="75*"/>
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
-        <custom:TlkrGrid x:Name="sidePanel" Grid.Column="0">
+        <Grid x:Name="sidePanel" Grid.Column="0">
             <custom:TlkrBTN x:Name="home" Grid.Column="0" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
             <custom:TlkrBTN x:Name="back" Grid.Column="0" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
-        </custom:TlkrGrid>
-        <custom:TlkrGrid Grid.Column="1">
+        </Grid>
+        <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="15*"/>
@@ -54,15 +39,15 @@
             <TextBox x:Name="greetingOutput" Grid.Row="0" Margin="6" Text=""/>
             <custom:TlkrScrollViewer Grid.Row="1"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
                 <ScrollViewer.Resources>
-                    <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}">
+                    <Style x:Key="localStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}">
                         <Setter Property="Margin" Value="16,6,16,6"/>
+                        <Setter Property="Padding" Value="16,0,16,0"/>
                     </Style>
+                    <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localStyle}"/>
+                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localStyle}"/>
                     <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
                 </ScrollViewer.Resources>
                 <custom:TlkrStackPanel x:Name="autofill" Margin="20,10,20,10" Orientation="Horizontal" Width="auto" >
-                    <custom:TlkrBTN>Suggestion</custom:TlkrBTN>
-                    <custom:TlkrBTN>Suggestion</custom:TlkrBTN>
-                    <custom:TlkrBTN>Suggestion</custom:TlkrBTN>
                 </custom:TlkrStackPanel>
             </custom:TlkrScrollViewer>
 
@@ -76,7 +61,7 @@
                     <RowDefinition Height="20*"/>
                     <RowDefinition Height="20*"/>
                 </Grid.RowDefinitions>
-                <custom:TlkrGrid x:Name="row0" Grid.Row="0">
+                <Grid x:Name="row0" Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -99,9 +84,9 @@
                     <custom:TlkrBTN Grid.Row="0" Grid.Column="7" Click="Button_Click">8</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="0" Grid.Column="8" Click="Button_Click">9</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="0" Grid.Column="9" Click="Button_Click">0</custom:TlkrBTN>
-                </custom:TlkrGrid>
+                </Grid>
 
-                <custom:TlkrGrid x:Name="row1" Grid.Row="1">
+                <Grid x:Name="row1" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
@@ -124,9 +109,9 @@
                     <custom:TlkrBTN Grid.Row="1" Grid.Column="7" Click="Button_Click">I</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="1" Grid.Column="8" Click="Button_Click">O</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="1" Grid.Column="9" Click="Button_Click">P</custom:TlkrBTN>
-                </custom:TlkrGrid>
+                </Grid>
 
-                <custom:TlkrGrid x:Name="row2" Grid.Row="2">
+                <Grid x:Name="row2" Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
@@ -149,8 +134,8 @@
                     <custom:TlkrBTN Grid.Row="2" Grid.Column="7" Click="Button_Click">K</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="2" Grid.Column="8" Click="Button_Click">L</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="2" Grid.Column="9" Click="Button_Click">?</custom:TlkrBTN>
-                </custom:TlkrGrid>
-                <custom:TlkrGrid x:Name="row3" Grid.Row="3">
+                </Grid>
+                <Grid x:Name="row3" Grid.Row="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
@@ -173,8 +158,8 @@
                     <custom:TlkrBTN Grid.Row="3" Grid.Column="7" Click="Button_Click">,</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="3" Grid.Column="8" Click="Button_Click">,</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="3" Grid.Column="9" Click="Button_Click">.</custom:TlkrBTN>
-                </custom:TlkrGrid>
-                <custom:TlkrGrid x:Name="row4" Grid.Row="4">
+                </Grid>
+                <Grid x:Name="row4" Grid.Row="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="10*"/>
                         <ColumnDefinition Width="10*"/>
@@ -191,8 +176,8 @@
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" PauseOnSelect="True">BACK</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" >ENTER</custom:TlkrBTN>
                     <custom:TlkrBTN Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2">Undo</custom:TlkrBTN>
-                </custom:TlkrGrid>
+                </Grid>
             </custom:TlkrGrid>
-        </custom:TlkrGrid>
+        </Grid>
     </Grid>
 </local:TalkerView>

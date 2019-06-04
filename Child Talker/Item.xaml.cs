@@ -49,11 +49,23 @@ namespace Child_Talker
         {
             CtTile = _ctItem;
 
-            label.Content = _ctItem.Text;
+            label.Text = _ctItem.Text;
             image.Width = 200;
             image.Height = 200;
             image.Source = new BitmapImage(new Uri(_ctItem.ImagePath, UriKind.RelativeOrAbsolute));
            
+        }
+
+        public new Brush Background
+        {
+            get { return tkrbtn.Background; }
+            set { tkrbtn.Background = value; }
+        }
+
+        public Brush TkrForeground
+        {
+            get { return tkrbtn.TkrForeground; }
+            set { tkrbtn.TkrForeground = value; }
         }
 
         private void LeftMouseButton_Click(object sender, RoutedEventArgs e)
@@ -71,6 +83,11 @@ namespace Child_Talker
                     Root.RemoveSingleTile(this);
                 }
             }
+        }
+
+        public TlkrBTN getTlkrBTN()
+        {
+            return tkrbtn;
         }
     }
 }

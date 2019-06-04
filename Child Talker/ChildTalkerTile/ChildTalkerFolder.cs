@@ -41,7 +41,7 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            _autosc.partialAutoscan<Item>(_autosc.getPanel());
+            _autosc.startAutoscan<Item>(_autosc.getPanel());
         }
 
         public void SetChildren(List<IChildTalkerTile> _children)

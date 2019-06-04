@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Windows;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 
 namespace Child_Talker
 {
-    public class TlkrGrid : Grid
+    class TlkrGrid : Grid
     {
-        
-
-        //the actual variable used to set and get the dependency property
         public bool scanReverse 
         {
             get { return (bool)GetValue(TlkrPanel.scanReverseProperty); }
@@ -27,7 +27,5 @@ namespace Child_Talker
             get { return (bool)GetValue(TlkrPanel.DontScanProperty); }
             set { SetValue(TlkrPanel.DontScanProperty, value); }
         } 
-
-        
     }
 }

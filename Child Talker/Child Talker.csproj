@@ -99,11 +99,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="SecondaryWindow.xaml.cs">
+      <DependentUpon>SecondaryWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TalkerViews\SettingPage\ColorSchemes.xaml.cs">
+      <DependentUpon>ColorSchemes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TalkerViews\SettingPage\SettingsPage.xaml.cs">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TlkrBTN.cs" />
+    <Compile Include="TlkrStackPanel.cs" />
+    <Compile Include="TlkrScrollViewer.cs" />
     <Compile Include="TlkrGrid.cs" />
     <Compile Include="TlkrPanel.cs" />
-    <Compile Include="TlkrScrollViewer.cs" />
-    <Compile Include="TlkrStackPanel.cs" />
     <Compile Include="Utilities\Autoscan.cs" />
     <Compile Include="ConsoleControls.cs" />
     <Compile Include="TalkerViews\EnvControls.xaml.cs">
@@ -127,7 +136,11 @@
     </Compile>
     <Compile Include="Utilities\ParseTree.cs" />
     <Compile Include="Utilities\TextUtility.cs" />
-    <Page Include="Generic.xaml">
+    <Page Include="SecondaryWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ColorSchemes\Generic.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -181,6 +194,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TalkerViews\SettingPage\ColorSchemes.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="TalkerViews\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -188,6 +205,10 @@
     <Page Include="TalkerViews\EnvControls\Remote_VOL_popup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TalkerViews\SettingPage\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TalkerViews\WindowHistory.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -267,41 +288,44 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EnvControl_images\autoscan-blue.png" />
-    <Resource Include="Resources\EnvControl_images\LightBulb-blue.png" />
-    <Resource Include="Resources\EnvControl_images\menu-blue.png" />
-    <Resource Include="Resources\EnvControl_images\outlet-blue.png" />
-    <Resource Include="Resources\EnvControl_images\power-button-blue.png" />
-    <Resource Include="Resources\EnvControl_images\radio-blue.png" />
-    <Resource Include="Resources\EnvControl_images\TV-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-down-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-mute-blue.png" />
-    <Resource Include="Resources\EnvControl_images\VOL-up-blue.png" />
+    <Resource Include="Resources\EnvControl_images\autoscan.png" />
+    <Resource Include="Resources\EnvControl_images\LightBulb.png" />
+    <Resource Include="Resources\EnvControl_images\menu.png" />
+    <Resource Include="Resources\EnvControl_images\outlet.png" />
+    <Resource Include="Resources\EnvControl_images\power.png" />
+    <Resource Include="Resources\EnvControl_images\radio.png" />
+    <Resource Include="Resources\EnvControl_images\TV.png" />
+    <Resource Include="Resources\EnvControl_images\VOLdown.png" />
+    <Resource Include="Resources\EnvControl_images\VOLmute.png" />
+    <Resource Include="Resources\EnvControl_images\VOLup.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EnvControl_images\back-blue.png" />
-    <Resource Include="Resources\MainMenu_images\autoscan-blue.png" />
-    <Resource Include="Resources\MainMenu_images\book-blue.png" />
-    <Resource Include="Resources\MainMenu_images\clear-blue.png" />
-    <Resource Include="Resources\MainMenu_images\EnvControls-blue.png" />
-    <Resource Include="Resources\MainMenu_images\History-blue.png" />
-    <Resource Include="Resources\MainMenu_images\keyboard-blue.png" />
-    <Resource Include="Resources\MainMenu_images\phrases-blue.png" />
-    <Resource Include="Resources\MainMenu_images\speech-blue.png" />
+    <Resource Include="Resources\EnvControl_images\back.png" />
+    <Resource Include="Resources\MainMenu_images\autoscan.png" />
+    <Resource Include="Resources\MainMenu_images\book.png" />
+    <Resource Include="Resources\MainMenu_images\clear.png" />
+    <Resource Include="Resources\MainMenu_images\EnvControls.png" />
+    <Resource Include="Resources\MainMenu_images\History.png" />
+    <Resource Include="Resources\MainMenu_images\keyboard.png" />
+    <Resource Include="Resources\MainMenu_images\phrases.png" />
+    <Resource Include="Resources\MainMenu_images\speech.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\MainMenu_images\alarm-blue.png" />
+    <Resource Include="Resources\MainMenu_images\alarm.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\EnvControl_images\CH-down-blue.png" />
-    <Resource Include="Resources\EnvControl_images\CH-up-blue.png" />
-    <Resource Include="Resources\MainMenu_images\back-blue.png" />
+    <Resource Include="Resources\EnvControl_images\CHdown.png" />
+    <Resource Include="Resources\EnvControl_images\CHup.png" />
+    <Resource Include="Resources\MainMenu_images\back.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="EmbeddedReferences\Newtonsoft.Json.dll" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="talkerlogo_772_12.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\MainMenu_images\settings.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
