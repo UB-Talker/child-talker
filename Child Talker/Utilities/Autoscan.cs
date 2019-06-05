@@ -15,7 +15,6 @@ using System.Threading;
 using Child_Talker;
 using Child_Talker.TalkerViews;
 
-
 namespace Child_Talker
 {
     public class Autoscan 
@@ -150,7 +149,6 @@ namespace Child_Talker
             return hei.parentPanel;
         }
 
-
         /* 
          * this is a manual setup for autoscanning
          * by providing this with a list of dependency objects 
@@ -160,6 +158,7 @@ namespace Child_Talker
         public void startAutoscan(List<DependencyObject> newObjectList)
         {
             aTimer.Stop();
+            if (hei.highlightedObject != null) { hei.restoreOriginalColor(); } 
             hei.parentPanel = null;
 
             currentView = currentWindow.DataContext as TalkerView;
@@ -180,6 +179,8 @@ namespace Child_Talker
          */
         public void startAutoscan<T>(Panel parent) where T : DependencyObject // allow you to specify a type within a panel or just collect all direct children elements
         {
+            if (hei.highlightedObject != null) { hei.restoreOriginalColor(); }
+
             hei.indexHighlighted = 0;
             List<DependencyObject> tempObjectList = new List<DependencyObject>();
             GetLogicalChildCollection<T>(parent, tempObjectList);
@@ -228,6 +229,7 @@ namespace Child_Talker
         // searchs through parent for all children of type T searchs recursively only when designated (i.e. if a border element is found)
         private static List<DependencyObject> GetLogicalChildCollection<T>(DependencyObject parent, List<DependencyObject> logicalCollection) where T : DependencyObject
         {
+            if (parent == null) { return null; }
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             
             foreach (object child in children)
@@ -404,6 +406,7 @@ namespace Child_Talker
                         hei.restoreOriginalColor();
                         Panel oldhighlightedObject = (hei.highlightedObject as Panel);
                         startAutoscan<DependencyObject>(oldhighlightedObject);  //pass in panel that was clicked 
+                        hei.parentPanel = oldhighlightedObject;
                     }
                     else if ((hei.highlightedObject is Button) || (hei.highlightedObject is TlkrBTN))
                     {

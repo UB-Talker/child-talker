@@ -1,18 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using Child_Talker.Utilities;
-
 
 namespace Child_Talker.TalkerViews
 {
@@ -24,18 +16,18 @@ namespace Child_Talker.TalkerViews
         private TextUtility util; //Used to speak the currently selected text
         private string selectedText; //Is set when the user chooses one of the phrases in the menu
         private TlkrBTN selectedButton; //The currently pressed button
-
+        private Autoscan scan;
         public WindowHistory()
         {
             InitializeComponent();        
+            scan = Autoscan._instance; //singleton cannot call constructor, call instance
             util = TextUtility.Instance;
             selectedText = "";
             addPhrases();
             phraseStack.ScrollOwner = scrollViewer;
             scrollViewer.ScrollToEnd();
         }
-
-
+        
         /*
          * If there is text selected, the keyboard will open up with the text in its TextBlock
          */
@@ -69,9 +61,7 @@ namespace Child_Talker.TalkerViews
 
             if(getWindow().isScanning()) //stops autoscan so selected text can be used
             {
-                Autoscan sc = Autoscan._instance; //singleton cannot call constructor, call instance
-                sc.stopAutoscan();
-                sc.startAutoscan<Button>(sidePanel);
+                scan.startAutoscan<Button>(sidePanel);
             }
         }
 
@@ -96,7 +86,6 @@ namespace Child_Talker.TalkerViews
                 TlkrBTN phraseButton = new TlkrBTN();
                 TextBlock phrase = new TextBlock();
 
-
                 phrase.Text = pair.Item2;
 
                 phraseButton.Background = Brushes.Black;
@@ -106,18 +95,7 @@ namespace Child_Talker.TalkerViews
                 phraseStack.Children.Add(phraseButton);
             }
         }
-        /*
-                <Style TargetType = "TextBlock" >
-            < Setter Property="Padding" Value="10" />
-            <Setter Property = "Height" Value="150" />
-            <Setter Property = "Width" Value="1000" />
-            <Setter Property = "Margin" Value="60,30,60,30" />
-            <Setter Property = "Foreground" Value="#FF00ECEC" />
-            <Setter Property = "FontSize" Value="45" />
-            <Setter Property = "TextWrapping" Value="Wrap" />
-        </Style>
-*/
-
+        
         /*
          * This is used if the user navigates "Back" to this page. The list of buttons
          * on the GUI must be refreshed if the user were to speak new phrases.
@@ -126,7 +104,7 @@ namespace Child_Talker.TalkerViews
          * This could be made more efficient. Some ideas:
          * 
          * 1). Maintain a list of phrases that were spoken while the application was running
-         *     and add those to the GUI when needed instead of deleting and readding all of the
+         *     and add those to the GUI when needed instead of deleting and reading all of the
          *     Butttons.
          */
         override public void update()

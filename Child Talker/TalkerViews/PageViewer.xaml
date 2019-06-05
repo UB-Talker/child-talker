@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:custom="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
@@ -50,7 +51,20 @@
             </Grid>
         </Border>
 
-        <WrapPanel x:Name="items" Orientation="Horizontal" Grid.Row="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
-    </WrapPanel>
+        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
+            <ScrollViewer.Resources>
+                <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey={x:Type TextBlock}}">
+                    <Setter Property = "Padding" Value="10" />
+                    <Setter Property = "Height" Value="150" />
+                    <Setter Property = "Width" Value="1000" />
+                    <Setter Property = "TextWrapping" Value="Wrap" />
+                    <Setter Property = "TextAlignment" Value="Left" />
+                </Style>
+                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
+            </ScrollViewer.Resources>
+
+            <WrapPanel x:Name="items" Orientation="Horizontal" >
+            </WrapPanel>
+        </ScrollViewer>
     </Grid>
 </local:TalkerView>

@@ -54,7 +54,11 @@ namespace Child_Talker.TalkerViews
             {
                 this.LoadFromXml(ProfilePath);
             }
+            //items.scr = scrollViewer;
+            scrollViewer.ScrollToEnd();
         }
+
+
 
         override public List<DependencyObject> getParents()
         {

@@ -15,6 +15,7 @@ namespace Child_Talker
         public ChildTalkerXml Xml { get; set; }
 
         private PageViewer Root;
+        private Autoscan scan;
 
         public ChildTalkerBackButton(string _text, string _imagePath, PageViewer _root)
         {
@@ -24,6 +25,7 @@ namespace Child_Talker
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
+            scan = Autoscan._instance;
         }
 
         public bool IsLink()
@@ -34,6 +36,10 @@ namespace Child_Talker
         public void PerformAction()
         {
             Root.PopFolderView();
+            if (scan.isScanning())
+            {
+                scan.startAutoscan<Item>(Root.items);
+            }
         }
     }
 }

@@ -30,7 +30,7 @@
                 <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
 
-            <custom:TlkrStackPanel x:Name="phraseStack">
+            <custom:TlkrStackPanel x:Name="phraseStack" scanReverse="True">
 
             </custom:TlkrStackPanel>
         </ScrollViewer>

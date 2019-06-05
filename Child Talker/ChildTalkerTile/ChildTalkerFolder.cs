@@ -17,7 +17,7 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private Autoscan _autosc = Autoscan._instance;
+        private Autoscan _autosc;
 
         public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
         {
@@ -30,6 +30,8 @@ namespace Child_Talker
             Xml.ImagePath = ImagePath;
             Xml.TileType = ChildTalkerXml.Tile.folder;
             Xml.Children = XmlChildren;
+            _autosc = Autoscan._instance;
+
         }
 
         public bool IsLink()
@@ -41,7 +43,11 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            _autosc.startAutoscan<Item>(_autosc.getPanel());
+            if (_autosc.isScanning())
+            {
+                _autosc.startAutoscan<Item>(Root.items);
+            }
+            
         }
 
         public void SetChildren(List<IChildTalkerTile> _children)
