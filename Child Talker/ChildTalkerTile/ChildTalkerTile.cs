@@ -27,10 +27,13 @@ namespace Child_Talker
             ImagePath = _imagePath;
             timer.Interval = 1000;
             timer.AutoReset = false;
-            Xml = new ChildTalkerXml();
-            Xml.Text = Text;
-            Xml.ImagePath = ImagePath;
-            Xml.TileType = ChildTalkerXml.Tile.talker;
+            //collection initializer
+            Xml = new ChildTalkerXml()
+            {
+                Text = _text,
+                ImagePath = _imagePath,
+                TileType = ChildTalkerXml.Tile.talker
+            };
         }
 
         public bool IsLink()

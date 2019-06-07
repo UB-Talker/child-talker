@@ -25,7 +25,6 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class UserControl1 : TalkerView
     {
-        private string text;
 
         public UserControl1()
         {

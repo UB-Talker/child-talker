@@ -102,6 +102,9 @@
     <Compile Include="SecondaryWindow.xaml.cs">
       <DependentUpon>SecondaryWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TalkerViews\KeyboardLayout.xaml.cs">
+      <DependentUpon>KeyboardLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TalkerViews\SettingPage\ColorSchemes.xaml.cs">
       <DependentUpon>ColorSchemes.xaml</DependentUpon>
     </Compile>
@@ -186,6 +189,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="TalkerViews\KeyboardLayout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TalkerViews\MainMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +333,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\MainMenu_images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utilities\SpeechHistory.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

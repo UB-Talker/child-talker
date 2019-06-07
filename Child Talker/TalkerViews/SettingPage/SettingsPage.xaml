@@ -14,7 +14,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/ColorSchemes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="localBTN" TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genTlkrBTN}">
+            <Style x:Key="localBTN" TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genButton}">
                 <Setter Property="Height" Value="300"/>
                 <Setter Property="Width" Value="300"/>
             </Style>

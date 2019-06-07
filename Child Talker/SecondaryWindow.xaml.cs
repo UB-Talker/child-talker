@@ -23,8 +23,8 @@ namespace Child_Talker
     /// </summary>
     public partial class SecondaryWindow : Window
     {
-        Autoscan autosc = Autoscan._instance;
-        Window parentWindow;
+        Autoscan scan = Autoscan.instance;
+        public Window parentWindow;
         
 
         public SecondaryWindow(Window parent)
@@ -39,9 +39,9 @@ namespace Child_Talker
         {
             DataContext = view;
 
-            if (autosc != null && autosc.isScanning())
+            if (scan != null && scan.isScanning())
             {
-                autosc.startAutoscan(view.getParents());
+                scan.startAutoscan(view.getParents());
             }
 
         }

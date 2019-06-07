@@ -89,19 +89,20 @@ namespace Child_Talker.Utilities
             synth.SpeakAsync(text);
             text = removePunctuation(text);
             string[] words = text.Split(' ');
-            
-            for(int i  = 0; i < words.Length; i++)
+
+            foreach (string word in words)
             {
-                string currentWord = words[i].ToLower();
-                if (wordCounts.ContainsKey(currentWord))
+                string _word = word.ToLower();
+                if (wordCounts.ContainsKey(_word))
                 {
-                    wordCounts[currentWord] += 1;
+                    wordCounts[_word] += 1;
                 }
                 else
                 {
-                    wordCounts.Add(currentWord, 1);
+                    wordCounts.Add(_word, 1);
                 }
-                parseTree.addString(currentWord);
+                parseTree.addString(_word);
+
             }
         }
 
@@ -184,10 +185,12 @@ namespace Child_Talker.Utilities
                 TlkrBTN b = new TlkrBTN();
                 BrushConverter bc = new BrushConverter();
                 b.Foreground = (Brush)bc.ConvertFrom("#FF00D5EA");
-                TextBlock txtblk = new TextBlock();
-                txtblk.Text = suggestions[i].Key;
+                TextBlock textBlock = new TextBlock
+                {
+                    Text = suggestions[i].Key
+                };
                 b.Tag = suggestions[i].Key;
-                b.Content = txtblk;
+                b.Content = textBlock;
                 retVal.Add(b);
                 i++;
             }

@@ -19,15 +19,15 @@ namespace Child_Talker.TalkerViews
         */
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
-            Autoscan autosc = Autoscan._instance; //singleton cannot call constructor, call instance
-            autosc.updateActiveWindow(this.getWindow());
-            if (autosc.isScanning())
+            Autoscan scan = Autoscan.instance; //singleton cannot call constructor, call instance
+            scan.updateActiveWindow(this.getWindow());
+            if (scan.isScanning())
             {
-                autosc.stopAutoscan();
+                scan.stopAutoscan();
             }
             else
             {
-                autosc.startAutoscan(this.getParents()); //updates autoscan on what the current view i
+                scan.startAutoscan(this.getParents()); //updates autoscan on what the current view i
             }
         }
 
@@ -71,10 +71,12 @@ namespace Child_Talker.TalkerViews
 
         override public List<DependencyObject> getParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(row0);
-            parents.Add(row1);
-            parents.Add(row2);
+            List<DependencyObject> parents = new List<DependencyObject>()
+            {
+                row0,
+                row1,
+                row2
+            };
 //            parents.Add(row3);
             return (parents);
         }

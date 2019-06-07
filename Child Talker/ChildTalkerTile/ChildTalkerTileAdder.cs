@@ -24,10 +24,13 @@ namespace Child_Talker
             Text = _text;
             ImagePath = _imagePath;
             Root = _root;
-            Xml = new ChildTalkerXml();
-            Xml.Text = Text;
-            Xml.ImagePath = ImagePath;
-            Xml.TileType = ChildTalkerXml.Tile.talker;
+            // collection initializer
+            Xml = new ChildTalkerXml()
+            {
+                Text = _text,
+                ImagePath = _imagePath,
+                TileType = ChildTalkerXml.Tile.talker
+            };
         }
 
         public bool IsLink()
@@ -55,7 +58,7 @@ namespace Child_Talker
             OpenFileDialog ofd = new OpenFileDialog();
 
             ofd.InitialDirectory = "c:\\";
-            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
             ofd.FilterIndex = 0;
             ofd.RestoreDirectory = true;
 

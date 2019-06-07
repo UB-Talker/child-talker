@@ -20,150 +20,35 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class Keyboard : TalkerView
     {
-        private TextUtility util;
+        private Autoscan scan;
 
         public Keyboard()
         {
             InitializeComponent();
-            this.KeyDown += physicalKeyboard;
-            util = TextUtility.Instance;
-            util.resetAutocorrect();
-
-            //zeroKey.Click += Button_Click; //add to routedEventhandler
-            //zeroKey.Click -= Button_Click; //remove from routedEventhandler
+            scan = Autoscan.instance;
+            keyboard.textBox = greetingOutput; //haven't figured out a better way to do this yet
         }
-
 
         public Keyboard(String selectedText)
         {
             InitializeComponent();
             greetingOutput.Text = selectedText;
             greetingOutput.Text = selectedText;
-            this.KeyDown += physicalKeyboard;
-            util = TextUtility.Instance;
-            util.resetAutocorrect();
-            //zeroKey.Click += Button_Click; //add to routedEventhandler
-            //zeroKey.Click -= Button_Click; //remove from routedEventhandler
-        }
-
-
-        private void physicalKeyboard(object sender, KeyEventArgs e)
-        {
-            Key k = e.Key;
-            if (k == Key.Enter)
-            {
-                EnterPress();
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string s = (sender as TlkrBTN).Tag.ToString();
-          
-            switch (s)
-            {
-                case "SPACE":
-                    greetingOutput.Text += " ";
-                    util.resetAutocorrect();
-                    autofill.Children.Clear();
-                    break;
-                case "BACK":
-                    try {
-                        greetingOutput.Text = greetingOutput.Text.Substring(0, greetingOutput.Text.Length - 1);
-                        addAutocorrect('_');
-                        string[] words = greetingOutput.Text.Split(' ');
-                        addAutoFill(words.Last<string>());
-                    }
-                    catch (System.ArgumentOutOfRangeException)
-                    {
-                        Console.WriteLine("There are no characters to delete!");
-                    }
-                    break;
-                case "ENTER":
-                    EnterPress();
-                    break;
-                default:
-                    greetingOutput.Text += s.ToLower();
-                    addAutocorrect(s[0]);
-                    break;
-
-            }
-        }
-
-        private void EnterPress()
-        {
-            util.speak(greetingOutput.Text);
-            greetingOutput.Text = "";
-            return;
-        }
-
-
-        /*
-         * Gets autofill suggestions after the char c is typed
-         */
-        private void addAutocorrect(char c)
-        {
-            autofill.Children.Clear();
-            foreach (TlkrBTN b in util.getNextSuggestion(c))
-            {
-                b.Click += autoCorrectButton;
-                autofill.Children.Add(b);
-            }
         }
 
         /*
-         * Gets autofill suggestions for a given string
+         * Used for autoscan, please update if xaml is changed
+         * Must return the panels to iterate through when autoscan is first initialized on this page
          */
-        private void addAutoFill(string s)
+        public override List<DependencyObject> getParents()
         {
-            autofill.Children.Clear();
-            foreach(TlkrBTN b in util.getNextSuggestionsForString(s))
-            {
-                b.Click += autoCorrectButton;
-                autofill.Children.Add(b);
-            }
-        }
-
-
-        /* Used for autoscan, please update if xaml is changed
-        * Must return the panels to iterate through when autoscan is first initialized on this page
-        */
-        override public List<DependencyObject> getParents()
-        {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(sidePanel);
-            parents.Add(autofill);
-            parents.Add(keyboardGrid);
-           
+            List<DependencyObject> parents = new List<DependencyObject>()
+                {
+                    sidePanel,
+                    keyboard.autofill,
+                    keyboard.keyboardGrid
+                };
             return (parents);
-        }
-
-        public List<DependencyObject> getRows()
-        {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(row0);
-            parents.Add(row1);
-            parents.Add(row2);
-            parents.Add(row3);
-            parents.Add(row4);
-            return (parents);
-        }
-
-        override public void update()
-        {
-            util.resetAutocorrect();
-        }
-
-        private void autoCorrectButton(object sender, RoutedEventArgs args)
-        {
-            TlkrBTN b = sender as TlkrBTN;
-            string s = greetingOutput.Text;
-            int i = s.LastIndexOf(' ');
-            s = s.Substring(0, i + 1);
-            s += (string)b.Tag + ' ';
-            greetingOutput.Text = s;
-            util.resetAutocorrect();
-            autofill.Children.Clear();
         }
     }
 }

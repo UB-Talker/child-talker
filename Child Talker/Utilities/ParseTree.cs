@@ -121,20 +121,12 @@ namespace Child_Talker.Utilities
                 nullNodes -= 1;
                 if (nullNodes <= 0)
                 {
-                    if (currentNode == null)
-                    {
-                        currentNode = nonNullNode;
-                    }
-                    else
-                    {
-                        currentNode = currentNode.getPrevNode();
-                    }
+                    currentNode = currentNode == null ? nonNullNode : currentNode.getPrevNode();
                     nullNodes = 0;
                 }
                 currentInput = currentInput.Substring(0, currentInput.Length - 1);
             }
-
-            if(currentNode == headNode)
+            else 
             {
                 isReset = true;
             }

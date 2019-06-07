@@ -1,0 +1,253 @@
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.KeyboardLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:custom="clr-namespace:Child_Talker"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" d:DesignWidth="1000">
+    
+    <local:TalkerView.Resources>
+        <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
+    </local:TalkerView.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <custom:TlkrScrollViewer Grid.Row="0"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
+            <ScrollViewer.Resources>
+                <Style x:Key="localStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}">
+                    <Setter Property="Margin" Value="16,6,16,6"/>
+                    <Setter Property="Padding" Value="16,0,16,0"/>
+                </Style>
+                <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localStyle}"/>
+                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localStyle}"/>
+                <!--<sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">1</sys:Double>-->
+            </ScrollViewer.Resources>
+            <custom:TlkrStackPanel x:Name="autofill" Margin="20,10,20,10" Orientation="Horizontal" Width="auto" >
+            </custom:TlkrStackPanel>
+        </custom:TlkrScrollViewer>
+
+        <custom:TlkrGrid x:Name="keyboardGrid" Grid.Row="1" isReturnPoint="True" >
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="row0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="0" Click="Button_Click" Tag="1">
+                    <TextBlock>1</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="1" Click="Button_Click" Tag="2">
+                    <TextBlock>2</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Button_Click" Tag="3">
+                    <TextBlock>3</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="3" Click="Button_Click" Tag="4">
+                    <TextBlock>4</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="4" Click="Button_Click" Tag="5">
+                    <TextBlock>5</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="5" Click="Button_Click" Tag="6">
+                    <TextBlock>6</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="6" Click="Button_Click" Tag="7">
+                    <TextBlock>7</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="7" Click="Button_Click" Tag="8">
+                    <TextBlock>8</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="8" Click="Button_Click" Tag="9">
+                    <TextBlock>9</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="0" Grid.Column="9" Click="Button_Click" Tag="0">
+                    <TextBlock>0</TextBlock>
+                </custom:TlkrBTN>
+            </Grid>
+
+            <Grid x:Name="row1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="0" Click="Button_Click" Tag="q">
+                    <TextBlock>Q</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="1" Click="Button_Click" Tag="w">
+                    <TextBlock>W</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="2" Click="Button_Click" Tag="e">
+                    <TextBlock>E</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="3" Click="Button_Click" Tag="r">
+                    <TextBlock>R</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="4" Click="Button_Click" Tag="t">
+                    <TextBlock>T</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="5" Click="Button_Click" Tag="y">
+                    <TextBlock>Y</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="6" Click="Button_Click" Tag="u">
+                    <TextBlock>U</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="7" Click="Button_Click" Tag="i">
+                    <TextBlock>I</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="8" Click="Button_Click" Tag="o">
+                    <TextBlock>O</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="1" Grid.Column="9" Click="Button_Click" Tag="p">
+                    <TextBlock>P</TextBlock>
+                </custom:TlkrBTN>
+            </Grid>
+
+            <Grid x:Name="row2" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="0" Click="Button_Click" Tag="a">
+                    <TextBlock>A</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="1" Click="Button_Click" Tag="s">
+                    <TextBlock>S</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="2" Click="Button_Click" Tag="d">
+                    <TextBlock>D</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="3" Click="Button_Click" Tag="f">
+                    <TextBlock>F</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="4" Click="Button_Click" Tag="g">
+                    <TextBlock>G</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="5" Click="Button_Click" Tag="h">
+                    <TextBlock>H</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="6" Click="Button_Click" Tag="j">
+                    <TextBlock>J</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="7" Click="Button_Click" Tag="k">
+                    <TextBlock>K</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="8" Click="Button_Click" Tag="l">
+                    <TextBlock>L</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="2" Grid.Column="9" Click="Button_Click" Tag=";">
+                    <TextBlock>?</TextBlock>
+                </custom:TlkrBTN>
+            </Grid>
+            <Grid x:Name="row3" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="0" Click="Button_Click" Tag="z">
+                    <TextBlock>Z</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="1" Click="Button_Click" Tag="x">
+                    <TextBlock>X</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="2" Click="Button_Click" Tag="c">
+                    <TextBlock>C</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="3" Click="Button_Click" Tag="v">
+                    <TextBlock>V</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="4" Click="Button_Click" Tag="b">
+                    <TextBlock>B</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="5" Click="Button_Click" Tag="n">
+                    <TextBlock>N</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="6" Click="Button_Click" Tag="m">
+                    <TextBlock>M</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="7" Click="Button_Click" Tag=",">
+                    <TextBlock>,</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="8" Click="Button_Click" Tag=".">
+                    <TextBlock>.</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="3" Grid.Column="9" Click="Button_Click" Tag="/">
+                    <TextBlock>/</TextBlock>
+                </custom:TlkrBTN>
+            </Grid>
+            <Grid x:Name="row4" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                    <ColumnDefinition Width="10*"/>
+                </Grid.ColumnDefinitions>
+                <custom:TlkrBTN Grid.Row="4" Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="4" Tag="SPACE">
+                    <TextBlock>SPACE</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="4" Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" Tag="BACK"  PauseOnSelect="True">
+                    <TextBlock>BACK</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="4" Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" Tag="ENTER">
+                    <TextBlock>ENTER</TextBlock>
+                </custom:TlkrBTN>
+                <custom:TlkrBTN Grid.Row="4" Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2" Tag="UNDO">
+                    <TextBlock>Undo</TextBlock>
+                </custom:TlkrBTN>
+            </Grid>
+        </custom:TlkrGrid>
+    </Grid>
+</local:TalkerView>

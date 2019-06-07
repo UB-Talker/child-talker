@@ -14,18 +14,18 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private PageViewer Root;
-        private Autoscan scan;
+        private readonly PageViewer root;
+        private readonly Autoscan scan;
 
         public ChildTalkerBackButton(string _text, string _imagePath, PageViewer _root)
         {
             Text = _text;
             ImagePath = _imagePath;
-            Root = _root;
+            root = _root;
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
-            scan = Autoscan._instance;
+            scan = Autoscan.instance;
         }
 
         public bool IsLink()
@@ -35,10 +35,10 @@ namespace Child_Talker
 
         public void PerformAction()
         {
-            Root.PopFolderView();
+            root.PopFolderView();
             if (scan.isScanning())
             {
-                scan.startAutoscan<Item>(Root.items);
+                scan.startAutoscan<Item>(root.items);
             }
         }
     }

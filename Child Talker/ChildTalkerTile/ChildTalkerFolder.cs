@@ -17,7 +17,7 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private Autoscan _autosc;
+        private Autoscan scan;
 
         public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
         {
@@ -25,12 +25,21 @@ namespace Child_Talker
             ImagePath = _imagePath;
             SetChildren(_children);
             Root = _root;
-            Xml = new ChildTalkerXml();
-            Xml.Text = Text;
-            Xml.ImagePath = ImagePath;
-            Xml.TileType = ChildTalkerXml.Tile.folder;
-            Xml.Children = XmlChildren;
-            _autosc = Autoscan._instance;
+            Xml = new ChildTalkerXml
+            {
+                Text = _text,
+                ImagePath = _imagePath,
+                TileType = ChildTalkerXml.Tile.folder,
+                Children = XmlChildren
+            };
+            /*
+             * Used Collection initializer instead
+             * Xml.Text = Text;
+             * Xml.ImagePath = ImagePath;
+             * Xml.TileType = ChildTalkerXml.Tile.folder;
+             * Xml.Children = XmlChildren;
+             */
+            scan = Autoscan.instance;
 
         }
 
@@ -43,9 +52,9 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            if (_autosc.isScanning())
+            if (scan.isScanning())
             {
-                _autosc.startAutoscan<Item>(Root.items);
+                scan.startAutoscan<Item>(Root.items);
             }
             
         }

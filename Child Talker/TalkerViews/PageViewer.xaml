@@ -51,7 +51,7 @@
             </Grid>
         </Border>
 
-        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4">
+        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource genScrollViewer}"  Margin="0,0,30,0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" >
             <ScrollViewer.Resources>
                 <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey={x:Type TextBlock}}">
                     <Setter Property = "Padding" Value="10" />
@@ -60,9 +60,11 @@
                     <Setter Property = "TextWrapping" Value="Wrap" />
                     <Setter Property = "TextAlignment" Value="Left" />
                 </Style>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
+                <Style TargetType="{x:Type ScrollBar}">
+                    <Setter Property="Width" Value="75"/>
+                </Style>
             </ScrollViewer.Resources>
-
+        
             <WrapPanel x:Name="items" Orientation="Horizontal" >
             </WrapPanel>
         </ScrollViewer>

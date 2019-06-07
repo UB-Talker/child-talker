@@ -26,24 +26,19 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class PageViewer : TalkerView
     {
-        private Timer timer;
-        private int i = 0;
-        private bool scanning = false;
         private ChildTalkerXmlWrapper XmlWrapper;
         private IChildTalkerTile backItem;
         private string ProfilePath;
         private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
 
+        private Autoscan scan;
+
         public PageViewer()
         {
             InitializeComponent();
 
-            timer = new Timer();
-            timer.Interval = 1000;
-            timer.Elapsed += new ElapsedEventHandler(OnElapsedTime);
             ProfilePath = "../../Resources/example2.xml";
-            scanning = false;
 
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.jpg", this);
             if (!File.Exists(ProfilePath))
@@ -54,17 +49,18 @@ namespace Child_Talker.TalkerViews
             {
                 this.LoadFromXml(ProfilePath);
             }
-            //items.scr = scrollViewer;
-            scrollViewer.ScrollToEnd();
+            scan = Autoscan.instance;
         }
 
 
 
         override public List<DependencyObject> getParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(Controls);
-            parents.Add(items);
+            List<DependencyObject> parents = new List<DependencyObject>()
+            {
+                Controls,
+                items
+            };
             return (parents);
         }
 
@@ -76,36 +72,6 @@ namespace Child_Talker.TalkerViews
         public Stack<ChildTalkerFolder> getViewParents()
         {
             return ViewParents;
-        }
-
-        public void StartAutoScan()
-        {
-            scanning = true;
-            i = 0;
-            ((Item)items.Children[i]).AutoSelected = true;
-            timer.Start();
-        }
-
-        public void StopAutoScan()
-        {
-            scanning = false;
-            if (items.Children.Count != 0)
-            {
-                ((Item)items.Children[i]).AutoSelected = false;
-            }
-
-            timer.Stop();
-        }
-
-        private void OnElapsedTime(object _source, ElapsedEventArgs e)
-        {
-            this.Dispatcher.Invoke(() =>
-            {
-                Console.WriteLine($"{i} / {items.Children.Count}");
-                ((Item)items.Children[i]).AutoSelected = false;
-                i = (i + 1) % items.Children.Count;
-                ((Item)items.Children[i]).AutoSelected = true;
-            });
         }
 
         public void LoadFromXml(string _path)
@@ -153,25 +119,39 @@ namespace Child_Talker.TalkerViews
                 return folder;
             }
         }
+        
+        public void GoBackPress(Autoscan.HighlightedElementInfo hei)
+        {
+            try {
+                if (ViewParents.Count<1 && !scan.GoBackDefaultEnabled)
+                {
+                    scan.GoBackDefaultEnabled = true;
+                    scan.GoBackPress -= GoBackPress;
+                }
+                backItem.PerformAction(); }
+            catch { Autoscan.instance.GoBackPress -= GoBackPress; }
+        } 
 
         public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
         {
-            bool wasScanning = scanning;
-            if (wasScanning)
-            {
-                StopAutoScan();
-            }
-
-            if (calledFromLoad)
+            //only true when page is first opened
+            if (calledFromLoad) 
             {
                 rootChildren = _ctTiles;
             }
             else
             {
+                // only true when opening folders
                 if(!_ctTiles.Contains(backItem) && ViewParents.Count > 0)
                 {
                     _ctTiles.Insert(0, backItem);
                     ViewParents.Peek().SetChildren(_ctTiles);
+                    // scan.GoBackHold += backItem.PerformAction();
+                    if (scan.GoBackDefaultEnabled)
+                    {
+                        scan.GoBackDefaultEnabled = false;
+                        scan.GoBackPress += GoBackPress;
+                    }
                 }
             }
 
@@ -184,6 +164,7 @@ namespace Child_Talker.TalkerViews
                 items.Children.Add(ui);
             }
 
+
             if (calledFromLoad)
             {
                 XmlWrapper.Children = new List<ChildTalkerXml>();
@@ -192,21 +173,10 @@ namespace Child_Talker.TalkerViews
                     XmlWrapper.Children.Add(rootChild.Xml);
                 }
             }
-
-            if (wasScanning)
-            {
-                StartAutoScan();
-            }
         }
 
         public void AddSingleItem(IChildTalkerTile _ctTileToAdd)
         {
-            bool wasScanning = scanning;
-            if (wasScanning)
-            {
-                StopAutoScan();
-            }
-
             if (ViewParents.Count > 0)
             {
                 ViewParents.Peek().AddChild(_ctTileToAdd);
@@ -222,10 +192,6 @@ namespace Child_Talker.TalkerViews
             items.Children.Add(ui);
 
             SaveToXml(ProfilePath);
-            if (wasScanning)
-            {
-                StartAutoScan();
-            }
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -235,12 +201,6 @@ namespace Child_Talker.TalkerViews
 
         public void RemoveSingleTile(Item _itemToRemove)
         {
-            bool wasScanning = scanning;
-            if (wasScanning)
-            {
-                StopAutoScan();
-            }
-
             items.Children.Remove(_itemToRemove);
             if (ViewParents.Count > 0)
             {
@@ -253,10 +213,6 @@ namespace Child_Talker.TalkerViews
             }
 
             SaveToXml(ProfilePath);
-            if (wasScanning)
-            {
-                StartAutoScan();
-            }
         }
 
         public void PopFolderView()

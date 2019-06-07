@@ -45,7 +45,7 @@ namespace Child_Talker.TalkerViews
             sw.Closing += popup_closed;
             sw.Hide();
 
-            scan = Autoscan._instance; //singleton cannot call constructor, call instance
+            scan = Autoscan.instance; //singleton cannot call constructor, call instance
             vol = new Remote_VOL_popup(this);
             ch = new Remote_CH_popup(this);
         }
@@ -105,9 +105,7 @@ namespace Child_Talker.TalkerViews
         }
         override public List<DependencyObject> getParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(row1);
-            parents.Add(row2);
+            List<DependencyObject> parents = new List<DependencyObject> { row1, row2 };
             return(parents);
         }
 

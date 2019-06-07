@@ -41,7 +41,7 @@
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-up-blue.png" />
+                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOLup.png" />
                 <TextBlock Grid.Row="1" Text="VOL UP"></TextBlock>
             </Grid>
         </custom:TlkrBTN>
@@ -52,7 +52,7 @@
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOL-mute-blue.png" />
+                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOLmute.png" />
                 <TextBlock Grid.Row="1" Text="MUTE"></TextBlock>
             </Grid>
         </custom:TlkrBTN>
@@ -63,7 +63,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image Grid.Column="0" Margin="-15,15,15,15" Source="../../Resources/EnvControl_images/back-blue.png"/>
+                <Image Grid.Column="0" Margin="-15,15,15,15" Source="../../Resources/EnvControl_images/back.png"/>
                 <TextBlock Grid.Column="1" Text=" BACK" TextAlignment="Right"></TextBlock>
             </Grid>
         </custom:TlkrBTN>

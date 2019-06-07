@@ -52,7 +52,7 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
 
-            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="370"/>
@@ -67,7 +67,7 @@
                 </Grid>
             </custom:TlkrBTN>
 
-            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Row="1" Grid.Column="2" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Column="2" Click="TV_controls">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="370"/>

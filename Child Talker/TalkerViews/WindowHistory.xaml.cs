@@ -20,7 +20,7 @@ namespace Child_Talker.TalkerViews
         public WindowHistory()
         {
             InitializeComponent();        
-            scan = Autoscan._instance; //singleton cannot call constructor, call instance
+            scan = Autoscan.instance; //singleton cannot call constructor, call instance
             util = TextUtility.Instance;
             selectedText = "";
             addPhrases();
@@ -83,16 +83,16 @@ namespace Child_Talker.TalkerViews
         {
             foreach (Tuple<DateTime, string> pair in util.getSpokenPhrases())
             {
-                TlkrBTN phraseButton = new TlkrBTN();
-                TextBlock phrase = new TextBlock();
+                TextBlock phrase = new TextBlock { Text = pair.Item2 };
 
-                phrase.Text = pair.Item2;
-
-                phraseButton.Background = Brushes.Black;
+                TlkrBTN phraseButton = new TlkrBTN
+                {
+                    Background = Brushes.Black,
+                    Content = phrase
+                };
                 phraseButton.Click += selectText;
-                phraseButton.Content = phrase;
-
                 phraseStack.Children.Add(phraseButton);
+
             }
         }
         
@@ -119,9 +119,11 @@ namespace Child_Talker.TalkerViews
          */
         override public List<DependencyObject> getParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(phraseStack);
-            parents.Add(sidePanel);
+            List<DependencyObject> parents = new List<DependencyObject>()
+            {
+                phraseStack,
+                sidePanel
+            };
             return (parents);
         }
     }

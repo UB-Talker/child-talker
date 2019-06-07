@@ -27,16 +27,13 @@ namespace Child_Talker
         private Stack<TalkerView> previousViews;
         private TextUtility util;
 
-        Autoscan autosc;
+        Autoscan scan;
         private static MainWindow mainWindowData;
         public static MainWindow _mainWindow
         {
             get
             {
-                if (mainWindowData == null)
-                {
-                    mainWindowData = new MainWindow();
-                }
+                mainWindowData = mainWindowData ?? new MainWindow();
                 return mainWindowData;
             }
         }
@@ -52,7 +49,7 @@ namespace Child_Talker
 
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;  //DataContext will give you the current view
-            autosc = Autoscan._instance;
+            scan = Autoscan.instance;
             this.Closing += save;
             this.Closing += terminate_program; //TODO verify that save still completes successfully
         }
@@ -84,11 +81,11 @@ namespace Child_Talker
 
         public Autoscan getAutoscan()
         {
-            return (autosc);
+            return (scan);
         }
         public bool isScanning()
         {
-            return (autosc.isScanning());
+            return (scan.isScanning());
         }
 
         // Method to change TalkerView, primarily called by TalkerView itself
@@ -98,9 +95,9 @@ namespace Child_Talker
             setPreviousView(prevView);
             DataContext = view;
 
-            if (autosc != null && autosc.isScanning())
+            if (scan != null && scan.isScanning())
             {
-                autosc.startAutoscan(view.getParents());
+                scan.startAutoscan(view.getParents());
             }
 
         }

@@ -25,10 +25,13 @@ namespace Child_Talker
             Text = _text;
             ImagePath = _imagePath;
             Root = _root;
-            Xml = new ChildTalkerXml();
-            Xml.Text = Text;
-            Xml.ImagePath = ImagePath;
-            Xml.TileType = ChildTalkerXml.Tile.folder;
+            // collection initializer
+            Xml = new ChildTalkerXml
+            {
+                Text = _text,
+                ImagePath = _imagePath,
+                TileType = ChildTalkerXml.Tile.folder
+            };
         }
 
         public bool IsLink()

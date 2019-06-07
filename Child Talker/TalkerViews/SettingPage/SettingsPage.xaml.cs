@@ -33,9 +33,11 @@ namespace Child_Talker.TalkerViews
          */
         override public List<DependencyObject> getParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>();
-            parents.Add(phraseStack);
-            parents.Add(sidePanel);
+            List<DependencyObject> parents = new List<DependencyObject>()
+            {
+                phraseStack,
+                sidePanel
+            };
             return (parents);
         }
     }

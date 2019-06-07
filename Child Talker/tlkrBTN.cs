@@ -52,7 +52,7 @@ namespace Child_Talker
                 this.Dispatcher.Invoke(() =>
                 {
                     this.Foreground = Brushes.Red;
-       
+                    
                 });
                 foreach(DependencyObject child in foregroundObjects)
                 {

@@ -82,7 +82,7 @@ namespace Child_Talker
 
         public static bool DontScan(Panel p)
         {
-            return (bool)p.GetValue(TlkrPanel.DontScanProperty);
+            return (bool)p.GetValue(DontScanProperty);
         } 
 
         public static void addTlkrPanelProperties()
