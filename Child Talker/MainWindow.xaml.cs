@@ -79,10 +79,6 @@ namespace Child_Talker
             return (previousViews.Count == 0);
         }
 
-        public Autoscan getAutoscan()
-        {
-            return (scan);
-        }
         public bool isScanning()
         {
             return (scan.isScanning());

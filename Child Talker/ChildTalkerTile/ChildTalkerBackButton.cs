@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Child_Talker.TalkerViews;
+﻿using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
@@ -15,7 +10,7 @@ namespace Child_Talker
         public ChildTalkerXml Xml { get; set; }
 
         private readonly PageViewer root;
-        private readonly Autoscan scan;
+        private readonly Utilities.Autoscan scan;
 
         public ChildTalkerBackButton(string _text, string _imagePath, PageViewer _root)
         {
@@ -25,7 +20,7 @@ namespace Child_Talker
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
-            scan = Autoscan.instance;
+            scan = Utilities.Autoscan.instance;
         }
 
         public bool IsLink()

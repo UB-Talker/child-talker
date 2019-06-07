@@ -147,7 +147,7 @@ namespace Child_Talker.TalkerViews
                     {
                         BackPressDefault();
                     }
-                    catch (System.ArgumentOutOfRangeException)
+                    catch (ArgumentOutOfRangeException)
                     {
                         Console.WriteLine("There are no characters to delete!");
                     }
@@ -206,7 +206,7 @@ namespace Child_Talker.TalkerViews
             return (parents);
         }
 
-        override public void update()
+        public override void update()
         {
             util.resetAutocorrect();
         }

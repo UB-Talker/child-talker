@@ -1,17 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews
 {
@@ -20,12 +9,9 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class Keyboard : TalkerView
     {
-        private Autoscan scan;
-
         public Keyboard()
         {
             InitializeComponent();
-            scan = Autoscan.instance;
             keyboard.textBox = greetingOutput; //haven't figured out a better way to do this yet
         }
 

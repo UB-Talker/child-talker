@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Child_Talker.TalkerViews;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
@@ -17,7 +13,7 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private Autoscan scan;
+        private Utilities.Autoscan scan;
 
         public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
         {
@@ -39,7 +35,7 @@ namespace Child_Talker
              * Xml.TileType = ChildTalkerXml.Tile.folder;
              * Xml.Children = XmlChildren;
              */
-            scan = Autoscan.instance;
+            scan = Utilities.Autoscan.instance;
 
         }
 

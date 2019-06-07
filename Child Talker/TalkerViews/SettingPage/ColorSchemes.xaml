@@ -55,18 +55,18 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
         
-            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Row="1" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-down-blue.png" />
+                    <Image Grid.Row="0" Source="" />
                     <TextBlock Grid.Row="1" Text="CH DOWN"></TextBlock>
                 </Grid>
             </custom:TlkrBTN>
 
-            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Row="1" Grid.Column="2" Click="TV_controls">
+            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Column="2" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>

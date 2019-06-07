@@ -33,14 +33,14 @@ namespace Child_Talker
 
         public bool PauseOnSelect
         {
-            get { return (bool)GetValue(pauseOnSelectProperty); }
-            set { SetValue(pauseOnSelectProperty, value); }
+            get => (bool)GetValue(pauseOnSelectProperty); 
+            set => SetValue(pauseOnSelectProperty, value); 
         } 
         
         public bool DontScan 
         {
-            get { return (bool)GetValue(DontScanProperty); }
-            set { SetValue(DontScanProperty, value); }
+            get => (bool)GetValue(DontScanProperty); 
+            set => SetValue(DontScanProperty, value); 
         }
 
         private List<DependencyObject> foregroundObjects = new List<DependencyObject>();

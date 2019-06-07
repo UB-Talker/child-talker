@@ -23,18 +23,10 @@ namespace Child_Talker
     /// </summary>
     public partial class Item : UserControl
     {
-        public static readonly DependencyProperty AutoSelectedProperty = DependencyProperty.RegisterAttached("AutoSelected", typeof(bool), typeof(Item), new PropertyMetadata(false));
         private static SpeechSynthesizer synth = new SpeechSynthesizer();
 
         public IChildTalkerTile CtTile { get; set; }
         private PageViewer Root;
-
-        public bool AutoSelected
-        {
-            get { return (bool)GetValue(AutoSelectedProperty); }
-            set { SetValue(AutoSelectedProperty, value); }
-        }
-
         public Item()
         {
             InitializeComponent();
@@ -58,14 +50,14 @@ namespace Child_Talker
 
         public new Brush Background
         {
-            get { return tkrbtn.Background; }
-            set { tkrbtn.Background = value; }
+            get => tkrbtn.Background; 
+            set => tkrbtn.Background = value; 
         }
 
         public Brush TkrForeground
         {
-            get { return tkrbtn.TkrForeground; }
-            set { tkrbtn.TkrForeground = value; }
+            get => tkrbtn.TkrForeground; 
+            set => tkrbtn.TkrForeground = value; 
         }
 
         private void LeftMouseButton_Click(object sender, RoutedEventArgs e)

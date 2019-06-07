@@ -30,7 +30,7 @@
 
         <ScrollViewer x:Name="scrollViewer" Margin="0" Grid.Column="0">
             <ScrollViewer.Resources>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
+               <!-- <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double> -->
                 <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
             </ScrollViewer.Resources>
 

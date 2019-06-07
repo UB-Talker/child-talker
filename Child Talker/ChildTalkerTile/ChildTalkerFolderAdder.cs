@@ -1,12 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Child_Talker.TalkerViews;
 using Microsoft.VisualBasic;
-using System.Windows.Forms;
-using Child_Talker.TalkerViews;
+using System;
 
 namespace Child_Talker
 {
@@ -17,7 +11,7 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private PageViewer Root;
+        private readonly PageViewer Root;
         private String FolderImgPath = "../../Resources/folder.jpg";
 
         public ChildTalkerFolderAdder(string _text, string _imagePath, PageViewer _root)

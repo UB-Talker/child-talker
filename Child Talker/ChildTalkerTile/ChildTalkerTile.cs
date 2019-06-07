@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Child_Talker.Utilities;
 using System.Timers;
-using System.Xml.Serialization;
-using Child_Talker.Utilities;
 
 namespace Child_Talker
 {
-    
+
     public class ChildTalkerTile : IChildTalkerTile
     {
-        private static TextUtility util = TextUtility.Instance;
+        private static readonly TextUtility util = TextUtility.Instance;
         public string Text { get; set; }
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }

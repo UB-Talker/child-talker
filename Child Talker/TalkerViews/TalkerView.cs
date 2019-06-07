@@ -10,9 +10,6 @@ namespace Child_Talker.TalkerViews
 {
     public class TalkerView : UserControl
     {
-       
-        public TalkerView(){}
-
         /*
          * Helper method that returns a reference to the current MainWindow
          */
@@ -51,8 +48,8 @@ namespace Child_Talker.TalkerViews
          * This method is 'virtual' because it allows subclasses to override
          * this definition
          */
-        virtual public void update() { }
+        public virtual void update() { }
 
-        virtual public List<DependencyObject> getParents() { return (null); }
+        public virtual List<DependencyObject> getParents() { return (null); }
     }
 }

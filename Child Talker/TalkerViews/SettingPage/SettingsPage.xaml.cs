@@ -14,9 +14,9 @@ using System.Windows.Shapes;
 using Child_Talker.Utilities;
 
 
-namespace Child_Talker.TalkerViews
+namespace Child_Talker.TalkerView
 {
-    /// <summary>
+    /// <summarys
     /// Interaction logic for WindowHistory.xaml
     /// </summary>
     public partial class SettingsPage : TalkerView
@@ -31,7 +31,7 @@ namespace Child_Talker.TalkerViews
          * Must return the panels to iterate through when autoscan is first initialized on this page
          * Currently goes between the phrase stack and side menu
          */
-        override public List<DependencyObject> getParents()
+        public override List<DependencyObject> getParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {

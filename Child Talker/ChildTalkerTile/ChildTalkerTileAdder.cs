@@ -1,12 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Child_Talker.TalkerViews;
 using Microsoft.VisualBasic;
+using System;
 using System.Windows.Forms;
-using Child_Talker.TalkerViews;
 
 namespace Child_Talker
 {
@@ -54,7 +49,6 @@ namespace Child_Talker
 
         private String PromptFileExplorer()
         {
-            Stream myStream = null;
             OpenFileDialog ofd = new OpenFileDialog();
 
             ofd.InitialDirectory = "c:\\";
@@ -67,10 +61,7 @@ namespace Child_Talker
             {   
                 try
                 {
-                    if ((myStream = ofd.OpenFile()) != null)
-                    {
-                        imagePath = ofd.FileName;
-                    }
+                    imagePath = ofd.FileName;
                 }
                 catch (Exception ex)
                 {

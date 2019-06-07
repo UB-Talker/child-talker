@@ -1,10 +1,9 @@
+using Child_Talker.Utilities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
-using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews
 {
@@ -107,7 +106,7 @@ namespace Child_Talker.TalkerViews
          *     and add those to the GUI when needed instead of deleting and reading all of the
          *     Butttons.
          */
-        override public void update()
+        public override void update()
         {
             phraseStack.Children.Clear();
             addPhrases();
@@ -117,7 +116,7 @@ namespace Child_Talker.TalkerViews
          * Must return the panels to iterate through when autoscan is first initialized on this page
          * Currently goes between the phrase stack and side menu
          */
-        override public List<DependencyObject> getParents()
+        public override List<DependencyObject> getParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {

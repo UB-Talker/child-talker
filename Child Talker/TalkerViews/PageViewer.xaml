@@ -18,20 +18,11 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" >
-            <Grid x:Name="Controls" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4">
+        <Border Grid.Row="0" Grid.Column="1">
+            <Grid x:Name="Controls">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -51,7 +42,7 @@
             </Grid>
         </Border>
 
-        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource genScrollViewer}"  Margin="0,0,30,0" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="4" >
+        <ScrollViewer x:Name="scrollViewer" Style="{StaticResource genScrollViewer}"  Margin="0,0,10,0" Grid.Column="0" >
             <ScrollViewer.Resources>
                 <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey={x:Type TextBlock}}">
                     <Setter Property = "Padding" Value="10" />

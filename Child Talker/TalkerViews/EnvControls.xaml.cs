@@ -23,13 +23,11 @@ namespace Child_Talker.TalkerViews
     public partial class EnvControls : TalkerView
     {
         private ConsoleControls cc = new ConsoleControls();
-        private List<Button> thisButtons = new List<Button>();
-        private List<Button> currentObject = new List<Button>(); //buttons being autoscanned
         private SecondaryWindow sw;
 
         Remote_VOL_popup vol;
         Remote_CH_popup ch;
-        Autoscan scan;
+        Utilities.Autoscan scan;
 
         public EnvControls()
         {
@@ -45,7 +43,7 @@ namespace Child_Talker.TalkerViews
             sw.Closing += popup_closed;
             sw.Hide();
 
-            scan = Autoscan.instance; //singleton cannot call constructor, call instance
+            scan = Utilities.Autoscan.instance; //singleton cannot call constructor, call instance
             vol = new Remote_VOL_popup(this);
             ch = new Remote_CH_popup(this);
         }
@@ -67,7 +65,7 @@ namespace Child_Talker.TalkerViews
             if (getWindow().isScanning())
             {
                 scan.updateActiveWindow(sw);
-                scan.startAutoscan( Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
+                scan.startAutoscan( Utilities.Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
             }
         }
         private void popup_closed(object sender, CancelEventArgs e)
@@ -107,12 +105,6 @@ namespace Child_Talker.TalkerViews
         {
             List<DependencyObject> parents = new List<DependencyObject> { row1, row2 };
             return(parents);
-        }
-
- 
-        private void terminate_program(object sender, EventArgs e)
-        {
-            App.Current.Shutdown();
         }
 
         private void backButton(object sender, RoutedEventArgs e)

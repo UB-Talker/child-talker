@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Windows;
 
@@ -9,6 +8,7 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class MainMenu : TalkerView
     {
+        private Utilities.Autoscan scan;
         public MainMenu()
         {
             InitializeComponent();
@@ -19,7 +19,7 @@ namespace Child_Talker.TalkerViews
         */
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
-            Autoscan scan = Autoscan.instance; //singleton cannot call constructor, call instance
+            scan = Utilities.Autoscan.instance; //singleton cannot call constructor, call instance
             scan.updateActiveWindow(this.getWindow());
             if (scan.isScanning())
             {
@@ -69,7 +69,7 @@ namespace Child_Talker.TalkerViews
         }
 
 
-        override public List<DependencyObject> getParents()
+        public override List<DependencyObject> getParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {

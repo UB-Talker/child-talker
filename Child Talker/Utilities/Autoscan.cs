@@ -1,7 +1,5 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -10,22 +8,19 @@ using Timer = System.Timers.Timer;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using Button = System.Windows.Controls.Button;
 using System;
-using System.ComponentModel;
-using System.Threading;
-using Child_Talker;
 using Child_Talker.TalkerViews;
 
-namespace Child_Talker
+namespace Child_Talker.Utilities
 {
     public class Autoscan
     {
-        public partial class HighlightedElementInfo //this was added to organize the data a more
+        public class HighlightedElementInfo //this was added to organize the data a more
         {
             public DependencyObject highlightedObject;
             private Brush originalBackground;
             private Brush originalForeground;
-            private Brush highlightBackground = Brushes.Yellow;
-            private Brush highlightForeground = Brushes.Purple;
+            private readonly Brush highlightBackground = Brushes.Yellow;
+            private readonly Brush highlightForeground = Brushes.Purple;
             public int indexHighlighted;
 
             public TalkerView currentView;
@@ -39,29 +34,25 @@ namespace Child_Talker
                     if (highlightedObject is Control)
                     {
 
-                        originalBackground = (highlightedObject as Control).Background;
-                        (highlightedObject as Control).Background = highlightBackground;
+                        originalBackground = ((Control)highlightedObject).Background;
+                        ((Control)highlightedObject).Background = highlightBackground;
                         if (highlightedObject is TlkrBTN)
                         {
-                            originalForeground = (highlightedObject as TlkrBTN).TkrForeground;
-                            (highlightedObject as TlkrBTN).TkrForeground = highlightForeground;
+                            originalForeground = ((TlkrBTN)highlightedObject).TkrForeground;
+                            ((TlkrBTN)highlightedObject).TkrForeground = highlightForeground;
                         }
                         else if (highlightedObject is Item)
                         {
-                            (highlightedObject as Control).Background = Brushes.Transparent;
-                            originalBackground = (highlightedObject as Item).Background;
-                            (highlightedObject as Item).Background = highlightBackground;
-                            originalForeground = (highlightedObject as Item).TkrForeground;
-                            (highlightedObject as Item).TkrForeground = highlightForeground;
-                        } else
-                        {
-
-                        }
-                    }
-                    if (highlightedObject is Panel)
+                            ((Control)highlightedObject).Background = Brushes.Transparent;
+                            originalBackground = ((Item)highlightedObject).Background;
+                            ((Item)highlightedObject).Background = highlightBackground;
+                            originalForeground = ((Item)highlightedObject).TkrForeground;
+                            ((Item)highlightedObject).TkrForeground = highlightForeground;
+                        }                     }
+                    else if (highlightedObject is Panel)
                     {
-                        originalBackground = (highlightedObject as Panel).Background;
-                        (highlightedObject as Panel).Background = highlightBackground;
+                        originalBackground = ((Panel)highlightedObject).Background;
+                        ((Panel)highlightedObject).Background = highlightBackground;
                     }
                 });
             }
@@ -71,21 +62,21 @@ namespace Child_Talker
                 currentView.Dispatcher.Invoke(() => { // this is needed to change anything in xaml 
                     if (highlightedObject is Control)
                     {
-                        (highlightedObject as Control).Background = originalBackground;
+                        ((Control)highlightedObject).Background = originalBackground;
                         if (highlightedObject is TlkrBTN)
                         {
-                            (highlightedObject as TlkrBTN).TkrForeground = originalForeground;
+                            ((TlkrBTN)highlightedObject).TkrForeground = originalForeground;
                         }
                         else if (highlightedObject is Item)
                         {
-                            (highlightedObject as Control).Background = Brushes.Transparent;
-                            (highlightedObject as Item).TkrForeground = originalForeground;
-                            (highlightedObject as Item).Background = originalBackground;
+                            ((Control)highlightedObject).Background = Brushes.Transparent;
+                            ((Item)highlightedObject).TkrForeground = originalForeground;
+                            ((Item)highlightedObject).Background = originalBackground;
                         }
                     }
                     if (highlightedObject is Panel)
                     {
-                        (highlightedObject as Panel).Background = originalBackground;
+                        ((Panel)highlightedObject).Background = originalBackground;
                     }
                 });
 
@@ -118,16 +109,23 @@ namespace Child_Talker
             set => autoscanTimer.Interval = value; 
             get => autoscanTimer.Interval; 
         }
-        public bool isReturnPoint;
+        private bool isReturnPoint;
         public bool FLAG_isReturnPoint
         {
             set {
                 isReturnPoint = value;
                 if (value) { returnPoint = hei.parentPanel; }
             }
-            get { return isReturnPoint; }
+            get => isReturnPoint; 
         }
         private static bool FLAG_autoscanActive = false;
+
+        private enum ControlKeys
+        {
+            GoBack = Key.Up,
+            Reverse = Key.Left,
+            Select = Key.Right
+        }
 
         private Timer autoscanTimer;
         
@@ -152,8 +150,8 @@ namespace Child_Talker
         private Window currentWindow;
         private TalkerView currentView
         {   
-            get { return hei.currentView;  }
-            set { hei.currentView = value; }
+            get => hei.currentView;  
+            set => hei.currentView = value; 
         }
 
         private List<DependencyObject> currentObjectList = new List<DependencyObject>(); //buttons being autoscanned
@@ -163,7 +161,7 @@ namespace Child_Talker
             autoscanTimer = new Timer();
             FLAG_Speed = 1000; // this sets the autoscanTimer.Interval
 
-            autoscanTimer.Elapsed += new ElapsedEventHandler(autoscanningButtons);// when timer is triggerred 'autoscanningButtons()' runs
+            autoscanTimer.Elapsed += autoscanningButtons;// when timer is triggerred 'autoscanningButtons()' runs
             autoscanTimer.AutoReset = true;
             FLAG_paused = true;
             FLAG_autoscanActive = false;
@@ -220,7 +218,7 @@ namespace Child_Talker
 
                 //special case code, panels that need a unique scanning process
                 //kind of brute forcing, there's a better way to do this
-                if(parent is Panel)
+                if(parent != null)
                 {
                     if (!FLAG_isReturnPoint) { FLAG_isReturnPoint = TlkrPanel.isReturnPoint(parent); }
                     FLAG_direction = TlkrPanel.scanReverse(parent) ? -1 : 1 ;
@@ -266,9 +264,9 @@ namespace Child_Talker
             
             foreach (object child in children) 
             {
-                if (child is DependencyObject)
+                DependencyObject depChild = child as DependencyObject;
+                if (depChild != null)
                 {
-                    DependencyObject depChild = child as DependencyObject;
                     if (depChild is T)         //searching for type "T" which is usually Button
                     {
                         if (depChild is Panel || depChild is Control )
@@ -297,12 +295,12 @@ namespace Child_Talker
             IEnumerable children = LogicalTreeHelper.GetChildren(parent);
             foreach (object child in children)
             {
-                if (child is DependencyObject)
+                DependencyObject depChild = child as DependencyObject;
+                if (depChild != null)
                 {
-                    DependencyObject depChild = child as DependencyObject;
-                    if (child is T)         //searching for type "T" which is usually Button
+                    if (depChild is T)         //searching for type "T" which is usually Button
                     {
-                        logicalCollection.Add(child as DependencyObject);
+                        logicalCollection.Add(depChild);
                     }
                     generateObjectList<T>(depChild, logicalCollection); //If still in dependencyobject, go into depChild's children
                 }
@@ -394,36 +392,29 @@ namespace Child_Talker
          * until it is release autoscan will move in reverse
          *        (QUESTION should it move faster in the opposite direction)
          */
-        bool QPressed = false; //keep this in case other keys are added to key down (removing and readding keydown event from window does the same thing)
-        bool EPressed = false;
-        bool SPressed = false;
+        private bool reverseIsPressed = false; 
+        private bool selectIsPressed = false;
+        private bool goBackIsPressed = false;
         private void KeyDown(object sender, KeyEventArgs e)
         {
-            Key k = e.Key;
+            var k = e.Key;
             switch (k)
             {
-                case Key.Q:
-                    if (QPressed == false)
-                    {
-                        QPressed = true;
-                        ReverseHold?.Invoke(hei); // equivalent to saying if( ReverseHold != null ){ ReverseHold(); }  //this is a delegate Event for other objects to add methods
-                        ReverseHoldDefault();
-                    }
+                case (Key)ControlKeys.Reverse when !reverseIsPressed:
+                    reverseIsPressed = true;
+                    ReverseHold?.Invoke(hei); // equivalent to saying if( ReverseHold != null ){ ReverseHold(); }  //this is a delegate Event for other objects to add methods
+                    ReverseHoldDefault();
                     break;
-                case Key.E:
-                    if (EPressed == false)
-                    {
-                        EPressed = true;
-                        SelectHold?.Invoke(hei);
-                    }
+                case (Key)ControlKeys.Select when !selectIsPressed:
+                    selectIsPressed = true;
+                    SelectHold?.Invoke(hei);
                     break;
-                case Key.S:
-                    if (SPressed == false)
-                    {
-                        SPressed = true;
-                        GoBackHold?.Invoke(hei);
-                    }
+                case (Key)ControlKeys.GoBack when !goBackIsPressed:
+                    goBackIsPressed = true;
+                    GoBackHold?.Invoke(hei);
                     break;
+                default:
+                    return;
             }
         }
         // key release eventHandler
@@ -434,157 +425,150 @@ namespace Child_Talker
         private void KeyUp(object sender, KeyEventArgs e)
         {
             currentWindow.KeyUp -= KeyUp;  //added back at end so the event cannot be called twice before completion
-            Key k = e.Key;
+            var k = e.Key;
             switch (k)
             {
-                case Key.Q:
-                    QPressed = false;
+                case (Key)ControlKeys.Reverse :
+                    reverseIsPressed = false;
                     ReversePress?.Invoke(hei);
                     ReversePressDefault();
                     break;
-                case Key.E:
-                    EPressed = false;
+                case (Key)ControlKeys.Select:
+                    selectIsPressed = false;
                     SelectPress?.Invoke(hei);
                     selectPressDefault();
                    break;
-                case Key.S:
-                    SPressed = false;
+                case (Key)ControlKeys.GoBack:
+                    goBackIsPressed = false;
                     GoBackPress?.Invoke(hei);
                     GoBackPressDefault();
                     break;
             }
-
             currentWindow.KeyUp += KeyUp;
         }
 
 
         private void selectPressDefault()
         {
-            if (SelectDefaultEnabled)
-            {
-                if (hei.highlightedObject is Panel)
-                {
-                    hei.restoreOriginalColor();
-                    Panel oldhighlightedObject = (hei.highlightedObject as Panel);
-                    startAutoscan<DependencyObject>(oldhighlightedObject);  //pass in panel that was clicked 
-                    hei.parentPanel = oldhighlightedObject;
-                }
-                else if ((hei.highlightedObject is Button) || (hei.highlightedObject is TlkrBTN))
-                {
-                    Control oldhighlightedObject = (hei.highlightedObject as Control);
-                    DependencyObject temp = hei.highlightedObject;
-                    if (oldhighlightedObject is TlkrBTN && (oldhighlightedObject as TlkrBTN).PauseOnSelect)
-                    {
-                        FLAG_paused = true;
-                        hei.highlightedObject = temp;
-                    }
-                    else if (FLAG_isReturnPoint)
-                    {
-                        hei.restoreOriginalColor();
-                        startAutoscan<DependencyObject>(returnPoint);  //pass in panel that was clicked 
-                        autoscanTimer.Start();
-                    }
-                    else
-                    {
-                        hei.restoreOriginalColor();
-                        autoscanTimer.Start();
-                    }
-                    oldhighlightedObject.RaiseEvent(new RoutedEventArgs(Button.ClickEvent)); // how you simulate a button click in code
-                }
-                else if (hei.highlightedObject is Item)
-                {
-                    hei.restoreOriginalColor();
-                    Item oldhighlightedObject = (hei.highlightedObject as Item);
-                    oldhighlightedObject.CtTile.PerformAction();
-                }
-            }
-
-        }
-        
-        private void GoBackPressDefault()
-        {
-            if (GoBackDefaultEnabled)
+            if (!SelectDefaultEnabled) return;
+            if (hei.highlightedObject is Panel)
             {
                 hei.restoreOriginalColor();
-                if (FLAG_paused)
+                Panel highlightedObject = (hei.highlightedObject as Panel);
+                startAutoscan<DependencyObject>(highlightedObject); //pass in panel that was clicked 
+                hei.parentPanel = highlightedObject;
+            }
+            else if ((hei.highlightedObject is Button) || (hei.highlightedObject is TlkrBTN))
+            {
+                Button highlightedObject = (hei.highlightedObject as Button);
+
+                if (highlightedObject is TlkrBTN && ((TlkrBTN)highlightedObject).PauseOnSelect)
                 {
-                    FLAG_paused = false;
-                    if (FLAG_isReturnPoint)
-                    {
-                        startAutoscan<DependencyObject>(returnPoint);  //pass in panel that was clicked 
-                    } 
+                    FLAG_paused = true;
                 }
-                else if (hei.parentPanel is Panel)
+                else if (FLAG_isReturnPoint)
                 {
-                    if (FLAG_isReturnPoint)
-                    {
-                        if (TlkrPanel.isReturnPoint(hei.parentPanel))
-                        {
-                            FLAG_isReturnPoint = false;
-                            startAutoscan((currentWindow.DataContext as TalkerView).getParents());
-                        }
-                        else
-                        {
-                            startAutoscan<DependencyObject>(returnPoint);
-                        }
-                    }
-                    else if (currentWindow is SecondaryWindow)
-                    {
-                        currentWindow.Close();
-                    }
-                    else
-                    {
-                        try { startAutoscan((currentWindow.DataContext as TalkerView).getParents()); }
-                        catch
-                        {
-                            // if get parents is not defined create list from all top level panels
-                            startAutoscan(GetLogicalChildCollection<Panel>(currentWindow, new List<DependencyObject>()));
-                        }
-                    }
-                }
-                else if (hei.parentPanel == null)
-                {
-                    if (currentWindow is MainWindow)
-                    {
-                        if (!((MainWindow)currentWindow).backIsEmpty())
-                        {
-                            ((MainWindow)currentWindow).back();
-                        }
-                    }
+                    hei.restoreOriginalColor();
+                    startAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
+                    autoscanTimer.Start();
                 }
                 else
                 {
-                    startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                    hei.restoreOriginalColor();
+                    autoscanTimer.Start();
                 }
+
+                highlightedObject.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
+            }
+            else if (hei.highlightedObject is Item)
+            {
+                hei.restoreOriginalColor();
+                Item highlightedObject = (hei.highlightedObject as Item);
+                highlightedObject.CtTile.PerformAction();
+            }
+
+        }
+
+        private void GoBackPressDefault()
+        {
+            if (!GoBackDefaultEnabled) return;
+            hei.restoreOriginalColor();
+            if (FLAG_paused)
+            {
+                FLAG_paused = false;
+                if (FLAG_isReturnPoint)
+                {
+                    startAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
+                }
+            }
+            else if (hei.parentPanel != null)
+            {
+                if (FLAG_isReturnPoint)
+                {
+                    if (TlkrPanel.isReturnPoint(hei.parentPanel))
+                    {
+                        FLAG_isReturnPoint = false;
+                        startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                    }
+                    else
+                    {
+                        startAutoscan<DependencyObject>(returnPoint);
+                    }
+                }
+                else if (currentWindow is SecondaryWindow)
+                {
+                    currentWindow.Close();
+                }
+                else
+                {
+                    try
+                    {
+                        startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                    }
+                    catch
+                    {
+                        // if get parents is not defined create list from all top level panels
+                        startAutoscan(GetLogicalChildCollection<Panel>(currentWindow, new List<DependencyObject>()));
+                    }
+                }
+            }
+            else if (hei.parentPanel == null)
+            {
+                MainWindow temp = currentWindow as MainWindow;
+                if (temp != null && !temp.backIsEmpty())
+                {
+                    temp.back();
+                }
+            }
+            else
+            {
+                startAutoscan(((TalkerView)currentWindow.DataContext).getParents());
             }
         }
 
         private void ReversePressDefault()
         {
-            if (ReverseDefaultEnabled)
-            {
-                autoscanTimer.Stop();
-                currentWindow.KeyDown += KeyDown;
-                FLAG_direction = -FLAG_direction;
-                QPressed = false;
-                autoscanTimer.Start();
-            }
+            if (!ReverseDefaultEnabled) return;
+            autoscanTimer.Stop();
+            currentWindow.KeyDown += KeyDown;
+            FLAG_direction = -FLAG_direction;
+            reverseIsPressed = false;
+            autoscanTimer.Start();
         }
-        
+
         private void ReverseHoldDefault()
         {
-            if (ReverseDefaultEnabled)
+            if (!ReverseDefaultEnabled) return;
+            autoscanTimer.Stop();
+            //hei.indexHighlighted -= 1 * FLAG_direction; // go back 2 buttons (after KeyUp autoscaningButtons is called, which adds 1 to index           
+            if (hei.indexHighlighted < 0 || hei.indexHighlighted >= currentObjectList.Count)
             {
-                autoscanTimer.Stop();
-                //hei.indexHighlighted -= 1 * FLAG_direction; // go back 2 buttons (after KeyUp autoscaningButtons is called, which adds 1 to index           
-                if (hei.indexHighlighted < 0 || hei.indexHighlighted >= currentObjectList.Count)
-                {
-                    hei.indexHighlighted += currentObjectList.Count * FLAG_direction; // loops the index if it goes negative
-                }
-                FLAG_direction = -FLAG_direction;
-                autoscanTimer.Start();
-                autoscanningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
+                hei.indexHighlighted += currentObjectList.Count * FLAG_direction; // loops the index if it goes negative
             }
+
+            FLAG_direction = -FLAG_direction;
+            autoscanTimer.Start();
+            autoscanningButtons(null, null); //manually calls event handler so the q key press is executed immedietly
         }
     }
  }

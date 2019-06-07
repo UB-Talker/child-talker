@@ -1,23 +1,11 @@
-﻿using System;
+﻿using Child_Talker.Utilities;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Serialization;
-using Microsoft.VisualBasic;
-using Child_Talker;
 
 namespace Child_Talker.TalkerViews
 {
@@ -32,7 +20,7 @@ namespace Child_Talker.TalkerViews
         private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
 
-        private Autoscan scan;
+        private Utilities.Autoscan scan;
 
         public PageViewer()
         {
@@ -49,12 +37,12 @@ namespace Child_Talker.TalkerViews
             {
                 this.LoadFromXml(ProfilePath);
             }
-            scan = Autoscan.instance;
+            scan = Utilities.Autoscan.instance;
         }
 
 
 
-        override public List<DependencyObject> getParents()
+        public override List<DependencyObject> getParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {
@@ -269,10 +257,7 @@ namespace Child_Talker.TalkerViews
             {
                 try
                 {
-                    if ((myStream = ofd.OpenFile()) != null)
-                    {
-                        imagePath = ofd.FileName;
-                    }
+                    imagePath = ofd.FileName;
                 }
                 catch (Exception ex)
                 {
