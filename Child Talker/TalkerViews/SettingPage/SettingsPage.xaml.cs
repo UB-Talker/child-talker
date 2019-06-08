@@ -14,7 +14,7 @@ using System.Windows.Shapes;
 using Child_Talker.Utilities;
 
 
-namespace Child_Talker.TalkerView
+namespace Child_Talker.TalkerViews.SettingPage
 {
     /// <summarys
     /// Interaction logic for WindowHistory.xaml
@@ -35,7 +35,6 @@ namespace Child_Talker.TalkerView
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {
-                phraseStack,
                 sidePanel
             };
             return (parents);

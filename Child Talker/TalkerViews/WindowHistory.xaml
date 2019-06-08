@@ -10,6 +10,7 @@
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
     <local:TalkerView.Resources>
+        <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
     </local:TalkerView.Resources>
 
     <Grid>
@@ -27,7 +28,6 @@
                     <Setter Property = "TextWrapping" Value="Wrap" />
                     <Setter Property = "TextAlignment" Value="Left" />
                 </Style>
-                <sys:Double x:Key="{x:Static SystemParameters.VerticalScrollBarWidthKey}">75</sys:Double>
             </ScrollViewer.Resources>
 
             <custom:TlkrStackPanel x:Name="phraseStack" scanReverse="True">
