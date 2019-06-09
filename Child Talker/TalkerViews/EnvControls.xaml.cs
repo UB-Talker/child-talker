@@ -55,7 +55,7 @@ namespace Child_Talker.TalkerViews
             if(getWindow().isScanning())
             {
                 scan.updateActiveWindow(sw);
-                scan.startAutoscan<Button>(vol.gridLayout);
+                scan.StartAutoscan<Button>(vol.gridLayout);
             }
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
@@ -65,7 +65,7 @@ namespace Child_Talker.TalkerViews
             if (getWindow().isScanning())
             {
                 scan.updateActiveWindow(sw);
-                scan.startAutoscan( Utilities.Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
+                scan.StartAutoscan( Utilities.Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
             }
         }
         private void popup_closed(object sender, CancelEventArgs e)
@@ -75,7 +75,7 @@ namespace Child_Talker.TalkerViews
             if(getWindow().isScanning())
             {
                 scan.updateActiveWindow(this.getWindow());
-                scan.startAutoscan(this.getParents());
+                scan.StartAutoscan(this.getParents());
             }
         }
 

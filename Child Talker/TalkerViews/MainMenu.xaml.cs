@@ -27,7 +27,7 @@ namespace Child_Talker.TalkerViews
             }
             else
             {
-                scan.startAutoscan(this.getParents()); //updates autoscan on what the current view i
+                scan.StartAutoscan(this.getParents()); //updates autoscan on what the current view i
             }
         }
 

@@ -33,7 +33,7 @@ namespace Child_Talker
             root.PopFolderView();
             if (scan.isScanning())
             {
-                scan.startAutoscan<Item>(root.items);
+                scan.StartAutoscan<Item>(root.items);
             }
         }
     }

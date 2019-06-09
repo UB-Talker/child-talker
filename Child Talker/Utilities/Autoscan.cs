@@ -85,7 +85,7 @@ namespace Child_Talker.Utilities
         private HighlightedElementInfo hei = new HighlightedElementInfo();
         private Panel returnPoint;
 
-        public bool FLAG_paused {
+        public bool FlagPaused {
             set
             {
                 if (!value)
@@ -99,7 +99,6 @@ namespace Child_Talker.Utilities
             }
             get => !autoscanTimer.Enabled; 
         }
-        private int direction = 1;
         public int FLAG_direction
         {
             set => direction = value < 0 ? -1 : 1; 
@@ -109,8 +108,7 @@ namespace Child_Talker.Utilities
             set => autoscanTimer.Interval = value; 
             get => autoscanTimer.Interval; 
         }
-        private bool isReturnPoint;
-        public bool FLAG_isReturnPoint
+        public bool FlagIsReturnPoint
         {
             set {
                 isReturnPoint = value;
@@ -120,6 +118,11 @@ namespace Child_Talker.Utilities
         }
         private static bool FLAG_autoscanActive = false;
 
+        // flag contents
+        private bool isReturnPoint;
+        private int direction = 1;
+        private Timer autoscanTimer;
+
         private enum ControlKeys
         {
             GoBack = Key.Up,
@@ -127,7 +130,6 @@ namespace Child_Talker.Utilities
             Select = Key.Right
         }
 
-        private Timer autoscanTimer;
         
         //delegates are used to define parameter and return value for event listener
 
@@ -163,7 +165,7 @@ namespace Child_Talker.Utilities
 
             autoscanTimer.Elapsed += autoscanningButtons;// when timer is triggerred 'autoscanningButtons()' runs
             autoscanTimer.AutoReset = true;
-            FLAG_paused = true;
+            FlagPaused = true;
             FLAG_autoscanActive = false;
         }
 
@@ -172,14 +174,12 @@ namespace Child_Talker.Utilities
             return hei.parentPanel;
         }
 
-        /* 
-         * this is a manual setup for autoscanning
-         * by providing this with a list of dependency objects 
-         * i.e a combination of buttons and panels
-         * those items will be scanned
-         * parentPanel is an optional parameter when set 'GoBackPress' will autoscan that element
-         */
-        public void startAutoscan(List<DependencyObject> newObjectList, Panel parentPanel = null) 
+        /// <summary>
+        /// Initializes Autoscan with a user defined List of DependencyObjects to scan through, and the option of providing Panel that will be scanned next after GoBack is pressed (defaults to null if ignored)
+        /// </summary>
+        /// <param name="newObjectList">The list of DependencyObjects to scan</param>
+        /// <param name="parentPanel"> Designated location what gets scanned next after GoBack is triggered (unless modifed elsewhere)</param>
+        public void StartAutoscan(List<DependencyObject> newObjectList, Panel parentPanel = null) 
         {
             autoscanTimer.Stop();
             FLAG_autoscanActive = true;
@@ -203,7 +203,7 @@ namespace Child_Talker.Utilities
          * and it will isolate all immediate Button children from the parent
          * in this scenario if the parent has any Panel children they cannot be scanned with this method
          */
-        public void startAutoscan<T>(Panel parent) where T : DependencyObject // allow you to specify a type within a panel or just collect all direct children elements
+        public void StartAutoscan<T>(Panel parent) where T : DependencyObject // allow you to specify a type within a panel or just collect all direct children elements
         {
             if (hei.highlightedObject != null) { hei.restoreOriginalColor(); } // just in incase color was not reset elsewhere
 
@@ -220,7 +220,7 @@ namespace Child_Talker.Utilities
                 //kind of brute forcing, there's a better way to do this
                 if(parent != null)
                 {
-                    if (!FLAG_isReturnPoint) { FLAG_isReturnPoint = TlkrPanel.isReturnPoint(parent); }
+                    if (!FlagIsReturnPoint) { FlagIsReturnPoint = TlkrPanel.isReturnPoint(parent); }
                     FLAG_direction = TlkrPanel.scanReverse(parent) ? -1 : 1 ;
                 }
                 else
@@ -248,7 +248,7 @@ namespace Child_Talker.Utilities
 
         public bool isScanning()
         {
-            return (!FLAG_paused);
+            return (!FlagPaused);
         }
        
         public static bool isActive()
@@ -317,7 +317,7 @@ namespace Child_Talker.Utilities
                 {
                     _instance = new Autoscan();
                 }
-                _instance.FLAG_isReturnPoint = false; // TODO find a more prcise way to deal with this
+                _instance.FlagIsReturnPoint = false; // TODO find a more prcise way to deal with this
                 return _instance;
             }
         }
@@ -326,7 +326,7 @@ namespace Child_Talker.Utilities
         // it changes the currently highlighted button for autoscanning
         public void autoscanningButtons(object source, EventArgs e)
         {
-            if (!FLAG_paused)
+            if (!FlagPaused)
             {
                 if (hei.highlightedObject != null)
                 {
@@ -350,12 +350,12 @@ namespace Child_Talker.Utilities
                     hei.highlightElement();
                 }
 
-
-                if (hei.parentPanel != null && hei.highlightedObject is Control)
+                Control highlightedObject = hei.highlightedObject as Control;
+                if (hei.parentPanel != null && highlightedObject != null)
                 {
                     currentView.Dispatcher.Invoke(() =>
                     {
-                        (hei.highlightedObject as Control).BringIntoView();
+                        highlightedObject.BringIntoView();
                     });
 
                 }
@@ -436,7 +436,7 @@ namespace Child_Talker.Utilities
                 case (Key)ControlKeys.Select:
                     selectIsPressed = false;
                     SelectPress?.Invoke(hei);
-                    selectPressDefault();
+                    SelectPressDefault();
                    break;
                 case (Key)ControlKeys.GoBack:
                     goBackIsPressed = false;
@@ -448,14 +448,14 @@ namespace Child_Talker.Utilities
         }
 
 
-        private void selectPressDefault()
+        private void SelectPressDefault()
         {
             if (!SelectDefaultEnabled) return;
             if (hei.highlightedObject is Panel)
             {
                 hei.restoreOriginalColor();
                 Panel highlightedObject = (hei.highlightedObject as Panel);
-                startAutoscan<DependencyObject>(highlightedObject); //pass in panel that was clicked 
+                StartAutoscan<DependencyObject>(highlightedObject); //pass in panel that was clicked 
                 hei.parentPanel = highlightedObject;
             }
             else if ((hei.highlightedObject is Button) || (hei.highlightedObject is TlkrBTN))
@@ -464,12 +464,12 @@ namespace Child_Talker.Utilities
 
                 if (highlightedObject is TlkrBTN && ((TlkrBTN)highlightedObject).PauseOnSelect)
                 {
-                    FLAG_paused = true;
+                    FlagPaused = true;
                 }
-                else if (FLAG_isReturnPoint)
+                else if (FlagIsReturnPoint)
                 {
                     hei.restoreOriginalColor();
-                    startAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
+                    StartAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
                     autoscanTimer.Start();
                 }
                 else
@@ -493,26 +493,26 @@ namespace Child_Talker.Utilities
         {
             if (!GoBackDefaultEnabled) return;
             hei.restoreOriginalColor();
-            if (FLAG_paused)
+            if (FlagPaused)
             {
-                FLAG_paused = false;
-                if (FLAG_isReturnPoint)
+                FlagPaused = false;
+                if (FlagIsReturnPoint)
                 {
-                    startAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
+                    StartAutoscan<DependencyObject>(returnPoint); //pass in panel that was clicked 
                 }
             }
             else if (hei.parentPanel != null)
             {
-                if (FLAG_isReturnPoint)
+                if (FlagIsReturnPoint)
                 {
                     if (TlkrPanel.isReturnPoint(hei.parentPanel))
                     {
-                        FLAG_isReturnPoint = false;
-                        startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                        FlagIsReturnPoint = false;
+                        StartAutoscan((currentWindow.DataContext as TalkerView).getParents());
                     }
                     else
                     {
-                        startAutoscan<DependencyObject>(returnPoint);
+                        StartAutoscan<DependencyObject>(returnPoint);
                     }
                 }
                 else if (currentWindow is SecondaryWindow)
@@ -523,12 +523,12 @@ namespace Child_Talker.Utilities
                 {
                     try
                     {
-                        startAutoscan((currentWindow.DataContext as TalkerView).getParents());
+                        StartAutoscan((currentWindow.DataContext as TalkerView).getParents());
                     }
                     catch
                     {
                         // if get parents is not defined create list from all top level panels
-                        startAutoscan(GetLogicalChildCollection<Panel>(currentWindow, new List<DependencyObject>()));
+                        StartAutoscan(GetLogicalChildCollection<Panel>(currentWindow, new List<DependencyObject>()));
                     }
                 }
             }
@@ -542,7 +542,7 @@ namespace Child_Talker.Utilities
             }
             else
             {
-                startAutoscan(((TalkerView)currentWindow.DataContext).getParents());
+                StartAutoscan(((TalkerView)currentWindow.DataContext).getParents());
             }
         }
 

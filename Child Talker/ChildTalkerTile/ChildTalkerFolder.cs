@@ -50,7 +50,7 @@ namespace Child_Talker
             Root.LoadTiles(Children);
             if (scan.isScanning())
             {
-                scan.startAutoscan<Item>(Root.items);
+                scan.StartAutoscan<Item>(Root.items);
             }
             
         }

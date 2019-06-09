@@ -41,7 +41,7 @@ namespace Child_Talker
 
             if (scan != null && scan.isScanning())
             {
-                scan.startAutoscan(view.getParents());
+                scan.StartAutoscan(view.getParents());
             }
 
         }

@@ -60,7 +60,7 @@ namespace Child_Talker.TalkerViews
 
             if(getWindow().isScanning()) //stops autoscan so selected text can be used
             {
-                scan.startAutoscan<Button>(sidePanel);
+                scan.StartAutoscan<Button>(sidePanel);
             }
         }
 
