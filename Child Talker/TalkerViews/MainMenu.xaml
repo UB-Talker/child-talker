@@ -34,7 +34,7 @@
                         <RowDefinition Height="90"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Height="100" Width="100" Grid.Row="0" Background="Cyan">
+                    <Border Height="100" Width="100" Grid.Row="0" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/settings.png"/>
                         </Border.OpacityMask>
@@ -48,7 +48,7 @@
                         <RowDefinition Height="90"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Background="Red" >
+                    <Border Grid.Row="0" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/alarm.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -71,7 +71,7 @@
                         <RowDefinition Height="170"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Background="Cyan" Margin="6">
+                    <Border Grid.Row="0" Background="{StaticResource ColorScheme.Foreground.Color}" Margin="6">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/../whelp.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -85,7 +85,7 @@
                         <RowDefinition Height="170"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.Row="0" Background="Cyan" Margin="-15">
+                    <Border Grid.Row="0" Background="{StaticResource ColorScheme.Foreground.Color}" Margin="-15">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/EnvControls.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -99,7 +99,7 @@
                         <RowDefinition Height="170"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <Border Width="360" Grid.Row="0" Background="Cyan" HorizontalAlignment="Center" Margin="-15">
+                    <Border Width="360" Grid.Row="0" Background="{StaticResource ColorScheme.Foreground.Color}" HorizontalAlignment="Center" Margin="-15">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -108,7 +108,7 @@
                 </Grid>
             </custom:TlkrBTN>
             <custom:TlkrBTN x:Name="autoscanButton" Grid.Column="3" DontScan="True" Click="autoscanButton_click">
-                    <Border Margin="-120" Background="Cyan">
+                    <Border Margin="-120" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/autoscan.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -128,7 +128,7 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                    <Border Height="170" Grid.Column="0" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/phrases.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -142,7 +142,7 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                    <Border Height="170" Grid.Column="0" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/history.png" Stretch="Uniform"/>
                         </Border.OpacityMask>
@@ -156,7 +156,7 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Border Height="170" Grid.Column="0" Background="Cyan">
+                    <Border Height="170" Grid.Column="0" Background="{StaticResource ColorScheme.Foreground.Color}">
                         <Border.OpacityMask>
                             <ImageBrush ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png" Stretch="Uniform"/>
                         </Border.OpacityMask>

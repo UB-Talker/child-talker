@@ -1,0 +1,27 @@
+﻿<local:TlkrBTN x:Class="Child_Talker.TalkerViews.PageViewerSecondaryWindow.TlkrBtnLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Child_Talker"
+             xmlns:childTalker="clr-namespace:Child_Talker"
+             xmlns:childTalker1="clr-namespace:Child_Talker"
+             x:Name="actualButton" Margin="5" Click="ThisOnClick"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="200">
+    <childTalker1:TlkrBTN.Resources>
+        <ResourceDictionary Source="../../Resources/ColorSchemes/Generic.xaml"/>
+    </childTalker1:TlkrBTN.Resources>
+    <Grid Width="200" Height="200" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*" />
+            <RowDefinition Height="70*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" x:Name="label" />
+        <Border Width="120" Height="120" Grid.Row="1" HorizontalAlignment="Center" Background="{StaticResource ColorScheme.Foreground.Color}">
+            <Border.OpacityMask>
+                <ImageBrush x:Name="image" Stretch="Uniform"/>
+            </Border.OpacityMask>
+        </Border>
+    </Grid>
+</local:TlkrBTN>

@@ -47,9 +47,11 @@ namespace Child_Talker
             util = TextUtility.Instance;
             previousViews = new Stack<TalkerView>();
 
+            mainWindowData = this;
+
             TalkerView startScreen = new MainMenu();
             DataContext = startScreen;  //DataContext will give you the current view
-            scan = Autoscan.instance;
+            scan = Autoscan.Instance;
             this.Closing += save;
             this.Closing += terminate_program; //TODO verify that save still completes successfully
         }
@@ -79,9 +81,9 @@ namespace Child_Talker
             return (previousViews.Count == 0);
         }
 
-        public bool isScanning()
+        public bool IsScanning()
         {
-            return (scan.isScanning());
+            return (scan.IsScanning());
         }
 
         // Method to change TalkerView, primarily called by TalkerView itself
@@ -91,7 +93,7 @@ namespace Child_Talker
             setPreviousView(prevView);
             DataContext = view;
 
-            if (scan != null && scan.isScanning())
+            if (scan != null && scan.IsScanning())
             {
                 scan.StartAutoscan(view.getParents());
             }

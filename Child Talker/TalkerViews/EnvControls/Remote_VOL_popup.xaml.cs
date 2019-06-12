@@ -34,7 +34,6 @@ namespace Child_Talker.TalkerViews
 
         private void Close_Button(object sender, RoutedEventArgs e)
         {
-            Window.GetWindow(this).Close();
         }
 
     }

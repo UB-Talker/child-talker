@@ -8,7 +8,7 @@ namespace Child_Talker
     {
         public int[] relayValues = { 0, 0, 0 };
 
-        public void relayControl(int index)
+        public void RelayControl(int index)
         {
             Process cmd = new Process();
             cmd.StartInfo.FileName = @"C:\Program Files\PuTTY\plink.exe";

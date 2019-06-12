@@ -9,11 +9,17 @@
              mc:Ignorable="d" 
              d:DesignHeight="1080" d:DesignWidth="1920">
     <local:TalkerView.Resources>
-        <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
-            <Setter Property="FontSize" Value="20"/>
-        </Style>
-        <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                    <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="../Resources/KeyboardLayouts.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </local:TalkerView.Resources>
 
     <Grid>

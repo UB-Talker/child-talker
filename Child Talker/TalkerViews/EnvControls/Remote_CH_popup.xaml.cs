@@ -32,9 +32,5 @@ namespace Child_Talker.TalkerViews
             parent.TV_Controls(sender, e);
         }
 
-        private void Close_Button(object sender, RoutedEventArgs e)
-        {
-            Window.GetWindow(this).Close();
-        }
     }
 }

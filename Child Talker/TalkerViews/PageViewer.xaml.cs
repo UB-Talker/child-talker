@@ -3,9 +3,13 @@ using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml;
 using System.Xml.Serialization;
+using Child_Talker.TalkerViews.PageViewerSecondaryWindow;
 
 namespace Child_Talker.TalkerViews
 {
@@ -37,10 +41,8 @@ namespace Child_Talker.TalkerViews
             {
                 this.LoadFromXml(ProfilePath);
             }
-            scan = Utilities.Autoscan.instance;
+            scan = Utilities.Autoscan.Instance;
         }
-
-
 
         public override List<DependencyObject> getParents()
         {
@@ -52,11 +54,10 @@ namespace Child_Talker.TalkerViews
             return (parents);
         }
 
-
-
-        /*
-         * Getter Method for ViewParents
-         */
+        /// <summary>
+        /// Getter method for ViewParents
+        /// </summary>
+        /// <returns></returns>
         public Stack<ChildTalkerFolder> getViewParents()
         {
             return ViewParents;
@@ -108,16 +109,17 @@ namespace Child_Talker.TalkerViews
             }
         }
         
-        public void GoBackPress(Autoscan.HighlightedElementInfo hei)
+        public void GoBackPressTileScanning(Autoscan.HighlightedElementInfo hei)
         {
             try {
                 if (ViewParents.Count<1 && !scan.GoBackDefaultEnabled)
                 {
+                    // by calling this here default key behavior will happen immediately after invocation is completet
                     scan.GoBackDefaultEnabled = true;
-                    scan.GoBackPress -= GoBackPress;
+                    scan.GoBackPress -= GoBackPressTileScanning;
                 }
                 backItem.PerformAction(); }
-            catch { Autoscan.instance.GoBackPress -= GoBackPress; }
+            catch { Autoscan.Instance.GoBackPress -= GoBackPressTileScanning; }
         } 
 
         public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
@@ -134,11 +136,12 @@ namespace Child_Talker.TalkerViews
                 {
                     _ctTiles.Insert(0, backItem);
                     ViewParents.Peek().SetChildren(_ctTiles);
-                    // scan.GoBackHold += backItem.PerformAction();
+
+                    // this will ony trigger the first time LoadTiles is Called
                     if (scan.GoBackDefaultEnabled)
                     {
                         scan.GoBackDefaultEnabled = false;
-                        scan.GoBackPress += GoBackPress;
+                        scan.GoBackPress += GoBackPressTileScanning;
                     }
                 }
             }
@@ -151,7 +154,6 @@ namespace Child_Talker.TalkerViews
                 ui.SetParent(this);
                 items.Children.Add(ui);
             }
-
 
             if (calledFromLoad)
             {
@@ -180,11 +182,6 @@ namespace Child_Talker.TalkerViews
             items.Children.Add(ui);
 
             SaveToXml(ProfilePath);
-        }
-
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         public void RemoveSingleTile(Item _itemToRemove)
@@ -218,37 +215,110 @@ namespace Child_Talker.TalkerViews
             }
         }
 
-        private void InsertFolderTile_Click(Object sender, RoutedEventArgs e)
+        private SecondaryWindow popupWindow;
+        private KeyboardLayout keyboard;
+        public void CreateFolder(object sender, RoutedEventArgs e)
         {
-            String inputPhrase = Interaction.InputBox("Enter name for the folder you would like to add", "Enter Phrase", "Hello World!");
+            String inputPhrase = keyboard.textBox.Text;
             if (inputPhrase != "")
             {
                 ChildTalkerFolder ctFolder = new ChildTalkerFolder(inputPhrase, "../../Resources/folder.jpg", this);
                 AddSingleItem(ctFolder);
             }
         }
+        
 
-        private void InsertTalkerTile_Click(Object sender, RoutedEventArgs e)
+
+
+        private void InsertFolderTile_Click(object sender, RoutedEventArgs e)
         {
-            String inputPhrase = Interaction.InputBox("Enter the phrase you would like to add", "Enter Phrase", "Hello World!");
+            NewKeyboardPopup();
+            keyboard.defaultEnterPress = false;
+            keyboard.EnterPress += CreateFolder;
+            popupWindow.Show();
+        }
+
+        private void NewKeyboardPopup()
+        {
+            keyboard = new KeyboardLayout();
+            popupWindow = new SecondaryWindow((MainWindow)Window.GetWindow(this));
+            keyboard.AddTextBox();
+            keyboard.textBox.CharacterCasing = CharacterCasing.Lower;
+            keyboard.textBox.MaxLength = 25;
+            //redefines size of secondaryWindow to fit keyboard
+            popupWindow.MainGrid.Margin = new Thickness(130, 0, 130, 0);
+            popupWindow.MainGrid.DataContext = keyboard.MainGrid;
+            popupWindow.SetContents<Panel>(keyboard.keyboardGrid);
+
+            // invocations
+            keyboard.BackPressWhenEmpty += ((object sender, RoutedEventArgs e) => { popupWindow.Close(); });
+            if (Autoscan.flagAutoscanActive) 
+            {
+                scan.GoBackPress += (hei => {
+                    if (hei.parentPanel != null) return;
+                    popupWindow?.Close();
+                    scan.IgnoreGoBackPressOnce = true;
+                });
+            }
+        }
+
+        private void InsertTalkerTile_Click(object sender, RoutedEventArgs e)
+        {
+            NewKeyboardPopup();
+            keyboard.defaultEnterPress = false;
+            keyboard.EnterPress += CreateTile;
+            popupWindow.Show();
+        }
+
+        private void OnIconSelect(string imagePath)
+        {
             if (inputPhrase != "")
             {
-                String imagePath = PromptFileExplorer();
+                popupWindow.Close();
+                
+                //String imagePath = PromptFileExplorer();
                 if (imagePath != "")
                 {
                     ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath);
                     AddSingleItem(ctItem);
                 }
             }
+
+        }
+
+        private string inputPhrase = "";
+        private void CreateTile(object sender, RoutedEventArgs e)
+        {
+            inputPhrase = keyboard.textBox.Text;
+            popupWindow.Close();
+
+            popupWindow = new SecondaryWindow((MainWindow)Window.GetWindow(this));
+            ImageGenerator ig = new ImageGenerator(OnIconSelect);
+            popupWindow.SetContents(ig);
+            popupWindow.Show();
+
+            ig.setAutoscanFocus(popupWindow);
+            ig.CancelIcon.Click += (bSender, bE) =>
+            {
+                scan.GoBackPressDefault();
+                popupWindow?.Close();
+                scan.StartAutoscan(this.getParents());
+                scan.UpdateActiveWindow(MainWindow._mainWindow);
+            };
+/*
+*/
+        }
+
+        private void GenerateImageExplorer()
+        {
         }
 
         private String PromptFileExplorer()
         {
             Stream myStream = null;
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
-
             ofd.InitialDirectory = "c:\\";
-            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF)|*.BMP;*.JPG;*.GIF|All files (*.*)|*.*";
+            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
             ofd.FilterIndex = 0;
             ofd.RestoreDirectory = true;
 

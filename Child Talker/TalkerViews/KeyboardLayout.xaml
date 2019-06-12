@@ -16,12 +16,15 @@
         </Style>
         <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
     </local:TalkerView.Resources>
-    <Grid>
+    <custom:TlkrGrid x:Name="MainGrid" Background="Black">
         <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
             <RowDefinition Height="15*"/>
             <RowDefinition Height="60*"/>
         </Grid.RowDefinitions>
-        <custom:TlkrScrollViewer Grid.Row="0"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
+        <TextBox x:Name="OptTextBox" Grid.Row="0" Background="White" Foreground="Black" Padding="20" TextAlignment="Left">dfdf
+        </TextBox>
+        <custom:TlkrScrollViewer Grid.Row="1"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
             <ScrollViewer.Resources>
                 <Style x:Key="localStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}">
                     <Setter Property="Margin" Value="16,6,16,6"/>
@@ -35,7 +38,7 @@
             </custom:TlkrStackPanel>
         </custom:TlkrScrollViewer>
 
-        <custom:TlkrGrid x:Name="keyboardGrid" Grid.Row="1" isReturnPoint="True" >
+        <custom:TlkrGrid x:Name="keyboardGrid" Grid.Row="2" isReturnPoint="True" >
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
@@ -249,5 +252,5 @@
                 </custom:TlkrBTN>
             </Grid>
         </custom:TlkrGrid>
-    </Grid>
+    </custom:TlkrGrid>
 </local:TalkerView>

@@ -5,9 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:custom="clr-namespace:Child_Talker"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="350"
              Name="self">
-    <custom:TlkrBTN x:Name="tkrbtn" Width="300" Height="300" Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up">
+    <custom:TlkrBTN x:Name="tkrbtn" Width="300" Height="300" Margin="15" Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>

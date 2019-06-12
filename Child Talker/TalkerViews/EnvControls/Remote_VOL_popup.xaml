@@ -31,6 +31,7 @@
                     <RowDefinition Height="75*"/>
                     <RowDefinition Height="25*"/>
                 </Grid.RowDefinitions>
+                <Image Grid.Row="0" Source="../../Resources/EnvControl_images/VOLDown.png" />
                 <TextBlock Grid.Row="1" Text="VOL DOWN"></TextBlock>
             </Grid>
         </custom:TlkrBTN>
@@ -57,7 +58,7 @@
             </Grid>
         </custom:TlkrBTN>
 
-        <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Close_Button">
+        <custom:TlkrBTN Grid.Row="0" Grid.Column="2" x:Name="backButton">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

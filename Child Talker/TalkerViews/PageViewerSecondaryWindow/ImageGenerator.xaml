@@ -1,0 +1,44 @@
+﻿<talker:TalkerView x:Class="Child_Talker.TalkerViews.PageViewerSecondaryWindow.ImageGenerator"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Child_Talker.TalkerViews.PageViewerSecondaryWindow"
+             xmlns:talker="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:custom="clr-namespace:Child_Talker"
+             xmlns:pageViewerSecondaryWindow="clr-namespace:Child_Talker.TalkerViews.PageViewerSecondaryWindow"
+             mc:Ignorable="d" 
+            d:DesignHeight="1080" d:DesignWidth="1520">
+    <talker:TalkerView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../../Resources/ColorSchemes/Generic.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="{x:Type local:TlkrBtnLayout}" BasedOn="{StaticResource genButton}"></Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </talker:TalkerView.Resources>
+
+    <custom:TlkrGrid Margin="-100">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <custom:TlkrScrollViewer Grid.Row="0" x:Name="scrollViewer" isReturnPoint="True">
+            <StackPanel x:Name="ImagesPanel" Width="1200"></StackPanel>
+        </custom:TlkrScrollViewer>
+        <Grid Grid.Row="1"  >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="15*"/>
+                <ColumnDefinition Width="35*"/>
+                <ColumnDefinition Width="15*"/>
+            </Grid.ColumnDefinitions>
+            <custom:TlkrBTN x:Name="CancelIcon" Grid.Column="1">Cancel</custom:TlkrBTN>
+            <custom:TlkrBTN x:Name="GoBackIcon" Grid.Column="0" Click="GoBackPage">Back</custom:TlkrBTN>
+        </Grid>
+
+    </custom:TlkrGrid>
+
+</talker:TalkerView>
+

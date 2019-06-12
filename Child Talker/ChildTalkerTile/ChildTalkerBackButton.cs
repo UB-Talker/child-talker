@@ -20,7 +20,7 @@ namespace Child_Talker
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
-            scan = Utilities.Autoscan.instance;
+            scan = Utilities.Autoscan.Instance;
         }
 
         public bool IsLink()
@@ -31,7 +31,7 @@ namespace Child_Talker
         public void PerformAction()
         {
             root.PopFolderView();
-            if (scan.isScanning())
+            if (scan.IsScanning())
             {
                 scan.StartAutoscan<Item>(root.items);
             }

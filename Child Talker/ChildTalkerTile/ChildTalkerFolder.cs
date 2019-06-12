@@ -35,7 +35,7 @@ namespace Child_Talker
              * Xml.TileType = ChildTalkerXml.Tile.folder;
              * Xml.Children = XmlChildren;
              */
-            scan = Utilities.Autoscan.instance;
+            scan = Utilities.Autoscan.Instance;
 
         }
 
@@ -48,7 +48,7 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            if (scan.isScanning())
+            if (scan.IsScanning())
             {
                 scan.StartAutoscan<Item>(Root.items);
             }

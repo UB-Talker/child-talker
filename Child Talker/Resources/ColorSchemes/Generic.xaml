@@ -2,21 +2,29 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="clr-namespace:Child_Talker">
    
-    
+   
+    <SolidColorBrush x:Key="ColorScheme.Border.Color" Color="#FF0000"/>
+    <SolidColorBrush x:Key="ColorScheme.Background.Color" Color="Black"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.Color" Color="#00CFF3"/>
+    <Thickness x:Key="ColorScheme.Border.Thickness" Bottom="10" Left="10" Right="10" Top="10"/>
+
+
     <Style x:Key="genButton" TargetType= "{x:Type Button}" >
-        <Setter Property="FontSize" Value="40px"/>
+        <Setter Property="FontSize" Value="40"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Background" Value="Black"/>
-        <Setter Property="Foreground" Value="#FF00CFF3" />
+        <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Color}"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Color}" />
         <Setter Property="Margin" Value="20"/>
-        <Setter Property="BorderThickness" Value="10"/>
-        <Setter Property="BorderBrush" Value="#FF0000"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ColorScheme.Border.Thickness}"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ColorScheme.Border.Color}"/>
     </Style>
-    
+
+
+
     <Style x:Key="genTextBlock" TargetType="{x:Type TextBlock}">
         <Setter Property="FontSize" Value="40px"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="Foreground" Value="#FF00CFF3" />
+        <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Color}" />
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
     
@@ -43,7 +51,6 @@
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#00FF00"/>
     <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#BFBFBF"/>
     <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#00cc00"/>
-    
     <Style x:Key="FocusVisual">
         <Setter Property="Control.Template">
             <Setter.Value>

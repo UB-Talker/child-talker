@@ -13,7 +13,16 @@
     <Window.Background>
         <SolidColorBrush Opacity="1" Color="#5F00FFFF"/>
     </Window.Background>
-    <custom:TlkrGrid x:Name="MainGrid" Margin="300,150,300,150">
+        <Window.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="./Resources/ColorSchemes/Generic.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+                <Thickness x:Key="Popup.Margins" Top="150" Bottom="150" Left="300" Right="300"/>
+            </ResourceDictionary>
+        </Window.Resources>
+
+    <custom:TlkrGrid x:Name="MainGrid" Margin="{DynamicResource Popup.Margins}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿    using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Timers;
@@ -25,8 +25,8 @@ namespace Child_Talker.TalkerViews
         private ConsoleControls cc = new ConsoleControls();
         private SecondaryWindow sw;
 
-        Remote_VOL_popup vol;
-        Remote_CH_popup ch;
+        private Remote_VOL_popup vol;
+        private Remote_CH_popup ch;
         Utilities.Autoscan scan;
 
         public EnvControls()
@@ -39,54 +39,34 @@ namespace Child_Talker.TalkerViews
             //runTimer(); //initializes timer
 
             //this.Closed += terminate_program;
-            sw = new SecondaryWindow(this.getWindow());
-            sw.Closing += popup_closed;
-            sw.Hide();
 
-            scan = Utilities.Autoscan.instance; //singleton cannot call constructor, call instance
-            vol = new Remote_VOL_popup(this);
-            ch = new Remote_CH_popup(this);
+            scan = Utilities.Autoscan.Instance; //singleton cannot call constructor, call instance
         }
         
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
-            sw.DataContext = vol;
+            vol = new Remote_VOL_popup(this);
+            sw = new SecondaryWindow(Window.GetWindow(this), vol.gridLayout) ;
+            vol.backButton.Click += ((object bSender, RoutedEventArgs bE) => { Window.GetWindow(this)?.Close(); });
+            scan.ClearParentPanel();
             sw.Show();
-            if(getWindow().isScanning())
-            {
-                scan.updateActiveWindow(sw);
-                scan.StartAutoscan<Button>(vol.gridLayout);
-            }
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
-            sw.DataContext = ch;
+            ch = new Remote_CH_popup(this);
+            sw = new SecondaryWindow(Window.GetWindow(this), ch.gridLayout);
+            scan.StartAutoscan<Button>(ch.gridLayout);
+            ch.backButton.Click += ((object bSender, RoutedEventArgs bE) => { Window.GetWindow(this)?.Close(); });
+            scan.ClearParentPanel();
             sw.Show();
-            if (getWindow().isScanning())
-            {
-                scan.updateActiveWindow(sw);
-                scan.StartAutoscan( Utilities.Autoscan.generateObjectList<Button>( ch.gridLayout, new List<DependencyObject>() ) );
-            }
         }
-        private void popup_closed(object sender, CancelEventArgs e)
+        private void RelayControl(object sender, RoutedEventArgs e)
         {
-            e.Cancel = true;
-            sw.Hide();
-            if(getWindow().isScanning())
-            {
-                scan.updateActiveWindow(this.getWindow());
-                scan.StartAutoscan(this.getParents());
-            }
-        }
-
-        private void relayControl(object sender, RoutedEventArgs e)
-        {
-          
             string _tag = (((Button)sender).Tag).ToString();
             int _t = int.Parse(_tag);
             Debug.Print(_t.ToString());
             
-            new Thread(() => cc.relayControl(_t))
+            new Thread(() => cc.RelayControl(_t))
             {
                 IsBackground = true
             }.Start();
@@ -101,7 +81,7 @@ namespace Child_Talker.TalkerViews
             }.Start();
             
         }
-        override public List<DependencyObject> getParents()
+        public override List<DependencyObject> getParents()
         {
             List<DependencyObject> parents = new List<DependencyObject> { row1, row2 };
             return(parents);
@@ -109,9 +89,6 @@ namespace Child_Talker.TalkerViews
 
         private void backButton(object sender, RoutedEventArgs e)
         {
-            sw.Closing -= popup_closed;
-            sw.Close();
-
             openPreviousView(sender, e);
         }
     }

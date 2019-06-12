@@ -12,14 +12,14 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class WindowHistory : TalkerView
     {
-        private TextUtility util; //Used to speak the currently selected text
+        private  readonly TextUtility util; //Used to speak the currently selected text
         private string selectedText; //Is set when the user chooses one of the phrases in the menu
         private TlkrBTN selectedButton; //The currently pressed button
-        private Autoscan scan;
+        private readonly Autoscan scan;
         public WindowHistory()
         {
             InitializeComponent();        
-            scan = Autoscan.instance; //singleton cannot call constructor, call instance
+            scan = Autoscan.Instance; //singleton cannot call constructor, call instance
             util = TextUtility.Instance;
             selectedText = "";
             addPhrases();
@@ -58,7 +58,7 @@ namespace Child_Talker.TalkerViews
                 selectedButton = button;
             }
 
-            if(getWindow().isScanning()) //stops autoscan so selected text can be used
+            if(getWindow().IsScanning()) //stops autoscan so selected text can be used
             {
                 scan.StartAutoscan<Button>(sidePanel);
             }

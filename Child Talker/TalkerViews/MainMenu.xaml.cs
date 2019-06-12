@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Windows;
+using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews
 {
@@ -8,7 +9,8 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class MainMenu : TalkerView
     {
-        private Utilities.Autoscan scan;
+        private readonly Utilities.Autoscan scan = Utilities.Autoscan.Instance; //singleton cannot call constructor, call instance
+
         public MainMenu()
         {
             InitializeComponent();
@@ -19,15 +21,16 @@ namespace Child_Talker.TalkerViews
         */
         public void autoscanButton_click(object sender, RoutedEventArgs e)
         {
-            scan = Utilities.Autoscan.instance; //singleton cannot call constructor, call instance
-            scan.updateActiveWindow(this.getWindow());
-            if (scan.isScanning())
+            scan.UpdateActiveWindow(this.getWindow());
+            if (Autoscan.flagAutoscanActive)
             {
-                scan.stopAutoscan();
+                Autoscan.flagAutoscanActive = false;
+                scan.StopAutoscan();
             }
             else
             {
-                scan.StartAutoscan(this.getParents()); //updates autoscan on what the current view i
+                Autoscan.flagAutoscanActive = true;
+                scan.StartAutoscan(this.getParents(), null, Window.GetWindow(this)); //updates autoscan on what the current view i
             }
         }
 
