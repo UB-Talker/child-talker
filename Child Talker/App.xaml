@@ -5,7 +5,10 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Resources/ColorSchemes/Generic.xaml"/>
+                <ResourceDictionary Source="./Resources/ColorSchemes/SecondaryWindowTemplate.xaml"/>
+                <ResourceDictionary Source="./Resources/ColorSchemes/ButtonTemplates.xaml"/>
+                <ResourceDictionary Source="./Resources/ColorSchemes/BaseScheme.xaml"/>
+                <ResourceDictionary Source="./Resources/ColorSchemes/ScrollBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

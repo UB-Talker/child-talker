@@ -101,17 +101,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="SecondaryWindow.xaml.cs">
-      <DependentUpon>SecondaryWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TalkerViews\PageViewerSecondaryWindow\ImageGenerator.xaml.cs">
+    <Compile Include="SecondaryWindow.cs" />
+    <Compile Include="TalkerButton\DependencyProperties.cs" />
+    <Compile Include="TalkerButton\Button.cs" />
+    <Compile Include="TalkerViews\PhrasesPage\ImageGenerator.xaml.cs">
       <DependentUpon>ImageGenerator.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TalkerViews\PageViewerSecondaryWindow\TlkrBTNLayout.xaml.cs">
-      <DependentUpon>TlkrBTNLayout.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViews\KeyboardLayout.xaml.cs">
       <DependentUpon>KeyboardLayout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TalkerViews\PhrasesPage\ImageGenButton.xaml.cs">
+      <DependentUpon>ImageGenButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViews\SettingPage\ColorSchemes.xaml.cs">
       <DependentUpon>ColorSchemes.xaml</DependentUpon>
@@ -119,63 +119,55 @@
     <Compile Include="TalkerViews\SettingPage\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TlkrBTN.cs" />
-    <Compile Include="TlkrStackPanel.cs" />
-    <Compile Include="TlkrScrollViewer.cs" />
-    <Compile Include="TlkrGrid.cs" />
-    <Compile Include="TlkrPanel.cs" />
-    <Compile Include="Utilities\Autoscan.cs" />
-    <Compile Include="ConsoleControls.cs" />
-    <Compile Include="TalkerViews\EnvControls.xaml.cs">
+    <Compile Include="Utilities\Autoscan2.cs" />
+    <Compile Include="Utilities\ConsoleControls.cs" />
+    <Compile Include="TalkerViews\EnvControlsPage\EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViews\EnvControls\Remote_CH_popup.xaml.cs">
+    <Compile Include="TalkerViews\EnvControlsPage\Remote_CH_popup.xaml.cs">
       <DependentUpon>Remote_CH_popup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViews\EnvControls\Remote_VOL_popup.xaml.cs">
+    <Compile Include="TalkerViews\EnvControlsPage\Remote_VOL_popup.xaml.cs">
       <DependentUpon>Remote_VOL_popup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViews\MainMenu.xaml.cs">
-      <DependentUpon>MainMenu.xaml</DependentUpon>
+    <Compile Include="TalkerViews\HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViews\TalkerView.cs" />
-    <Compile Include="TalkerViews\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TalkerViews\WindowHistory.xaml.cs">
       <DependentUpon>WindowHistory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\ParseTree.cs" />
     <Compile Include="Utilities\TextUtility.cs" />
-    <Page Include="Resources\KeyboardLayouts.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SecondaryWindow.xaml">
+    <Page Include="Resources\ColorSchemes\ButtonTemplates.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\ColorSchemes\Generic.xaml">
+    <Page Include="Resources\ColorSchemes\ScrollBarStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\PageViewerSecondaryWindow\ImageGenerator.xaml">
+    <Page Include="Resources\ColorSchemes\SecondaryWindowTemplate.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\PageViewerSecondaryWindow\TlkrBTNLayout.xaml">
+    <Page Include="Resources\ColorSchemes\BaseScheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\EnvControls.xaml">
+    <Page Include="TalkerViews\PhrasesPage\ImageGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\EnvControls\Remote_CH_popup.xaml">
+    <Page Include="TalkerViews\EnvControlsPage\EnvControls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TalkerViews\EnvControlsPage\Remote_CH_popup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Item.xaml">
+    <Page Include="TalkerViews\PhrasesPage\PhraseButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,15 +184,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ChildTalkerTile\ChildTalkerFolder.cs" />
-    <Compile Include="ChildTalkerTile\ChildTalkerFolderAdder.cs" />
     <Compile Include="ChildTalkerTile\ChildTalkerTile.cs" />
     <Compile Include="ChildTalkerTile\ChildTalkerBackButton.cs" />
-    <Compile Include="ChildTalkerTile\ChildTalkerTileAdder.cs" />
     <Compile Include="ChildTalkerTile\ChildTalkerXml.cs" />
     <Compile Include="ChildTalkerTile\ChildTalkerXmlWrapper.cs" />
     <Compile Include="ChildTalkerTile\IChildTalkerTile.cs" />
-    <Compile Include="Item.xaml.cs">
-      <DependentUpon>Item.xaml</DependentUpon>
+    <Compile Include="TalkerViews\PhrasesPage\PhraseButton.xaml.cs">
+      <DependentUpon>PhraseButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="TalkerViews\Keyboard.xaml.cs">
       <DependentUpon>Keyboard.xaml</DependentUpon>
@@ -213,23 +203,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\MainMenu.xaml">
+    <Page Include="TalkerViews\HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\PageViewer.xaml">
+    <Page Include="TalkerViews\PhrasesPage\Phrases.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TalkerViews\PhrasesPage\ImageGenButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="TalkerViews\SettingPage\ColorSchemes.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TalkerViews\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TalkerViews\EnvControls\Remote_VOL_popup.xaml">
+    <Page Include="TalkerViews\EnvControlsPage\Remote_VOL_popup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -243,8 +233,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TalkerViews\PageViewer.xaml.cs">
-      <DependentUpon>PageViewer.xaml</DependentUpon>
+    <Compile Include="TalkerViews\PhrasesPage\Phrases.xaml.cs">
+      <DependentUpon>Phrases.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -384,9 +374,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\back.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\folder.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -452,7 +439,9 @@
   <ItemGroup>
     <Resource Include="Resources\MainMenu_images\settings.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\General_Icons\automobile\001-car.png" />
     <Resource Include="Resources\General_Icons\automobile\002-car.png" />
@@ -963,6 +952,7 @@
     <Resource Include="Resources\General_Icons\Multimedia\upload-1.png" />
     <Resource Include="Resources\General_Icons\Multimedia\upload.png" />
     <Resource Include="Resources\General_Icons\Multimedia\vector.png" />
+    <Resource Include="Resources\back.png" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\license\license.html" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\svg\001-youtube.svg" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\svg\002-yelp.svg" />

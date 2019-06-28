@@ -13,13 +13,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Child_Talker.TalkerButton;
+using Button = Child_Talker.TalkerButton.Button;
 
 namespace Child_Talker.TalkerViews
 {
     /// <summary>
     /// Interaction logic for KeyboardLayout.xaml
     /// </summary>
-    public partial class KeyboardLayout : TalkerView
+    public partial class KeyboardLayout : Grid
     {
         public static readonly DependencyProperty PhysicalPressProperty = DependencyProperty.Register ( "PhysicalPress", typeof(KeyEventHandler), typeof(KeyboardLayout), new PropertyMetadata() );
         public static readonly DependencyProperty VirtualPressProperty = DependencyProperty.Register ( "VirtualPress", typeof(RoutedEventHandler), typeof(KeyboardLayout), new PropertyMetadata() );
@@ -31,27 +33,27 @@ namespace Child_Talker.TalkerViews
 
         
         // event
-        private KeyEventHandler PhysicalPressHandler
+        private KeyEventHandler PhysicalPressPropertyHandler
         {
             get => (KeyEventHandler)GetValue(PhysicalPressProperty); 
             set => SetValue(PhysicalPressProperty, value); 
         }
-        private RoutedEventHandler VirtualPressHandler
+        private RoutedEventHandler VirtualPressPropertyHandler
         {
             get => (RoutedEventHandler)GetValue(VirtualPressProperty); 
             set => SetValue(VirtualPressProperty, value); 
         }
-        private RoutedEventHandler SpacePressHandler
+        private RoutedEventHandler SpacePressPropertyHandler
         {
             get => (RoutedEventHandler)GetValue(SpacePressProperty); 
             set => SetValue(SpacePressProperty, value); 
         }
-        private RoutedEventHandler EnterPressHandler
+        private RoutedEventHandler EnterPressPropertyHandler
         {
             set => SetValue(EnterPressProperty, value); 
             get => (RoutedEventHandler)GetValue(EnterPressProperty); 
         }
-        private RoutedEventHandler BackPressHandler
+        private RoutedEventHandler BackPressPropertyHandler
         {
             get => (RoutedEventHandler)GetValue(BackPressProperty); 
             set => SetValue(BackPressProperty, value); 
@@ -94,11 +96,16 @@ namespace Child_Talker.TalkerViews
             util.resetAutocorrect();
             this.KeyUp += PhysicalKeyboardKeyUp;
 
-            this.PhysicalPress += PhysicalPressHandler;
-            this.VirtualPress += VirtualPressHandler;
-            this.EnterPress += EnterPressHandler;
-            this.BackPress += BackPressHandler;
-            this.SpacePress += SpacePressHandler;
+            this.PhysicalPress += PhysicalPressPropertyHandler;
+            this.VirtualPress += VirtualPressPropertyHandler;
+            this.EnterPress += EnterPressPropertyHandler;
+            this.BackPress += BackPressPropertyHandler;
+            this.SpacePress += SpacePressPropertyHandler;
+        }
+        ~KeyboardLayout()
+        {
+            util?.resetAutocorrect();
+            this.KeyUp -= PhysicalKeyboardKeyUp;
         }
 
         private void PhysicalKeyboardKeyUp(object sender, KeyEventArgs e)
@@ -142,7 +149,7 @@ namespace Child_Talker.TalkerViews
         {
             VirtualPress?.Invoke(sender, e);
 
-            string s = (sender as TlkrBTN).Tag.ToString();
+            string s = (sender as Button).Text;
 
             switch (s)
             {
@@ -191,7 +198,7 @@ namespace Child_Talker.TalkerViews
         public void addAutocorrect(char c)
         {
             autofill.Children.Clear();
-            foreach (TlkrBTN b in util.getNextSuggestion(c))
+            foreach (Button b in util.getNextSuggestion(c))
             {
                 b.Click += AutoCorrectButton;
                 autofill.Children.Add(b);
@@ -207,7 +214,7 @@ namespace Child_Talker.TalkerViews
         private void addAutoFill(string s)
         {
             autofill.Children.Clear();
-            foreach(TlkrBTN b in util.getNextSuggestionsForString(s))
+            foreach(Button b in util.getNextSuggestionsForString(s))
             {
                 b.Click += AutoCorrectButton;
                 autofill.Children.Add(b);
@@ -222,7 +229,8 @@ namespace Child_Talker.TalkerViews
         public TextBox AddTextBox()
         {
             MainGrid.RowDefinitions[0].Height = new GridLength(125);
-            /*textBox = new TextBox();
+            /*
+             textBox = new TextBox();
             textBox.Background = Brushes.Green;
             textBox.Foreground = Brushes.White;
             textBox.FontSize = 40;
@@ -234,28 +242,29 @@ namespace Child_Talker.TalkerViews
             return textBox;
         }
 
-        public override void update()
-        {
-            util.resetAutocorrect();
-        }
+
+        
 
         private void AutoCorrectButton(object sender, RoutedEventArgs args)
         {
-            TlkrBTN b = sender as TlkrBTN;
+            Button b = sender as Button;
+
             string s = textBox.Text;
             int i = s.LastIndexOf(' ');
             s = s.Substring(0, i + 1);
-            s += (string)b.Tag + ' ';
+            s += b.Text + ' ';
             textBox.Text = s;
             util.resetAutocorrect();
             autofill.Children.Clear();
         }
 
 
+
+
         private void EnterPressDefault()
         {
             if (!defaultEnterPress) return;
-            util.speak(textBox.Text);
+            util.Speak(textBox.Text);
             textBox.Text = "";
         }
 

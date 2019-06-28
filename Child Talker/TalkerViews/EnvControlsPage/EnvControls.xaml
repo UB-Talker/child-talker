@@ -1,0 +1,69 @@
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.EnvControlsPage.EnvControls"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+             mc:Ignorable="d" 
+             d:DesignHeight="860" d:DesignWidth="1430">
+
+
+    <Grid x:Name="layoutGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+            <ColumnDefinition Width="25*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"  Grid.Row="0" Foreground="Red" Padding="0,0,0,0" >MENU</TextBlock>
+        <TextBlock Grid.Column="1"  Grid.Row="0" Foreground="Red" Padding="0,0,0,0" Grid.ColumnSpan="3">LIGHT CONTROLS</TextBlock>
+        <TextBlock Grid.Column="0"  Grid.Row="2" Foreground="Red" Padding="0,10,0,0" Grid.ColumnSpan="4">TELEVISION CONTROLS</TextBlock>
+        <Grid Name="row1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <tb:Button x:Name="back" Grid.Column="0" 
+                            Text="Back" ImageSource="/Child Talker;component/Resources/EnvControl_images/back.png"
+                            Click="BackButton"/>
+            <tb:Button x:Name="switch1" Grid.Column="1" 
+                            Tag="1" Text="Switch 1" ImageSource="/Child Talker;component/Resources/EnvControl_images/outlet.png"
+                            Click="RelayControl" />
+            <tb:Button x:Name="switch2" Grid.Column="2" 
+                            Tag="2" Click="RelayControl" 
+                            Text="Switch 2" ImageSource="/Child Talker;component/Resources/EnvControl_images/outlet.png"/>
+            <tb:Button x:Name="switch3" Grid.Column="3"
+                            Tag="3" Text="Switch 3" ImageSource="/Child Talker;component/Resources/EnvControl_images/outlet.png"
+                            Click="RelayControl" />
+
+        </Grid>
+
+        <Grid Name="row2" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Margin="0,0,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+                <ColumnDefinition Width="25*"/>
+            </Grid.ColumnDefinitions>
+            <tb:Button x:Name="power"  Grid.Column="0" Click="TV_Controls"
+                            Tag="KEY_POWER"             
+                            Text="Power" ImageSource="/Child Talker;component/Resources/EnvControl_images/power.png"/>
+            <tb:Button x:Name="volume" Grid.Column="1" Click="Volume_Click"
+                            Text="Volume" ImageSource="/Child Talker;component/Resources/EnvControl_images/VOLup.png" />
+            <tb:Button x:Name="channel" Grid.Column="2" Click="Channel_Click"
+                            ImageSource="/Child Talker;component/Resources/EnvControl_images/CHup.png" 
+                            Text="Channel" />
+            <tb:Button x:Name="more_remotes" Grid.Column="3" 
+                            ImageSource="/Child Talker;component/Resources/EnvControl_images/menu.png" Text="More Remotes"/>
+        </Grid>
+    </Grid>
+</local:TalkerView>

@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic;
 using System;
 using System.Windows.Forms;
+using Child_Talker.TalkerViews.PhrasesPage;
 
 namespace Child_Talker
 {
@@ -11,13 +12,15 @@ namespace Child_Talker
         public string ImagePath { get; set; }
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
+        public bool HasColor { get; set; }
 
-        private PageViewer Root;
+        private Phrases Root;
 
-        public ChildTalkerTileAdder(string _text, string _imagePath, PageViewer _root)
+        public ChildTalkerTileAdder(string _text, string _imagePath, Phrases _root)
         {
             Text = _text;
             ImagePath = _imagePath;
+            HasColor = IsFileTypeTransparent(_imagePath);
             Root = _root;
             // collection initializer
             Xml = new ChildTalkerXml()
@@ -41,10 +44,16 @@ namespace Child_Talker
                 String imagePath = PromptFileExplorer();
                 if (imagePath != "")
                 {
-                    ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath);
+                    ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath, IsFileTypeTransparent(imagePath));
                     Root.AddSingleItem(ctItem);
                 }
             }
+        }
+
+        public static bool IsFileTypeTransparent(String s)
+        {
+            int exe = s.LastIndexOf('.');
+            return !s.Substring(exe+1).Contains("png");
         }
 
         private String PromptFileExplorer()

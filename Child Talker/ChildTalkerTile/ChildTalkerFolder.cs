@@ -1,5 +1,6 @@
 ﻿using Child_Talker.TalkerViews;
 using System.Collections.Generic;
+using Child_Talker.TalkerViews.PhrasesPage;
 
 namespace Child_Talker
 {
@@ -7,18 +8,20 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
+        public bool InColor { get; set; }
         public List<IChildTalkerTile> Children = new List<IChildTalkerTile>();
         private List<ChildTalkerXml> XmlChildren = new List<ChildTalkerXml>();
-        public PageViewer Root;
+        public Phrases Root;
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private Utilities.Autoscan scan;
+        private Utilities.Autoscan2 scan;
 
-        public ChildTalkerFolder(string _text, string _imagePath, PageViewer _root, List<IChildTalkerTile> _children = null)
+        public ChildTalkerFolder(string _text, string _imagePath, Phrases _root, bool _inColor, List<IChildTalkerTile> _children = null)
         {
             Text = _text;
             ImagePath = _imagePath;
+            InColor = !(TalkerViews.PhrasesPage.PhraseButton.CheckForTransparency(ImagePath));
             SetChildren(_children);
             Root = _root;
             Xml = new ChildTalkerXml
@@ -35,7 +38,7 @@ namespace Child_Talker
              * Xml.TileType = ChildTalkerXml.Tile.folder;
              * Xml.Children = XmlChildren;
              */
-            scan = Utilities.Autoscan.Instance;
+            scan = Utilities.Autoscan2.Instance;
 
         }
 
@@ -48,10 +51,7 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            if (scan.IsScanning())
-            {
-                scan.StartAutoscan<Item>(Root.items);
-            }
+            scan.NewListToScanThough<TalkerViews.PhrasesPage.PhraseButton>(Root.items);
             
         }
 

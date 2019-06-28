@@ -5,20 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace Child_Talker.TalkerViews
 {
-    public class TalkerView : UserControl
+    public class TalkerView : Page
     {
-        /*
-         * Helper method that returns a reference to the current MainWindow
-         */
-        public MainWindow getWindow()
-        {
-            return (MainWindow)Window.GetWindow(this);
-        }
-
-
         /*
          * Set the current view to the main menu and clear the Stack maintained by the
          * MainWindow. This is used for the user to jump straight back to the MainMenu
@@ -26,10 +18,8 @@ namespace Child_Talker.TalkerViews
          */
         public void backToHome(object sender, RoutedEventArgs args)
         {
-            MainWindow window = getWindow();
-            window.resetStack();
-            getWindow().changeView(new MainMenu());
-          
+            MainWindow.Instance.ResetStack();
+            MainWindow.Instance.ChangeView(new MainMenu());
         }
 
 
@@ -37,19 +27,21 @@ namespace Child_Talker.TalkerViews
          * This functionality will be assigned to the back button on the pages that implement it.
          * See MainWindow.back method to see more information.
          */
-        public void openPreviousView(object sender, RoutedEventArgs args)
+        public void OpenPreviousView(object sender, RoutedEventArgs args)
         { 
-            getWindow().back();
+            MainWindow.Instance.Back();
         }
 
 
 
-        /* May be needed to update some views when navigating between them.
-         * This method is 'virtual' because it allows subclasses to override
-         * this definition
-         */
-        public virtual void update() { }
+        /// <summary>
+        /// May be needed to update some views when navigating between them.
+        /// This method is 'virtual' because it allows subclasses to override this definition
+        /// </summary>
+        public virtual void Update() { }
 
-        public virtual List<DependencyObject> getParents() { return (null); }
+        // must be overridden by child
+        public virtual List<DependencyObject> GetParents() => null;
+
     }
 }

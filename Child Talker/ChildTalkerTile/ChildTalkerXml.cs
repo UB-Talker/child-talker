@@ -22,5 +22,8 @@ namespace Child_Talker
 
         [XmlArrayItem]
         public List<ChildTalkerXml> Children { get; set; }
+
+        [XmlAttribute]
+        public bool InColor { get; set; }
     }
 }

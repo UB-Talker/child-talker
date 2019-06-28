@@ -23,109 +23,75 @@ namespace Child_Talker
     /// </summary>
     public partial class MainWindow : Window
     {
+        public double innerHeight;
+        public double innerWidth;
 
         private Stack<TalkerView> previousViews;
-        private TextUtility util;
 
-        Autoscan scan;
-        private static MainWindow mainWindowData;
-        public static MainWindow _mainWindow
-        {
-            get
-            {
-                mainWindowData = mainWindowData ?? new MainWindow();
-                return mainWindowData;
-            }
-        }
-
+        private readonly Autoscan2 scan;
+        private static MainWindow _instance;
+        public static MainWindow Instance => _instance ?? (_instance = new MainWindow());
 
 
         public MainWindow()
         {
             InitializeComponent();
+            _instance = this;
 
-            util = TextUtility.Instance;
-            previousViews = new Stack<TalkerView>();
+            //scan = AutoscanOriginal.Instance;
+            scan = Autoscan2.Instance;
+                //this.Content = startScreen; //DataContext will give you the current view
 
-            mainWindowData = this;
 
-            TalkerView startScreen = new MainMenu();
-            DataContext = startScreen;  //DataContext will give you the current view
-            scan = Autoscan.Instance;
-            this.Closing += save;
-            this.Closing += terminate_program; //TODO verify that save still completes successfully
+            this.Closing += (sender, e) => { TextUtility.Instance.save(); };
+            this.Closing += (sender, e) => { Application.Current.Shutdown(); };
         }
 
-
-        private void terminate_program(object sender, EventArgs e)
-        {
-            App.Current.Shutdown();
-        }
 
 
         /*
          * Change the view to the previous view. The views will be maintained in a stack of TalkerViews.
          */
-        public void back()
+        public void Back()
         {
-            if (previousViews.Count != 0)
+            if (Navigator.CanGoBack)
             {
-                TalkerView lastView = previousViews.Peek();
-                previousViews.Pop();
-                lastView.update();
-                changeView(lastView);
+                this.Navigator.GoBack();
             }
-        }
-        public bool backIsEmpty()
-        {
-            return (previousViews.Count == 0);
+            else if (Navigator.CanGoForward) Navigator.GoForward();
         }
 
-        public bool IsScanning()
+        public bool BackIsEmpty()
         {
-            return (scan.IsScanning());
+            return Navigator.CanGoBack;
+            //   return (previousViews.Count == 0);
         }
 
         // Method to change TalkerView, primarily called by TalkerView itself
-        public void changeView(TalkerView view)
+        public void ChangeView(TalkerView view)
         {
-            TalkerView prevView = (DataContext as TalkerView);
-            setPreviousView(prevView);
-            DataContext = view;
-
-            if (scan != null && scan.IsScanning())
-            {
-                scan.StartAutoscan(view.getParents());
-            }
-
+            Navigator.Navigate(view);
         }
-
-        /*
-         * Sets the previous view to a reference of a TalkerView.
-         * This view is pushed to the top of the previousViews Stack
-         */
-
-        public void setPreviousView(TalkerView view)
-        {
-            previousViews.Push(view);
-        }
-
-
         /*
          * Resets the Stack of TalkerViews. Used when the user returns straight to the MainMenu
          */
-        public void resetStack()
+        public void ResetStack()
         {
             previousViews = new Stack<TalkerView>();
         }
 
-
-        /*
-         * Save speech history when closed
-         */
-        private void save(object sender, EventArgs args)
+        private void NewPageIsLoaded(object sender, EventArgs e)
         {
-            util.save();
+            scan.ClearReturnPointList();
+            Frame f = ((Frame)sender);
+            if (f.Content is TalkerView tv && tv.GetParents() != null && tv.GetParents().Any())
+            {
+                scan.NewListToScanThough(tv.GetParents(), true);
+            }
+            else
+            {
+                scan.NewListToScanThough<Panel>(f.Content as Panel, true);
+            }
         }
     }
 }

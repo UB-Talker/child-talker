@@ -5,13 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
         xmlns:custom="clr-namespace:Child_Talker"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        mc:Ignorable="d"
+        xmlns:util="clr-namespace:Child_Talker.Utilities"
+        xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                  mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
-    <local:TalkerView.Resources>
-        <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
-    </local:TalkerView.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -19,23 +17,14 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0">
-            <ScrollViewer.Resources>
-                <Style TargetType = "{x:Type TextBlock}" BasedOn="{StaticResource ResourceKey={x:Type TextBlock}}">
-                    <Setter Property = "Padding" Value="10" />
-                    <Setter Property = "Height" Value="150" />
-                    <Setter Property = "Width" Value="1000" />
-                    <Setter Property = "TextWrapping" Value="Wrap" />
-                    <Setter Property = "TextAlignment" Value="Left" />
-                </Style>
-            </ScrollViewer.Resources>
+        <ScrollViewer x:Name="scrollViewer" Margin="0,0,30,0" Grid.Column="0" util:Autoscan2.ScanReverse="True">
 
-            <custom:TlkrStackPanel x:Name="phraseStack" scanReverse="True">
+            <StackPanel x:Name="phraseStack" >
 
-            </custom:TlkrStackPanel>
+            </StackPanel>
         </ScrollViewer>
         
-        <custom:TlkrGrid Grid.Column="1" x:Name ="sidePanel">
+        <Grid Grid.Column="1" x:Name ="sidePanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
@@ -43,12 +32,12 @@
                 <RowDefinition Height="20*"/>
                 <!-- <RowDefinition Height="20*"/> -->
             </Grid.RowDefinitions>
-            <custom:TlkrBTN x:Name="menu"       Grid.Row="0" Click="backToHome"             >Menu</custom:TlkrBTN>
+            <tb:Button x:Name="menu"       Grid.Row="0" Click="backToHome" Text="Menu"></tb:Button>
             <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
-            <custom:TlkrBTN x:Name="toKeyboard" Grid.Row="1" Click="openKeyboardWithText"   >Keyboard</custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="speak"      Grid.Row="2" Click="speakSelectedText"      >Speak</custom:TlkrBTN>
+            <tb:Button x:Name="toKeyboard" Grid.Row="1" Click="OpenKeyboardWithText" Text="Keyboard" ></tb:Button>
+            <tb:Button x:Name="speak"      Grid.Row="2" Click="speakSelectedText"  Text="Speak"></tb:Button>
 
-        </custom:TlkrGrid>
+        </Grid>
 
     </Grid>
 </local:TalkerView>

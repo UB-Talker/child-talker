@@ -12,6 +12,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Child_Talker.TalkerViews.EnvControlsPage;
+using EnvControls = Child_Talker.TalkerViews.EnvControlsPage.EnvControls;
 
 namespace Child_Talker.TalkerViews
 {

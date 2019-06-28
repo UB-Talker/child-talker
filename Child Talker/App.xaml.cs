@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Windows;
-
+using System.Windows.Controls;
 namespace Child_Talker
 {
     /// <summary>
@@ -20,7 +21,6 @@ namespace Child_Talker
             Child_Talker.App app = new Child_Talker.App();
             ListEmbeddedResourceNames();
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-            TlkrPanel.addTlkrPanelProperties();
             app.InitializeComponent();
             app.Run();
         }
@@ -43,5 +43,7 @@ namespace Child_Talker
                 return Assembly.Load(assemblyData);
             }
         }
+
+
     }
 }

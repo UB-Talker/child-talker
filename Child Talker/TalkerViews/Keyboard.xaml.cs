@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Windows;
+using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews
 {
@@ -12,13 +13,13 @@ namespace Child_Talker.TalkerViews
         public Keyboard()
         {
             InitializeComponent();
-            keyboard.textBox = greetingOutput; //haven't figured out a better way to do this yet
+            keyboard.textBox = greetingOutput;
+
         }
 
         public Keyboard(String selectedText)
         {
             InitializeComponent();
-            greetingOutput.Text = selectedText;
             greetingOutput.Text = selectedText;
         }
 
@@ -26,7 +27,7 @@ namespace Child_Talker.TalkerViews
          * Used for autoscan, please update if xaml is changed
          * Must return the panels to iterate through when autoscan is first initialized on this page
          */
-        public override List<DependencyObject> getParents()
+        public sealed override List<DependencyObject> GetParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
                 {
@@ -35,6 +36,11 @@ namespace Child_Talker.TalkerViews
                     keyboard.keyboardGrid
                 };
             return (parents);
+        }
+
+        private void Keyboard_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

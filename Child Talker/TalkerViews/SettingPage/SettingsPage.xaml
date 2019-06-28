@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
         xmlns:custom="clr-namespace:Child_Talker"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
         mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
@@ -14,7 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../Resources/ColorSchemes/Generic.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <Style x:Key="LocalBtn" TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource genButton}">
+            <Style x:Key="LocalBtn" TargetType="{x:Type tb:Button}" BasedOn="{StaticResource genButton}">
                 <Setter Property="Height" Value="300"/>
                 <Setter Property="Width" Value="300"/>
             </Style>
@@ -30,7 +31,7 @@
         <ScrollViewer x:Name="ScrollMenu" Margin="0" Grid.Column="0" >
             <ScrollViewer.Resources>
                 <!-- <Style TargetType="ScrollViewer" BasedOn="{StaticResource genScrollViewer}"></Style> -->
-                <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource LocalBtn}">
+                <Style TargetType="{x:Type tb:Button}" BasedOn="{StaticResource LocalBtn}">
                     <Setter Property="Margin" Value="30"/>
                 </Style>
                
@@ -38,38 +39,38 @@
 
             <WrapPanel x:Name="Menu" >
                 
-                <custom:TlkrBTN x:Name="ColorScheme">
+                <tb:Button x:Name="ColorScheme">
                     <TextBlock Text="Color&#x0a;Scheme" TextWrapping="Wrap"/>
-                </custom:TlkrBTN>
+                </tb:Button>
                 <ScrollBar Style="{DynamicResource ScrollBarStyle1}"></ScrollBar>
                 
-                <custom:TlkrBTN x:Name="AutoscanSpeed" >
+                <tb:Button x:Name="AutoscanSpeed" >
                     <TextBlock Text="Autoscan&#x0a;Speed" TextWrapping="Wrap"/>
-                </custom:TlkrBTN>
+                </tb:Button>
 
-                <custom:TlkrBTN x:Name="KeyboardStyle" >
+                <tb:Button x:Name="KeyboardStyle" >
                     <TextBlock Text="Keyboard&#x0a;Layout" TextWrapping="Wrap"/>
-                </custom:TlkrBTN>
+                </tb:Button>
                 
             </WrapPanel>
         </ScrollViewer>
         
-        <custom:TlkrGrid Grid.Column="1" x:Name ="sidePanel">
+        <Grid Grid.Column="1" x:Name ="sidePanel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
-            <custom:TlkrBTN x:Name="menu"           Grid.Row="0" Click="backToHome"             >Menu</custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="revertChanges"  Grid.Row="1"                                >
+            <tb:Button x:Name="menu"           Grid.Row="0" Click="backToHome"             >Menu</tb:Button>
+            <tb:Button x:Name="revertChanges"  Grid.Row="1"                                >
                     <TextBlock Text="Revert&#x0a;Changes" TextWrapping="Wrap"/>
-            </custom:TlkrBTN>
-            <custom:TlkrBTN x:Name="applyChanges"   Grid.Row="2"                                >
+            </tb:Button>
+            <tb:Button x:Name="applyChanges"   Grid.Row="2"                                >
                     <TextBlock Text="Apply&#x0a;Changes" TextWrapping="Wrap"/>
-            </custom:TlkrBTN>
+            </tb:Button>
             <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
 
-        </custom:TlkrGrid>
+        </Grid>
 
     </Grid>
 </local:TalkerView>

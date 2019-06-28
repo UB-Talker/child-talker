@@ -5,31 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
         xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:utilities="clr-namespace:Child_Talker.Utilities"
+        xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
         mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="auto" Width="auto" Background="Black">
 
-    <local:TalkerView.Resources>
-        <Style x:Key="localBTN" TargetType="{x:Type Button}" BasedOn="{StaticResource ResourceKey={x:Type Button}}" >
-            <Setter Property="FontSize" Value="60px"/>
-            <Setter Property="Margin" Value="6"/>
-            <Setter Property="Padding" Value="0"/>
-        </Style>
-        <Style TargetType="{x:Type custom:TlkrBTN}" BasedOn="{StaticResource localBTN}"/>
-        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource localBTN}"/>
-    </local:TalkerView.Resources>
-
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="Grid" BasedOn="{StaticResource dede}"></Style>
+            <Style TargetType="StackPanel" BasedOn="{StaticResource dede}"></Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="75*"/>
+            <ColumnDefinition Width="15*"/>
             <ColumnDefinition Width="0"/>
         </Grid.ColumnDefinitions>
-        <Grid x:Name="sidePanel" Grid.Column="0">
-            <custom:TlkrBTN x:Name="home" Grid.Column="0" Height="200" VerticalAlignment="Bottom" Margin="40" Content="HOME" Click="backToHome"/>
-            <custom:TlkrBTN x:Name="back" Grid.Column="0" Height="200" VerticalAlignment="Top" Margin="40" Content="BACK" Click="openPreviousView"/>
+        <Grid x:Name="sidePanel" Grid.Column="1">
+            <tb:Button x:Name="home" Grid.Column="0" Height="200" VerticalAlignment="Bottom" Margin="40" Text="HOME" Click="backToHome"/>
+            <tb:Button x:Name="back" Grid.Column="0" Height="200" VerticalAlignment="Top" Margin="40" Text="BACK" Click="OpenPreviousView"/>
         </Grid>
-        <Grid x:Name="gridname" Grid.Column="1">
+        <Grid x:Name="gridname" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="75*"/>
@@ -37,7 +33,7 @@
 
             <TextBox x:Name="greetingOutput" Grid.Row="0" Margin="6" Padding="10,0,10,0" Text=""/>
             <!-- this is the keyboard layout -->
-            <local:KeyboardLayout Grid.Row="1" x:Name="keyboard"></local:KeyboardLayout>
+            <local:KeyboardLayout Grid.Row="1" x:Name="keyboard" utilities:Autoscan2.IsReturnPoint="True"></local:KeyboardLayout>
         </Grid>
     </Grid>
 </local:TalkerView>

@@ -8,6 +8,7 @@
         string ImagePath { get; set; }
         IChildTalkerTile Parent { get; set; }
         ChildTalkerXml Xml { get; set; }
+        bool InColor { get; set; }
     }
 }
 

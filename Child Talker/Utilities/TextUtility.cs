@@ -5,12 +5,19 @@ using System.IO;
 using System.Speech.Synthesis;
 using System.Windows.Controls;
 using System.Windows.Media;
+using Child_Talker.TalkerButton;
+using Button = Child_Talker.TalkerButton.Button;
 
 namespace Child_Talker.Utilities
 {
     public sealed class TextUtility
     {
-        private static TextUtility instance;
+        private static TextUtility _instance;
+        /// <summary>
+        /// TextUtility as Unary Class.
+        /// maintains a single instance of TextUtility for all classes to use
+        /// </summary>
+        public static TextUtility Instance => _instance ?? (_instance = new TextUtility());
 
 
         //Instance variables
@@ -55,30 +62,17 @@ namespace Child_Talker.Utilities
         }
 
 
-        /*
-         * Static function that is used to get the instance of the TextUtility class
-         */
-        public static TextUtility Instance
-        {
-            get
-            {
-                if(instance == null)
-                {
-                    instance = new TextUtility();
-                }
-                return instance;
-            }
-        }
+
 
         
-
-        /*
-         * Speaks and saves the given input text with a timestamp of when it was spoken.
-         * The spoken string is also tokenized and stored in wordCounts. If the string
-         * already exists as a key in wordCounts, its mapped value will be incremented by one.
-         * Otherwise it will be added to wordCounts with an initial value of 1.
-         */
-        public void speak(string text)
+        /// <summary>
+        /// Speaks and saves the given input text with a timestamp of when it was spoken.
+        /// The spoken string is also tokenized and stored in wordCounts. If the string
+        /// already exists as a key in wordCounts, its mapped value will be incremented by one.
+        /// Otherwise it will be added to wordCounts with an initial value of 1.
+        /// </summary>
+        /// <param name="text"></param>
+        public void Speak(string text)
         {
             Tuple<DateTime, string> phraseData = new Tuple<DateTime, string>(DateTime.Now, text);
             spokenPhrases.Add(phraseData);
@@ -147,7 +141,7 @@ namespace Child_Talker.Utilities
         /*
          * Gets the next suggestions based on the given input c
          */
-        public List<TlkrBTN> getNextSuggestion(char c)
+        public List<Button> getNextSuggestion(char c)
         {
             if (c == '_')
             {
@@ -155,38 +149,38 @@ namespace Child_Talker.Utilities
             }
             else
             {
-                parseTree.goDownTree(char.ToLower(c));
+                parseTree.GoDownTree(char.ToLower(c));
             }
             return getNSuggestions(10);
         }
 
-        public List<TlkrBTN> getNextSuggestionsForString(string s)
+        public List<Button> getNextSuggestionsForString(string s)
         {
-            if (parseTree.isTreeReset())
+            if (parseTree.IsTreeReset())
             {
-                parseTree.goDownTree(s);
+                parseTree.GoDownTree(s);
             }
             return getNSuggestions(3);
         }
         /*
          * Generate n buttons that will be used as suggestions
          */
-        private List<TlkrBTN> getNSuggestions(int n)
+        private List<Button> getNSuggestions(int n)
         {
-            List<TlkrBTN> retVal = new List<TlkrBTN>();
+            List<Button> retVal = new List<Button>();
             List<KeyValuePair<string, int>> suggestions = parseTree.getSuggestions();
 
             int i = 0;
             while (i < n && i < suggestions.Count)
             {
-                TlkrBTN b = new TlkrBTN();
+                Button b = new Button();
                 BrushConverter bc = new BrushConverter();
                 b.Foreground = (Brush)bc.ConvertFrom("#FF00D5EA");
                 TextBlock textBlock = new TextBlock
                 {
                     Text = suggestions[i].Key
                 };
-                b.Tag = suggestions[i].Key;
+                b.Text = suggestions[i].Key;
                 b.Content = textBlock;
                 retVal.Add(b);
                 i++;
@@ -201,7 +195,7 @@ namespace Child_Talker.Utilities
          */
         public void resetAutocorrect()
         {
-            parseTree.resetTree();
+            parseTree.ResetTree();
         }
     }
 }

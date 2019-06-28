@@ -1,4 +1,5 @@
 ﻿using Child_Talker.TalkerViews;
+using Child_Talker.TalkerViews.PhrasesPage;
 
 namespace Child_Talker
 {
@@ -6,21 +7,23 @@ namespace Child_Talker
     {
         public string Text { get; set; }
         public string ImagePath { get; set; }
+        public bool InColor { get; set; }
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private readonly PageViewer root;
-        private readonly Utilities.Autoscan scan;
+        private readonly Phrases root;
+        private readonly Utilities.Autoscan2 scan;
 
-        public ChildTalkerBackButton(string _text, string _imagePath, PageViewer _root)
+        public ChildTalkerBackButton(string _text, string _imagePath, Phrases _root, bool _inColor)
         {
             Text = _text;
             ImagePath = _imagePath;
+            InColor = false;
             root = _root;
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
-            scan = Utilities.Autoscan.Instance;
+            scan = Utilities.Autoscan2.Instance;
         }
 
         public bool IsLink()
@@ -31,10 +34,7 @@ namespace Child_Talker
         public void PerformAction()
         {
             root.PopFolderView();
-            if (scan.IsScanning())
-            {
-                scan.StartAutoscan<Item>(root.items);
-            }
+            scan.NewListToScanThough<PhraseButton>(root.items);
         }
     }
 }

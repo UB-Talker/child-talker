@@ -3,7 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:custom="clr-namespace:Child_Talker"  
+        xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
         WindowStyle="None"
         mc:Ignorable="d"
         Title="Remote_CH_popup" Height="700" Width="1100" AllowsTransparency="True">
@@ -42,9 +43,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <custom:TlkrBTN Grid.Row="0" Grid.Column="2" Click="Close_Button">
+            <tb:Button Grid.Row="0" Grid.Column="2" Click="Close_Button">
                         
-            </custom:TlkrBTN>
+            </tb:Button>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -55,27 +56,25 @@
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
         
-            <custom:TlkrBTN Tag="KEY_CHANNELDOWN" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
+            <tb:Button Tag="KEY_CHANNELDOWN" Grid.Column="1" PauseOnSelect="True" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="" />
                     <TextBlock Grid.Row="1" Text="CH DOWN"></TextBlock>
                 </Grid>
-            </custom:TlkrBTN>
+            </tb:Button>
 
-            <custom:TlkrBTN Tag="KEY_CHANNELUP" Grid.Column="2" Click="TV_controls">
+            <tb:Button Tag="KEY_CHANNELUP" Grid.Column="2" Click="TV_controls">
                 <Grid Margin="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="75*"/>
                         <RowDefinition Height="25*"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Source="../../Resources/EnvControl_images/CH-up-blue.png" />
                     <TextBlock Grid.Row="1" Text="CH UP"></TextBlock>
                 </Grid>
-            </custom:TlkrBTN>
+            </tb:Button>
         </Grid>
         
     </Grid>

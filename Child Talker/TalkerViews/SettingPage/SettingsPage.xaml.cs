@@ -31,7 +31,7 @@ namespace Child_Talker.TalkerViews.SettingPage
          * Must return the panels to iterate through when autoscan is first initialized on this page
          * Currently goes between the phrase stack and side menu
          */
-        public override List<DependencyObject> getParents()
+        public override List<DependencyObject> GetParents()
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {

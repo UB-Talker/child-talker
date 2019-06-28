@@ -4,26 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:util="clr-namespace:Child_Talker.Utilities"
         xmlns:views="clr-namespace:Child_Talker.TalkerViews"
         mc:Ignorable="d"
         Title="UB Child Talker" Background="Black" Height="1080" Width="1920" WindowState="Maximized">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="./Resources/ColorSchemes/Generic.xaml"/>
+                <ResourceDictionary Source="Resources/ColorSchemes/BaseScheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="./Resources/ColorSchemes/ButtonTemplates.xaml"/>
+                <ResourceDictionary Source="./Resources/ColorSchemes/ScrollBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <custom:TlkrGrid x:Name="MainGrid">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <ContentControl Grid.Row="0" Grid.Column="0" Content="{Binding}" />
-    </custom:TlkrGrid>
-    
+        <Frame x:Name="Navigator" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+               Source="TalkerViews/HomePage.xaml" NavigationUIVisibility="Hidden"
+               ScrollViewer.VerticalScrollBarVisibility="Disabled" ContentRendered="NewPageIsLoaded" />
 </Window>

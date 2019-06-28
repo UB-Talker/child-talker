@@ -4,30 +4,30 @@ namespace Child_Talker.Utilities
 {
     public class ParseTree
     {
-        //Maintains the head of the tree structure
+        ///Maintains the head of the tree structure
         private ParseNode headNode;
 
-        //Used to traverse through the tree
+        ///Used to traverse through the tree
         private ParseNode currentNode;
 
-        //Stores the last non null node
+        ///Stores the last non null node
         private ParseNode nonNullNode;
 
-        //Stores the currently typed string
+        ///Stores the currently typed string
         private string currentInput;
 
-        //Store how many times the currentNode should remain null
+        ///Store how many times the currentNode should remain null
         //i.e. g->o->o->d->null is stored in the tree and the user types "goodbye"
         //nullNodes will be 3
         private int nullNodes;
 
-        //Indicates whether or not the ParseTree is reset
+        ///Indicates whether or not the ParseTree is reset
         private bool isReset;
 
-
-        /*
-         * Build a ParseTree with a given set of words
-         */
+        /// <summary>
+        /// Build a ParseTree with a given set of words
+        /// </summary>
+        /// <param name="wordCounts"></param>
         public ParseTree(Dictionary<string, int> wordCounts)
         {
             headNode = new ParseNode('_', 0, null);
@@ -39,27 +39,23 @@ namespace Child_Talker.Utilities
                 string s = pair.Key;
                 int count = pair.Value;
 
-                foreach(char c in s)
+                foreach(var character in s)
                 {
-                    if(currentNode.getNextNode(c) == null)
+                    if(currentNode.GetNextNode(character) == null)
                     {
-                        currentNode.setNextNode(c, 0);
+                        currentNode.SetNextNode(character, 0);
                     }
-                    currentNode = currentNode.getNextNode(c);
+                    currentNode = currentNode.GetNextNode(character);
                 }
-
-                currentNode.setTimesTerminatedHere(count);
+                currentNode.SetTimesTerminatedHere(count);
                 currentNode = headNode;
-
             }
             isReset = true;
-           
         }
 
-
-        /*
-         * Default constructor for ParseTree. Sets the headNode to a new node.
-         */
+        /// <summary>
+        /// Default constructor for ParseTree. Sets the headNode to a new node.
+        /// </summary>
         public ParseTree()
         {
             headNode = new ParseNode('_', 0, null);
@@ -68,21 +64,18 @@ namespace Child_Talker.Utilities
             isReset = true;
         }
 
-
-
-        /*
-         * Traverse down the tree to the node at the given char.
-         */
-        public void goDownTree(char c)
+        /// <summary>
+        /// Traverse down the tree to the node at the given char.
+        /// </summary>
+        /// <param name="c"></param>
+        public void GoDownTree(char c)
         {
             isReset = false;
-
-           
 
             if (currentNode != null)
             {
                 nonNullNode = currentNode;
-                currentNode = currentNode.getNextNode(c);
+                currentNode = currentNode.GetNextNode(c);
             }
 
             if(currentNode == null)
@@ -93,23 +86,22 @@ namespace Child_Talker.Utilities
             currentInput += c;
         }
 
-
-        /*
-         * Traverse down the tree to the node with the given string
-         */
-        public void goDownTree(string s)
+        /// <summary>
+        /// Traverse down the tree to the node with the given string
+        /// </summary>
+        /// <param name="s"></param>
+        public void GoDownTree(string s)
         {
             s = s.ToLower();
             foreach(char c in s)
             {
-                goDownTree(c);
+                GoDownTree(c);
             }
         }
 
-
-        /*
-         * Traverse up the tree. Used primarily when the user backspaces.
-         */
+        /// <summary>
+        /// Traverse up the tree. Used primarily when the user backspaces.
+        /// </summary>
         public void goUpTree()
         {
             if(currentNode != headNode)
@@ -117,7 +109,7 @@ namespace Child_Talker.Utilities
                 nullNodes -= 1;
                 if (nullNodes <= 0)
                 {
-                    currentNode = currentNode == null ? nonNullNode : currentNode.getPrevNode();
+                    currentNode = currentNode == null ? nonNullNode : currentNode.GetPrevNode();
                     nullNodes = 0;
                 }
                 currentInput = currentInput.Substring(0, currentInput.Length - 1);
@@ -129,20 +121,21 @@ namespace Child_Talker.Utilities
         }
 
 
-        /*
-         * Returns how many times the currentNode has been terminated there
-         */
-        public int getCurrentNodeCount()
+        /// <summary>
+        /// Returns how many times the currentNode has been terminated there
+        /// </summary>
+        /// <returns></returns>
+        public int GetCurrentNodeCount()
         {
-            return currentNode.getTimesTerminatedHere();
+            return currentNode.GetTimesTerminatedHere();
         }
 
 
 
-        /*
-         * Sets the currentNode to headNode
-         */
-        public void resetTree()
+        /// <summary>
+        /// Sets the currentNode to headNode
+        /// </summary>
+        public void ResetTree()
         {
             currentNode = headNode;
             currentInput = "";
@@ -150,21 +143,22 @@ namespace Child_Talker.Utilities
             isReset = true;
         }
 
-        /*
-         * Returns if true if the tree is reset.
-         * In other words if the currentNode is at the head.
-         */
-        public bool isTreeReset()
+        /// <summary>
+        /// Returns if true if the tree is reset.
+        /// In other words if the currentNode is at the head.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsTreeReset()
         {
             return isReset;
         }
 
-
-        /*
-         * Made this method for testing purposes.
-         * May have applicable use.
-         */
-        public bool isCurrNull()
+        /// <summary>
+        /// Made this method for testing purposes.
+        /// May have applicable use.
+        /// </summary>
+        /// <returns></returns>
+        public bool IsCurrentNodeNull()
         {
             return currentNode == null;
         }
@@ -178,14 +172,14 @@ namespace Child_Talker.Utilities
             currentNode = headNode;
             foreach(char c in s)
             {
-                if(currentNode.getNextNode(c) == null)
+                if(currentNode.GetNextNode(c) == null)
                 {
-                    currentNode.setNextNode(c, 0);
+                    currentNode.SetNextNode(c, 0);
                 }
-                currentNode = currentNode.getNextNode(c);
+                currentNode = currentNode.GetNextNode(c);
             }
-            currentNode.incrementCount();
-            resetTree();
+            currentNode.IncrementCount();
+            ResetTree();
         }
 
 
@@ -203,7 +197,7 @@ namespace Child_Talker.Utilities
                 return suggestions;
             }
 
-            foreach(ParseNode n in currentNode.getNodes())
+            foreach(ParseNode n in currentNode.GetNodes())
             {
                 if(n != null)
                 {
@@ -224,8 +218,8 @@ namespace Child_Talker.Utilities
         {
             if (node != headNode)
             {
-                s += node.getChar();
-                int count = node.getTimesTerminatedHere();
+                s += node.GetChar();
+                int count = node.GetTimesTerminatedHere();
                 if (count > 0)
                 {
                     KeyValuePair<string, int> pair = new KeyValuePair<string, int>(s, count);
@@ -233,7 +227,7 @@ namespace Child_Talker.Utilities
                 }
             }
 
-            foreach (ParseNode n in node.getNodes())
+            foreach (ParseNode n in node.GetNodes())
             {
                 if(n != null)
                 {
@@ -270,21 +264,18 @@ namespace Child_Talker.Utilities
              * Access the next node at the given char
              * Used to navigate down the tree
              */
-            public ParseNode getNextNode(char c)
+            public ParseNode GetNextNode(char c)
             {
-                if (followingChars.ContainsKey(c))
-                {
-                    return followingChars[c];
-                }
-                return null;
+                return followingChars.ContainsKey(c) ? followingChars[c] : null;
             }
 
-
-            /*
-             * Used to set a node in the dictionary to a brand new node.
-             * Should only be done if the node is null
-             */
-            public void setNextNode(char c, int count)
+            /// <summary>
+            /// Used to set a node in the dictionary to a brand new node.
+            /// Should only be done if the node is null
+            /// </summary>
+            /// <param name="c"></param>
+            /// <param name="count"></param>
+            public void SetNextNode(char c, int count)
             {
                 if (!followingChars.ContainsKey(c))
                 {
@@ -293,55 +284,46 @@ namespace Child_Talker.Utilities
             }
 
 
-            /*
-             * Used to change the number of times a parse has terminated at that node
-             */
-            public void setTimesTerminatedHere(int count)
+
+            
+            
+            /// <summary>
+            /// Used to change the number of times a parse has terminated at that node
+            /// </summary>
+            /// <param name="count"></param>
+            public void SetTimesTerminatedHere(int count)
             {
                 timesTerminatedHere = count;
             }
 
 
-            /*
-             * Returns the number of times that a string has terminated at this node
-             */
-            public int getTimesTerminatedHere()
+            /// Returns the number of times that a string has terminated at this node
+            public int GetTimesTerminatedHere()
             {
                 return timesTerminatedHere;
             }
 
 
-            /*
-             * Get the char stored at this node
-             */
-            public char getChar()
+            /// Get the char stored at this node
+            public char GetChar()
             {
                 return c;
             }
 
-
-            /*
-             * Get list of ParseNodes stored at this node
-             */
-            public Dictionary<char, ParseNode>.ValueCollection getNodes()
+            /// Get list of ParseNodes stored at this node
+            public Dictionary<char, ParseNode>.ValueCollection GetNodes()
             {
                 return followingChars.Values;
             }
 
-
-            /*
-             * Traverse to the parent node
-             */
-            public ParseNode getPrevNode()
+            /// Traverse to the parent node
+            public ParseNode GetPrevNode()
             {
                 return parent;
             }
 
-
-            /*
-             * Increments the count of the current node by one
-             */
-            public void incrementCount()
+            /// Increments the count of the current node by one
+            public void IncrementCount()
             {
                 timesTerminatedHere++;
             }

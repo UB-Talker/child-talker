@@ -1,0 +1,145 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:talker="clr-namespace:Child_Talker"
+                    xmlns:util="clr-namespace:Child_Talker.Utilities"
+                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="BaseScheme.xaml"></ResourceDictionary>
+
+    </ResourceDictionary.MergedDictionaries>
+    
+    <Style x:Key="genButton" TargetType= "{x:Type tb:Button}" >
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="BorderBrush" Value="{StaticResource ColorScheme.Border.BaseColor}"/>
+        <Setter Property="BorderThickness" Value="{StaticResource ColorScheme.Border.Thickness}"/>
+        <Setter Property="Background" Value="{StaticResource ColorScheme.Background.BaseColor}"/>
+        <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.BaseColor}"/>
+        <Style.Triggers>
+            <Trigger Property="Layout" Value="Horizontal">
+                <Setter Property="Template" Value="{DynamicResource HorizontalImage}"></Setter>
+            </Trigger>
+            <Trigger Property="Layout" Value="NoImage">
+                <Setter Property="Template" Value="{DynamicResource TextOnly}"></Setter>
+            </Trigger>
+            <Trigger Property="Layout" Value="Vertical">
+                <Setter Property="Template" Value="{DynamicResource VerticalImage}"></Setter>
+            </Trigger>
+            <Trigger Property="Layout" Value="None">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="tb:Button">
+                            <Border DataContext="{TemplateBinding DataContext}"></Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter Property="Background" Value="{StaticResource ColorScheme.Background.BaseColor}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.BaseColor}"></Setter>
+            </Trigger>
+            <Trigger Property="util:Autoscan2.IsHighlight" Value="False">
+                <Setter Property="Background" Value="{StaticResource ColorScheme.Background.BaseColor}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.BaseColor}"></Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{StaticResource ColorScheme.Background.MouseHover}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.MouseHover}"></Setter>
+            </Trigger>
+            <Trigger Property="util:Autoscan2.IsHighlight" Value="True">
+                <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Highlighted}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Event}"></Setter>
+                <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate x:Key="VerticalImage" TargetType="{x:Type tb:Button}">
+        <Border Name="Base"
+                Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" 
+                BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
+                BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <Border Name="Image" Grid.Row="0"  Background="{TemplateBinding Foreground}"  Margin="6" ></Border>
+                <TextBlock Name="TextBlock" Grid.Row="1" Foreground="{TemplateBinding Foreground}" Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource genTextBlock}">
+                </TextBlock>
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="InColor" Value="False">
+                <Setter TargetName="Image" Property="OpacityMask">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="Uniform"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="Image"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
+            </Trigger>
+            <Trigger Property="InColor" Value="True">
+                <Setter TargetName="Image" Property="OpacityMask" Value="#FF000000"></Setter>
+                <Setter TargetName="Image" Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="Uniform"></ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+     </ControlTemplate>
+
+    <ControlTemplate TargetType="{x:Type tb:Button}" x:Key="HorizontalImage" >
+        <Border Name="Base"
+                Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" 
+                BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
+                BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Name="Image" Grid.Column="0" Margin="20" Background="{TemplateBinding Foreground}"
+                           Height="{Binding Path=Height, RelativeSource={RelativeSource TemplatedParent}}">
+                </Border>
+                <TextBlock Name="TextBlock" Grid.Column="1" Style="{StaticResource genTextBlock}" TextWrapping="Wrap" Foreground="{TemplateBinding Foreground}"
+                           Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}" />
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="InColor" Value="False">
+                <Setter TargetName="Image" Property="OpacityMask">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="Uniform"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter TargetName="Image"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
+            </Trigger>
+            <Trigger Property="InColor" Value="True">
+                <Setter TargetName="Image" Property="OpacityMask" Value="#FF000000"></Setter>
+                <Setter TargetName="Image" Property="Background">
+                    <Setter.Value>
+                        <ImageBrush ImageSource="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="Uniform"></ImageBrush>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate TargetType="{x:Type tb:Button}" x:Key="TextOnly">
+        <Border Name="Base"
+                Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" 
+                BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
+                BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
+            <TextBlock Name="TextBlock" Grid.Column="1" Style="{StaticResource genTextBlock}" 
+                       Foreground="{TemplateBinding Foreground}"
+                           Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}" />
+        </Border>
+    </ControlTemplate>
+    
+    <Style TargetType= "{x:Type tb:Button}" BasedOn="{StaticResource genButton}"></Style>
+</ResourceDictionary>

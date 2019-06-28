@@ -22,5 +22,60 @@ namespace Child_Talker.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color BaseForeground {
+            get {
+                return ((global::System.Drawing.Color)(this["BaseForeground"]));
+            }
+            set {
+                this["BaseForeground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color BaseBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["BaseBackground"]));
+            }
+            set {
+                this["BaseBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color AutoscanForeground {
+            get {
+                return ((global::System.Drawing.Color)(this["AutoscanForeground"]));
+            }
+            set {
+                this["AutoscanForeground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color AutoscanBackground {
+            get {
+                return ((global::System.Drawing.Color)(this["AutoscanBackground"]));
+            }
+            set {
+                this["AutoscanBackground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color AutoscanSpeed {
+            get {
+                return ((global::System.Drawing.Color)(this["AutoscanSpeed"]));
+            }
+            set {
+                this["AutoscanSpeed"] = value;
+            }
+        }
     }
 }
