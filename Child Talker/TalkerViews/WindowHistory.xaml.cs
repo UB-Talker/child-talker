@@ -15,16 +15,15 @@ namespace Child_Talker.TalkerViews
     public partial class WindowHistory : TalkerView
     {
         private  readonly TextUtility util; //Used to speak the currently selected text
-        private string selectedText; //Is set when the user chooses one of the phrases in the menu
         private Button selectedButton; //The currently pressed button
         private readonly Autoscan2 scan;
+        /// 
         public WindowHistory()
         {
             InitializeComponent();        
             scan = Autoscan2.Instance; //singleton cannot call constructor, call instance
             util = TextUtility.Instance;
-            selectedText = "";
-            addPhrases();
+            AddPhrases();
             phraseStack.ScrollOwner = scrollViewer;
             scrollViewer.ScrollToEnd();
         }
@@ -32,11 +31,10 @@ namespace Child_Talker.TalkerViews
         /// <summary>
         /// If there is text selected, the keyboard will open up with the text in its TextBlock
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
         public void OpenKeyboardWithText(object sender, RoutedEventArgs args)
         {
-            MainWindow.Instance.ChangeView(new Keyboard(selectedText));
+            if(selectedButton!=null) selectedButton.IsSelected = false;
+            MainWindow.Instance.ChangeView(new KeyboardPage(selectedButton.Text));
         }
 
         /// <summary>
@@ -44,56 +42,52 @@ namespace Child_Talker.TalkerViews
         /// the value of the string contained in the TextBlock that is the child of the 'sender' Button.
         /// If the currently selected button is clicked again it clears the selectedText variable
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        public void SelectText(object sender, RoutedEventArgs args){
-            Button button = sender as Button;
-            if (button.Selected == false)
+        private void SelectText(object sender, RoutedEventArgs args){
+            var button = (Button)sender;
+            if (button.IsSelected == false)
             {
-                button.Selected = true;
+                if(selectedButton != null) selectedButton.IsSelected = false;
+                button.IsSelected = true;
                 selectedButton = button;
-                selectedText = (button.Text);
-                //need to select element
-                //Autoscan2.HighlightedElementInfo.HighlightSelection(button);
-
-                scan.NewListToScanThough<System.Windows.Controls.Button>(sidePanel);
+                scan.NewListToScanThough<Button>(sidePanel);
+                //scan.IgnoreSelectPressOnce=true;
             }
             else
             {
-                //button.ResetTkrForeground();
-                selectedText = "";
+                button.IsSelected = false;
                 selectedButton = null;
             }
         }
-
 
          /// <summary>
          /// Adds functionality to the SPEAK Button. The synth instance variable speaks whatever is stored in the 
          /// selectedText instance variable.
          /// </summary>
-         /// <param name="sender"></param>
-         /// <param name="args"></param>
-        public void speakSelectedText(object sender, RoutedEventArgs args){
-            util.Speak(selectedText);
-            //selectedButton?.ResetTkrForeground();
-            Update();
+        public void SpeakSelectedText(object sender, RoutedEventArgs args)
+         {
+             selectedButton.IsSelected = false;
+             util.Speak(selectedButton.Text);
+             Update();
         }
 
         /// <summary>
         /// Adds the stored list of historically spoken phrases to the GUI as Buttons
         /// </summary>
-        private void addPhrases()
+        private void AddPhrases()
         {
-            foreach (Tuple<DateTime, string> pair in util.getSpokenPhrases())
+            this.Dispatcher.Invoke(() =>
             {
-                Button phraseButton = new Button
+                foreach (Tuple<DateTime, string> pair in util.getSpokenPhrases())
                 {
-                    Text = pair.Item2,
-                    Height = 140
-                };
-                phraseButton.Click += SelectText;
-                phraseStack.Children.Add(phraseButton);
-            }
+                    var phraseButton = new Button
+                    {
+                        Text = pair.Item2,
+                        Height = 140
+                    };
+                    phraseButton.Click += SelectText;
+                    phraseStack.Children.Add(phraseButton);
+                }
+            });
         }
         
         /// <remarks>
@@ -113,23 +107,13 @@ namespace Child_Talker.TalkerViews
         public override void Update()
         {
             phraseStack.Children.Clear();
-            addPhrases();
+            AddPhrases();
         }
-
-        /// <summary>
-        /// Used for autoscan, please update if xaml is changed
-        /// Must return the panels to iterate through when autoscan is first initialized on this page
-        /// Currently goes between the phrase stack and side menu
-        /// </summary>
-        /// <returns></returns>
+        // see TalkerView for summary
+        /// <inheritdoc /> 
         public override List<DependencyObject> GetParents()
         {
-            List<DependencyObject> parents = new List<DependencyObject>()
-            {
-                phraseStack,
-                sidePanel
-            };
-            return (parents);
+            return new List<DependencyObject>() { phraseStack, sidePanel };
         }
     }
 }

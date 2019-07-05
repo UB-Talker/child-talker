@@ -8,16 +8,16 @@ namespace Child_Talker.TalkerViews
     /// <summary>
     /// Interaction logic for Keyboard.xaml
     /// </summary>
-    public partial class Keyboard : TalkerView
+    public partial class KeyboardPage : TalkerView
     {
-        public Keyboard()
+        public KeyboardPage()
         {
             InitializeComponent();
             keyboard.textBox = greetingOutput;
 
         }
 
-        public Keyboard(String selectedText)
+        public KeyboardPage(String selectedText)
         {
             InitializeComponent();
             greetingOutput.Text = selectedText;

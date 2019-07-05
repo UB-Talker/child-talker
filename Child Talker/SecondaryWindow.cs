@@ -44,6 +44,8 @@ namespace Child_Talker
         {
             this.Style = Application.Current.Resources["PopupStyle"] as Style;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null;
+            scan.NewWindow(this);
             this.Closed += CloseWindow; //scan.GoBackCloseSecondaryWindow triggered here
         }
 
@@ -51,16 +53,16 @@ namespace Child_Talker
         {
             this.Style = Application.Current.Resources["PopupStyle"] as Style;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null;
+            scan.NewWindow(this);
             this.Closed += CloseWindow; //scan.GoBackCloseSecondaryWindow triggered here
             Content = content;
         }
 
         public new void Show()
         {
-            ScanThisOnClose = scan.ReturnPointList.First();
             scan.ClearReturnPointList();
-
-            scan.NewActiveWindow(this);
+            //scan.NewWindow(this);
             scan.NewListToScanThough<Panel>(this.Content as Panel);
 
             ((Window)this).Show();
@@ -69,13 +71,12 @@ namespace Child_Talker
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="panel"></param>
+        /// <typeparam name="T">Type in panel to scan for</typeparam>
+        /// <param name="panel">The parent for autoscan to scan through</param>
         public void Show<T>(Panel panel) where T : DependencyObject
         {
-            ScanThisOnClose = scan.ReturnPointList.First();
             scan.ClearReturnPointList();
-            scan.NewActiveWindow(this);
+            //scan.NewWindow(this);
             scan.NewListToScanThough<T>(panel);
 
             ((Window)this).Show();
@@ -83,24 +84,21 @@ namespace Child_Talker
 
         public void Show<T>() where T : DependencyObject
         {
-            ScanThisOnClose = scan.ReturnPointList.First();
             scan.ClearReturnPointList();
-            scan.NewActiveWindow(this);
+            //scan.NewWindow(this);
             scan.NewListToScanThough<T>(Content as Panel);
-
             ((Window)this).Show();
         }
 
         public void Show(List<DependencyObject> scanList)
         {
-            ScanThisOnClose = scan.ReturnPointList.First();
             scan.ClearReturnPointList();
-            scan.NewActiveWindow(this);
+            //scan.NewWindow(this);
             scan.NewListToScanThough(scanList);
-
             ((Window)this).Show();
         }
 
+        private bool Closing = false;
         /// <summary>
         /// Default Behavior For Closing SecondaryDisplay
         /// </summary>
@@ -108,8 +106,7 @@ namespace Child_Talker
         /// <param name="e"></param>
         private void CloseWindow(object sender=null, EventArgs e=null)
         {
-            Closed -= CloseWindow;
-            scan.CloseActiveWindow();
+            scan.CloseActiveWindow(this);
             scan.ClearReturnPointList();
             scan.NewListToScanThough(scanThisOnClose, true);
         }

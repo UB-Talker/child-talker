@@ -1,0 +1,20 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:properties="clr-namespace:Child_Talker.Properties">
+
+    <SolidColorBrush x:Key="ColorScheme.Border.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BorderColorBase}"/>
+    <Thickness x:Key="ColorScheme.Border.Thickness" Bottom="10" Left="10" Right="10" Top="10"/>
+    
+    <SolidColorBrush x:Key="ColorScheme.Background.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundHighlighted}"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundHighlighted}"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundMouseOver}"/>
+    <SolidColorBrush x:Key="ColorScheme.Background.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundMouseHover}"/>
+    <RadialGradientBrush x:Key="ColorScheme.Background.Event">
+        <GradientStop Offset="1"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventOuter}" />
+        <GradientStop Offset=".8" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventInner}" />
+        <GradientStop Offset="0"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventInner}" />
+    </RadialGradientBrush>
+    <SolidColorBrush x:Key="ColorScheme.Background.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundBase}"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundBase}"/>
+    
+</ResourceDictionary>

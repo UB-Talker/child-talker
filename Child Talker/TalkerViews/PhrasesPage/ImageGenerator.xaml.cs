@@ -17,7 +17,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         public ImageGenButton.OnClickPath onImageSelectHandler; //input parameter of type string
         public event ImageGenButton.OnClickPath OnImageSelect;
 
-        private Autoscan2 scan;
+        private readonly Autoscan2 scan;
         public ImageGenerator(ImageGenButton.OnClickPath onImageSelect)
         {
             InitializeComponent();
@@ -32,15 +32,11 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         public new void Show()
         {
             scan.GoBackDefaultEnabled = false;
-            scan.GoBackPress += (hei) =>
-                this.GoBackIcon?.RaiseEvent(
-                    new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)
-                    ); // how you simulate a button click in code
+            scan.GoBackPress += (hei, gbp) =>
+                this.GoBackIcon.RaiseEvent(
+                    new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
 
-            this.CancelIcon.Click += (bSender, bE) =>
-            {
-                this.Close();
-            };
+            this.CancelIcon.Click += (bSender, bE) => this.Close();
 
             this.setAutoscanFocus(this);
             this.Show<Panel>(ImagesPanel);
@@ -134,21 +130,18 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             scan.SelectPress += SelectPress;
         }
 
-        private void SelectPress(DependencyObject currentObj)
+        private void SelectPress(DependencyObject currentObj, Autoscan2.DefaultEvents selectEvent)
         {
-            if (currentObj is ImageGenButton button)
+            switch (currentObj)
             {
-                button?.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
-                scan.IgnoreSelectPressOnce=true;
-                scan.NewListToScanThough<Panel>(ImagesPanel);
-            }
-            else
-            {
-                if (currentObj is StackPanel)
-                {
+                case ImageGenButton button:
+                    button?.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
+                    scan.IgnoreSelectPressOnce=true;
+                    scan.NewListToScanThough<Panel>(ImagesPanel);
+                    break;
+                case StackPanel stack:
                     inMainGrid = false;
-                }
-
+                    break;
             }
         }
         

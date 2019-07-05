@@ -64,9 +64,9 @@ namespace Child_Talker.TalkerButton
             btn.ImageSource = e.NewValue as string;
             if (string.IsNullOrEmpty(btn.ImageSource))
             {
-                btn.Layout = LayoutEnum.NoImage;
+                btn.Layout = LayoutEnum.TextOnly;
             }
-            else if (btn.Layout == LayoutEnum.NoImage)
+            else if (btn.Layout == LayoutEnum.TextOnly)
             {
                 btn.Layout = LayoutEnum.Vertical;
             }
@@ -88,6 +88,14 @@ namespace Child_Talker.TalkerButton
             set => SetValue(IsHighlightedProperty, value);
         }
 
+        public static readonly DependencyProperty IsSelectedProperty = DependencyProperty.Register(
+            "IsSelected", typeof(bool), typeof(Button), new UIPropertyMetadata(false));
+        public bool IsSelected 
+        {
+            get => (bool) GetValue(IsSelectedProperty);
+            set => SetValue(IsSelectedProperty, value);
+        }
+
         public static readonly DependencyProperty InColorProperty = DependencyProperty.Register(
             "InColor", typeof(bool), typeof(Button), new UIPropertyMetadata(false));
         public bool InColor 
@@ -96,42 +104,14 @@ namespace Child_Talker.TalkerButton
             set => SetValue(InColorProperty, value);
         }
 
-        public enum LayoutEnum {None, Horizontal, Vertical, NoImage };
+        public enum LayoutEnum {None, TextOnly, Horizontal, Vertical, ImageOnly };
         public static readonly DependencyProperty LayoutProperty = DependencyProperty.Register(
-            "Layout", typeof(LayoutEnum), typeof(Button), new UIPropertyMetadata(LayoutEnum.NoImage));//, ChangeLayout));
+            "Layout", typeof(LayoutEnum), typeof(Button), new UIPropertyMetadata(LayoutEnum.TextOnly));
         public LayoutEnum Layout 
         {
             get => (LayoutEnum) GetValue(LayoutProperty);
             set => SetValue(LayoutProperty, value);
         }
-        /// <summary>
-        /// if Template is TextOnly tis will have no effect other
-        /// </summary>
-        /// <param name="d"></param>
-        /// <param name="e"></param>
-        private static void ChangeLayout(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is Button btn)
-            {
-                btn.Layout = (LayoutEnum)e.NewValue;
-                switch ((LayoutEnum)e.NewValue)
-                {
-                    case LayoutEnum.Horizontal:
-                        btn.Template = HorizontalTemplate;
-                        break;
-                    case LayoutEnum.Vertical:
-                        btn.Template = VerticalTemplate;
-                        break;
-                    case LayoutEnum.NoImage:
-                        btn.Template = TextOnlyTemplate;
-                        break;
-                    case LayoutEnum.None:
-                        btn.Template = null;
-                        break;
-                }
-            }
-        }
-
 
     }
 }

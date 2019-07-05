@@ -1,1 +1,35 @@
-﻿<?xml version="1.0" encoding="utf-8"?><ChildTalkerXmlWrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"><Children><ChildTalkerXml Text="Hello World!" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="Hello World!" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children><ChildTalkerXml Text="hdjsfhkjdshf" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children><ChildTalkerXml Text="sff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Medical\002-bed.png" TileType="talker" InColor="false" /></Children></ChildTalkerXml><ChildTalkerXml Text="dff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\automobile\008-car.png" TileType="talker" InColor="false" /></Children></ChildTalkerXml><ChildTalkerXml Text="asd" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Time\002-24-hours-1.png" TileType="talker" InColor="false" /><ChildTalkerXml Text="hh" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="j" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" TileType="talker" InColor="false" /><ChildTalkerXml Text="k" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="," ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="k" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="k" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="j" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="j" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="j" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml><ChildTalkerXml Text="hate" ImagePath="../../Resources/folder.jpg" TileType="folder" InColor="false"><Children /></ChildTalkerXml></Children></ChildTalkerXmlWrapper>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ChildTalkerXmlWrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Children>
+    <ChildTalkerXml TileType="folder" Text="Hello World!" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="folder" Text="Hello World!" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children>
+        <ChildTalkerXml TileType="folder" Text="hdjsfhkjdshf" ImagePath="../../Resources/folder.jpg" InColor="false">
+          <Children>
+            <ChildTalkerXml TileType="talker" Text="sff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Medical\002-bed.png" InColor="false" />
+          </Children>
+        </ChildTalkerXml>
+        <ChildTalkerXml TileType="talker" Text="dff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\automobile\008-car.png" InColor="false" />
+      </Children>
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="asd" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Time\002-24-hours-1.png" InColor="false" />
+    <ChildTalkerXml TileType="folder" Text="hh" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="j" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+    <ChildTalkerXml TileType="folder" Text="j" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="folder" Text="j" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="folder" Text="hate" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="folder" Text="n" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+  </Children>
+</ChildTalkerXmlWrapper>

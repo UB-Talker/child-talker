@@ -40,7 +40,10 @@ namespace Child_Talker.TalkerViews
         /// </summary>
         public virtual void Update() { }
 
-        // must be overridden by child
+        /// <summary>
+        /// When overridden this will act as the topmost layer for autoscan to scan through
+        /// </summary>
+        /// <returns></returns>
         public virtual List<DependencyObject> GetParents() => null;
 
     }

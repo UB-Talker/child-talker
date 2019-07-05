@@ -10,7 +10,7 @@
         <Setter Property="Margin" Value="{StaticResource Popup.Margins}"></Setter>
         <Setter Property="Background">
             <Setter.Value>
-                <SolidColorBrush Opacity="1" Color="#5F00FFFF"/>
+                <SolidColorBrush Opacity="1" Color="#CF333333"/>
             </Setter.Value>
         </Setter>
         <Setter Property="Template">

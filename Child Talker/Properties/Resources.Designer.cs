@@ -61,6 +61,15 @@ namespace Child_Talker.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to pack://application:,,,/Resources/back.png.
+        /// </summary>
+        internal static string BackImagePath {
+            get {
+                return ResourceManager.GetString("BackImagePath", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
         ///&lt;profile name=&quot;Test Profile&quot;&gt;
         ///   &lt;items&gt;

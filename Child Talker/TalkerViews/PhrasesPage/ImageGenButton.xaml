@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Child_Talker"
              xmlns:childTalker="clr-namespace:Child_Talker"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
-             x:Name="actualButton" Margin="5" Click="ThisOnClick"
+             x:Name="actualButton" Margin="10,5,10,5" Click="ThisOnClick"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="200"
-             Style="{StaticResource genButton}"
-             Height="245" Width="245">
+             d:DesignHeight="240" d:DesignWidth="290"
+             Style="{StaticResource genButton}" Layout="ImageOnly"
+             Height="240" Width="240">
 </tb:Button>

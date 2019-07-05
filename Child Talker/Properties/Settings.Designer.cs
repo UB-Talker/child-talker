@@ -25,56 +25,121 @@ namespace Child_Talker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color BaseForeground {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFF00")]
+        public global::System.Windows.Media.Color BackgroundHighlighted {
             get {
-                return ((global::System.Drawing.Color)(this["BaseForeground"]));
+                return ((global::System.Windows.Media.Color)(this["BackgroundHighlighted"]));
             }
             set {
-                this["BaseForeground"] = value;
+                this["BackgroundHighlighted"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color BaseBackground {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
+        public global::System.Windows.Media.Color BackgroundBase {
             get {
-                return ((global::System.Drawing.Color)(this["BaseBackground"]));
+                return ((global::System.Windows.Media.Color)(this["BackgroundBase"]));
             }
             set {
-                this["BaseBackground"] = value;
+                this["BackgroundBase"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color AutoscanForeground {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF999900")]
+        public global::System.Windows.Media.Color BackgroundMouseHover {
             get {
-                return ((global::System.Drawing.Color)(this["AutoscanForeground"]));
+                return ((global::System.Windows.Media.Color)(this["BackgroundMouseHover"]));
             }
             set {
-                this["AutoscanForeground"] = value;
+                this["BackgroundMouseHover"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color AutoscanBackground {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
+        public global::System.Windows.Media.Color BackgroundEventInner {
             get {
-                return ((global::System.Drawing.Color)(this["AutoscanBackground"]));
+                return ((global::System.Windows.Media.Color)(this["BackgroundEventInner"]));
             }
             set {
-                this["AutoscanBackground"] = value;
+                this["BackgroundEventInner"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::System.Drawing.Color AutoscanSpeed {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF999900")]
+        public global::System.Windows.Media.Color BackgroundEventOuter {
             get {
-                return ((global::System.Drawing.Color)(this["AutoscanSpeed"]));
+                return ((global::System.Windows.Media.Color)(this["BackgroundEventOuter"]));
             }
             set {
-                this["AutoscanSpeed"] = value;
+                this["BackgroundEventOuter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFC000C0")]
+        public global::System.Windows.Media.Color ForegroundHighlighted {
+            get {
+                return ((global::System.Windows.Media.Color)(this["ForegroundHighlighted"]));
+            }
+            set {
+                this["ForegroundHighlighted"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF00CFF3")]
+        public global::System.Windows.Media.Color ForegroundBase {
+            get {
+                return ((global::System.Windows.Media.Color)(this["ForegroundBase"]));
+            }
+            set {
+                this["ForegroundBase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF700070")]
+        public global::System.Windows.Media.Color ForegroundMouseOver {
+            get {
+                return ((global::System.Windows.Media.Color)(this["ForegroundMouseOver"]));
+            }
+            set {
+                this["ForegroundMouseOver"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFF0000")]
+        public global::System.Windows.Media.Color BorderColorBase {
+            get {
+                return ((global::System.Windows.Media.Color)(this["BorderColorBase"]));
+            }
+            set {
+                this["BorderColorBase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public double AutoscanTimerSpeed {
+            get {
+                return ((double)(this["AutoscanTimerSpeed"]));
+            }
+            set {
+                this["AutoscanTimerSpeed"] = value;
             }
         }
     }

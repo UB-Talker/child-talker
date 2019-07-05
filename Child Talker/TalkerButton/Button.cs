@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
+using SysButton = System.Windows.Controls.Button;
 using System.Windows.Media;
 
 namespace Child_Talker.TalkerButton
 {
-    public partial class Button : System.Windows.Controls.Button
+    public partial class Button : SysButton
     {
         public static readonly ControlTemplate VerticalTemplate = Application.Current.Resources["VerticalImage"] as ControlTemplate;
         public static readonly ControlTemplate HorizontalTemplate = Application.Current.Resources["HorizontalImage"] as ControlTemplate;
@@ -21,7 +22,11 @@ namespace Child_Talker.TalkerButton
         public Button()
         {
             this.DataContextChanged += OnContentChanged;
+            //this casting is very important do not remove
         }
+
+
+
 
         public void OnContentChanged(object sender, DependencyPropertyChangedEventArgs e)
         {

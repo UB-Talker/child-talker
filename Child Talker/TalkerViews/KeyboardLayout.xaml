@@ -8,7 +8,7 @@
              xmlns:utilities="clr-namespace:Child_Talker.Utilities"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              mc:Ignorable="d" x:Name="MainGrid"
-             d:DesignHeight="650" d:DesignWidth="1000">
+             d:DesignHeight="650" d:DesignWidth="1000" Background="Black">
     <Grid.Resources>
         <Style x:Key="localBTN" TargetType="{x:Type tb:Button}" BasedOn="{StaticResource genButton}" >
             <Setter Property="FontSize" Value="60px"/>
@@ -29,6 +29,8 @@
         <ScrollViewer Grid.Row="1"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
             <ScrollViewer.Resources>
                 <Style TargetType="tb:Button" BasedOn="{StaticResource localBTN}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
                     <Setter Property="Margin" Value="16,6,16,6"/>
                     <Setter Property="Padding" Value="16,0,16,0"/>
                 </Style>

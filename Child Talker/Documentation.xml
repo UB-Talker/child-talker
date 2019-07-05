@@ -1,0 +1,729 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Child Talker</name>
+    </assembly>
+    <members>
+        <member name="T:Child_Talker.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.BackImagePath">
+            <summary>
+              Looks up a localized string similar to pack://application:,,,/Resources/back.png.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.example">
+             <summary>
+               Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+            &lt;profile name=&quot;Test Profile&quot;&gt;
+               &lt;items&gt;
+                  &lt;item name=&quot;Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Also Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;This might be Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Mr. Dr. Professor. Kris Schindler MD.&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Need more Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Can&apos;t stop the Kris&quot; image=&quot;../../Resources [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:Child_Talker.SecondaryWindow">
+            <summary>
+            Interaction logic for SecondaryWindow.xaml
+            </summary>
+        </member>
+        <member name="M:Child_Talker.SecondaryWindow.Show``1(System.Windows.Controls.Panel)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T">Type in panel to scan for</typeparam>
+            <param name="panel">The parent for autoscan to scan through</param>
+        </member>
+        <member name="M:Child_Talker.SecondaryWindow.CloseWindow(System.Object,System.EventArgs)">
+            <summary>
+            Default Behavior For Closing SecondaryDisplay
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:Child_Talker.TalkerButton.Button.PauseOnSelectProperty">
+            <summary>
+            when this Button is selected the autoscan stops cycling until 'go back' is pressed
+            <para>   true - pause autoscan</para>
+            <para>   false - autoscan continues as normal     (default)</para>
+            </summary>
+        </member>
+        <member name="P:Child_Talker.TalkerButton.Button.PauseOnSelect">
+            <summary>
+            when this Button is selected the autoscan stops cycling until 'go back' is pressed
+            <para>   true - pause autoscan</para>
+            <para>   false - autoscan continues as normal     (default)</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.TalkerButton.Button.DoNotScanProperty">
+            <summary>
+            !!!!!!! NOT YET IMPLEMENTED !!!!!!!
+            Tells Autoscan whether or not to scan this element 
+            <para>    true - autoscan will ignore this item </para>
+            <para>   false - autoscan continues as normal     (default) </para>
+            </summary>
+        </member>
+        <member name="P:Child_Talker.TalkerButton.Button.DoNotScan">
+            <summary>
+            !!!!!!! NOT YET IMPLEMENTED !!!!!!!
+            Tells Autoscan whether or not to scan this element 
+            <para>    true - autoscan will ignore this item </para>
+            <para>   false - autoscan continues as normal     (default) </para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.TalkerButton.Button.Selected">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator">
+            <summary>
+            Interaction logic for UserControl1.xaml
+            </summary>
+            <summary>
+            ImageGenerator
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.setAutoscanFocus(System.Windows.Window)">
+            <summary>
+            what this class needs to set up on a new window
+            </summary>
+            <param name="newFocus"></param>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.PhrasesPage.ImageGenButton">
+            <summary>
+            Interaction logic for TalkerButtonLayout.xaml
+            </summary>
+            <summary>
+            ImageGenButton
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenButton.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.PhrasesPage.PhraseButton">
+            <summary>
+            Interaction logic for Item.xaml
+            </summary>
+            <summary>
+            PhraseButton
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.CheckForTransparency(System.String)">
+            <summary>
+            checks to see if a given image has transparency
+            </summary>
+            <param name="ImagePath">FilePath to Image</param>
+            <returns>true if Image is Transparent. False if path is invalie</returns>
+        </member>
+        <member name="F:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.Deleted">
+            Deleted variable is lazy way around repetition issue when attempting to delete element. creates delay after window is opened
+             see <see cref="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.DeleteThis"/> for usage
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.DeleteThis">
+            <summary>
+            A popup appears asking if The user would like to delete this element
+            </summary>
+            <returns> True if the deletion occurred</returns>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.PhrasesPage.Phrases">
+            <summary>
+            Interaction logic for PhrasesPage.xaml
+            </summary>
+            <summary>
+            Phrases
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.Phrases.GetViewParents">
+            <summary>
+            Getter method for ViewParents
+            </summary>
+            <returns> a list of all Previous folder paths</returns>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.Phrases.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.KeyboardLayout">
+            <summary>
+            Interaction logic for KeyboardLayout.xaml
+            </summary>
+            <summary>
+            KeyboardLayout
+            </summary>
+        </member>
+        <member name="E:Child_Talker.TalkerViews.KeyboardLayout.BackPressWhenEmpty">
+            <summary>
+            this will only trigger when default back behavior is enabled and the are no more characters to delete
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.KeyboardLayout.AddAutocorrect(System.Char)">
+            <summary>
+            Gets autofill suggestions after the char c is typed
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.KeyboardLayout.AddAutoFill(System.String)">
+            <summary>
+            Gets autofill suggestions for a given string replaces the autofill bar contents with results
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.KeyboardLayout.AddTextBox">
+            <summary>
+            creates a textbox to be used by keyboard
+            textBox can be manually assigned as well if desired
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.KeyboardLayout.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.SettingPage.ColorSchemeButton">
+            <summary>
+            Interaction logic for UserControl1.xaml
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.SettingPage.ColorSchemes">
+            <summary>
+            Interaction logic for Remote_popup.xaml
+            </summary>
+            <summary>
+            ColorSchemes
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.SettingPage.ColorSchemes.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.SettingPage.SettingsPage">
+            <summary>
+            Interaction logic for SettingsPage.xaml
+            </summary>
+            <summary>
+            SettingsPage
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.SettingPage.SettingsPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.EnvControlsPage.EnvControls">
+            <summary>
+            Interaction logic for EnvControls.xaml
+            </summary>
+            <summary>
+            EnvControls
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.EnvControlsPage.EnvControls.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.EnvControlsPage.Remote_CH_popup">
+            <summary>
+            Interaction logic for Remote_popup.xaml
+            </summary>
+            <summary>
+            Remote_CH_popup
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.EnvControlsPage.Remote_CH_popup.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.EnvControlsPage.Remote_VOL_popup">
+            <summary>
+            Interaction logic for Remote_popup.xaml
+            </summary>
+            <summary>
+            Remote_VOL_popup
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.EnvControlsPage.Remote_VOL_popup.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.MainMenu">
+            <summary>
+            Interaction logic for MainMenu.xaml
+            </summary>
+            <summary>
+            MainMenu
+            </summary>
+        </member>
+        <member name="F:Child_Talker.TalkerViews.MainMenu.firstToggle">
+            <summary>
+            Toggles autoscan on and off
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.AutoscanButton_click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Toggles Autoscan on and Off
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.OpenKeyboard(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Set the current view to the keyboard.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.OpenHistory(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Set the current view to the history view.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.OpenPhrases(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Sets the current view to the Phrases view.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.OpenEnvControls(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Sets the current view to the Environmental Controls view.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.MainMenu.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.TalkerView.Update">
+            <summary>
+            May be needed to update some views when navigating between them.
+            This method is 'virtual' because it allows subclasses to override this definition
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.TalkerView.GetParents">
+            <summary>
+            When overridden this will act as the topmost layer for autoscan to scan through
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.WindowHistory">
+            <summary>
+            Interaction logic for WindowHistory.xaml
+            </summary>
+            <summary>
+            WindowHistory
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.#ctor">
+            
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.OpenKeyboardWithText(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            If there is text selected, the keyboard will open up with the text in its TextBlock
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.SelectText(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            When one of the items in the scroll pane are selected, the selectedText instance/member variable will assume
+            the value of the string contained in the TextBlock that is the child of the 'sender' Button.
+            If the currently selected button is clicked again it clears the selectedText variable
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.SpeakSelectedText(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            Adds functionality to the SPEAK Button. The synth instance variable speaks whatever is stored in the 
+            selectedText instance variable.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.AddPhrases">
+            <summary>
+            Adds the stored list of historically spoken phrases to the GUI as Buttons
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.Update">
+            <remarks>
+            update()
+            *** EFFICIENCY ISSUES ***
+            This could be made more efficient. Some ideas:
+            
+            1). Maintain a list of phrases that were spoken while the application was running
+                and add those to the GUI when needed instead of deleting and reading all of the
+                Buttons.
+            </remarks>
+            <summary>
+            This is used if the user navigates "Back" to this page. The list of buttons
+            on the GUI must be refreshed if the user were to speak new phrases.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.GetParents">
+            <inheritdoc /> 
+        </member>
+        <member name="M:Child_Talker.TalkerViews.WindowHistory.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.TalkerViews.KeyboardPage">
+            <summary>
+            Interaction logic for Keyboard.xaml
+            </summary>
+            <summary>
+            KeyboardPage
+            </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.KeyboardPage.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2">
+            <summary>
+            this section is being used for Attached DependencyProperties
+            and RoutedCommands
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.ScanReverseProperty">
+            <summary>
+            tells autoscan which direction to scan the panels immediate children 
+            <para>    true - scan reverse             </para>
+            <para>   false - scan forward  (default)  </para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.IsReturnPointProperty">
+            <summary>
+            when a child UserControl (button or item) is selected return here instead of immediate parent panel 
+            (this is how the keyboard functions) - might not matter if first children are UserControls
+            <para>   true - return scan to this element     </para>
+            <para>   false - restart current panel after select    (default)</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.DoNotScanProperty">
+            <summary>
+            Tells Autoscan whether or not to scan this element 
+            <para>    true - autoscan will ignore this item              </para>
+            <para>    false - autoscan continues as normal     (default) </para>
+            </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2.ScanEventHandler">
+            <summary>
+            Event Handler type for all Autoscan Events passes a reference to the currently highlighted object
+            <para> currentObject - The element being highlighted when this event was triggered </para>
+            <para> defaultEvent - The default event associated with the designated trigger </para>
+            </summary>
+            <param name="currentObject"> The element being highlighted when this event was triggered </param>
+            <param name="defaultEvent"> The default event associated with the designated trigger </param>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.SelectPress">
+            <summary> occurs when a select button is pressed before default behavior occurs (to disable default behavior just once set ignoreSelectPressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.SelectHold">
+            <summary> occurs once when select is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.ReversePress">
+            <summary> occurs when a reverse button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreReversePressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.ReverseHold">
+            <summary> occurs once when Reverse is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.GoBackPress">
+            <summary> occurs when a GoBack button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreGoBackPressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan2.GoBackHold">
+            <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.ClearReturnPointList">
+            <summary>
+            Clears all returnPoints for current page 
+            </summary>
+            must occur every time the page is updated
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2.ControlKeys">
+            <summary>
+            List of Keyboard Keys that are used for autoscan
+            </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2.TimerModes">
+            <summary>
+            How autoscan knows if it is currently running scanning is paused or autoscan is disabled
+            </summary>
+            <para> off/on - says Autoscan is either on or off  </para>
+            <para> Manual - Timer is Disabled, Movement can still occur through Reverse actions </para>
+            <para> Paused - Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally </para>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Off">
+            says Autoscan is off  
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.On">
+            says Autoscan is on
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Manual">
+            Movement can only occur by through ReversePress ,Timer is Disabled. SelectPress and GoBackPress Function normally
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Paused">
+            Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally 
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan2.TimerMode">
+            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan2.TimerModes"/> for more information </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2.DirectionEnum">
+            <summary>
+            Autoscan Direction
+            <para> Forward - Usually will scan Left to Right and Top to Bottom</para>
+            <para> Reverse - Usually will scan Right to Left  and Bottom to Top</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.DirectionEnum.Forward">
+            <summary> Usually will scan Left to Right and Top to Bottom </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.DirectionEnum.Reverse">
+            <summary> Usually will scan Right to Left  and Bottom to Top </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan2.Direction">
+            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan2.DirectionEnum"/> for more information </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.CloseActiveWindow(System.Windows.Window)">
+            <summary>
+            will close active window provided it is not the Original MainWindow
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.SelectDefaultEnabled">
+            <summary>
+            Disables default behavior until manually enabled using <see cref="!:resetSelectHandlers"/>
+            <para> ** Use of <c>IgnoreSelectPressOnce</c> instead is highly recommended </para></summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.ReverseDefaultEnabled">
+            <summary> Disables default behavior until manually enabled using <see cref="!:resetReverseHandlers"/>
+            <para> ** Use of <c>IgnoreReversePressOnce</c> instead is highly recommended </para> </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.GoBackDefaultEnabled">
+            <summary> Disables default behavior until manually enabled using <see cref="!:resetGoBackHandlers"/>
+            <para> ** Use of <c>IgnoreGoBackPressOnce</c> instead is highly recommended </para></summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreReversePressOnce">
+            If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreSelectPressOnce">
+            If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreGoBackPressOnce">
+             If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.reverseIsPressed">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.selectIsPressed">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.goBackIsPressed">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            triggers KeyHold behavior
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.headNode">
+            Maintains the head of the tree structure
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.currentNode">
+            Used to traverse through the tree
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.nonNullNode">
+            Stores the last non null node
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.currentInput">
+            Stores the currently typed string
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.nullNodes">
+            Store how many times the currentNode should remain null
+        </member>
+        <member name="F:Child_Talker.Utilities.ParseTree.isReset">
+            Indicates whether or not the ParseTree is reset
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.#ctor(System.Collections.Generic.Dictionary{System.String,System.Int32})">
+            <summary>
+            Build a ParseTree with a given set of words
+            </summary>
+            <param name="wordCounts"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.#ctor">
+            <summary>
+            Default constructor for ParseTree. Sets the headNode to a new node.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.GoDownTree(System.Char)">
+            <summary>
+            Traverse down the tree to the node at the given char.
+            </summary>
+            <param name="c"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.GoDownTree(System.String)">
+            <summary>
+            Traverse down the tree to the node with the given string
+            </summary>
+            <param name="s"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.goUpTree">
+            <summary>
+            Traverse up the tree. Used primarily when the user backspaces.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.GetCurrentNodeCount">
+            <summary>
+            Returns how many times the currentNode has been terminated there
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ResetTree">
+            <summary>
+            Sets the currentNode to headNode
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.IsTreeReset">
+            <summary>
+            Returns if true if the tree is reset.
+            In other words if the currentNode is at the head.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.IsCurrentNodeNull">
+            <summary>
+            Made this method for testing purposes.
+            May have applicable use.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.SetNextNode(System.Char,System.Int32)">
+            <summary>
+            Used to set a node in the dictionary to a brand new node.
+            Should only be done if the node is null
+            </summary>
+            <param name="c"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.SetTimesTerminatedHere(System.Int32)">
+            <summary>
+            Used to change the number of times a parse has terminated at that node
+            </summary>
+            <param name="count"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.GetTimesTerminatedHere">
+            Returns the number of times that a string has terminated at this node
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.GetChar">
+            Get the char stored at this node
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.GetNodes">
+            Get list of ParseNodes stored at this node
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.GetPrevNode">
+            Traverse to the parent node
+        </member>
+        <member name="M:Child_Talker.Utilities.ParseTree.ParseNode.IncrementCount">
+            Increments the count of the current node by one
+        </member>
+        <member name="P:Child_Talker.Utilities.TextUtility.Instance">
+            <summary>
+            TextUtility as Unary Class.
+            maintains a single instance of TextUtility for all classes to use
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.TextUtility.Speak(System.String)">
+            <summary>
+            Speaks and saves the given input text with a timestamp of when it was spoken.
+            The spoken string is also tokenized and stored in wordCounts. If the string
+            already exists as a key in wordCounts, its mapped value will be incremented by one.
+            Otherwise it will be added to wordCounts with an initial value of 1.
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="T:Child_Talker.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:Child_Talker.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="M:Child_Talker.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:Child_Talker.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="M:Child_Talker.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
+        </member>
+    </members>
+</doc>

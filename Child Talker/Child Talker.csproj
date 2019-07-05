@@ -41,6 +41,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>Documentation.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -101,7 +102,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="SecondaryWindow.cs" />
+    <Compile Include="Settings.cs" />
     <Compile Include="TalkerButton\DependencyProperties.cs" />
     <Compile Include="TalkerButton\Button.cs" />
     <Compile Include="TalkerViews\PhrasesPage\ImageGenerator.xaml.cs">
@@ -113,6 +120,7 @@
     <Compile Include="TalkerViews\PhrasesPage\ImageGenButton.xaml.cs">
       <DependentUpon>ImageGenButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TalkerViews\SettingPage\ColorSchemeButton.cs" />
     <Compile Include="TalkerViews\SettingPage\ColorSchemes.xaml.cs">
       <DependentUpon>ColorSchemes.xaml</DependentUpon>
     </Compile>
@@ -155,6 +163,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\ColorSchemes\SystemColors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TalkerViews\PhrasesPage\ImageGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -171,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\Keyboard.xaml">
+    <Page Include="TalkerViews\KeyboardPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -192,8 +204,8 @@
     <Compile Include="TalkerViews\PhrasesPage\PhraseButton.xaml.cs">
       <DependentUpon>PhraseButton.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViews\Keyboard.xaml.cs">
-      <DependentUpon>Keyboard.xaml</DependentUpon>
+    <Compile Include="TalkerViews\KeyboardPage.xaml.cs">
+      <DependentUpon>KeyboardPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -227,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="TalkerViews\SettingPage\SettingsTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="TalkerViews\WindowHistory.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -239,11 +255,6 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -251,8 +262,8 @@
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="Child Talker_TemporaryKey.pfx" />
     <None Include="packages.config" />
@@ -381,11 +392,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\whelp.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\example2.xml">
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.6.1">

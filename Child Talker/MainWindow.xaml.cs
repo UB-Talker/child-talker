@@ -28,7 +28,7 @@ namespace Child_Talker
 
         private Stack<TalkerView> previousViews;
 
-        private readonly Autoscan2 scan;
+        private Autoscan2 scan { get; }
         private static MainWindow _instance;
         public static MainWindow Instance => _instance ?? (_instance = new MainWindow());
 
@@ -41,8 +41,7 @@ namespace Child_Talker
             //scan = AutoscanOriginal.Instance;
             scan = Autoscan2.Instance;
                 //this.Content = startScreen; //DataContext will give you the current view
-
-
+            scan.NewWindow(this);
             this.Closing += (sender, e) => { TextUtility.Instance.save(); };
             this.Closing += (sender, e) => { Application.Current.Shutdown(); };
         }
@@ -91,6 +90,26 @@ namespace Child_Talker
             else
             {
                 scan.NewListToScanThough<Panel>(f.Content as Panel, true);
+            }
+        }
+
+        public void ExecutedCustomCommand(object sender,
+            ExecutedRoutedEventArgs e)
+        {
+            MessageBox.Show("Custom Command Executed");
+        }
+        public void CanExecuteCustomCommand(object sender,
+            CanExecuteRoutedEventArgs e)
+        {
+            Control target = e.Source as Control;
+
+            if (target != null)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
             }
         }
     }

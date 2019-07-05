@@ -35,7 +35,7 @@
             <tb:Button x:Name="menu"       Grid.Row="0" Click="backToHome" Text="Menu"></tb:Button>
             <!--<custom:TlkrBTN x:Name="Favorite"   Grid.Row="1"                                >Favorites</custom:TlkrBTN> -->
             <tb:Button x:Name="toKeyboard" Grid.Row="1" Click="OpenKeyboardWithText" Text="Keyboard" ></tb:Button>
-            <tb:Button x:Name="speak"      Grid.Row="2" Click="speakSelectedText"  Text="Speak"></tb:Button>
+            <tb:Button x:Name="speak"      Grid.Row="2" Click="SpeakSelectedText"  Text="Speak"></tb:Button>
 
         </Grid>
 

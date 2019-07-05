@@ -10,15 +10,14 @@ namespace Child_Talker
     {
         public enum Tile { folder, talker }
 
+        [XmlAttribute]
+        public Tile TileType { get; set; }
 
         [XmlAttribute]
         public string Text { get; set; }
 
         [XmlAttribute]
         public string ImagePath { get; set; }
-
-        [XmlAttribute]
-        public Tile TileType { get; set; }
 
         [XmlArrayItem]
         public List<ChildTalkerXml> Children { get; set; }

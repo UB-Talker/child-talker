@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using FormTextBox = System.Windows.Forms.TextBox;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -15,6 +16,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Child_Talker.TalkerButton;
 using Button = Child_Talker.TalkerButton.Button;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using KeyEventHandler = System.Windows.Input.KeyEventHandler;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace Child_Talker.TalkerViews
 {
@@ -195,7 +199,7 @@ namespace Child_Talker.TalkerViews
         /// Gets autofill suggestions after the char c is typed
         /// </summary>
         /// <param name="c"></param>
-        public void addAutocorrect(char c)
+        public void AddAutocorrect(char c)
         {
             autofill.Children.Clear();
             foreach (Button b in util.getNextSuggestion(c))
@@ -211,8 +215,9 @@ namespace Child_Talker.TalkerViews
         /// Gets autofill suggestions for a given string replaces the autofill bar contents with results
         /// </summary>
         /// <param name="s"></param>
-        private void addAutoFill(string s)
+        private void AddAutoFill(string s)
         {
+            FormTextBox tb = new FormTextBox();
             autofill.Children.Clear();
             foreach(Button b in util.getNextSuggestionsForString(s))
             {
@@ -281,15 +286,15 @@ namespace Child_Talker.TalkerViews
             if (!defaultBackPress) return;
 
             textBox.Text = textBox.Text.Substring(0, textBox.Text.Length - 1);
-            addAutocorrect('_');
+            AddAutocorrect('_');
             string[] words = textBox.Text.Split(' ');
-            addAutoFill(words.Last<string>());
+            AddAutoFill(words.Last<string>());
         }
 
         private void CharacterPressDefault(string s)
         {
             textBox.Text += s.ToLower();
-            addAutocorrect(s[0]);
+            AddAutocorrect(s[0]);
         }
     }
 }

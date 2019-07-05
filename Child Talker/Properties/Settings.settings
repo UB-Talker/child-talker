@@ -2,20 +2,35 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Child_Talker.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="BaseForeground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="BackgroundHighlighted" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFFFF00</Value>
     </Setting>
-    <Setting Name="BaseBackground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="BackgroundBase" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
     </Setting>
-    <Setting Name="AutoscanForeground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="BackgroundMouseHover" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF999900</Value>
     </Setting>
-    <Setting Name="AutoscanBackground" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="BackgroundEventInner" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
     </Setting>
-    <Setting Name="AutoscanSpeed" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)" />
+    <Setting Name="BackgroundEventOuter" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF999900</Value>
+    </Setting>
+    <Setting Name="ForegroundHighlighted" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFC000C0</Value>
+    </Setting>
+    <Setting Name="ForegroundBase" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF00CFF3</Value>
+    </Setting>
+    <Setting Name="ForegroundMouseOver" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF700070</Value>
+    </Setting>
+    <Setting Name="BorderColorBase" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFF0000</Value>
+    </Setting>
+    <Setting Name="AutoscanTimerSpeed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

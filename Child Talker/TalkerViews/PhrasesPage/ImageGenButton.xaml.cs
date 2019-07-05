@@ -31,8 +31,10 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             ImagePath = imagePath;
             currentPath = path;
 
-            var substring = path.Substring(path.LastIndexOf('\\')+1);
-            this.Text = substring;
+            var text = path.Substring(path.LastIndexOf('\\')+1);
+            if(text.Contains("."))
+                text = text.Substring(0, text.LastIndexOf('.') );
+            this.Text = text;
             this.ImageSource = imagePath;
         }
 

@@ -7,11 +7,12 @@
         xmlns:util="clr-namespace:Child_Talker.Utilities"
         xmlns:views="clr-namespace:Child_Talker.TalkerViews"
         mc:Ignorable="d"
-        Title="UB Child Talker" Background="Black" Height="1080" Width="1920" WindowState="Maximized">
+        d:DesignWidth="1550" d:DesignHeight="838"
+        Title="UB Child Talker" Background="Black" WindowState="Maximized">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/ColorSchemes/BaseScheme.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="./Resources/ColorSchemes/BaseScheme.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="./Resources/ColorSchemes/ButtonTemplates.xaml"/>
                 <ResourceDictionary Source="./Resources/ColorSchemes/ScrollBarStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>

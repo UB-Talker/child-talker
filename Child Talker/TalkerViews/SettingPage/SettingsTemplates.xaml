@@ -1,0 +1,68 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Child_Talker.TalkerViews.SettingPage"
+                    xmlns:utilities="clr-namespace:Child_Talker.Utilities">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../../Resources/ColorSchemes/ButtonTemplates.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <ControlTemplate x:Key="ColorSchemeButtonTemplate" TargetType="local:ColorSchemeButton" >
+        <Border Name="PageBackground"  Background="{TemplateBinding PageBackground}">
+            <Border Name="ButtonOuterBorder"  BorderThickness="{StaticResource ColorScheme.Border.Thickness}" Margin="20"
+                    Background="{TemplateBinding Background}" 
+                    BorderBrush="{TemplateBinding BorderBrush}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50*"/>
+                        <RowDefinition Height="50*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="50*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border Name="Image" Grid.Row="0" Grid.Column="1" Margin="10" BorderThickness="{StaticResource ColorScheme.Border.Thickness}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                        Background="{TemplateBinding HighlightBackground}"  
+                        BorderBrush="{TemplateBinding HighlightBorder}" >
+
+                        <TextBlock Name="ScanTextBlock" Style="{StaticResource genTextBlock}"
+                               Foreground="{TemplateBinding HighlightForeground}" Text="HL" />
+                    </Border>
+                    <TextBlock Name="BaseTextBlock" Grid.Row="1" Grid.Column="0" Style="{StaticResource genTextBlock}"
+                           Foreground="{TemplateBinding Foreground}"
+                           Text="Base" >
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="False">
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="20"></Setter>
+                <Setter TargetName="PageBackground" Property="Margin" Value="0"></Setter>
+            </Trigger>
+            <Trigger Property="utilities:Autoscan2.IsHighlight" Value="False">
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="20"></Setter>
+                <Setter TargetName="PageBackground" Property="Margin" Value="0"></Setter>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="70"></Setter>
+                <Setter TargetName="PageBackground" Property="Margin" Value="-20"></Setter>
+            </Trigger>
+            <Trigger Property="utilities:Autoscan2.IsHighlight" Value="True">
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="70"></Setter>
+                <Setter TargetName="PageBackground" Property="Margin" Value="-20"></Setter>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="ColorSchemeButtonStyle" TargetType="{x:Type local:ColorSchemeButton}" >
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="Template" Value="{StaticResource ColorSchemeButtonTemplate}"/>
+
+    </Style>
+
+
+
+</ResourceDictionary>

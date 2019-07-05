@@ -53,7 +53,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 });
                 scan.IgnoreGoBackPressOnce = true;
                 scan.PauseScan(false);
-                scan.GoBackPress -= ((hei1) => t.Stop());
+                scan.GoBackPress -= ((hei1, gbp) => t.Stop());
                 t.Stop();
             };
         }
@@ -99,8 +99,9 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         public void SaveToXml(string _path)
         {
+            var serializerSettings = new XmlWriterSettings() { Indent = true };
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            using (XmlWriter writer = XmlWriter.Create(_path))
+            using (XmlWriter writer = XmlWriter.Create(_path, serializerSettings))
             {
                 serializer.Serialize(writer, XmlWrapper);
             }
@@ -126,13 +127,13 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         Timer t = new Timer(5000);
         private PhraseButton markedForDeletion;
-        public void GoBackHoldTileScanning(DependencyObject currectObj)
+        public void GoBackHoldTileScanning(DependencyObject currectObj, Autoscan2.DefaultEvents goBackDefaultEvent)
         {
             if (currectObj is PhraseButton item)
             {
                 markedForDeletion = item ;
                 scan.PauseScan(true);
-                scan.GoBackPress += ((hei1) => t.Stop());
+                scan.GoBackPress += ((hei1, gbp) => t.Stop());
                 t.Start();
             }
 
@@ -249,6 +250,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         {
             keyboard = new KeyboardLayout();
             popupWindow = new SecondaryWindow(keyboard);
+            keyboard.Margin=new Thickness(15);
             keyboard.AddTextBox();
             keyboard.textBox.CharacterCasing = CharacterCasing.Lower;
             keyboard.textBox.MaxLength = 25;
@@ -257,7 +259,11 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             popupWindow.Content = keyboard;
 
             // invocations
-            keyboard.BackPressWhenEmpty += ((sender, e) => { popupWindow.Close(); });
+            keyboard.BackPressWhenEmpty += ((sender, e) =>
+            {
+                popupWindow.Close(); (MainWindow.Instance).Show();
+                MainWindow.Instance.Navigator.Refresh();
+            });
             popupWindow.Show(new List<DependencyObject>(){keyboard.keyboardGrid, keyboard.autofill});
         }
 
@@ -273,6 +279,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (inputPhrase != "")
             {
                 popupWindow.Close();
+                MainWindow.Instance.Show();
                 
                 //String imagePath = PromptFileExplorer();
                 if (imagePath != "")

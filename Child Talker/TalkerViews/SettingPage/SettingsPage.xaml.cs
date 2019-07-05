@@ -16,12 +16,12 @@ using Child_Talker.Utilities;
 
 namespace Child_Talker.TalkerViews.SettingPage
 {
-    /// <summarys
-    /// Interaction logic for WindowHistory.xaml
+    /// <summary>
+    /// Interaction logic for SettingsPage.xaml
     /// </summary>
     public partial class SettingsPage : TalkerView
     {
-        SettingsPage()
+        public SettingsPage()
         {
             InitializeComponent();        
         }
@@ -35,9 +35,60 @@ namespace Child_Talker.TalkerViews.SettingPage
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {
-                sidePanel
+                sidePanel, SettingsList
             };
             return (parents);
+        }
+
+        public bool ChangesMade { get; private set; } = false;
+        private void ColorSchemeButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is ColorSchemeButton btn)) return;
+            Properties.Settings.Default.BackgroundBase = ((SolidColorBrush)btn.Background).Color;
+            Properties.Settings.Default.BackgroundHighlighted= ((SolidColorBrush)btn.HighlightBackground).Color; 
+            Properties.Settings.Default.ForegroundBase= ((SolidColorBrush)btn.Foreground).Color;
+            Properties.Settings.Default.ForegroundHighlighted= ((SolidColorBrush)btn.HighlightForeground).Color;
+            Properties.Settings.Default.BorderColorBase= ((SolidColorBrush)btn.BorderBrush).Color;
+            ChangesMade = true;
+            revertChanges.IsEnabled = ChangesMade;
+            applyChanges.IsEnabled = ChangesMade;
+
+        }
+
+        private void AutoscanSpeedButtons_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!(sender is Button btn)) return;
+            double scanSpeed = Convert.ToDouble(btn.Tag);
+            Properties.Settings.Default.AutoscanTimerSpeed = scanSpeed;
+            Autoscan2.Instance.UpdateScanTimerInterval();
+            ChangesMade = true;
+            revertChanges.IsEnabled = ChangesMade;
+            applyChanges.IsEnabled = ChangesMade;
+        }
+
+        private void Menu_OnClick(object sender, RoutedEventArgs e)
+        {
+            RevertChanges_OnClick(sender, e);
+            backToHome(sender, e);
+        }
+
+        private void RevertChanges_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (!ChangesMade) return;
+
+            Properties.Settings.Default.Reload();
+            Autoscan2.Instance.UpdateScanTimerInterval();
+            ChangesMade = false;
+            revertChanges.IsEnabled = ChangesMade;
+            applyChanges.IsEnabled = ChangesMade;
+        }
+
+        private void ApplyChanges_OnClick(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+            ChangesMade = false;
+            revertChanges.IsEnabled = ChangesMade;
+            applyChanges.IsEnabled = ChangesMade;
         }
     }
 }

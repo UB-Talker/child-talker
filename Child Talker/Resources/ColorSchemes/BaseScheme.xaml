@@ -2,22 +2,12 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:custom="clr-namespace:Child_Talker"
                     xmlns:utilities="clr-namespace:Child_Talker.Utilities"
-                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton">
-   
-    <SolidColorBrush x:Key="ColorScheme.Border.BaseColor" Color="#FF0000"/>
-    <Thickness x:Key="ColorScheme.Border.Thickness" Bottom="10" Left="10" Right="10" Top="10"/>
-    
-    <SolidColorBrush x:Key="ColorScheme.Background.Highlighted" Color="Yellow"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.Highlighted" Color="#C000C0"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.MouseHover" Color="#700070"/>
-    <SolidColorBrush x:Key="ColorScheme.Background.MouseHover" Color="#999900"/>
-    <RadialGradientBrush x:Key="ColorScheme.Background.Event">
-        <GradientStop  Color="#999900" Offset="1"/>
-        <GradientStop Color="Yellow" Offset=".8"/>
-        <GradientStop Color="Yellow" Offset="0"/>
-    </RadialGradientBrush>
-    <SolidColorBrush x:Key="ColorScheme.Background.BaseColor" Color="Black"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.BaseColor" Color="#00CFF3"/>
+                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                    xmlns:properties="clr-namespace:Child_Talker.Properties">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="SystemColors.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+
 
     <Style x:Key="genTextBlock" TargetType="{x:Type TextBlock}">
         <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -41,7 +31,7 @@
     <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource genTextBlock}"/>
     <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource genTextBox}"/>
 
-    <Style TargetType="Panel" x:Key="dede">
+    <Style TargetType="Panel" x:Key="PanelTriggers">
         <Setter Property="utilities:Autoscan2.IsHighlight" Value="False"></Setter>
         <Style.Triggers>
             <Trigger Property="utilities:Autoscan2.IsHighlight" Value="true">
@@ -53,9 +43,9 @@
         </Style.Triggers>
     </Style>
 
-    <Style TargetType="Grid" BasedOn="{StaticResource dede}"></Style>
-    <Style TargetType="StackPanel" BasedOn="{StaticResource dede}"></Style>
-    <Style TargetType="WrapPanel" BasedOn="{StaticResource dede}"></Style>
+    <Style TargetType="Grid" BasedOn="{StaticResource PanelTriggers}"></Style>
+    <Style TargetType="StackPanel" BasedOn="{StaticResource PanelTriggers}"></Style>
+    <Style TargetType="WrapPanel" BasedOn="{StaticResource PanelTriggers}"></Style>
 
     
 
