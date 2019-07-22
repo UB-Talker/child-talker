@@ -5,9 +5,9 @@
         <ResourceDictionary Source="BaseScheme.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     
-    <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="Transparent"/>
-    <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="Black"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="Red"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="LightGray"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="Gray"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="{Binding Source={StaticResource ColorScheme.Border.BaseColor}, Path=Color}"/>
     <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#00FF00"/>
     <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#BFBFBF"/>
     <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#00cc00"/>
@@ -20,17 +20,17 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="HotPink"/>
-    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="Red"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="Cyan"/>
-    <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="Red"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="#111111"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="#111111"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="{Binding Source={StaticResource ColorScheme.Border.Highlighted}, Path=Color}"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="{Binding Source={StaticResource ColorScheme.Border.BaseColor}, Path=Color}"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="{Binding Source={StaticResource ColorScheme.Foreground.Highlighted}, Path=Color}"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="{Binding Source={StaticResource ColorScheme.Border.BaseColor}, Path=Color}"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="Transparent"/>
 
     <SolidColorBrush x:Key="ScrollBar.Static.Button.Background" Color="Pink"/>
     <SolidColorBrush x:Key="ScrollBar.Static.Button.Border" Color="Pink"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Button.Background" Color="#111111"/>
-    <SolidColorBrush x:Key="ScrollBar.Disabled.Button.Border" Color="#111111"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Button.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Button.Border" Color="Transparent"/>
 
     <Style x:Key="ScrollBarButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
@@ -95,6 +95,9 @@
                 <ControlTemplate TargetType="{x:Type Thumb}">
                     <Rectangle x:Name="rectangle" Fill="{StaticResource ScrollBar.Static.Thumb}" Height="{TemplateBinding Height}" SnapsToDevicePixels="True" Width="{TemplateBinding Width}"/>
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.Static.Background}"/>
+                        </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
                             <Setter Property="Fill" TargetName="rectangle" Value="{StaticResource ScrollBar.MouseOver.Thumb}"/>
                         </Trigger>

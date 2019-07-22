@@ -25,121 +25,169 @@ namespace Child_Talker.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
+        public global::System.Windows.Media.Color Page_Background {
+            get {
+                return ((global::System.Windows.Media.Color)(this["Page_Background"]));
+            }
+            set {
+                this["Page_Background"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2000")]
+        public double Scan_Speed {
+            get {
+                return ((double)(this["Scan_Speed"]));
+            }
+            set {
+                this["Scan_Speed"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FFFFFF00")]
-        public global::System.Windows.Media.Color BackgroundHighlighted {
+        public global::System.Windows.Media.Color Background_Highlighted {
             get {
-                return ((global::System.Windows.Media.Color)(this["BackgroundHighlighted"]));
+                return ((global::System.Windows.Media.Color)(this["Background_Highlighted"]));
             }
             set {
-                this["BackgroundHighlighted"] = value;
+                this["Background_Highlighted"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
-        public global::System.Windows.Media.Color BackgroundBase {
+        public global::System.Windows.Media.Color Background_Base {
             get {
-                return ((global::System.Windows.Media.Color)(this["BackgroundBase"]));
+                return ((global::System.Windows.Media.Color)(this["Background_Base"]));
             }
             set {
-                this["BackgroundBase"] = value;
+                this["Background_Base"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF999900")]
-        public global::System.Windows.Media.Color BackgroundMouseHover {
+        public global::System.Windows.Media.Color Background_MouseHover {
             get {
-                return ((global::System.Windows.Media.Color)(this["BackgroundMouseHover"]));
+                return ((global::System.Windows.Media.Color)(this["Background_MouseHover"]));
             }
             set {
-                this["BackgroundMouseHover"] = value;
+                this["Background_MouseHover"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF000000")]
-        public global::System.Windows.Media.Color BackgroundEventInner {
+        public global::System.Windows.Media.Color Background_EventInner {
             get {
-                return ((global::System.Windows.Media.Color)(this["BackgroundEventInner"]));
+                return ((global::System.Windows.Media.Color)(this["Background_EventInner"]));
             }
             set {
-                this["BackgroundEventInner"] = value;
+                this["Background_EventInner"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF999900")]
-        public global::System.Windows.Media.Color BackgroundEventOuter {
+        public global::System.Windows.Media.Color Background_EventOuter {
             get {
-                return ((global::System.Windows.Media.Color)(this["BackgroundEventOuter"]));
+                return ((global::System.Windows.Media.Color)(this["Background_EventOuter"]));
             }
             set {
-                this["BackgroundEventOuter"] = value;
+                this["Background_EventOuter"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FFC000C0")]
-        public global::System.Windows.Media.Color ForegroundHighlighted {
+        public global::System.Windows.Media.Color Foreground_Highlighted {
             get {
-                return ((global::System.Windows.Media.Color)(this["ForegroundHighlighted"]));
+                return ((global::System.Windows.Media.Color)(this["Foreground_Highlighted"]));
             }
             set {
-                this["ForegroundHighlighted"] = value;
+                this["Foreground_Highlighted"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF00CFF3")]
-        public global::System.Windows.Media.Color ForegroundBase {
+        public global::System.Windows.Media.Color Foreground_Base {
             get {
-                return ((global::System.Windows.Media.Color)(this["ForegroundBase"]));
+                return ((global::System.Windows.Media.Color)(this["Foreground_Base"]));
             }
             set {
-                this["ForegroundBase"] = value;
+                this["Foreground_Base"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF700070")]
-        public global::System.Windows.Media.Color ForegroundMouseOver {
+        public global::System.Windows.Media.Color Foreground_MouseOver {
             get {
-                return ((global::System.Windows.Media.Color)(this["ForegroundMouseOver"]));
+                return ((global::System.Windows.Media.Color)(this["Foreground_MouseOver"]));
             }
             set {
-                this["ForegroundMouseOver"] = value;
+                this["Foreground_MouseOver"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FFFF0000")]
-        public global::System.Windows.Media.Color BorderColorBase {
+        public global::System.Windows.Media.Color BorderColor_Base {
             get {
-                return ((global::System.Windows.Media.Color)(this["BorderColorBase"]));
+                return ((global::System.Windows.Media.Color)(this["BorderColor_Base"]));
             }
             set {
-                this["BorderColorBase"] = value;
+                this["BorderColor_Base"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
-        public double AutoscanTimerSpeed {
+        [global::System.Configuration.DefaultSettingValueAttribute("#FFFF0000")]
+        public global::System.Windows.Media.Color BorderColor_Highlighted {
             get {
-                return ((double)(this["AutoscanTimerSpeed"]));
+                return ((global::System.Windows.Media.Color)(this["BorderColor_Highlighted"]));
             }
             set {
-                this["AutoscanTimerSpeed"] = value;
+                this["BorderColor_Highlighted"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoscanEnabled {
+            get {
+                return ((bool)(this["AutoscanEnabled"]));
+            }
+            set {
+                this["AutoscanEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF666666")]
+        public global::System.Windows.Media.Color Page_SecondaryBackground {
+            get {
+                return ((global::System.Windows.Media.Color)(this["Page_SecondaryBackground"]));
+            }
+            set {
+                this["Page_SecondaryBackground"] = value;
             }
         }
     }

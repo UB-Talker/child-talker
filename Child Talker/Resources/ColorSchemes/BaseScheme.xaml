@@ -43,6 +43,7 @@
         </Style.Triggers>
     </Style>
 
+
     <Style TargetType="Grid" BasedOn="{StaticResource PanelTriggers}"></Style>
     <Style TargetType="StackPanel" BasedOn="{StaticResource PanelTriggers}"></Style>
     <Style TargetType="WrapPanel" BasedOn="{StaticResource PanelTriggers}"></Style>

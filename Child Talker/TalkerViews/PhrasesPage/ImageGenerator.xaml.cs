@@ -15,13 +15,14 @@ namespace Child_Talker.TalkerViews.PhrasesPage
     {
         internal string path = "../../Resources/General_Icons";
         public ImageGenButton.OnClickPath onImageSelectHandler; //input parameter of type string
-        public event ImageGenButton.OnClickPath OnImageSelect;
+        private event ImageGenButton.OnClickPath OnImageSelect;
 
         private readonly Autoscan2 scan;
         public ImageGenerator(ImageGenButton.OnClickPath onImageSelect)
         {
             InitializeComponent();
             this.OnImageSelect = onImageSelect;
+            this.OnImageSelect += (s) => this.Close() ;
             scan = Autoscan2.Instance;
             ImagesPanel.ScrollOwner = scrollViewer;
             GetCurrentDirectoryContents(path);
@@ -111,7 +112,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                             Orientation = Orientation.Horizontal
                         };
                     }
-
                     //Console.WriteLine(file);
                 }
 
@@ -171,11 +171,13 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         private void PromptFileExplorer(object sender, RoutedEventArgs e)
         {
-            System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog();
-            ofd.InitialDirectory = "c:\\";
-            ofd.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*";
-            ofd.FilterIndex = 0;
-            ofd.RestoreDirectory = true;
+            var ofd = new System.Windows.Forms.OpenFileDialog
+            {
+                InitialDirectory = "c:\\",
+                Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG|All files (*.*)|*.*",
+                FilterIndex = 0,
+                RestoreDirectory = true
+            };
 
             String imagePath = "";
             if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -186,7 +188,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    System.Windows.MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
 

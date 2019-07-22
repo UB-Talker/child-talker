@@ -6,11 +6,13 @@
         xmlns:local="clr-namespace:Child_Talker.TalkerViews.SettingPage"
         xmlns:tv="clr-namespace:Child_Talker.TalkerViews"
         xmlns:custom="clr-namespace:Child_Talker"
+        xmlns:util="clr-namespace:Child_Talker.Utilities"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
         mc:Ignorable="d"
         d:DesignHeight="880" d:DesignWidth="1500"
-        Height="Auto" Width="Auto" Background="Black">
+        Height="Auto" Width="Auto" 
+>
     <tv:TalkerView.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -30,8 +32,8 @@
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="ScrollMenu" Margin="0" Grid.Column="0" >
-            <StackPanel x:Name="SettingsList" HorizontalAlignment="Stretch">
+        <ScrollViewer x:Name="ScrollMenu" Margin="0" Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel x:Name="SettingsList" HorizontalAlignment="Stretch" util:Autoscan2.IsReturnPoint="True">
 
                 <ScrollViewer
                     HorizontalContentAlignment="Center" CanContentScroll="True" PanningMode="HorizontalOnly" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
@@ -39,7 +41,6 @@
                         <StackPanel.Resources>
                             <Style x:Key="SchemeStyle" TargetType="{x:Type local:ColorSchemeButton}" BasedOn="{StaticResource ColorSchemeButtonStyle}">
                                 <Setter Property="Width" Value="300"/>
-                                <Setter Property="Height" Value="300"/>
                             </Style>
                         </StackPanel.Resources>
                         <local:ColorSchemeButton Style="{StaticResource SchemeStyle}" Click="ColorSchemeButton_OnClick"
@@ -54,27 +55,30 @@
 
                         <local:ColorSchemeButton Style="{StaticResource SchemeStyle}" Click="ColorSchemeButton_OnClick"
                                          PageBackground="White"
-                                                  Background="Black"     BorderBrush="Gray"          Foreground="White"
-                                         HighlightBackground="White" HighlightBorder="Gray" HighlightForeground="Black"/>
+                                                  Background="white"     BorderBrush="Black"          Foreground="Black"
+                                         HighlightBackground="Black" HighlightBorder="Red" HighlightForeground="White"/>
+                        
                         <local:ColorSchemeButton Style="{StaticResource SchemeStyle}" Click="ColorSchemeButton_OnClick"
                                          PageBackground="Black"
-                                                  Background="white"     BorderBrush="Gray"          Foreground="Black"
-                                         HighlightBackground="Black" HighlightBorder="Gray" HighlightForeground="White"/>
+                                                  Background="Black"     BorderBrush="White"          Foreground="White"
+                                         HighlightBackground="White" HighlightBorder="Red" HighlightForeground="Black"/>
                     </StackPanel>
                 </ScrollViewer>
                 <Grid HorizontalAlignment="Stretch">
-
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <tb:Button Grid.Column="0" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
-                               Text="Slow" Tag="6000" ></tb:Button>
+                               Text="Slowest (6s)" Tag="6000" ></tb:Button>
                     <tb:Button Grid.Column="1" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
-                               Text="Medium" Tag="3000" ></tb:Button>
+                               Text="Slow (4s)" Tag="4000" ></tb:Button>
                     <tb:Button Grid.Column="2" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
-                               Text="Fast" Tag="1000"></tb:Button>
+                               Text="Fast (2s)" Tag="2000"></tb:Button>
+                    <tb:Button Grid.Column="3" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
+                               Text="Fastest (1s)" Tag="1000"></tb:Button>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
@@ -85,7 +89,7 @@
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
-            <tb:Button x:Name="menu"          Grid.Row="0" Click="Menu_OnClick" Text="Menu"/>
+            <tb:Button x:Name="menu"          Grid.Row="0" Click="Menu_OnClick" Text="Menu&#x0a;(Revert)"/>
             <tb:Button x:Name="revertChanges" Grid.Row="1" Click="RevertChanges_OnClick"  Text="Revert&#x0a;Changes" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=tv:TalkerView}, Path=ChangesMade}"/>
             <tb:Button x:Name="applyChanges"  Grid.Row="2" Click="ApplyChanges_OnClick" Text="Apply&#x0a;Changes" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=tv:TalkerView}, Path=ChangesMade}"/>
         </Grid>

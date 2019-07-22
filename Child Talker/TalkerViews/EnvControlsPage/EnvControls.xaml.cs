@@ -29,19 +29,17 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
             vol = new Remote_VOL_popup(this);
-            sw = new SecondaryWindow(vol.gridLayout) ;
-            vol.BackButton.Click += ((bSender, bE) => { sw.Close(); });
+            vol.BackButton.Click += ((bSender, bE) => { vol.Close(); });
             scan.ClearReturnPointList();
-            sw.Show<Button>(vol.gridLayout);
+            vol.Show<Button>(vol.gridLayout);
         }
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
             ch = new Remote_CH_popup(this);
-            sw = new SecondaryWindow(ch.gridLayout);
             scan.NewListToScanThough<Button>(ch.gridLayout);
-            ch.backButton.Click += ((bSender, bE) => { sw.Close(); });
+            ch.backButton.Click += ((bSender, bE) => { ch.Close(); });
             scan.ClearReturnPointList();
-            sw.Show<Button>(ch.gridLayout);
+            ch.Show<Button>(ch.gridLayout);
         }
         private void RelayControl(object sender, RoutedEventArgs e)
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +15,7 @@ using System.Windows.Controls;
 using SysButton = System.Windows.Controls.Button;
 using Button = Child_Talker.TalkerButton.Button;
 using System.Windows.Input;
+using Child_Talker.TalkerViews;
 using Timer = System.Timers.Timer;
 
 namespace Child_Talker.Utilities
@@ -134,6 +136,46 @@ namespace Child_Talker.Utilities
         /// <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler GoBackHold;
 
+        /// <summary>
+        /// Resets all  <see cref="Autoscan2"/> EventHandlers
+        /// And Re-enables Default behavior
+        /// </summary>
+        public void ResetEventHandlers()
+        {
+            ResetGoBackEventHandlers();
+            ResetReverseEventHandlers();
+            ResetSelectEventHandlers();
+        }
+        /// <summary>
+        /// Resets <see cref="Autoscan2"/> Reverse EventHandlers
+        /// And Re-enables Default behavior
+        /// </summary>
+        public void ResetReverseEventHandlers()
+        {
+            ReversePress = null;
+            ReverseHold = null;
+            ReverseDefaultEnabled = true;
+        }
+        /// <summary>
+        /// Resets <see cref="Autoscan2"/> GoBack EventHandlers
+        /// And Re-enables Default behavior
+        /// </summary>
+        public void ResetGoBackEventHandlers()
+        {
+            GoBackPress = null;
+            GoBackHold = null;
+            GoBackDefaultEnabled = true;
+        }
+        /// <summary>
+        /// Resets <see cref="Autoscan2"/> Select EventHandlers
+        /// And Re-enables Default behavior
+        /// </summary>
+        public void ResetSelectEventHandlers()
+        {
+            SelectPress = null;
+            SelectHold = null;
+            GoBackDefaultEnabled = true;
+        }
     }
 
     public partial class Autoscan2
@@ -141,10 +183,24 @@ namespace Child_Talker.Utilities
         private static Autoscan2 _instance;
         public static Autoscan2 Instance => _instance ?? (_instance = new Autoscan2());
 
-        private double ScanTimerInterval
+        private Autoscan2()
         {
-            get => scanTimer?.Interval ?? 0;
-            set
+            scanTimer.Elapsed += ScanTimerElapsed;
+            scanTimer.Interval = Properties.AutoscanSettings.Default.scanSpeed;
+
+            Properties.AutoscanSettings.Default.SettingChanging += SettingsChanged;
+            bool autoscanEnabled = Properties.AutoscanSettings.Default.Enabled;
+            if (!autoscanEnabled) return;
+            TimerMode = TimerModes.On;
+            ReturnPointList = new Stack<List<DependencyObject>>();
+            activeScanList = new List<DependencyObject>();
+            currentScanIndex = 0;
+        }
+
+        public double ScanTimerInterval
+        {
+            get => scanTimer.Interval;
+            private set
             {
                 scanTimer.Stop();
                 scanTimer.Interval = value;
@@ -152,9 +208,10 @@ namespace Child_Talker.Utilities
             }
         }
 
-        public void UpdateScanTimerInterval()
+        private void SettingsChanged(object sender, SettingChangingEventArgs e)
         {
-            ScanTimerInterval = Properties.Settings.Default.AutoscanTimerSpeed;
+            if(e.SettingName.Equals("scanSpeed"))
+                ScanTimerInterval = (double)e.NewValue;
         }
 
         private readonly Timer scanTimer = new Timer();
@@ -171,7 +228,10 @@ namespace Child_Talker.Utilities
             ReturnPointList = new Stack<List<DependencyObject>>();
         }
 
-        private readonly LinkedList<Window> windowHistoryPath = new LinkedList<Window>();
+        /// <summary>
+        /// Keeps track of all open or hidden windows that 
+        /// </summary>
+        private readonly LinkedList<Window> windowHistory = new LinkedList<Window>();
 
         // private List<DependencyObject> Active;
         private List<DependencyObject> activeScanList;
@@ -186,9 +246,9 @@ namespace Child_Talker.Utilities
             GoBack = Key.S,
             Reverse = Key.Q,
             Select = Key.E,
-            GoBack2 = Key.Up,
-            Reverse2 = Key.Left,
-            Select2 = Key.Right
+            GoBack2 = Key.I,
+            Reverse2 = Key.J,
+            Select2 = Key.L
         }
 
         public void PauseScan(bool toggle)
@@ -223,9 +283,8 @@ namespace Child_Talker.Utilities
             /// Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally 
             Paused = 3,
         }
-
         /// <summary> See <see cref="TimerModes"/> for more information </summary>
-        public TimerModes TimerMode { get; protected set; } = 0;
+        public TimerModes TimerMode { get; private set; } = 0;
 
         /// <summary>
         /// Autoscan Direction
@@ -239,14 +298,8 @@ namespace Child_Talker.Utilities
             /// <summary> Usually will scan Right to Left  and Bottom to Top </summary>
             Reverse = -1
         };
-
         /// <summary> See <see cref="DirectionEnum"/> for more information </summary>
         public DirectionEnum Direction { get; private set; } = DirectionEnum.Forward;
-
-        private Autoscan2()
-        {
-            scanTimer.Elapsed += ScanTimerElapsed;
-        }
         
         public void ToggleAutoscan()
         {
@@ -256,8 +309,8 @@ namespace Child_Talker.Utilities
                 ReturnPointList = new Stack<List<DependencyObject>>();
                 activeScanList = new List<DependencyObject>();
                 currentScanIndex = 0;
-                UpdateScanTimerInterval();
-                //Todo turn on autoscan
+                //UpdateScanTimerInterval();
+                Properties.AutoscanSettings.Default.Enabled = true;
             }
             else
             {
@@ -266,23 +319,24 @@ namespace Child_Talker.Utilities
                 scanTimer.Stop();
                 ReturnPointList = new Stack<List<DependencyObject>>();
                 activeScanList = new List<DependencyObject>();
-                //todo turn off autoscan
+                Properties.AutoscanSettings.Default.Enabled = false;
             }
+            Properties.AutoscanSettings.Default.Save();
         }
 
-        //TODO add method for closing ActiveWindow
         public void NewWindow(Window newWindow)
         {
             if (newWindow == null) return;
-            if (windowHistoryPath.Count > 0 && newWindow == windowHistoryPath.Last()) return;
-            if (windowHistoryPath.Contains(newWindow)) return;
+            if (windowHistory.Count > 1 && TimerMode == TimerModes.Off) return;
+            if (windowHistory.Count > 0 && newWindow == windowHistory.Last()) return;
+            if (windowHistory.Contains(newWindow)) return;
 
             newWindow.Dispatcher.Invoke(() =>
             {
                 newWindow.KeyUp += KeyUp;
                 newWindow.KeyDown += KeyDown;
             });
-            windowHistoryPath.AddLast(newWindow);
+            windowHistory.AddLast(newWindow);
         }
 
         /// <summary>
@@ -290,9 +344,16 @@ namespace Child_Talker.Utilities
         /// </summary>
         public void CloseActiveWindow(Window closeThis)
         {
-            if (windowHistoryPath.Count <= 1 || TimerMode == TimerModes.Off) return;
-            windowHistoryPath.Remove(closeThis);
-            var newWindow = windowHistoryPath.Last();
+            if (windowHistory.Count <= 1 || TimerMode == TimerModes.Off) return;
+            ResetEventHandlers();
+            windowHistory.Remove(closeThis);
+            var newWindow = windowHistory.Last();
+            newWindow.Show();
+        }
+        public void HideActiveWindow(Window hideThis)
+        {
+            if (windowHistory.Count <= 1 || TimerMode == TimerModes.Off) return;
+            var newWindow = windowHistory.Last();
             newWindow.Show();
         }
 
@@ -300,10 +361,11 @@ namespace Child_Talker.Utilities
         {
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             scanTimer.Stop();
-
+            
             if (currentScanObject != null) SetIsHighlight(currentScanObject, false);
 
-            activeScanList = newList ?? throw new NullReferenceException();
+            if(newList.Count == 0) throw  new NullReferenceException("newList to autoscan through is empty");
+            activeScanList = newList ?? throw new NullReferenceException("New list to autoscan through does not exists");
             if (isReturnPoint || !ReturnPointList.Any())
             {
                 ReturnPointList.Push(newList);
@@ -327,7 +389,7 @@ namespace Child_Talker.Utilities
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             if (parent == null) throw new NullReferenceException();
             scanTimer.Stop();
-            windowHistoryPath.Last().Focus();
+            windowHistory.Last().Focus();
             if (currentScanObject != null) SetIsHighlight(currentScanObject, false);
 
             var tempScanList = ScannableObjectCollector<T>(parent as DependencyObject, new List<DependencyObject>());
@@ -390,7 +452,12 @@ namespace Child_Talker.Utilities
                             ScannableObjectCollector<T>(depChild, logicalCollection);
                             continue;
                         }
-                        if (depChild is Control c && !c.IsEnabled) continue;
+                        // a Control must be both enabled and visible to be scanned
+                        if (depChild is Control c)
+                        {
+                            if(!c.IsEnabled) continue;
+                            if(c.Visibility != Visibility.Visible) continue;
+                        }
                         if (GetDoNotScan(depChild)) continue;
 
                         logicalCollection.Add(depChild);
@@ -411,10 +478,9 @@ namespace Child_Talker.Utilities
             if (activeScanList.Count == 0)
             {
                 throw new Exception("Autoscan List is empty");
-                return;
             }
 
-            windowHistoryPath.Last().Dispatcher.Invoke(() =>
+            windowHistory.Last().Dispatcher.Invoke(() =>
             {
                 if (TimerMode != TimerModes.On) return;
                 scanTimer.Stop();
@@ -446,7 +512,7 @@ namespace Child_Talker.Utilities
         }
 
         /// <summary>
-        /// Disables default behavior until manually enabled using <see cref="resetSelectHandlers"/>
+        /// Disables default behavior until manually enabled using <see cref="ResetEventHandlers"/>
         /// <para> ** Use of <c>IgnoreSelectPressOnce</c> instead is highly recommended </para></summary>
         public bool SelectDefaultEnabled = true;
         /// <summary> Disables default behavior until manually enabled using <see cref="resetReverseHandlers"/>
@@ -536,7 +602,7 @@ namespace Child_Talker.Utilities
             if (TimerMode == TimerModes.Off) return;
             if (!GoBackDefaultEnabled) return;
             goBackIsPressed = true;
-            windowHistoryPath.Last().Dispatcher.Invoke(() => SetIsHighlight(currentScanObject, false));
+            windowHistory.Last().Dispatcher.Invoke(() => SetIsHighlight(currentScanObject, false));
 
             if (TimerMode == TimerModes.Paused)
             {
@@ -556,7 +622,7 @@ namespace Child_Talker.Utilities
                 }
                 else //Cant go any further Back on CurrentPage
                 {
-                    switch (windowHistoryPath.Last())
+                    switch (windowHistory.Last())
                     {
                         case MainWindow mw:
                             MainWindow.Instance.Back();

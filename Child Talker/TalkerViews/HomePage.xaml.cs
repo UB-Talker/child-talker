@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using Child_Talker.TalkerViews.EnvControlsPage;
@@ -12,20 +13,16 @@ namespace Child_Talker.TalkerViews
     /// <summary>
     /// Interaction logic for MainMenu.xaml
     /// </summary>
-    public partial class MainMenu : TalkerView
+    public partial class HomePage : TalkerView
     {
-        private readonly Utilities.Autoscan2 scan = Utilities.Autoscan2.Instance; //singleton cannot call constructor, call instance
-        private readonly MainWindow mainWindow;
-        public MainMenu()
+        private static readonly Utilities.Autoscan2 scan = Utilities.Autoscan2.Instance; //singleton cannot call constructor, call instance
+        private static readonly MainWindow mainWindow = MainWindow.Instance;
+
+        public HomePage()
         {
             InitializeComponent();
-            mainWindow = MainWindow.Instance;
         }
 
-        /// <summary>
-        /// Toggles autoscan on and off
-        /// </summary>
-        private bool firstToggle = true;
         /// <summary>
         /// Toggles Autoscan on and Off
         /// </summary>
@@ -33,7 +30,6 @@ namespace Child_Talker.TalkerViews
         {
             scan.ToggleAutoscan();
             scan.NewListToScanThough<Panel>(GridLayout);
-            firstToggle = false;
         }
 
         /// <summary>
@@ -78,9 +74,9 @@ namespace Child_Talker.TalkerViews
         {
             List<DependencyObject> parents = new List<DependencyObject>()
             {
-                row0,
-                row1,
-                row2
+                Row0,
+                Row1,
+                Row2
             };
 //            parents.Add(row3);
             return (parents);

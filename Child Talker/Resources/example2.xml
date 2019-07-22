@@ -4,17 +4,6 @@
     <ChildTalkerXml TileType="folder" Text="Hello World!" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="Hello World!" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children>
-        <ChildTalkerXml TileType="folder" Text="hdjsfhkjdshf" ImagePath="../../Resources/folder.jpg" InColor="false">
-          <Children>
-            <ChildTalkerXml TileType="talker" Text="sff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Medical\002-bed.png" InColor="false" />
-          </Children>
-        </ChildTalkerXml>
-        <ChildTalkerXml TileType="talker" Text="dff" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\automobile\008-car.png" InColor="false" />
-      </Children>
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="asd" ImagePath="C:\Users\kamin\Pictures\addiTalkerIcons\Time\002-24-hours-1.png" InColor="false" />
     <ChildTalkerXml TileType="folder" Text="hh" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>
@@ -22,14 +11,11 @@
     <ChildTalkerXml TileType="folder" Text="j" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="j" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="hate" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="n" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\007-call.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\042-surgeon.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="c1" ImagePath="../../Resources/General_Icons\Essential\alarm-1.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Time\001-24-hours.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="hhhh" ImagePath="../../Resources/General_Icons\Essential\add-1.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="gg" ImagePath="../../Resources/General_Icons\Multimedia\back.png" InColor="false" />
   </Children>
 </ChildTalkerXmlWrapper>

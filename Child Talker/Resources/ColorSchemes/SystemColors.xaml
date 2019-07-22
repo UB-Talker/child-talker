@@ -1,20 +1,32 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:properties="clr-namespace:Child_Talker.Properties">
+    
+    <SolidColorBrush x:Key="ColorScheme.Page.Background" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Page_Background}"></SolidColorBrush>
+    <SolidColorBrush x:Key="ColorScheme.Page.SecondaryBackground" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Page_SecondaryBackground}"></SolidColorBrush>
 
-    <SolidColorBrush x:Key="ColorScheme.Border.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BorderColorBase}"/>
+    <SolidColorBrush x:Key="ColorScheme.Border.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BorderColor_Base}"/>
     <Thickness x:Key="ColorScheme.Border.Thickness" Bottom="10" Left="10" Right="10" Top="10"/>
     
-    <SolidColorBrush x:Key="ColorScheme.Background.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundHighlighted}"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundHighlighted}"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundMouseOver}"/>
-    <SolidColorBrush x:Key="ColorScheme.Background.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundMouseHover}"/>
+    <SolidColorBrush x:Key="ColorScheme.Background.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_Highlighted}"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground_Highlighted}"/>
+    <SolidColorBrush x:Key="ColorScheme.Border.Highlighted" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BorderColor_Highlighted}"/>
+    
+    <SolidColorBrush x:Key="ColorScheme.Foreground.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground_MouseOver}"/>
+    <SolidColorBrush x:Key="ColorScheme.Background.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_MouseHover}"/>
+    <SolidColorBrush x:Key="ColorScheme.Border.MouseHover" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BorderColor_Highlighted}"/>
+    
     <RadialGradientBrush x:Key="ColorScheme.Background.Event">
-        <GradientStop Offset="1"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventOuter}" />
-        <GradientStop Offset=".8" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventInner}" />
-        <GradientStop Offset="0"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundEventInner}" />
+        <GradientStop Offset="1"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_EventOuter}" />
+        <GradientStop Offset=".8" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_EventInner}" />
+        <GradientStop Offset="0"  Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_EventInner}" />
     </RadialGradientBrush>
-    <SolidColorBrush x:Key="ColorScheme.Background.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=BackgroundBase}"/>
-    <SolidColorBrush x:Key="ColorScheme.Foreground.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=ForegroundBase}"/>
+    
+    <SolidColorBrush x:Key="ColorScheme.Background.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Background_Base}"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.BaseColor" Color="{Binding Source={x:Static properties:Settings.Default}, Path=Foreground_Base}"/>
+    
+    <SolidColorBrush x:Key="ColorScheme.Background.Disabled" Color="LightGray"/>
+    <SolidColorBrush x:Key="ColorScheme.Foreground.Disabled" Color="LightGray"/>
+    <SolidColorBrush x:Key="ColorScheme.Border.Disabled" Color="Gray"/>
     
 </ResourceDictionary>

@@ -6,7 +6,7 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
     /// <summary>
     /// Interaction logic for Remote_popup.xaml
     /// </summary>
-    public partial class Remote_VOL_popup : UserControl 
+    public partial class Remote_VOL_popup : SecondaryWindow
     {
         EnvControls parent;
         public Remote_VOL_popup(EnvControls _parent)

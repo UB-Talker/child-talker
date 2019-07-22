@@ -19,6 +19,6 @@
         </ResourceDictionary>
     </Window.Resources>
         <Frame x:Name="Navigator" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
-               Source="TalkerViews/HomePage.xaml" NavigationUIVisibility="Hidden"
-               ScrollViewer.VerticalScrollBarVisibility="Disabled" ContentRendered="NewPageIsLoaded" />
+               Source="TalkerViews/HomePage.xaml" NavigationUIVisibility="Hidden" Background="{StaticResource ColorScheme.Page.Background}"
+               ScrollViewer.VerticalScrollBarVisibility="Disabled" ContentRendered="NewPageIsLoaded" Loaded="Navigator_OnLoaded"/>
 </Window>

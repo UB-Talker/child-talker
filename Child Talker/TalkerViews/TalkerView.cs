@@ -9,42 +9,33 @@ using System.Windows.Navigation;
 
 namespace Child_Talker.TalkerViews
 {
-    public class TalkerView : Page
+    public abstract class TalkerView : Page
     {
-        /*
-         * Set the current view to the main menu and clear the Stack maintained by the
-         * MainWindow. This is used for the user to jump straight back to the MainMenu
-         * from wherever they are.
-         */
-        public void backToHome(object sender, RoutedEventArgs args)
+        /// <summary>
+        /// Navigates Back To The HomePage
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void backToHome(object sender = null, RoutedEventArgs args = null)
         {
-            MainWindow.Instance.ResetStack();
-            MainWindow.Instance.ChangeView(new MainMenu());
+            MainWindow.Instance.Navigator.Navigate(new HomePage());
         }
 
-
-        /*
-         * This functionality will be assigned to the back button on the pages that implement it.
-         * See MainWindow.back method to see more information.
-         */
-        public void OpenPreviousView(object sender, RoutedEventArgs args)
+        /// <summary>
+        /// This is the functionality for the window to Back to the previous Window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        public void OpenPreviousView(object sender=null, RoutedEventArgs args=null)
         { 
             MainWindow.Instance.Back();
         }
-
-
-
-        /// <summary>
-        /// May be needed to update some views when navigating between them.
-        /// This method is 'virtual' because it allows subclasses to override this definition
-        /// </summary>
-        public virtual void Update() { }
 
         /// <summary>
         /// When overridden this will act as the topmost layer for autoscan to scan through
         /// </summary>
         /// <returns></returns>
-        public virtual List<DependencyObject> GetParents() => null;
+        public abstract List<DependencyObject> GetParents();
 
     }
 }

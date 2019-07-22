@@ -8,49 +8,55 @@
 
 
     <ControlTemplate x:Key="ColorSchemeButtonTemplate" TargetType="local:ColorSchemeButton" >
-        <Border Name="PageBackground"  Background="{TemplateBinding PageBackground}">
-            <Border Name="ButtonOuterBorder"  BorderThickness="{StaticResource ColorScheme.Border.Thickness}" Margin="20"
+        <StackPanel VerticalAlignment="Stretch">
+            <Ellipse Name="Ellipse" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" 
+                     Width="40" Height="40" Margin="15"
+                     HorizontalAlignment="Center" VerticalAlignment="Center"></Ellipse>
+            <Border Name="PageBackground"  Background="{TemplateBinding PageBackground}"
+                    Width="{TemplateBinding Width}" Height="{TemplateBinding Width}">
+                <Border Name="ButtonOuterBorder"  BorderThickness="{StaticResource ColorScheme.Border.Thickness}" Margin="20"
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}">
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50*"/>
-                        <RowDefinition Height="50*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="50*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border Name="Image" Grid.Row="0" Grid.Column="1" Margin="10" BorderThickness="{StaticResource ColorScheme.Border.Thickness}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Name="Image" Grid.Row="0" Grid.Column="1" Margin="10" BorderThickness="{StaticResource ColorScheme.Border.Thickness}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                         Background="{TemplateBinding HighlightBackground}"  
                         BorderBrush="{TemplateBinding HighlightBorder}" >
 
-                        <TextBlock Name="ScanTextBlock" Style="{StaticResource genTextBlock}"
+                            <TextBlock Name="ScanTextBlock" Style="{StaticResource genTextBlock}"
                                Foreground="{TemplateBinding HighlightForeground}" Text="HL" />
-                    </Border>
-                    <TextBlock Name="BaseTextBlock" Grid.Row="1" Grid.Column="0" Style="{StaticResource genTextBlock}"
+                        </Border>
+                        <TextBlock Name="BaseTextBlock" Grid.Row="1" Grid.Column="0" Style="{StaticResource genTextBlock}"
                            Foreground="{TemplateBinding Foreground}"
                            Text="Base" >
-                    </TextBlock>
-                </Grid>
+                        </TextBlock>
+                    </Grid>
+                </Border>
             </Border>
-        </Border>
+        </StackPanel>
         <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="False">
                 <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="20"></Setter>
-                <Setter TargetName="PageBackground" Property="Margin" Value="0"></Setter>
+                <Setter TargetName="Ellipse" Property="Fill" Value="Transparent"></Setter>
             </Trigger>
             <Trigger Property="utilities:Autoscan2.IsHighlight" Value="False">
                 <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="20"></Setter>
-                <Setter TargetName="PageBackground" Property="Margin" Value="0"></Setter>
+                <Setter TargetName="Ellipse" Property="Fill" Value="Transparent"></Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="70"></Setter>
-                <Setter TargetName="PageBackground" Property="Margin" Value="-20"></Setter>
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="40"></Setter>
+                <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource ColorScheme.Background.Highlighted}"></Setter>
             </Trigger>
             <Trigger Property="utilities:Autoscan2.IsHighlight" Value="True">
-                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="70"></Setter>
-                <Setter TargetName="PageBackground" Property="Margin" Value="-20"></Setter>
+                <Setter TargetName="ButtonOuterBorder" Property="Margin" Value="40"></Setter>
+                <Setter TargetName="Ellipse" Property="Fill" Value="{StaticResource ColorScheme.Background.MouseHover}"></Setter>
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>

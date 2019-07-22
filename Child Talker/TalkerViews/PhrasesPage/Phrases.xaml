@@ -20,15 +20,14 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
                     
                 </Grid.RowDefinitions>
-                <tb:Button x:Name="AddFolder" Grid.Row="0" Click="InsertFolderTile_Click"
+                <tb:Button x:Name="BackToHome" Grid.Row="0" Click="backToHome"
+                                      Text="Main&#x0a;Menu" />
+                <tb:Button x:Name="AddFolder" Grid.Row="2" Click="InsertFolderTile_Click"
                                       Text="New&#x0a;Folder" />
                 <tb:Button x:Name="AddTalker" Grid.Row="1" Click="InsertTalkerTile_Click"
                                       Text="New&#x0a;Tile" />
-                <tb:Button x:Name="BackToHome" Grid.Row="2" Click="backToHome"
-                                      Text="Main&#x0a;Menu" />
             </Grid>
         </Border>
 

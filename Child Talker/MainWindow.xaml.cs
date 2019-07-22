@@ -26,12 +26,9 @@ namespace Child_Talker
         public double innerHeight;
         public double innerWidth;
 
-        private Stack<TalkerView> previousViews;
-
-        private Autoscan2 scan { get; }
+        private static readonly Autoscan2 scan = Autoscan2.Instance;
         private static MainWindow _instance;
-        public static MainWindow Instance => _instance ?? (_instance = new MainWindow());
-
+        public static MainWindow Instance => _instance;
 
         public MainWindow()
         {
@@ -39,7 +36,6 @@ namespace Child_Talker
             _instance = this;
 
             //scan = AutoscanOriginal.Instance;
-            scan = Autoscan2.Instance;
                 //this.Content = startScreen; //DataContext will give you the current view
             scan.NewWindow(this);
             this.Closing += (sender, e) => { TextUtility.Instance.save(); };
@@ -54,10 +50,9 @@ namespace Child_Talker
         public void Back()
         {
             if (Navigator.CanGoBack)
-            {
-                this.Navigator.GoBack();
-            }
-            else if (Navigator.CanGoForward) Navigator.GoForward();
+               Navigator.GoBack();
+            else if (Navigator.CanGoForward)
+                Navigator.GoForward();
         }
 
         public bool BackIsEmpty()
@@ -70,13 +65,6 @@ namespace Child_Talker
         public void ChangeView(TalkerView view)
         {
             Navigator.Navigate(view);
-        }
-        /*
-         * Resets the Stack of TalkerViews. Used when the user returns straight to the MainMenu
-         */
-        public void ResetStack()
-        {
-            previousViews = new Stack<TalkerView>();
         }
 
         private void NewPageIsLoaded(object sender, EventArgs e)
@@ -96,7 +84,7 @@ namespace Child_Talker
         public void ExecutedCustomCommand(object sender,
             ExecutedRoutedEventArgs e)
         {
-            MessageBox.Show("Custom Command Executed");
+            System.Windows.MessageBox.Show("Custom Command Executed");
         }
         public void CanExecuteCustomCommand(object sender,
             CanExecuteRoutedEventArgs e)
@@ -111,6 +99,17 @@ namespace Child_Talker
             {
                 e.CanExecute = false;
             }
+        }
+
+        /// <summary>
+        /// When the Navigat
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Navigator_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            Frame navi = (Frame)sender;
+            scan.NewListToScanThough(((TalkerView)navi.Content).GetParents());
         }
     }
 }

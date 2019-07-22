@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:talker="clr-namespace:Child_Talker"
         xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
-        mc:Ignorable="d" Style="{StaticResource PopupStyle}"
+        mc:Ignorable="d" Style="{StaticResource PopupStyle.Blank}"
         Margin="200,100,200,100"
         d:DesignHeight="1080" d:DesignWidth="1520">
         

@@ -23,39 +23,19 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
 
-        private Utilities.Autoscan2 scan;
+        private static readonly Utilities.Autoscan2 scan = Autoscan2.Instance;
 
         public Phrases()
         {
             InitializeComponent();
-
             ProfilePath = "../../Resources/example2.xml";
-
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.png", this, false);
             if (!File.Exists(ProfilePath))
-            {
                 File.Create(ProfilePath);
-            }
             else
-            {
                 this.LoadFromXml(ProfilePath);
-            }
-
-            scan = Utilities.Autoscan2.Instance;
-            scan.GoBackHold += GoBackHoldTileScanning;
-            t.Elapsed += (s, e) =>
-            {
-                this.Dispatcher.Invoke( () =>
-                {
-                    if(markedForDeletion.DeleteThis()){
-                        scan.NewListToScanThough<PhraseButton>(items);
-                    }
-                });
-                scan.IgnoreGoBackPressOnce = true;
-                scan.PauseScan(false);
-                scan.GoBackPress -= ((hei1, gbp) => t.Stop());
-                t.Stop();
-            };
+            scan.GoBackHold += GoBackHold_DeleteItem;
+            deletionTimer.Elapsed += DeletionTimerElapsed;
         }
 
         //required for all TalkerView  classes
@@ -125,20 +105,46 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             }
         }
 
-        Timer t = new Timer(5000);
-        private PhraseButton markedForDeletion;
-        public void GoBackHoldTileScanning(DependencyObject currectObj, Autoscan2.DefaultEvents goBackDefaultEvent)
+        /// <summary>
+        /// when running the gobackHold event is occuring
+        /// when timer elapses a popup appears asking if you would like to delete the highlighted element
+        /// </summary>
+        private readonly Timer deletionTimer = new Timer(scan.ScanTimerInterval*2);
+        /// <summary>
+        /// Occurs when goBack is initially held down
+        /// </summary>
+        /// <param name="currentObj"></param>
+        /// <param name="goBackDefaultEvent"></param>
+        private void GoBackHold_DeleteItem(DependencyObject currentObj, Autoscan2.DefaultEvents goBackDefaultEvent)
         {
-            if (currectObj is PhraseButton item)
+            if (currentObj is PhraseButton item)
             {
-                markedForDeletion = item ;
                 scan.PauseScan(true);
-                scan.GoBackPress += ((hei1, gbp) => t.Stop());
-                t.Start();
-            }
+                scan.GoBackPress += (curObj, gbd) => deletionTimer.Stop();
+                deletionTimer.Elapsed += (s, e) => { this.Dispatcher.Invoke(() => { item.IsSelected = true; }); };
+                deletionTimer.Start();
 
+            }
         }
 
+        private void GoBackRelease_DeleteItem(DependencyObject currentObj, Autoscan2.DefaultEvents goBackDefaultEvent)
+        {
+            if (!(currentObj is PhraseButton item)) return;
+            scan.IgnoreGoBackPressOnce = true;
+            scan.PauseScan(false);
+            if (item.DeleteThis())
+                scan.NewListToScanThough<PhraseButton>(items);
+            else
+                item.IsSelected = false;
+            scan.GoBackPress -= GoBackRelease_DeleteItem;
+        }
+
+        private void DeletionTimerElapsed(object sender, ElapsedEventArgs e)
+        {
+            scan.GoBackPress += GoBackRelease_DeleteItem;
+            scan.IgnoreGoBackPressOnce = true;
+            deletionTimer.Stop();
+        }
 
         public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
         {
@@ -206,7 +212,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 rootChildren.Remove(_itemToRemove.CtTile);
                 XmlWrapper.Children.Remove(_itemToRemove.CtTile.Xml);
             }
-
             SaveToXml(ProfilePath);
         }
 

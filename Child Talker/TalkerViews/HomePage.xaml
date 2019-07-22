@@ -1,4 +1,4 @@
-﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.MainMenu"
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.HomePage"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,7 +17,7 @@
             <RowDefinition Height="30*"/>
             <RowDefinition Height="0*"/>
         </Grid.RowDefinitions>
-        <Grid x:Name="row0" Grid.Row="0">
+        <Grid x:Name="Row0" Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="60*"/>
                 <ColumnDefinition Width="20*"/>
@@ -26,47 +26,43 @@
             <Border Grid.Column="0" Background="White" Margin="20,20,10,20">
                 <TextBlock x:Name="InputText" Text="Text Goes Here" FontSize="100" Margin="50,0,0,0" HorizontalAlignment="Left" Foreground="Black" VerticalAlignment="Center"/>
             </Border>
-            <tb:Button x:Name="settings" Grid.Column="1" Click="OpenSettings"
-                            Text="SETTINGS" ImageSource="/Child Talker;component/Resources/MainMenu_images/settings.png"/>
-            <tb:Button x:Name="help" Grid.Column="2" 
-                            Text="HELP" ImageSource="/Child Talker;component/Resources/MainMenu_images/alarm.png" />
+            <tb:Button Grid.Column="1" Click="OpenSettings"
+                       Text="SETTINGS" ImageSource="/Child Talker;component/Resources/MainMenu_images/settings.png"/>
+            <tb:Button Grid.Column="2" 
+                       Text="HELP" ImageSource="/Child Talker;component/Resources/MainMenu_images/alarm.png" />
         </Grid>
 
-        <Grid x:Name="row1" Grid.Row="1" Style="{StaticResource PanelTriggers}">
+        <Grid x:Name="Row1" Grid.Row="1" Style="{StaticResource PanelTriggers}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <tb:Button x:Name="thing1" Grid.Column="0" 
-                            Text="unknown" ImageSource="/Child Talker;component/Resources/MainMenu_images/../whelp.png"
-                            PauseOnSelect="True" 
-                            />
-            <tb:Button x:Name="EnvControls" Grid.Column="1" 
-                            Click="OpenEnvControls" Text="Interaction"
-                            ImageSource="/Child Talker;component/Resources/MainMenu_images/EnvControls.png" />
-            <tb:Button x:Name="keyboard" Grid.Column="2" Click="OpenKeyboard" 
-                            Text="Keyboard" ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" />
-            <tb:Button x:Name="autoscanButton" Grid.Column="3" Click="AutoscanButton_click" 
-                            Text="Autoscan" ImageSource="/Child Talker;component/Resources/MainMenu_images/autoscan.png" />
+            <tb:Button Grid.Column="0"
+                       PauseOnSelect="True"
+                       Text="unknown" ImageSource="/Child Talker;component/Resources/MainMenu_images/../whelp.png"/>
+            <tb:Button Grid.Column="1" Click="OpenEnvControls" 
+                       Text="Interaction" ImageSource="/Child Talker;component/Resources/MainMenu_images/EnvControls.png" />
+            <tb:Button Grid.Column="2" Click="OpenKeyboard" 
+                       Text="Keyboard" ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" />
+            <tb:Button Grid.Column="3" Click="AutoscanButton_click" 
+                       utilities:Autoscan2.DoNotScan="True"
+                       Text="Autoscan" ImageSource="/Child Talker;component/Resources/MainMenu_images/autoscan.png" />
         </Grid>
 
-        <Grid x:Name="row2" Grid.Row="2" Style="{StaticResource PanelTriggers}">
+        <Grid x:Name="Row2" Grid.Row="2" Style="{StaticResource PanelTriggers}">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30*"/>
                 <ColumnDefinition Width="35*"/>
                 <ColumnDefinition Width="30*"/>
             </Grid.ColumnDefinitions>
-            <tb:Button x:Name="Phrases" Grid.Column="0" Click="OpenPhrases" 
-                                  Layout="Horizontal"
-                                  Text="Phrases" ImageSource="/Child Talker;component/Resources/MainMenu_images/phrases.png"/>
-            <tb:Button x:Name="history" Grid.Column="1" Click="OpenHistory" 
-                                  Layout="Horizontal"
-                                  Text="History" ImageSource="/Child Talker;component/Resources/MainMenu_images/history.png"/>
-            <tb:Button x:Name="storyMode" Grid.Column="2" 
-                                  Layout="Horizontal"
-                                  Text="Story Mode"  ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png"/>
+            <tb:Button Grid.Column="0" Click="OpenPhrases" Layout="Horizontal"
+                       Text="Phrases" ImageSource="/Child Talker;component/Resources/MainMenu_images/phrases.png"/>
+            <tb:Button Grid.Column="1" Click="OpenHistory" Layout="Horizontal"
+                       Text="History" ImageSource="/Child Talker;component/Resources/MainMenu_images/history.png"/>
+            <tb:Button Grid.Column="2" Layout="Horizontal"
+                       Text="Story Mode" ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png"/>
         </Grid>
     </Grid>
 </local:TalkerView>

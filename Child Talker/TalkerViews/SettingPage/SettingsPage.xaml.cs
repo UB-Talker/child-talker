@@ -39,31 +39,55 @@ namespace Child_Talker.TalkerViews.SettingPage
             };
             return (parents);
         }
+        /// <summary>
+        /// Boolean stating if any settings have been changed. Used in the xaml to enable/disable the "apply, revert" buttons
+        /// </summary>
+        public bool ChangesMade
+        {
+            get => applyChanges.IsEnabled;
+            private set
+            {
+                revertChanges.IsEnabled = value;
+                applyChanges.IsEnabled = value;
+            }
+        }
 
-        public bool ChangesMade { get; private set; } = false;
         private void ColorSchemeButton_OnClick(object sender, RoutedEventArgs e)
         {
             if (!(sender is ColorSchemeButton btn)) return;
-            Properties.Settings.Default.BackgroundBase = ((SolidColorBrush)btn.Background).Color;
-            Properties.Settings.Default.BackgroundHighlighted= ((SolidColorBrush)btn.HighlightBackground).Color; 
-            Properties.Settings.Default.ForegroundBase= ((SolidColorBrush)btn.Foreground).Color;
-            Properties.Settings.Default.ForegroundHighlighted= ((SolidColorBrush)btn.HighlightForeground).Color;
-            Properties.Settings.Default.BorderColorBase= ((SolidColorBrush)btn.BorderBrush).Color;
-            ChangesMade = true;
-            revertChanges.IsEnabled = ChangesMade;
-            applyChanges.IsEnabled = ChangesMade;
+            Color btnBack = ((SolidColorBrush) btn.HighlightBackground).Color;
 
+            Properties.Settings.Default.Background_Base = ((SolidColorBrush)btn.Background).Color;
+            Properties.Settings.Default.Background_Highlighted = ((SolidColorBrush)btn.HighlightBackground).Color; 
+            Properties.Settings.Default.Foreground_Base = ((SolidColorBrush)btn.Foreground).Color;
+            Properties.Settings.Default.Foreground_Highlighted = ((SolidColorBrush)btn.HighlightForeground).Color;
+            Properties.Settings.Default.BorderColor_Base = ((SolidColorBrush)btn.BorderBrush).Color;
+            Properties.Settings.Default.BorderColor_Highlighted = ((SolidColorBrush)btn.HighlightBorder).Color;
+
+            int r = (btnBack.R /4)*3;
+            int g = (btnBack.G /4)*3;
+            int b = (btnBack.B /4)*3;
+            btnBack = Color.FromArgb(255, (byte) r, (byte) g, (byte) b);
+            Properties.Settings.Default.Background_MouseHover = btnBack;
+
+            Properties.Settings.Default.Page_Background = ((SolidColorBrush)btn.PageBackground).Color;
+            
+
+                //Properties.Settings.Default.Background_EventOuter = ((SolidColorBrush)btn.BorderBrush).Color;
+            //Properties.Settings.Default.= ((SolidColorBrush)btn.BorderBrush).Color;
+            //Properties.Settings.Default.= ((SolidColorBrush)btn.BorderBrush).Color;
+
+
+            ChangesMade = true;
         }
 
         private void AutoscanSpeedButtons_OnClick(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
             double scanSpeed = Convert.ToDouble(btn.Tag);
-            Properties.Settings.Default.AutoscanTimerSpeed = scanSpeed;
-            Autoscan2.Instance.UpdateScanTimerInterval();
+            Properties.AutoscanSettings.Default.scanSpeed = scanSpeed;
+            //Autoscan2.Instance.UpdateScanTimerInterval();
             ChangesMade = true;
-            revertChanges.IsEnabled = ChangesMade;
-            applyChanges.IsEnabled = ChangesMade;
         }
 
         private void Menu_OnClick(object sender, RoutedEventArgs e)
@@ -77,18 +101,16 @@ namespace Child_Talker.TalkerViews.SettingPage
             if (!ChangesMade) return;
 
             Properties.Settings.Default.Reload();
-            Autoscan2.Instance.UpdateScanTimerInterval();
+            Properties.AutoscanSettings.Default.Reload();
+            //Autoscan2.Instance.UpdateScanTimerInterval();
             ChangesMade = false;
-            revertChanges.IsEnabled = ChangesMade;
-            applyChanges.IsEnabled = ChangesMade;
         }
 
         private void ApplyChanges_OnClick(object sender, RoutedEventArgs e)
         {
             Properties.Settings.Default.Save();
+            Properties.AutoscanSettings.Default.Save();
             ChangesMade = false;
-            revertChanges.IsEnabled = ChangesMade;
-            applyChanges.IsEnabled = ChangesMade;
         }
     }
 }

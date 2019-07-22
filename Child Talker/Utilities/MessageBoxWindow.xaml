@@ -1,0 +1,76 @@
+﻿<ct:SecondaryWindow x:Class="Child_Talker.Utilities.MessageBoxWindow"
+                    x:ClassModifier="internal"
+                    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d"
+                    d:DesignWidth="1550" d:DesignHeight="838"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ct="clr-namespace:Child_Talker"
+                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                    Topmost="True"
+                    TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType" UseLayoutRounding="True"
+                    Style="{StaticResource PopupStyle.Blank}">
+
+    <!-- todo: The TextOptions properties above fix a minor blurry image issue, but are only compatible with >= .NET 4.0 -->
+    <Grid Margin="4,0,-3.6,0.4">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <Border Grid.Row="1" Grid.Column="1" MinHeight="200" MinWidth="300">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Background="{StaticResource ColorScheme.Page.Background}" MinHeight="69">
+                    <Border Padding="25">
+                        <DockPanel>
+                            <ContentPresenter Name="Content_MessageBox" Visibility="Hidden"></ContentPresenter>
+                            <TextBlock Name="TextBlock_Message" TextWrapping="Wrap" MaxWidth="800" Width="Auto" DockPanel.Dock="Bottom"
+                       VerticalAlignment="Center" Margin="12,20,41,15" />
+                        </DockPanel>
+                    </Border>
+                </Grid>
+                <Grid Grid.Row="1" Background="{StaticResource ColorScheme.Page.SecondaryBackground}" MinHeight="80" HorizontalAlignment="Stretch">
+                    <DockPanel x:Name="ButtonDock" Margin="5,5" HorizontalAlignment="Stretch">
+
+                        <!-- Cancel Button -->
+                        <tb:Button x:Name="Button_Cancel" MinWidth="170" MaxWidth="350" Margin="5,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Collapsed" IsCancel="True"
+                        DockPanel.Dock="Left" Click="Button_Cancel_Click">
+                        </tb:Button>
+                        <!-- End Cancel Button -->
+
+                        <!-- No Button -->
+                        <tb:Button x:Name="Button_No" MinWidth="170" MaxWidth="350" Margin="5,5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Collapsed"
+                        DockPanel.Dock="Left" Click="Button_No_Click" Text="NO">
+                        </tb:Button>
+                        <!-- End No Button -->
+
+                        <!-- Yes Button -->
+                        <tb:Button x:Name="Button_Yes" MinWidth="170" MaxWidth="350" Margin="5,5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Collapsed"
+                        DockPanel.Dock="Right" Click="Button_Yes_Click" Text="Yes">
+                        </tb:Button>
+                        <!-- End Yes Button -->
+
+                        <!-- OK Button -->
+                        <tb:Button x:Name="Button_OK" MinWidth="170" MaxWidth="350" Margin="5,5" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Visible"
+                        DockPanel.Dock="Right" Click="Button_OK_Click" Text="OK">
+                        </tb:Button>
+                        <!-- End OK Button -->
+
+                    </DockPanel>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</ct:SecondaryWindow>

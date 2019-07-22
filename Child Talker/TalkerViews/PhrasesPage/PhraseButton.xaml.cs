@@ -8,6 +8,7 @@ using System.Windows.Input;
 using Child_Talker.TalkerButton;
 using Microsoft.VisualBasic;
 using Timer = System.Timers.Timer;
+using MessageBox = Child_Talker.Utilities.MessageBox;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {
@@ -100,16 +101,17 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (this.CtTile is ChildTalkerBackButton) return false;
 
             Deleted = true;
-            MsgBoxResult response = Interaction.MsgBox("Would you like to delete this tile?", MsgBoxStyle.YesNo,
-                "Delete Tile");
-            if (response == MsgBoxResult.Yes)
+            //MsgBoxResult response = Interaction.MsgBox("Would you like to delete this tile?", MsgBoxStyle.YesNo, "Delete Tile");
+            MessageBoxResult response = MessageBox.Show("Would you like to delete this Tile", MessageBoxButton.YesNo);
+            if (response == MessageBoxResult.Yes)
             {
                 Root.RemoveSingleTile(this);
                 return true;
             }
 
-            Timer t = new Timer(2000);
+            Timer t = new Timer(1000);
             t.Elapsed += (st, et) => Deleted = false;
+            t.Start();
             return false;
         }
     }

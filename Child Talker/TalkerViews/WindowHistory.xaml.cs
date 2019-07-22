@@ -104,7 +104,7 @@ namespace Child_Talker.TalkerViews
         /// This is used if the user navigates "Back" to this page. The list of buttons
         /// on the GUI must be refreshed if the user were to speak new phrases.
         /// </summary>
-        public override void Update()
+        public void Update()
         {
             phraseStack.Children.Clear();
             AddPhrases();

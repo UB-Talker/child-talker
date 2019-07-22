@@ -42,7 +42,6 @@ namespace Child_Talker
 
         public SecondaryWindow()
         {
-            this.Style = Application.Current.Resources["PopupStyle"] as Style;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null;
             scan.NewWindow(this);
@@ -51,7 +50,6 @@ namespace Child_Talker
 
         public SecondaryWindow(UIElement content)
         {
-            this.Style = Application.Current.Resources["PopupStyle"] as Style;
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null;
             scan.NewWindow(this);
@@ -69,23 +67,20 @@ namespace Child_Talker
         }
 
         /// <summary>
-        /// 
+        /// display a window that is hidden after initialization
         /// </summary>
         /// <typeparam name="T">Type in panel to scan for</typeparam>
         /// <param name="panel">The parent for autoscan to scan through</param>
         public void Show<T>(Panel panel) where T : DependencyObject
         {
             scan.ClearReturnPointList();
-            //scan.NewWindow(this);
             scan.NewListToScanThough<T>(panel);
-
             ((Window)this).Show();
         }
 
         public void Show<T>() where T : DependencyObject
         {
             scan.ClearReturnPointList();
-            //scan.NewWindow(this);
             scan.NewListToScanThough<T>(Content as Panel);
             ((Window)this).Show();
         }
@@ -93,12 +88,10 @@ namespace Child_Talker
         public void Show(List<DependencyObject> scanList)
         {
             scan.ClearReturnPointList();
-            //scan.NewWindow(this);
             scan.NewListToScanThough(scanList);
             ((Window)this).Show();
         }
 
-        private bool Closing = false;
         /// <summary>
         /// Default Behavior For Closing SecondaryDisplay
         /// </summary>

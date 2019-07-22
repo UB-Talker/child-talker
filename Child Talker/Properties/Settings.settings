@@ -2,35 +2,47 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Child_Talker.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="BackgroundHighlighted" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Page_Background" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF000000</Value>
+    </Setting>
+    <Setting Name="Scan_Speed" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="Background_Highlighted" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FFFFFF00</Value>
     </Setting>
-    <Setting Name="BackgroundBase" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Background_Base" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF000000</Value>
     </Setting>
-    <Setting Name="BackgroundMouseHover" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Background_MouseHover" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF999900</Value>
     </Setting>
-    <Setting Name="BackgroundEventInner" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Background_EventInner" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF000000</Value>
     </Setting>
-    <Setting Name="BackgroundEventOuter" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Background_EventOuter" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF999900</Value>
     </Setting>
-    <Setting Name="ForegroundHighlighted" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Foreground_Highlighted" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FFC000C0</Value>
     </Setting>
-    <Setting Name="ForegroundBase" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Foreground_Base" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF00CFF3</Value>
     </Setting>
-    <Setting Name="ForegroundMouseOver" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="Foreground_MouseOver" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FF700070</Value>
     </Setting>
-    <Setting Name="BorderColorBase" Type="System.Windows.Media.Color" Scope="User">
+    <Setting Name="BorderColor_Base" Type="System.Windows.Media.Color" Scope="User">
       <Value Profile="(Default)">#FFFF0000</Value>
     </Setting>
-    <Setting Name="AutoscanTimerSpeed" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+    <Setting Name="BorderColor_Highlighted" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FFFF0000</Value>
+    </Setting>
+    <Setting Name="AutoscanEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Page_SecondaryBackground" Type="System.Windows.Media.Color" Scope="User">
+      <Value Profile="(Default)">#FF666666</Value>
     </Setting>
   </Settings>
 </SettingsFile>

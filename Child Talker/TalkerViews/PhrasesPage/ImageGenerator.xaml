@@ -9,11 +9,10 @@
              xmlns:utilities="clr-namespace:Child_Talker.Utilities"
              xmlns:phrases="clr-namespace:Child_Talker.TalkerViews.PhrasesPage"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
-             mc:Ignorable="d" Style="{StaticResource PopupStyle}"
-             Margin="200,50,200,75"
+             mc:Ignorable="d" Style="{StaticResource PopupStyle.Blank}"
              d:DesignWidth="1550" d:DesignHeight="838">
 
-    <Grid  x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
+    <Grid Height="700"  x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
         <Grid.RowDefinitions>
             <RowDefinition Height="85*"/>
             <RowDefinition Height="20*"/>
