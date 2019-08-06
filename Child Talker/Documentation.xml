@@ -86,6 +86,9 @@
             this section is being used for Attached DependencyProperties
             and RoutedCommands
             </summary>
+            <summary>
+            This section is used for EventHandling
+            </summary>
         </member>
         <member name="F:Child_Talker.Utilities.Autoscan2.ScanReverseProperty">
             <summary>
@@ -160,6 +163,43 @@
             And Re-enables Default behavior
             </summary>
         </member>
+        <member name="P:Child_Talker.Utilities.Autoscan2.ScanTimerInterval">
+            <summary>
+            getter/setter for scanTimer.Interval
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.SettingsChanged(System.Object,System.Configuration.SettingChangingEventArgs)">
+            <summary>
+            Triggers if any autoscan related settings are changed
+            <para> see <see cref="!:AutoscanSettings.settings"/> for all applicable settings</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.scanTimer">
+            <summary>
+            When Elapsed Autoscan will highlight and set triggers on next Element in <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>
+            <para>see <see cref="M:Child_Talker.Utilities.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)"/> for all functionality</para> 
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan2.ReturnPointList">
+             <summary>
+             When a panel has <see cref="F:Child_Talker.Utilities.Autoscan2.IsReturnPointProperty"/> set to true, the <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/> is added to the stack.
+             This stack Create the order of return when <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> occurs
+            <para>
+             -- !!! -- MUST be set to true when scanning a new page. (this is done by default in both MainWindow and secondary Window
+             </para>
+             </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.popReturnPointList">
+            <summary>
+            Determines what to scan next when <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> occurs.
+            <para> When TRUE, the Panel currently being scanned through is at the top <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>.
+                   If True pop off the top of ReturnPointList and begin scanning through the new Top.
+            </para>
+            <para> When FALSE, the panel is currently scanning in a Panel that is a child of a Panel in <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>.
+                   If False, GoBack will scan the current Top in <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>
+            </para>
+            </summary>
+        </member>
         <member name="M:Child_Talker.Utilities.Autoscan2.ClearReturnPointList">
             <summary>
             Clears all returnPoints for current page 
@@ -218,6 +258,11 @@
         <member name="M:Child_Talker.Utilities.Autoscan2.CloseActiveWindow(System.Windows.Window)">
             <summary>
             will close active window provided it is not the Original MainWindow
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Functionality for autoscan to move to the next element while scanning
             </summary>
         </member>
         <member name="F:Child_Talker.Utilities.Autoscan2.SelectDefaultEnabled">

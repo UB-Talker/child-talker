@@ -43,7 +43,7 @@ namespace Child_Talker
         public SecondaryWindow()
         {
             this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null;
+            scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.NewWindow(this);
             this.Closed += CloseWindow; //scan.GoBackCloseSecondaryWindow triggered here
         }
@@ -74,21 +74,21 @@ namespace Child_Talker
         public void Show<T>(Panel panel) where T : DependencyObject
         {
             scan.ClearReturnPointList();
-            scan.NewListToScanThough<T>(panel);
+            scan.NewListToScanThough<T>(panel, true);
             ((Window)this).Show();
         }
 
         public void Show<T>() where T : DependencyObject
         {
             scan.ClearReturnPointList();
-            scan.NewListToScanThough<T>(Content as Panel);
+            scan.NewListToScanThough<T>(Content as Panel, true);
             ((Window)this).Show();
         }
 
         public void Show(List<DependencyObject> scanList)
         {
             scan.ClearReturnPointList();
-            scan.NewListToScanThough(scanList);
+            scan.NewListToScanThough(scanList, true);
             ((Window)this).Show();
         }
 

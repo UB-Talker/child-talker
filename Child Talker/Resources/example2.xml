@@ -17,5 +17,9 @@
     <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Time\001-24-hours.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="hhhh" ImagePath="../../Resources/General_Icons\Essential\add-1.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="gg" ImagePath="../../Resources/General_Icons\Multimedia\back.png" InColor="false" />
+    <ChildTalkerXml TileType="folder" Text="g" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="jk" ImagePath="../../Resources/General_Icons\Essential\video-player.png" InColor="false" />
   </Children>
 </ChildTalkerXmlWrapper>
