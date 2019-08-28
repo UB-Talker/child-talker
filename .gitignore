@@ -16,9 +16,9 @@
 */*/Tree.txt
 */*/*/Tree.txt
 
-General_icons
-*/General_icons
-*/*/General_icons
+# General_icons
+# */General_icons
+# */*/General_icons
 
 
 

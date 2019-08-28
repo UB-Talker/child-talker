@@ -185,7 +185,7 @@
              When a panel has <see cref="F:Child_Talker.Utilities.Autoscan2.IsReturnPointProperty"/> set to true, the <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/> is added to the stack.
              This stack Create the order of return when <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> occurs
             <para>
-             -- !!! -- MUST be set to true when scanning a new page. (this is done by default in both MainWindow and secondary Window
+             -- !!! -- MUST be set to true when scanning a new page. (this is done by default in both MainWindow and SecondaryWindow)
              </para>
              </summary>
         </member>
@@ -204,17 +204,36 @@
             <summary>
             Clears all returnPoints for current page 
             </summary>
-            must occur every time the page is updated
+            must occur when the contents that were being scanned through are no longer visible or when the window in focus is changed
         </member>
         <member name="F:Child_Talker.Utilities.Autoscan2.windowHistory">
             <summary>
             Keeps track of all open or hidden windows that 
             </summary>
         </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2.ControlKeys">
+        <member name="F:Child_Talker.Utilities.Autoscan2.activeScanList">
             <summary>
-            List of Keyboard Keys that are used for autoscan
+            List of all elements currently being scanned through
             </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.currentScanObject">
+            <summary>
+            a Reference to the currently highlighted object
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan2.currentScanIndex">
+            <summary>
+            Index on <see cref="F:Child_Talker.Utilities.Autoscan2.currentScanObject"/> within <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>
+            </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan2.ControlKeys">
+            List of Keyboard Keys that are used for autoscan
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.PauseScan(System.Boolean)">
+            <summary>
+            Pauses <see cref="F:Child_Talker.Utilities.Autoscan2.scanTimer"/>. User input will still register but the highlighted object will not change again until <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> Occurs.
+            </summary>
+            <param name="toggle"></param>
         </member>
         <member name="T:Child_Talker.Utilities.Autoscan2.TimerModes">
             <summary>
@@ -255,10 +274,45 @@
         <member name="P:Child_Talker.Utilities.Autoscan2.Direction">
             <summary> See <see cref="T:Child_Talker.Utilities.Autoscan2.DirectionEnum"/> for more information </summary>
         </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.ToggleAutoscan">
+            <summary>
+             Sets <see cref="P:Child_Talker.Utilities.Autoscan2.TimerMode"/> to either On or off and saves the current value in <see cref="T:Child_Talker.Properties.AutoscanSettings"/>
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.NewWindow(System.Windows.Window)">
+            <summary>
+            When a new Window is created it must be provided with the Autoscan Event Listeners
+            </summary>
+            <param name="newWindow"></param>
+        </member>
         <member name="M:Child_Talker.Utilities.Autoscan2.CloseActiveWindow(System.Windows.Window)">
             <summary>
             will close active window provided it is not the Original MainWindow
             </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.NewListToScanThough(System.Collections.Generic.List{System.Windows.DependencyObject},System.Boolean)">
+            <summary>
+            Changes <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>. Will scan though all elements from the provided list
+            </summary>
+            <param name="newList"> a list of all elements to scan through</param>
+            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.NewListToScanThough``1(System.Windows.Controls.Panel,System.Boolean)">
+            <summary>
+            Changes <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>. Will scan all immediate Children of type T from the provided Panel parent
+            </summary>
+            <typeparam name="T"> what type of <see cref="T:System.Windows.DependencyObject"/> to add to active scan list. (when set to Dependency object all scannable children will be added to <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>) </typeparam>
+            <param name="parent"> will search through <see cref="T:System.Windows.Controls.Panel"/> to find all Children of type <see cref="!:T"/> </param>
+            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan2.ScannableObjectCollector``1(System.Windows.DependencyObject,System.Collections.Generic.List{System.Windows.DependencyObject})">
+            <summary>
+            recursive function. all elements of type <see cref="!:T"/> that exist within <see cref="!:parent"/> will be added to the end of <see cref="!:logicalCollection"/>
+            </summary>
+            <typeparam name="T"> the type of <see cref="T:System.Windows.DependencyObject"/> being searched for </typeparam>
+            <param name="parent"> <see cref="T:System.Windows.Controls.Panel"/> currently being searched through </param>
+            <param name="logicalCollection"> scannable elements are added at the end of logicalCollection</param>
+            <returns><see cref="!:logicalCollection"/></returns>
         </member>
         <member name="M:Child_Talker.Utilities.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
             <summary>
