@@ -1,0 +1,166 @@
+﻿<Grid x:Class="Child_Talker.TalkerViews.KeyboardLayout"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+             xmlns:custom="clr-namespace:Child_Talker"
+             xmlns:utilities="clr-namespace:Child_Talker.Utilities"
+             xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+             mc:Ignorable="d" x:Name="MainGrid"
+             d:DesignHeight="650" d:DesignWidth="1000" Background="Black">
+    <Grid.Resources>
+        <Style x:Key="localBTN" TargetType="{x:Type tb:Button}" BasedOn="{StaticResource genButton}" >
+            <Setter Property="FontSize" Value="60px"/>
+            <Setter Property="Margin" Value="6"/>
+            <Setter Property="Padding" Value="0"/>
+        </Style>
+        <!--        <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}"></TextBlock>    -->
+        <Style TargetType="{x:Type tb:Button}" BasedOn="{StaticResource localBTN}"/>
+    </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" />
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="60*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="OptTextBox" Grid.Row="0" Background="White" Foreground="Black" Padding="20" TextAlignment="Left"/>
+
+        <ScrollViewer Grid.Row="1"  Margin="6,6,6,0" Background="#FF01222C" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled" >
+            <ScrollViewer.Resources>
+                <Style TargetType="tb:Button" BasedOn="{StaticResource localBTN}">
+                    <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+                    <Setter Property="Margin" Value="16,6,16,6"/>
+                    <Setter Property="Padding" Value="16,0,16,0"/>
+                </Style>
+            </ScrollViewer.Resources>
+            <StackPanel x:Name="autofill" Margin="20,10,20,10" Orientation="Horizontal" Width="auto" ></StackPanel>
+        </ScrollViewer>
+
+        <Grid x:Name="keyboardGrid" Grid.Row="2" utilities:Autoscan2.IsReturnPoint="True" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="row0" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tb:Button Grid.Column="0" Click="Button_Click" Text="1"/>
+                <tb:Button Grid.Column="1" Click="Button_Click" Text="2"/>
+                <tb:Button Grid.Column="2" Click="Button_Click" Text="3"/>
+                <tb:Button Grid.Column="3" Click="Button_Click" Text="4"/>
+                <tb:Button Grid.Column="4" Click="Button_Click" Text="5"/>
+                <tb:Button Grid.Column="5" Click="Button_Click" Text="6"/>
+                <tb:Button Grid.Column="6" Click="Button_Click" Text="7"/>
+                <tb:Button Grid.Column="7" Click="Button_Click" Text="8"/>
+                <tb:Button Grid.Column="8" Click="Button_Click" Text="9"/>
+                <tb:Button Grid.Column="9" Click="Button_Click" Text="0"/>
+            </Grid>
+
+            <Grid x:Name="row1" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tb:Button Grid.Column="0" Click="Button_Click" Text="q"/>
+                <tb:Button Grid.Column="1" Click="Button_Click" Text="w"/>
+                <tb:Button Grid.Column="2" Click="Button_Click" Text="e"/>
+                <tb:Button Grid.Column="3" Click="Button_Click" Text="r"/>
+                <tb:Button Grid.Column="4" Click="Button_Click" Text="t"/>
+                <tb:Button Grid.Column="5" Click="Button_Click" Text="y"/>
+                <tb:Button Grid.Column="6" Click="Button_Click" Text="u"/>
+                <tb:Button Grid.Column="7" Click="Button_Click" Text="i"/>
+                <tb:Button Grid.Column="8" Click="Button_Click" Text="o"/>
+                <tb:Button Grid.Column="9" Click="Button_Click" Text="p"/>
+            </Grid>
+
+            <Grid x:Name="row2" Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tb:Button Grid.Column="0" Click="Button_Click" Text="a"/>
+                <tb:Button Grid.Column="1" Click="Button_Click" Text="s"/>
+                <tb:Button Grid.Column="2" Click="Button_Click" Text="d"/>
+                <tb:Button Grid.Column="3" Click="Button_Click" Text="f"/>
+                <tb:Button Grid.Column="4" Click="Button_Click" Text="g"/>
+                <tb:Button Grid.Column="5" Click="Button_Click" Text="h"/>
+                <tb:Button Grid.Column="6" Click="Button_Click" Text="j"/>
+                <tb:Button Grid.Column="7" Click="Button_Click" Text="k"/>
+                <tb:Button Grid.Column="8" Click="Button_Click" Text="l"/>
+                <tb:Button Grid.Column="9" Click="Button_Click" Text=";"/>
+            </Grid>
+            <Grid x:Name="row3" Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tb:Button Grid.Column="0" Click="Button_Click" Text="z"/>
+                <tb:Button Grid.Column="1" Click="Button_Click" Text="x"/>
+                <tb:Button Grid.Column="2" Click="Button_Click" Text="c"/>
+                <tb:Button Grid.Column="3" Click="Button_Click" Text="v"/>
+                <tb:Button Grid.Column="4" Click="Button_Click" Text="b"/>
+                <tb:Button Grid.Column="5" Click="Button_Click" Text="n"/>
+                <tb:Button Grid.Column="6" Click="Button_Click" Text="m"/>
+                <tb:Button Grid.Column="7" Click="Button_Click" Text=","/>
+                <tb:Button Grid.Column="8" Click="Button_Click" Text="."/>
+                <tb:Button Grid.Column="9" Click="Button_Click" Text="/"/>
+            </Grid>
+            <Grid x:Name="row4" Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <tb:Button Grid.Column="0" Click="Button_Click" Grid.ColumnSpan="4" Text="SPACE"/>
+                <tb:Button Grid.Column="4" Click="Button_Click" Grid.ColumnSpan="2" Text="BACK" PauseOnSelect="True"/>
+                <tb:Button Grid.Column="6" Click="Button_Click" Grid.ColumnSpan="2" Text="ENTER"/>
+                <tb:Button Grid.Column="8" Click="Button_Click" Grid.ColumnSpan="2" Text="UNDO"/>
+            </Grid>
+        </Grid>
+</Grid>
