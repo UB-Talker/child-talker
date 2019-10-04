@@ -168,7 +168,6 @@ namespace Child_Talker.TalkerViews
                         {
                             if (textBox.Text.Length <= 0)
                             {
-
                                 BackPressWhenEmpty?.Invoke(this, null);
                                 break;
                             }

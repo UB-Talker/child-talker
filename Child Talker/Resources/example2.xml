@@ -15,7 +15,6 @@
     <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\042-surgeon.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="c1" ImagePath="../../Resources/General_Icons\Essential\alarm-1.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="hhhh" ImagePath="../../Resources/General_Icons\Essential\add-1.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="gg" ImagePath="../../Resources/General_Icons\Multimedia\back.png" InColor="false" />
     <ChildTalkerXml TileType="folder" Text="g" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>

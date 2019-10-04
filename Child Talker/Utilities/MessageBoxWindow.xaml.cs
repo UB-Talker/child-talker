@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Child_Talker.Utilities.Autoscan;
 using Button = Child_Talker.TalkerButton.Button;
 
 namespace Child_Talker.Utilities

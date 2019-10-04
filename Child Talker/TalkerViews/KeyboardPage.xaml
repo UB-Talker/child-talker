@@ -7,6 +7,7 @@
         xmlns:custom="clr-namespace:Child_Talker"
         xmlns:utilities="clr-namespace:Child_Talker.Utilities"
         xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+        xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
         mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="auto" Width="auto" Background="Black">
@@ -33,7 +34,7 @@
 
             <TextBox x:Name="greetingOutput" Grid.Row="0" Margin="6" Padding="10,0,10,0" Text=""/>
             <!-- this is the keyboard layout -->
-            <local:KeyboardLayout Grid.Row="1" x:Name="keyboard" utilities:Autoscan2.IsReturnPoint="True"></local:KeyboardLayout>
+            <local:KeyboardLayout Grid.Row="1" x:Name="keyboard" autoscan:Autoscan2.IsReturnPoint="True"></local:KeyboardLayout>
         </Grid>
     </Grid>
 </local:TalkerView>

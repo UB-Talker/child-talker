@@ -9,6 +9,7 @@
         xmlns:util="clr-namespace:Child_Talker.Utilities"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+        xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
         mc:Ignorable="d"
         d:DesignHeight="880" d:DesignWidth="1500"
         Height="Auto" Width="Auto" 
@@ -33,7 +34,7 @@
         </Grid.ColumnDefinitions>
 
         <ScrollViewer x:Name="ScrollMenu" Margin="0" Grid.Column="0" VerticalScrollBarVisibility="Auto">
-            <StackPanel x:Name="SettingsList" HorizontalAlignment="Stretch" util:Autoscan2.IsReturnPoint="True">
+            <StackPanel x:Name="SettingsList" HorizontalAlignment="Stretch" autoscan:Autoscan2.IsReturnPoint="True">
 
                 <ScrollViewer
                     HorizontalContentAlignment="Center" CanContentScroll="True" PanningMode="HorizontalOnly" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">

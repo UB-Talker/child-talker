@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:talker="clr-namespace:Child_Talker"
                     xmlns:util="clr-namespace:Child_Talker.Utilities"
-                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton">
+                    xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                    xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="BaseScheme.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
@@ -61,7 +62,7 @@
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Event}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>
             </Trigger>
-            <Trigger Property="util:Autoscan2.IsHighlight" Value="True">
+            <Trigger Property="autoscan:Autoscan2.IsHighlight" Value="True">
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Highlighted}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>
                 <Setter Property="BorderBrush" Value="{StaticResource ColorScheme.Border.Highlighted}"></Setter>

@@ -7,7 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml;
 using System.Xml.Serialization;
-using Child_Talker.Utilities;
+using Child_Talker.Utilities.Autoscan;
 using Timer = System.Timers.Timer;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
@@ -23,7 +23,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
 
-        private static readonly Utilities.Autoscan2 scan = Autoscan2.Instance;
+        private static readonly Autoscan2 scan = Autoscan2.Instance;
 
         public Phrases()
         {

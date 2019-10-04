@@ -4,6 +4,384 @@
         <name>Child Talker</name>
     </assembly>
     <members>
+        <member name="T:Child_Talker.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.BackImagePath">
+            <summary>
+              Looks up a localized string similar to pack://application:,,,/Resources/back.png.
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Properties.Resources.example">
+             <summary>
+               Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+            &lt;profile name=&quot;Test Profile&quot;&gt;
+               &lt;items&gt;
+                  &lt;item name=&quot;Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Also Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;This might be Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Mr. Dr. Professor. Kris Schindler MD.&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Need more Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
+                  &lt;item name=&quot;Can&apos;t stop the Kris&quot; image=&quot;../../Resources [rest of string was truncated]&quot;;.
+             </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration">
+            <summary>
+            provides the code to integrate autoscan with Arduino
+            This should be updated away from Serial Communication in the future
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.DeviceConnected">
+            <summary>
+            true if a device is connected
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.HandshakeCode">
+            <summary>
+            handshake code required from attached device
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.AttachedPort">
+            <summary>
+            Information on The connected Device
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.#cctor">
+            <summary>
+            provides the code to integrate autoscan with Arduino
+            This should be updated away from Serial Communication in the future
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.reverseIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.selectIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.goBackIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="T:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.ControlKeys">
+            List of Keyboard Keys that are used for autoscan
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.reverseIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.selectIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.goBackIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="M:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            triggers KeyHold behavior
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan.Autoscan2">
+            <summary>
+            this section is being used for Attached DependencyProperties
+            and RoutedCommands
+            </summary>
+            <summary>
+            This section is used for EventHandling
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.IgnoreReversePressOnce">
+            If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.IgnoreSelectPressOnce">
+            If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.IgnoreGoBackPressOnce">
+             If set to true, will Skip Default behavior once immediately after Invocation is called
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.SelectDefaultEnabled">
+            <summary>
+            Disables default behavior until manually enabled using <see cref="M:Child_Talker.Utilities.Autoscan.Autoscan2.ResetEventHandlers"/>
+            <para> ** Use of <c>IgnoreSelectPressOnce</c> instead is highly recommended </para></summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.ReverseDefaultEnabled">
+            <summary> Disables default behavior until manually enabled using <see cref="!:resetReverseHandlers"/>
+            <para> ** Use of <c>IgnoreReversePressOnce</c> instead is highly recommended </para> </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackDefaultEnabled">
+            <summary> Disables default behavior until manually enabled using <see cref="!:resetGoBackHandlers"/>
+            <para> ** Use of <c>IgnoreGoBackPressOnce</c> instead is highly recommended </para></summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ReversePressIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.SelectPressIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackPressIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ReverseHoldIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.SelectHoldIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackHoldIntegration">
+            <summary>
+            called from a Hardware integration class to provide designated functionality
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.ScanReverseProperty">
+            <summary>
+            tells autoscan which direction to scan the panels immediate children 
+            <para>    true - scan reverse             </para>
+            <para>   false - scan forward  (default)  </para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.IsReturnPointProperty">
+            <summary>
+            when a child UserControl (button or item) is selected return here instead of immediate parent panel 
+            (this is how the keyboard functions) - might not matter if first children are UserControls
+            <para>   true - return scan to this element     </para>
+            <para>   false - restart current panel after select    (default)</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.DoNotScanProperty">
+            <summary>
+            Tells Autoscan whether or not to scan this element 
+            <para>    true - autoscan will ignore this item              </para>
+            <para>    false - autoscan continues as normal     (default) </para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.IsHighlightProperty">
+            <summary>
+            Is used for stylizing purposes.
+            should only be true for the <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.currentScanObject"/>
+            </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan.Autoscan2.ScanEventHandler">
+            <summary>
+            Event Handler type for all Autoscan Events passes a reference to the currently highlighted object
+            <para> currentObject - The element being highlighted when this event was triggered </para>
+            <para> defaultEvent - The default event associated with the designated trigger </para>
+            </summary>
+            <param name="currentObject"> The element being highlighted when this event was triggered </param>
+            <param name="defaultEvent"> The default event associated with the designated trigger </param>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.SelectPress">
+            <summary> occurs when a select button is pressed before default behavior occurs (to disable default behavior just once set ignoreSelectPressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.SelectHold">
+            <summary> occurs once when select is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.ReversePress">
+            <summary> occurs when a reverse button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreReversePressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.ReverseHold">
+            <summary> occurs once when Reverse is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackPress">
+            <summary> occurs when a GoBack button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreGoBackPressOnce = true) </summary>
+        </member>
+        <member name="E:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackHold">
+            <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ResetEventHandlers">
+            <summary>
+            Resets all  <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2"/> EventHandlers
+            And Re-enables Default behavior
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ResetReverseEventHandlers">
+            <summary>
+            Resets <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2"/> Reverse EventHandlers
+            And Re-enables Default behavior
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ResetGoBackEventHandlers">
+            <summary>
+            Resets <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2"/> GoBack EventHandlers
+            And Re-enables Default behavior
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ResetSelectEventHandlers">
+            <summary>
+            Resets <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2"/> Select EventHandlers
+            And Re-enables Default behavior
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan.Autoscan2.ScanTimerInterval">
+            <summary>
+            getter/setter for scanTimer.Interval
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.SettingsChanged(System.Object,System.Configuration.SettingChangingEventArgs)">
+            <summary>
+            Triggers if any autoscan related settings are changed
+            <para> see <see cref="!:AutoscanSettings.settings"/> for all applicable settings</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.scanTimer">
+            <summary>
+            When Elapsed Autoscan will highlight and set triggers on next Element in <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/>
+            <para>see <see cref="M:Child_Talker.Utilities.Autoscan.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)"/> for all functionality</para> 
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList">
+             <summary>
+             When a panel has <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.IsReturnPointProperty"/> set to true, the <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/> is added to the stack.
+             This stack Create the order of return when <see cref="M:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackPressDefault"/> occurs
+            <para>
+             -- !!! -- MUST be set to true when scanning a new page. (this is done by default in both MainWindow and SecondaryWindow)
+             </para>
+             </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.popReturnPointList">
+            <summary>
+            Determines what to scan next when <see cref="M:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackPressDefault"/> occurs.
+            <para> When TRUE, the Panel currently being scanned through is at the top <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/>.
+                   If True pop off the top of ReturnPointList and begin scanning through the new Top.
+            </para>
+            <para> When FALSE, the panel is currently scanning in a Panel that is a child of a Panel in <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/>.
+                   If False, GoBack will scan the current Top in <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/>
+            </para>
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ClearReturnPointList">
+            <summary>
+            Clears all returnPoints for current page 
+            </summary>
+            must occur when the contents that were being scanned through are no longer visible or when the window in focus is changed
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.windowHistory">
+            <summary>
+            Keeps track of all open or hidden windows that 
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList">
+            <summary>
+            List of all elements currently being scanned through
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.currentScanObject">
+            <summary>
+            a Reference to the currently highlighted object
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.currentScanIndex">
+            <summary>
+            Index on <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.currentScanObject"/> within <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/>
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.PauseScan(System.Boolean)">
+            <summary>
+            Pauses <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.scanTimer"/>. User input will still register but the highlighted object will not change again until <see cref="M:Child_Talker.Utilities.Autoscan.Autoscan2.GoBackPressDefault"/> Occurs.
+            </summary>
+            <param name="toggle"></param>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes">
+            <summary>
+            How autoscan knows if it is currently running scanning is paused or autoscan is disabled
+            </summary>
+            <para> off/on - says Autoscan is either on or off  </para>
+            <para> Manual - Timer is Disabled, Movement can still occur through Reverse actions </para>
+            <para> Paused - Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally </para>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes.Off">
+            says Autoscan is off  
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes.On">
+            says Autoscan is on
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes.Manual">
+            Movement can only occur by through ReversePress ,Timer is Disabled. SelectPress and GoBackPress Function normally
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes.Paused">
+            Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally 
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan.Autoscan2.TimerMode">
+            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2.TimerModes"/> for more information </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.Autoscan.Autoscan2.DirectionEnum">
+            <summary>
+            Autoscan Direction
+            <para> Forward - Usually will scan Left to Right and Top to Bottom</para>
+            <para> Reverse - Usually will scan Right to Left  and Bottom to Top</para>
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.DirectionEnum.Forward">
+            <summary> Usually will scan Left to Right and Top to Bottom </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.Autoscan.Autoscan2.DirectionEnum.Reverse">
+            <summary> Usually will scan Right to Left  and Bottom to Top </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.Autoscan.Autoscan2.Direction">
+            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan.Autoscan2.DirectionEnum"/> for more information </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ToggleAutoscan">
+            <summary>
+             Sets <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.TimerMode"/> to either On or off and saves the current value in <see cref="T:Child_Talker.Properties.AutoscanSettings"/>
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.NewWindow(System.Windows.Window)">
+            <summary>
+            When a new Window is created it must be provided with the Autoscan Event Listeners
+            </summary>
+            <param name="newWindow"></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.CloseActiveWindow(System.Windows.Window)">
+            <summary>
+            will close active window provided it is not the Original MainWindow
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.NewListToScanThough(System.Collections.Generic.List{System.Windows.DependencyObject},System.Boolean)">
+            <summary>
+            Changes <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/>. Will scan though all elements from the provided list
+            </summary>
+            <param name="newList"> a list of all elements to scan through</param>
+            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.NewListToScanThough``1(System.Windows.Controls.Panel,System.Boolean)">
+            <summary>
+            Changes <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/>. Will scan all immediate Children of type T from the provided Panel parent
+            </summary>
+            <typeparam name="T"> what type of <see cref="T:System.Windows.DependencyObject"/> to add to active scan list. (when set to Dependency object all scannable children will be added to <see cref="F:Child_Talker.Utilities.Autoscan.Autoscan2.activeScanList"/>) </typeparam>
+            <param name="parent"> will search through <see cref="T:System.Windows.Controls.Panel"/> to find all Children of type <see cref="!:T"/> </param>
+            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/></param>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ScannableObjectCollector``1(System.Windows.DependencyObject,System.Collections.Generic.List{System.Windows.DependencyObject})">
+            <summary>
+            recursive function. all elements of type <see cref="!:T"/> that exist within <see cref="!:parent"/> will be added to the end of <see cref="!:logicalCollection"/>
+            </summary>
+            <typeparam name="T"> the type of <see cref="T:System.Windows.DependencyObject"/> being searched for </typeparam>
+            <param name="parent"> <see cref="T:System.Windows.Controls.Panel"/> currently being searched through </param>
+            <param name="logicalCollection"> scannable elements are added at the end of logicalCollection</param>
+            <returns><see cref="!:logicalCollection"/></returns>
+        </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
+            <summary>
+            Functionality for autoscan to move to the next element while scanning
+            </summary>
+        </member>
         <member name="T:Child_Talker.Utilities.MessageBox">
             <summary>
             Displays a message box.
@@ -80,278 +458,6 @@
             <summary>
             InitializeComponent
             </summary>
-        </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2">
-            <summary>
-            this section is being used for Attached DependencyProperties
-            and RoutedCommands
-            </summary>
-            <summary>
-            This section is used for EventHandling
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.ScanReverseProperty">
-            <summary>
-            tells autoscan which direction to scan the panels immediate children 
-            <para>    true - scan reverse             </para>
-            <para>   false - scan forward  (default)  </para>
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.IsReturnPointProperty">
-            <summary>
-            when a child UserControl (button or item) is selected return here instead of immediate parent panel 
-            (this is how the keyboard functions) - might not matter if first children are UserControls
-            <para>   true - return scan to this element     </para>
-            <para>   false - restart current panel after select    (default)</para>
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.DoNotScanProperty">
-            <summary>
-            Tells Autoscan whether or not to scan this element 
-            <para>    true - autoscan will ignore this item              </para>
-            <para>    false - autoscan continues as normal     (default) </para>
-            </summary>
-        </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2.ScanEventHandler">
-            <summary>
-            Event Handler type for all Autoscan Events passes a reference to the currently highlighted object
-            <para> currentObject - The element being highlighted when this event was triggered </para>
-            <para> defaultEvent - The default event associated with the designated trigger </para>
-            </summary>
-            <param name="currentObject"> The element being highlighted when this event was triggered </param>
-            <param name="defaultEvent"> The default event associated with the designated trigger </param>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.SelectPress">
-            <summary> occurs when a select button is pressed before default behavior occurs (to disable default behavior just once set ignoreSelectPressOnce = true) </summary>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.SelectHold">
-            <summary> occurs once when select is first held down (**may not exist depending on input method) </summary>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.ReversePress">
-            <summary> occurs when a reverse button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreReversePressOnce = true) </summary>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.ReverseHold">
-            <summary> occurs once when Reverse is first held down (**may not exist depending on input method) </summary>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.GoBackPress">
-            <summary> occurs when a GoBack button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreGoBackPressOnce = true) </summary>
-        </member>
-        <member name="E:Child_Talker.Utilities.Autoscan2.GoBackHold">
-            <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ResetEventHandlers">
-            <summary>
-            Resets all  <see cref="T:Child_Talker.Utilities.Autoscan2"/> EventHandlers
-            And Re-enables Default behavior
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ResetReverseEventHandlers">
-            <summary>
-            Resets <see cref="T:Child_Talker.Utilities.Autoscan2"/> Reverse EventHandlers
-            And Re-enables Default behavior
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ResetGoBackEventHandlers">
-            <summary>
-            Resets <see cref="T:Child_Talker.Utilities.Autoscan2"/> GoBack EventHandlers
-            And Re-enables Default behavior
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ResetSelectEventHandlers">
-            <summary>
-            Resets <see cref="T:Child_Talker.Utilities.Autoscan2"/> Select EventHandlers
-            And Re-enables Default behavior
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Utilities.Autoscan2.ScanTimerInterval">
-            <summary>
-            getter/setter for scanTimer.Interval
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.SettingsChanged(System.Object,System.Configuration.SettingChangingEventArgs)">
-            <summary>
-            Triggers if any autoscan related settings are changed
-            <para> see <see cref="!:AutoscanSettings.settings"/> for all applicable settings</para>
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.scanTimer">
-            <summary>
-            When Elapsed Autoscan will highlight and set triggers on next Element in <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>
-            <para>see <see cref="M:Child_Talker.Utilities.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)"/> for all functionality</para> 
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Utilities.Autoscan2.ReturnPointList">
-             <summary>
-             When a panel has <see cref="F:Child_Talker.Utilities.Autoscan2.IsReturnPointProperty"/> set to true, the <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/> is added to the stack.
-             This stack Create the order of return when <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> occurs
-            <para>
-             -- !!! -- MUST be set to true when scanning a new page. (this is done by default in both MainWindow and SecondaryWindow)
-             </para>
-             </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.popReturnPointList">
-            <summary>
-            Determines what to scan next when <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> occurs.
-            <para> When TRUE, the Panel currently being scanned through is at the top <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>.
-                   If True pop off the top of ReturnPointList and begin scanning through the new Top.
-            </para>
-            <para> When FALSE, the panel is currently scanning in a Panel that is a child of a Panel in <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>.
-                   If False, GoBack will scan the current Top in <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/>
-            </para>
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ClearReturnPointList">
-            <summary>
-            Clears all returnPoints for current page 
-            </summary>
-            must occur when the contents that were being scanned through are no longer visible or when the window in focus is changed
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.windowHistory">
-            <summary>
-            Keeps track of all open or hidden windows that 
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.activeScanList">
-            <summary>
-            List of all elements currently being scanned through
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.currentScanObject">
-            <summary>
-            a Reference to the currently highlighted object
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.currentScanIndex">
-            <summary>
-            Index on <see cref="F:Child_Talker.Utilities.Autoscan2.currentScanObject"/> within <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>
-            </summary>
-        </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2.ControlKeys">
-            List of Keyboard Keys that are used for autoscan
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.PauseScan(System.Boolean)">
-            <summary>
-            Pauses <see cref="F:Child_Talker.Utilities.Autoscan2.scanTimer"/>. User input will still register but the highlighted object will not change again until <see cref="M:Child_Talker.Utilities.Autoscan2.GoBackPressDefault"/> Occurs.
-            </summary>
-            <param name="toggle"></param>
-        </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2.TimerModes">
-            <summary>
-            How autoscan knows if it is currently running scanning is paused or autoscan is disabled
-            </summary>
-            <para> off/on - says Autoscan is either on or off  </para>
-            <para> Manual - Timer is Disabled, Movement can still occur through Reverse actions </para>
-            <para> Paused - Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally </para>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Off">
-            says Autoscan is off  
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.On">
-            says Autoscan is on
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Manual">
-            Movement can only occur by through ReversePress ,Timer is Disabled. SelectPress and GoBackPress Function normally
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.TimerModes.Paused">
-            Timer and ReversePress are both Disabled but SelectPress and GoBackPress Function normally 
-        </member>
-        <member name="P:Child_Talker.Utilities.Autoscan2.TimerMode">
-            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan2.TimerModes"/> for more information </summary>
-        </member>
-        <member name="T:Child_Talker.Utilities.Autoscan2.DirectionEnum">
-            <summary>
-            Autoscan Direction
-            <para> Forward - Usually will scan Left to Right and Top to Bottom</para>
-            <para> Reverse - Usually will scan Right to Left  and Bottom to Top</para>
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.DirectionEnum.Forward">
-            <summary> Usually will scan Left to Right and Top to Bottom </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.DirectionEnum.Reverse">
-            <summary> Usually will scan Right to Left  and Bottom to Top </summary>
-        </member>
-        <member name="P:Child_Talker.Utilities.Autoscan2.Direction">
-            <summary> See <see cref="T:Child_Talker.Utilities.Autoscan2.DirectionEnum"/> for more information </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ToggleAutoscan">
-            <summary>
-             Sets <see cref="P:Child_Talker.Utilities.Autoscan2.TimerMode"/> to either On or off and saves the current value in <see cref="T:Child_Talker.Properties.AutoscanSettings"/>
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.NewWindow(System.Windows.Window)">
-            <summary>
-            When a new Window is created it must be provided with the Autoscan Event Listeners
-            </summary>
-            <param name="newWindow"></param>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.CloseActiveWindow(System.Windows.Window)">
-            <summary>
-            will close active window provided it is not the Original MainWindow
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.NewListToScanThough(System.Collections.Generic.List{System.Windows.DependencyObject},System.Boolean)">
-            <summary>
-            Changes <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>. Will scan though all elements from the provided list
-            </summary>
-            <param name="newList"> a list of all elements to scan through</param>
-            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/></param>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.NewListToScanThough``1(System.Windows.Controls.Panel,System.Boolean)">
-            <summary>
-            Changes <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>. Will scan all immediate Children of type T from the provided Panel parent
-            </summary>
-            <typeparam name="T"> what type of <see cref="T:System.Windows.DependencyObject"/> to add to active scan list. (when set to Dependency object all scannable children will be added to <see cref="F:Child_Talker.Utilities.Autoscan2.activeScanList"/>) </typeparam>
-            <param name="parent"> will search through <see cref="T:System.Windows.Controls.Panel"/> to find all Children of type <see cref="!:T"/> </param>
-            <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan2.ReturnPointList"/></param>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ScannableObjectCollector``1(System.Windows.DependencyObject,System.Collections.Generic.List{System.Windows.DependencyObject})">
-            <summary>
-            recursive function. all elements of type <see cref="!:T"/> that exist within <see cref="!:parent"/> will be added to the end of <see cref="!:logicalCollection"/>
-            </summary>
-            <typeparam name="T"> the type of <see cref="T:System.Windows.DependencyObject"/> being searched for </typeparam>
-            <param name="parent"> <see cref="T:System.Windows.Controls.Panel"/> currently being searched through </param>
-            <param name="logicalCollection"> scannable elements are added at the end of logicalCollection</param>
-            <returns><see cref="!:logicalCollection"/></returns>
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.ScanTimerElapsed(System.Object,System.Timers.ElapsedEventArgs)">
-            <summary>
-            Functionality for autoscan to move to the next element while scanning
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.SelectDefaultEnabled">
-            <summary>
-            Disables default behavior until manually enabled using <see cref="M:Child_Talker.Utilities.Autoscan2.ResetEventHandlers"/>
-            <para> ** Use of <c>IgnoreSelectPressOnce</c> instead is highly recommended </para></summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.ReverseDefaultEnabled">
-            <summary> Disables default behavior until manually enabled using <see cref="!:resetReverseHandlers"/>
-            <para> ** Use of <c>IgnoreReversePressOnce</c> instead is highly recommended </para> </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.GoBackDefaultEnabled">
-            <summary> Disables default behavior until manually enabled using <see cref="!:resetGoBackHandlers"/>
-            <para> ** Use of <c>IgnoreGoBackPressOnce</c> instead is highly recommended </para></summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreReversePressOnce">
-            If set to true, will Skip Default behavior once immediately after Invocation is called
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreSelectPressOnce">
-            If set to true, will Skip Default behavior once immediately after Invocation is called
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.IgnoreGoBackPressOnce">
-             If set to true, will Skip Default behavior once immediately after Invocation is called
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.reverseIsPressed">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.selectIsPressed">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.Autoscan2.goBackIsPressed">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="M:Child_Talker.Utilities.Autoscan2.KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            triggers KeyHold behavior
         </member>
         <member name="F:Child_Talker.Utilities.ParseTree.headNode">
             Maintains the head of the tree structure
@@ -467,40 +573,6 @@
             Otherwise it will be added to wordCounts with an initial value of 1.
             </summary>
             <param name="text"></param>
-        </member>
-        <member name="T:Child_Talker.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Properties.Resources.BackImagePath">
-            <summary>
-              Looks up a localized string similar to pack://application:,,,/Resources/back.png.
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Properties.Resources.example">
-             <summary>
-               Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-            &lt;profile name=&quot;Test Profile&quot;&gt;
-               &lt;items&gt;
-                  &lt;item name=&quot;Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
-                  &lt;item name=&quot;Also Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
-                  &lt;item name=&quot;This might be Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
-                  &lt;item name=&quot;Mr. Dr. Professor. Kris Schindler MD.&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
-                  &lt;item name=&quot;Need more Kris&quot; image=&quot;../../Resources/kris.jpg&quot; /&gt;
-                  &lt;item name=&quot;Can&apos;t stop the Kris&quot; image=&quot;../../Resources [rest of string was truncated]&quot;;.
-             </summary>
         </member>
         <member name="T:Child_Talker.SecondaryWindow">
             <summary>
@@ -633,7 +705,7 @@
             when timer elapses a popup appears asking if you would like to delete the highlighted element
             </summary>
         </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.Phrases.GoBackHold_DeleteItem(System.Windows.DependencyObject,Child_Talker.Utilities.Autoscan2.DefaultEvents)">
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.Phrases.GoBackHold_DeleteItem(System.Windows.DependencyObject,Child_Talker.Utilities.Autoscan.Autoscan2.DefaultEvents)">
             <summary>
             Occurs when goBack is initially held down
             </summary>
