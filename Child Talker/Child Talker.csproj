@@ -260,13 +260,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\MediaPlayerPage\MediaPlayer.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="TalkerViews\MediaPlayerPage\MediaPlayer.xaml.cs">
-      <DependentUpon>MediaPlayer.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="TalkerViews\PhrasesPage\Phrases.xaml.cs">
@@ -1119,8 +1112,6 @@
     <Resource Include="Resources\General_Icons\Time\035-website.png" />
     <Resource Include="Resources\General_Icons\Time\036-world.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TalkerViews\MediaPlayerPage\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
