@@ -63,7 +63,7 @@ namespace Child_Talker
             //scan.NewWindow(this);
             scan.NewListToScanThough<Panel>(this.Content as Panel);
 
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         /// <summary>
@@ -75,22 +75,23 @@ namespace Child_Talker
         {
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(panel, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         public void Show<T>() where T : DependencyObject
         {
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(Content as Panel, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         public void Show(List<DependencyObject> scanList)
         {
             scan.ClearReturnPointList();
             scan.NewListToScanThough(scanList, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
+
 
         /// <summary>
         /// Default Behavior For Closing SecondaryDisplay
