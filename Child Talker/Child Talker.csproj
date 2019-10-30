@@ -1126,5 +1126,6 @@
     <Resource Include="Resources\General_Icons\Time\035-website.png" />
     <Resource Include="Resources\General_Icons\Time\036-world.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
