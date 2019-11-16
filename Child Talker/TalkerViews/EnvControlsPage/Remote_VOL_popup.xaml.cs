@@ -9,14 +9,15 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
     /// </summary>
     public partial class Remote_VOL_popup : SecondaryWindow
     {
-        Utilities.Autoscan2 scan;
-        EnvControls parent;
+        private Autoscan2 scan;
+        private EnvControls parent;
+
         public Remote_VOL_popup(EnvControls _parent)
         {
             InitializeComponent();
             parent = _parent;
             BackButton.Click += ((bSender, bE) => { this.Close(); });
-            scan = Utilities.Autoscan2.Instance;
+            scan = Autoscan2.Instance;
             scan.ClearReturnPointList();
         }
 

@@ -34,7 +34,7 @@
             <param name="characterLimit">Inputing a negative number will result in it being 
             set to zero. </param>
         </member>
-        <member name="M:Child_Talker.TalkerViews.Keyboard.KeyboardPopup.Show">
+        <member name="M:Child_Talker.TalkerViews.Keyboard.KeyboardPopup.GetUserInput">
             <summary>
             This will halt the execution of the window that opened this popup until this method returns.
             Override of the inherited Show(...) methods from the SecondaryWindow class
