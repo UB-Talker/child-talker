@@ -22,5 +22,16 @@
     <ChildTalkerXml TileType="talker" Text="jk" ImagePath="../../Resources/General_Icons\Essential\video-player.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="hello" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="he" ImagePath="../../Resources/General_Icons\Multimedia\shopping-bag.png" InColor="false" />
+    <ChildTalkerXml TileType="folder" Text="wassup ian" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="folder" Text="hello iii" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="hhhh " ImagePath="../../Resources/General_Icons\automobile\007-transportation.png" InColor="false" />
+    <ChildTalkerXml TileType="folder" Text="1 " ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children />
+    </ChildTalkerXml>
+    <ChildTalkerXml TileType="talker" Text="z" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
   </Children>
 </ChildTalkerXmlWrapper>
