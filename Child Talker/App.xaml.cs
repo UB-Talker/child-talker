@@ -23,7 +23,7 @@ namespace Child_Talker
         {
             Child_Talker.App app = new Child_Talker.App();
             ListEmbeddedResourceNames();
-            ArduinoIntegration ai = new ArduinoIntegration();
+            ThreeButtonArduinoIntegration ai = new ThreeButtonArduinoIntegration();
 
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             app.InitializeComponent();
