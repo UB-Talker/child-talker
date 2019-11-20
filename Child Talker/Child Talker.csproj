@@ -107,6 +107,7 @@
     <Compile Include="Utilities\Autoscan\DependencyProperties.cs" />
     <Compile Include="Utilities\Autoscan\EventHandling.cs" />
     <Compile Include="Utilities\HardwareIntegrations\KeyboardIntegration.cs" />
+    <Compile Include="Utilities\HardwareIntegrations\SwitchArduinoIntegration.cs" />
     <Compile Include="Utilities\HardwareIntegrations\ThreeButtonArduinoIntegration.cs" />
     <Compile Include="Utilities\MessageBox.cs" />
     <Compile Include="Utilities\MessageBoxWindow.xaml.cs">
