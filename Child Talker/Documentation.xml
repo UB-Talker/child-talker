@@ -38,57 +38,6 @@
                   &lt;item name=&quot;Can&apos;t stop the Kris&quot; image=&quot;../../Resources [rest of string was truncated]&quot;;.
              </summary>
         </member>
-        <member name="T:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration">
-            <summary>
-            provides the code to integrate autoscan with Arduino
-            This should be updated away from Serial Communication in the future
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.DeviceConnected">
-            <summary>
-            true if a device is connected
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.HandshakeCode">
-            <summary>
-            handshake code required from attached device
-            </summary>
-        </member>
-        <member name="P:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.AttachedPort">
-            <summary>
-            Information on The connected Device
-            </summary>
-        </member>
-        <member name="M:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.#cctor">
-            <summary>
-            provides the code to integrate autoscan with Arduino
-            This should be updated away from Serial Communication in the future
-            </summary>
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.reverseIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.selectIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ArduinoIntegration.goBackIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="T:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.ControlKeys">
-            List of Keyboard Keys that are used for autoscan
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.reverseIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.selectIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.goBackIsHeld">
-            keeps hold event from happening repeatedly
-        </member>
-        <member name="M:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
-            triggers KeyHold behavior
-        </member>
         <member name="T:Child_Talker.Utilities.Autoscan.Autoscan2">
             <summary>
             this section is being used for Attached DependencyProperties
@@ -381,6 +330,57 @@
             <summary>
             Functionality for autoscan to move to the next element while scanning
             </summary>
+        </member>
+        <member name="T:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.ControlKeys">
+            List of Keyboard Keys that are used for autoscan
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.reverseIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.selectIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.goBackIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="M:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.KeyDown(System.Object,System.Windows.Input.KeyEventArgs)">
+            triggers KeyHold behavior
+        </member>
+        <member name="T:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration">
+            <summary>
+            provides the code to integrate autoscan with Arduino
+            This should be updated away from Serial Communication in the future
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.DeviceConnected">
+            <summary>
+            true if a device is connected
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.HandshakeCode">
+            <summary>
+            handshake code required from attached device
+            </summary>
+        </member>
+        <member name="P:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.AttachedPort">
+            <summary>
+            Information on The connected Device
+            </summary>
+        </member>
+        <member name="M:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.#cctor">
+            <summary>
+            provides the code to integrate autoscan with Arduino
+            This should be updated away from Serial Communication in the future
+            </summary>
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.reverseIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.selectIsHeld">
+            keeps hold event from happening repeatedly
+        </member>
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.ThreeButtonArduinoIntegration.goBackIsHeld">
+            keeps hold event from happening repeatedly
         </member>
         <member name="T:Child_Talker.Utilities.MessageBox">
             <summary>

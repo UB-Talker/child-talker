@@ -103,11 +103,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>HardareIntegration.settings</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\HardwareIntegrations\ArduinoIntegration.cs" />
     <Compile Include="Utilities\Autoscan\DefaultBehavior.cs" />
     <Compile Include="Utilities\Autoscan\DependencyProperties.cs" />
     <Compile Include="Utilities\Autoscan\EventHandling.cs" />
     <Compile Include="Utilities\HardwareIntegrations\KeyboardIntegration.cs" />
+    <Compile Include="Utilities\HardwareIntegrations\ThreeButtonArduinoIntegration.cs" />
     <Compile Include="Utilities\MessageBox.cs" />
     <Compile Include="Utilities\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>

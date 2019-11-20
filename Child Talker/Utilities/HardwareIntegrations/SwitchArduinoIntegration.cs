@@ -11,10 +11,10 @@ namespace Child_Talker.Utilities.HardwareIntegrations
     /// provides the code to integrate autoscan with Arduino
     /// This should be updated away from Serial Communication in the future
     /// </summary>
-    public class ThreeButtonArduinoIntegration
+    public class SwitchArduinoIntegration
     {
-        public static ThreeButtonArduinoIntegration _instance;
-        public static ThreeButtonArduinoIntegration Instance => _instance ?? (_instance = new ThreeButtonArduinoIntegration());
+        public static SwitchArduinoIntegration _instance;
+        public static SwitchArduinoIntegration Instance => _instance ?? (_instance = new SwitchArduinoIntegration());
 
 
         private static Autoscan2 scan = Autoscan2.Instance;
@@ -25,7 +25,7 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         /// <summary>
         /// handshake code required from attached device
         /// </summary>
-        private const string HandshakeCode = "1997";
+        private const string HandshakeCode = "1998";
 
         private static SerialPort _attachedPort;
         /// <summary>
@@ -72,7 +72,7 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         /// provides the code to integrate autoscan with Arduino
         /// This should be updated away from Serial Communication in the future
         /// </summary>
-        static ThreeButtonArduinoIntegration()
+        static SwitchArduinoIntegration()
         {
             string lastPort = Properties.HardareIntegration.Default.Active_COM_Port;
             Handshake.Start();
