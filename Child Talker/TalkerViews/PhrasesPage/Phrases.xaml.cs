@@ -8,6 +8,9 @@ using System.Windows.Controls;
 using System.Xml;
 using System.Xml.Serialization;
 using Child_Talker.Utilities.Autoscan;
+
+using Child_Talker.TalkerViews.Keyboard;
+using Child_Talker.Utilities;
 using Timer = System.Timers.Timer;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
@@ -65,7 +68,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
             using (XmlReader reader = XmlReader.Create(_path))
             {
-                XmlWrapper = (ChildTalkerXmlWrapper) serializer.Deserialize(reader);
+                XmlWrapper = (ChildTalkerXmlWrapper)serializer.Deserialize(reader);
             }
 
             List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
@@ -92,7 +95,8 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (_node.TileType == ChildTalkerXml.Tile.talker)
             {
                 return new ChildTalkerTile(_node.Text, _node.ImagePath, _node.InColor);
-            } else
+            }
+            else
             {
                 List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
                 foreach (var child in _node.Children)
@@ -109,7 +113,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         /// when running the gobackHold event is occuring
         /// when timer elapses a popup appears asking if you would like to delete the highlighted element
         /// </summary>
-        private readonly Timer deletionTimer = new Timer(scan.ScanTimerInterval*2);
+        private readonly Timer deletionTimer = new Timer(scan.ScanTimerInterval * 2);
         /// <summary>
         /// Occurs when goBack is initially held down
         /// </summary>
@@ -149,13 +153,13 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
         {
             //only true when page is first opened
-            if (calledFromLoad) 
+            if (calledFromLoad)
             {
                 rootChildren = _ctTiles;
             }
             else
             {
-                if(!_ctTiles.Contains(backItem) && ViewParents.Count > 0)
+                if (!_ctTiles.Contains(backItem) && ViewParents.Count > 0)
                 {
                     _ctTiles.Insert(0, backItem);
                     ViewParents.Peek().SetChildren(_ctTiles);
@@ -232,81 +236,71 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         private SecondaryWindow popupWindow;
         private KeyboardLayout keyboard;
-        public void CreateFolder(object sender, RoutedEventArgs e)
+
+        /// <summary>
+        /// Creates a folder with the provided name. If the name is empty then the folder will not be created
+        /// </summary>
+        /// <param name="folderName">Name given to the desired folder</param>
+        private void CreateFolder(string folderName)
         {
-            String inputPhrase = keyboard.textBox.Text;
-            if (inputPhrase != "")
+            if (folderName != "")
             {
-                ChildTalkerFolder ctFolder = new ChildTalkerFolder(inputPhrase, "../../Resources/folder.jpg", this, false);
+                ChildTalkerFolder ctFolder = new ChildTalkerFolder(folderName, "../../Resources/folder.jpg", this, false);
                 AddSingleItem(ctFolder);
             }
-            popupWindow.Close();
         }
 
+        /// <summary>
+        /// Action listener that will begin the work flow to start creating a folder tile. This will bring up a keyboard for
+        /// the user to name their folder. Once that keyboard closes, the typed string will be returned and passed into the
+        /// CreateFolder method
+        /// </summary>
+        /// <param name="sender">Button used to initiate this process</param>
+        /// <param name="e"></param>
         private void InsertFolderTile_Click(object sender, RoutedEventArgs e)
         {
-            NewKeyboardPopup();
-            keyboard.defaultEnterPress = false;
-            keyboard.EnterPress += CreateFolder;
-            popupWindow.Show(new List<DependencyObject>(){keyboard.keyboardGrid, keyboard.autofill});
+            KeyboardPopup board = new KeyboardPopup();
+            string folderName = board.GetUserInput();
+            CreateFolder(folderName);
         }
 
-        private void NewKeyboardPopup()
-        {
-            keyboard = new KeyboardLayout();
-            popupWindow = new SecondaryWindow(keyboard);
-            keyboard.Margin=new Thickness(15);
-            keyboard.AddTextBox();
-            keyboard.textBox.CharacterCasing = CharacterCasing.Lower;
-            keyboard.textBox.MaxLength = 25;
-            //redefines size of secondaryWindow to fit keyboard
-            popupWindow.Margin = new Thickness(130, 0, 130, 0);
-            popupWindow.Content = keyboard;
 
-            // invocations
-            keyboard.BackPressWhenEmpty += ((sender, e) =>
-            {
-                popupWindow.Close(); (MainWindow.Instance).Show();
-                MainWindow.Instance.Navigator.Refresh();
-            });
-            popupWindow.Show(new List<DependencyObject>(){keyboard.keyboardGrid, keyboard.autofill});
-        }
 
+        /// <summary>
+        /// Action Listener that will begin the work flow to start creating a folder tile. This will bring up a keyboard for the user
+        /// to name the tile they want to create. Once that keyboard closes, an ImageGenerator will popup that will allow the user
+        /// to select an image for the tile. Will then make use of the CreateTile method once that data has been collected.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void InsertTalkerTile_Click(object sender, RoutedEventArgs e)
         {
-            NewKeyboardPopup();
-            keyboard.defaultEnterPress = false;
-            keyboard.EnterPress += (senderK, eK) => {CreateTile();};
-        }
+            KeyboardPopup board = new KeyboardPopup();
+            string tileName = board.GetUserInput();
 
-        private void OnIconSelect(string imagePath)
-        {
-            if (inputPhrase != "")
+            if (tileName != "")
             {
-                popupWindow.Close();
-                MainWindow.Instance.Show();
-                
-                //String imagePath = PromptFileExplorer();
-                if (imagePath != "")
-                {
-                    ChildTalkerTile ctItem = new ChildTalkerTile(inputPhrase, imagePath, false);
-                    AddSingleItem(ctItem);
-                }
+                ImageGeneratorTest test = new ImageGeneratorTest();
+                string path = test.ShowImages();
+
+                CreateTile(path, tileName);
             }
-
         }
 
-        private string inputPhrase = "";
-        private void CreateTile()
+
+        /// <summary>
+        /// Creates TalkerTile with the image and phrase that are passed in. It will then add it to the current page
+        /// </summary>
+        /// <param name="imagePath">Path for the image being added to the tile</param>
+        /// <param name="phrase">Phrase that will be spoken when the tile is clicked</param>
+        private void CreateTile(string imagePath, string phrase)
         {
-            inputPhrase = keyboard.textBox.Text;
-            popupWindow.Close();
-
-            //popupWindow = new SecondaryWindow(MainWindow.Instance, this);
-            ImageGenerator ig = new ImageGenerator(OnIconSelect);
-            ig.Show();
-            //popupWindow.DataContext = ig;
+            if (imagePath != "")
+            {
+                ChildTalkerTile ctItem = new ChildTalkerTile(phrase, imagePath, false);
+                AddSingleItem(ctItem);
+            }
         }
 
-    }
+    }  
 }

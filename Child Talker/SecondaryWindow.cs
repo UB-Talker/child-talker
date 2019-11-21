@@ -53,7 +53,7 @@ namespace Child_Talker
             //scan.NewWindow(this);
             scan.NewListToScanThough<Panel>(this.Content as Panel);
 
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace Child_Talker
             if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(panel, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         public void Show<T>() where T : DependencyObject
@@ -74,7 +74,7 @@ namespace Child_Talker
             if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(Content as Panel, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
 
         public void Show(List<DependencyObject> scanList)
@@ -82,8 +82,9 @@ namespace Child_Talker
             if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough(scanList, true);
-            ((Window)this).Show();
+            ((Window)this).ShowDialog();
         }
+
 
         /// <summary>
         /// Default Behavior For Closing SecondaryDisplay

@@ -109,6 +109,12 @@
     <Compile Include="Utilities\HardwareIntegrations\KeyboardIntegration.cs" />
     <Compile Include="Utilities\HardwareIntegrations\SwitchArduinoIntegration.cs" />
     <Compile Include="Utilities\HardwareIntegrations\ThreeButtonArduinoIntegration.cs" />
+    <Compile Include="TalkerViews\Keyboard\KeyboardPopup.xaml.cs">
+      <DependentUpon>KeyboardPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TalkerViews\PhrasesPage\ImageGeneratorTest.xaml.cs">
+      <DependentUpon>ImageGeneratorTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utilities\MessageBox.cs" />
     <Compile Include="Utilities\MessageBoxWindow.xaml.cs">
       <DependentUpon>MessageBoxWindow.xaml</DependentUpon>
@@ -187,6 +193,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TalkerViews\Keyboard\KeyboardPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TalkerViews\PhrasesPage\ImageGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -198,6 +208,10 @@
     <Page Include="TalkerViews\EnvControlsPage\Remote_CH_popup.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TalkerViews\PhrasesPage\ImageGeneratorTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TalkerViews\PhrasesPage\PhraseButton.xaml">
       <SubType>Designer</SubType>

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Windows;
@@ -29,18 +29,15 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
         private void Volume_Click(object sender, RoutedEventArgs e)
         {
             vol = new Remote_VOL_popup(this);
-            vol.BackButton.Click += ((bSender, bE) => { vol.Close(); });
-            scan.ClearReturnPointList();
             vol.Show<Button>(vol.gridLayout);
         }
+
         private void Channel_Click(object sender, RoutedEventArgs e)
         {
             ch = new Remote_CH_popup(this);
-            scan.NewListToScanThough<Button>(ch.gridLayout);
-            ch.backButton.Click += ((bSender, bE) => { ch.Close(); });
-            scan.ClearReturnPointList();
             ch.Show<Button>(ch.gridLayout);
         }
+
         private void RelayControl(object sender, RoutedEventArgs e)
         {
             string tag = (((Button)sender).Tag).ToString();

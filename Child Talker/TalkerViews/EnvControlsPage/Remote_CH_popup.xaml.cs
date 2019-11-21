@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Child_Talker.Utilities;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace Child_Talker.TalkerViews.EnvControlsPage
@@ -8,11 +9,16 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
     /// </summary>
     public partial class Remote_CH_popup : SecondaryWindow 
     {
-        EnvControls parent;
+        private Autoscan2 scan;
+        private EnvControls parent;
+
         public Remote_CH_popup(EnvControls _parent)
         {
             InitializeComponent();
             parent = _parent;
+            backButton.Click += ((bSender, bE) => { this.Close(); });
+            scan = Autoscan2.Instance;
+            scan.ClearReturnPointList();
         }
 
         private void TV_controls(object sender, RoutedEventArgs e)
@@ -20,7 +26,6 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
             parent.TV_Controls(sender, e);
         }
 
-        
-
+       
     }
 }
