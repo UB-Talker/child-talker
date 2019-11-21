@@ -7,6 +7,7 @@
              xmlns:custom="clr-namespace:Child_Talker"
              xmlns:utilities="clr-namespace:Child_Talker.Utilities"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+             xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
              mc:Ignorable="d" x:Name="MainGrid"
              d:DesignHeight="650" d:DesignWidth="1000" Background="Black">
     <Grid.Resources>
@@ -38,7 +39,7 @@
             <StackPanel x:Name="autofill" Margin="20,10,20,10" Orientation="Horizontal" Width="auto" ></StackPanel>
         </ScrollViewer>
 
-        <Grid x:Name="keyboardGrid" Grid.Row="2" utilities:Autoscan2.IsReturnPoint="True" >
+        <Grid x:Name="keyboardGrid" Grid.Row="2" autoscan:Autoscan2.IsReturnPoint="True" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="20*"/>
                 <RowDefinition Height="20*"/>

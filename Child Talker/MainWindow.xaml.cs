@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 using Child_Talker.TalkerViews;
 using Child_Talker.Utilities;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker
 {

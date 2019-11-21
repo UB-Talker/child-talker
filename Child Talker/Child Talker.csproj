@@ -98,6 +98,17 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Properties\HardareIntegration.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>HardareIntegration.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Autoscan\DefaultBehavior.cs" />
+    <Compile Include="Utilities\Autoscan\DependencyProperties.cs" />
+    <Compile Include="Utilities\Autoscan\EventHandling.cs" />
+    <Compile Include="Utilities\HardwareIntegrations\KeyboardIntegration.cs" />
+    <Compile Include="Utilities\HardwareIntegrations\SwitchArduinoIntegration.cs" />
+    <Compile Include="Utilities\HardwareIntegrations\ThreeButtonArduinoIntegration.cs" />
     <Compile Include="TalkerViews\Keyboard\KeyboardPopup.xaml.cs">
       <DependentUpon>KeyboardPopup.xaml</DependentUpon>
     </Compile>
@@ -142,7 +153,7 @@
     <Compile Include="TalkerViews\SettingPage\SettingsPage.xaml.cs">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utilities\Autoscan2.cs" />
+    <Compile Include="Utilities\Autoscan\Autoscan2.cs" />
     <Compile Include="Utilities\ConsoleControls.cs" />
     <Compile Include="TalkerViews\EnvControlsPage\EnvControls.xaml.cs">
       <DependentUpon>EnvControls.xaml</DependentUpon>
@@ -298,6 +309,10 @@
     <None Include="Properties\AutoscanSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>AutoscanSettings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Properties\HardareIntegration.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>HardareIntegration.Designer.cs</LastGenOutput>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

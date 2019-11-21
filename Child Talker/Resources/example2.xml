@@ -15,13 +15,14 @@
     <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\042-surgeon.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="c1" ImagePath="../../Resources/General_Icons\Essential\alarm-1.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="hhhh" ImagePath="../../Resources/General_Icons\Essential\add-1.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="gg" ImagePath="../../Resources/General_Icons\Multimedia\back.png" InColor="false" />
     <ChildTalkerXml TileType="folder" Text="g" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>
     <ChildTalkerXml TileType="talker" Text="jk" ImagePath="../../Resources/General_Icons\Essential\video-player.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="hello" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="he" ImagePath="../../Resources/General_Icons\Multimedia\shopping-bag.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="hi" ImagePath="../../Resources/General_Icons\Essential\calendar-1.png" InColor="false" />
+
     <ChildTalkerXml TileType="folder" Text="wassup ian" ImagePath="../../Resources/folder.jpg" InColor="false">
       <Children />
     </ChildTalkerXml>

@@ -1,5 +1,6 @@
 ﻿using Child_Talker.TalkerViews;
 using Child_Talker.TalkerViews.PhrasesPage;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker
 {
@@ -12,7 +13,7 @@ namespace Child_Talker
         public ChildTalkerXml Xml { get; set; }
 
         private readonly Phrases root;
-        private readonly Utilities.Autoscan2 scan;
+        private readonly Autoscan2 scan;
 
         public ChildTalkerBackButton(string _text, string _imagePath, Phrases _root, bool _inColor)
         {
@@ -23,7 +24,7 @@ namespace Child_Talker
             Xml = null;
             //Xml.Text = null;
             //Xml.ImagePath = null;
-            scan = Utilities.Autoscan2.Instance;
+            scan = Autoscan2.Instance;
         }
 
         public bool IsLink()

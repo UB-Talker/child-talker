@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Child_Talker.TalkerViews"
              xmlns:utilities="clr-namespace:Child_Talker.Utilities"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+             xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
              mc:Ignorable="d" 
              d:DesignHeight="810" d:DesignWidth="1380">
     
@@ -47,7 +48,7 @@
             <tb:Button Grid.Column="2" Click="OpenKeyboard" 
                        Text="Keyboard" ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" />
             <tb:Button Grid.Column="3" Click="AutoscanButton_click" 
-                       utilities:Autoscan2.DoNotScan="True"
+                       autoscan:Autoscan2.DoNotScan="True"
                        Text="Autoscan" ImageSource="/Child Talker;component/Resources/MainMenu_images/autoscan.png" />
         </Grid>
 

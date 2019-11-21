@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Child_Talker.TalkerButton;
+using Child_Talker.Utilities.Autoscan;
 using Button = Child_Talker.TalkerButton.Button;
 
 namespace Child_Talker.TalkerViews

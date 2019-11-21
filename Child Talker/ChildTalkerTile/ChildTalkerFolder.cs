@@ -15,7 +15,7 @@ namespace Child_Talker
         public IChildTalkerTile Parent { get; set; }
         public ChildTalkerXml Xml { get; set; }
 
-        private Utilities.Autoscan2 scan;
+        private Utilities.Autoscan.Autoscan2 scan;
 
         public ChildTalkerFolder(string _text, string _imagePath, Phrases _root, bool _inColor, List<IChildTalkerTile> _children = null)
         {
@@ -38,7 +38,7 @@ namespace Child_Talker
              * Xml.TileType = ChildTalkerXml.Tile.folder;
              * Xml.Children = XmlChildren;
              */
-            scan = Utilities.Autoscan2.Instance;
+            scan = Utilities.Autoscan.Autoscan2.Instance;
 
         }
 

@@ -4,10 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Child_Talker.TalkerViews"
-        xmlns:custom="clr-namespace:Child_Talker"
-        xmlns:util="clr-namespace:Child_Talker.Utilities"
+        xmlns:util="clr-namespace:Child_Talker.Utilities.Autoscan"
         xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
-                  mc:Ignorable="d"
+        mc:Ignorable="d"
         d:DesignHeight="1080" d:DesignWidth="1920"
         Height="Auto" Width="Auto" Background="Black">
 

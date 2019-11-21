@@ -18,12 +18,12 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
 
         private Remote_VOL_popup vol;
         private Remote_CH_popup ch;
-        Utilities.Autoscan2 scan;
+        Utilities.Autoscan.Autoscan2 scan;
 
         public EnvControls()
         {
             InitializeComponent();
-            scan = Utilities.Autoscan2.Instance; //singleton cannot call constructor, call instance
+            scan = Utilities.Autoscan.Autoscan2.Instance; //singleton cannot call constructor, call instance
         }
         
         private void Volume_Click(object sender, RoutedEventArgs e)

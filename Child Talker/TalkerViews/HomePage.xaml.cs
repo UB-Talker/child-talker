@@ -15,7 +15,7 @@ namespace Child_Talker.TalkerViews
     /// </summary>
     public partial class HomePage : TalkerView
     {
-        private static readonly Utilities.Autoscan2 scan = Utilities.Autoscan2.Instance; //singleton cannot call constructor, call instance
+        private static readonly Utilities.Autoscan.Autoscan2 scan = Utilities.Autoscan.Autoscan2.Instance; //singleton cannot call constructor, call instance
         private static readonly MainWindow mainWindow = MainWindow.Instance;
 
         public HomePage()

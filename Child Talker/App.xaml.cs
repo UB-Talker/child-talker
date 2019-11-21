@@ -4,6 +4,9 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using Child_Talker.Utilities;
+using Child_Talker.Utilities.HardwareIntegrations;
+
 namespace Child_Talker
 {
     /// <summary>
@@ -20,9 +23,12 @@ namespace Child_Talker
         {
             Child_Talker.App app = new Child_Talker.App();
             ListEmbeddedResourceNames();
+            ThreeButtonArduinoIntegration ai = new ThreeButtonArduinoIntegration();
+
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
             app.InitializeComponent();
             app.Run();
+
         }
 
         

@@ -1,20 +1,9 @@
+using Child_Talker.Utilities.Autoscan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml.Serialization;
-using Child_Talker.TalkerViews;
-using Child_Talker.Utilities;
 
 namespace Child_Talker
 {
@@ -59,6 +48,7 @@ namespace Child_Talker
 
         public new void Show()
         {
+            if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             //scan.NewWindow(this);
             scan.NewListToScanThough<Panel>(this.Content as Panel);
@@ -73,6 +63,7 @@ namespace Child_Talker
         /// <param name="panel">The parent for autoscan to scan through</param>
         public void Show<T>(Panel panel) where T : DependencyObject
         {
+            if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(panel, true);
             ((Window)this).ShowDialog();
@@ -80,6 +71,7 @@ namespace Child_Talker
 
         public void Show<T>() where T : DependencyObject
         {
+            if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough<T>(Content as Panel, true);
             ((Window)this).ShowDialog();
@@ -87,6 +79,7 @@ namespace Child_Talker
 
         public void Show(List<DependencyObject> scanList)
         {
+            if (scanThisOnClose == null)  scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.ClearReturnPointList();
             scan.NewListToScanThough(scanList, true);
             ((Window)this).ShowDialog();
@@ -100,6 +93,7 @@ namespace Child_Talker
         /// <param name="e"></param>
         private void CloseWindow(object sender=null, EventArgs e=null)
         {
+            scan.PauseScan(false);
             scan.CloseActiveWindow(this);
             scan.ClearReturnPointList();
             scan.NewListToScanThough(scanThisOnClose, true);
