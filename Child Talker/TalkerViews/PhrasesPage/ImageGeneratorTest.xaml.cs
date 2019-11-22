@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using Child_Talker.Utilities;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {
