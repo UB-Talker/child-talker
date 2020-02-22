@@ -9,6 +9,8 @@ using Child_Talker.TalkerButton;
 using Microsoft.VisualBasic;
 using Timer = System.Timers.Timer;
 using MessageBox = Child_Talker.Utilities.MessageBox;
+using MessageBoxResult =Child_Talker.Utilities.MessageBoxResult;
+using MessageBoxButton =Child_Talker.Utilities.MessageBoxButton;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {
@@ -85,28 +87,35 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         
         private void RightMouseButton_Up(object sender, MouseButtonEventArgs e)
         {
-            DeleteThis();
+            ModifyThis();
         }
         
         ///Deleted variable is lazy way around repetition issue when attempting to delete element. creates delay after window is opened
-        /// see <see cref="DeleteThis"/> for usage
+        /// see <see cref="ModifyThis"/> for usage
         private bool Deleted = false;
         /// <summary>
         /// A popup appears asking if The user would like to delete this element
         /// </summary>
         /// <returns> True if the deletion occurred</returns>
-        public bool DeleteThis()
+        public bool ModifyThis()
         {
             if (Deleted) return false;
             if (this.CtTile is ChildTalkerBackButton) return false;
 
             Deleted = true;
             //MsgBoxResult response = Interaction.MsgBox("Would you like to delete this tile?", MsgBoxStyle.YesNo, "Delete Tile");
-            MessageBoxResult response = MessageBox.Show("Would you like to delete this Tile", MessageBoxButton.YesNo);
-            if (response == MessageBoxResult.Yes)
+            MessageBoxResult response = MessageBox.ShowYesModifyCancel("Would you like to delete The following phrase? \n->\"" + this.Text+"\"","Yes", "Modify", "Cancel");
+            switch (response)
             {
-                Root.RemoveSingleTile(this);
-                return true;
+                case MessageBoxResult.Yes:
+                    Root.RemoveSingleTile(this);
+                    return true;
+                case MessageBoxResult.Modify:
+                    var newPath = ImageGenerator.ImagePopup();
+                    if (newPath =="" || newPath==null) break;
+                    ImageSource = newPath;
+                    Root.UpdateSavedTiles(this, ImageSource);
+                    break;
             }
 
             Timer t = new Timer(1000);

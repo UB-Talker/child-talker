@@ -18,6 +18,24 @@ using Button = Child_Talker.TalkerButton.Button;
 
 namespace Child_Talker.Utilities
 {
+    public enum MessageBoxButton
+    {
+        OK,
+        OKCancel,
+        YesNo,
+        YesNoCancel,
+        YesModifyCancel
+    }
+    
+    public enum MessageBoxResult
+    {
+        OK,
+        Cancel,
+        Yes,
+        No,
+        Modify
+    }
+
     internal partial class MessageBoxWindow : SecondaryWindow
     {
         internal string Caption
@@ -39,6 +57,11 @@ namespace Child_Talker.Utilities
         {
             get => Button_Cancel.Text;
             set => Button_Cancel.Text = value;
+        }
+        internal string ModifyButtonText
+        {
+            get => Button_Modify.Text;
+            set => Button_Modify.Text = value;
         }
         internal string YesButtonText
         {
@@ -100,6 +123,7 @@ namespace Child_Talker.Utilities
 
                     Button_Yes.Visibility = System.Windows.Visibility.Collapsed;
                     Button_No.Visibility = System.Windows.Visibility.Collapsed;
+                    Button_Modify.Visibility = System.Windows.Visibility.Collapsed;
                     break;
                 case MessageBoxButton.YesNo:
                     // Hide all but Yes, No
@@ -109,6 +133,7 @@ namespace Child_Talker.Utilities
 
                     Button_OK.Visibility = System.Windows.Visibility.Collapsed;
                     Button_Cancel.Visibility = System.Windows.Visibility.Collapsed;
+                    Button_Modify.Visibility = System.Windows.Visibility.Collapsed;
                     break;
                 case MessageBoxButton.YesNoCancel:
                     // Hide only OK
@@ -118,6 +143,17 @@ namespace Child_Talker.Utilities
                     Button_Cancel.Visibility = System.Windows.Visibility.Visible;
 
                     Button_OK.Visibility = System.Windows.Visibility.Collapsed;
+                    Button_Modify.Visibility = System.Windows.Visibility.Collapsed;
+                    break;
+                case MessageBoxButton.YesModifyCancel:
+                    // Hide all but Yes, No
+                    Button_Yes.Visibility = System.Windows.Visibility.Visible;
+                    Button_Yes.Focus();
+                    Button_Cancel.Visibility = System.Windows.Visibility.Visible;
+                    Button_Modify.Visibility = System.Windows.Visibility.Visible;
+
+                    Button_OK.Visibility = System.Windows.Visibility.Collapsed;
+                    Button_No.Visibility = System.Windows.Visibility.Collapsed;
                     break;
                 default:
                     // Hide all but OK
@@ -127,6 +163,7 @@ namespace Child_Talker.Utilities
                     Button_Yes.Visibility = System.Windows.Visibility.Collapsed;
                     Button_No.Visibility = System.Windows.Visibility.Collapsed;
                     Button_Cancel.Visibility = System.Windows.Visibility.Collapsed;
+                    Button_Modify.Visibility = System.Windows.Visibility.Collapsed;
                     break;
             }
             Autoscan2.Instance.NewListToScanThough<Button>(ButtonDock);
@@ -150,6 +187,11 @@ namespace Child_Talker.Utilities
         private void Button_No_Click(object sender, RoutedEventArgs e)
         {
             Result = MessageBoxResult.No;
+            Close();
+        }
+        private void Button_Modify_Click(object sender, RoutedEventArgs e)
+        {
+            Result = MessageBoxResult.Modify;
             Close();
         }
     }

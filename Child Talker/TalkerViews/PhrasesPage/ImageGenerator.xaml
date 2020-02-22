@@ -26,9 +26,10 @@
                 <ColumnDefinition Width="35*"/>
                 <ColumnDefinition Width="15*"/>
             </Grid.ColumnDefinitions>
-            <tb:Button x:Name="CancelIcon" Grid.Column="1" Text="Cancel" Margin="7"></tb:Button>
+            <tb:Button x:Name="CancelIcon" Grid.Column="1" Text="Cancel" Margin="7" Click="CancelIcon_OnClick"></tb:Button>
             <tb:Button x:Name="GoBackIcon" Grid.Column="0" Text="Back" Layout="Horizontal" Margin="7"
-                                  Click="GoBackPage" ImageSource="../../../Resources/back.png"/> <!-- works nots sure why image doesn't appear-->
+                                  Click="GoBackPage" ImageSource="../../../Resources/back.png"/>
+            <!-- works nots sure why image doesn't appear-->
             <tb:Button x:Name="BrowseIcon" Grid.Column="2" Text="Browse" Margin="7"
                                   Click="PromptFileExplorer"></tb:Button>
         </Grid>

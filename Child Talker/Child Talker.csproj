@@ -112,8 +112,8 @@
     <Compile Include="TalkerViews\Keyboard\KeyboardPopup.xaml.cs">
       <DependentUpon>KeyboardPopup.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TalkerViews\PhrasesPage\ImageGeneratorTest.xaml.cs">
-      <DependentUpon>ImageGeneratorTest.xaml</DependentUpon>
+    <Compile Include="TalkerViews\PhrasesPage\ImageGenerator.xaml.cs">
+      <DependentUpon>ImageGenerator.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utilities\MessageBox.cs" />
     <Compile Include="Utilities\MessageBoxWindow.xaml.cs">
@@ -137,9 +137,6 @@
     <Compile Include="Settings.cs" />
     <Compile Include="TalkerButton\DependencyProperties.cs" />
     <Compile Include="TalkerButton\Button.cs" />
-    <Compile Include="TalkerViews\PhrasesPage\ImageGenerator.xaml.cs">
-      <DependentUpon>ImageGenerator.xaml</DependentUpon>
-    </Compile>
     <Compile Include="TalkerViews\KeyboardLayout.xaml.cs">
       <DependentUpon>KeyboardLayout.xaml</DependentUpon>
     </Compile>
@@ -197,10 +194,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TalkerViews\PhrasesPage\ImageGenerator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="TalkerViews\EnvControlsPage\EnvControls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -209,7 +202,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="TalkerViews\PhrasesPage\ImageGeneratorTest.xaml">
+    <Page Include="TalkerViews\PhrasesPage\ImageGenerator.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1005,6 +998,7 @@
     <Resource Include="Resources\General_Icons\Multimedia\upload.png" />
     <Resource Include="Resources\General_Icons\Multimedia\vector.png" />
     <Resource Include="Resources\back.png" />
+    <Resource Include="Resources\example2.xml" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\license\license.html" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\svg\001-youtube.svg" />
     <Content Include="Resources\General_Icons\socialMedia\174834-social-media-logos\svg\002-yelp.svg" />

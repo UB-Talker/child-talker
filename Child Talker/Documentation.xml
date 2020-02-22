@@ -317,6 +317,13 @@
             <param name="parent"> will search through <see cref="T:System.Windows.Controls.Panel"/> to find all Children of type <see cref="!:T"/> </param>
             <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/></param>
         </member>
+        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.GetScrollViewers(System.Windows.DependencyObject)">
+            <summary>
+            obtains a list of all ScrollViewers that ancestral parents to current
+            </summary>
+            <param name="current"></param>
+            <returns></returns>
+        </member>
         <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ScannableObjectCollector``1(System.Windows.DependencyObject,System.Collections.Generic.List{System.Windows.DependencyObject})">
             <summary>
             recursive function. all elements of type <see cref="!:T"/> that exist within <see cref="!:parent"/> will be added to the end of <see cref="!:logicalCollection"/>
@@ -438,13 +445,13 @@
             <param name="messageBoxText">A System.String that specifies the text to display.</param>
             <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         </member>
-        <member name="M:Child_Talker.Utilities.MessageBox.Show(System.String,System.Windows.MessageBoxButton)">
+        <member name="M:Child_Talker.Utilities.MessageBox.Show(System.String,Child_Talker.Utilities.MessageBoxButton)">
             <summary>
             Displays a message box that has a message, title bar caption, and button; and that returns a result.
             </summary>
             <param name="messageBoxText">A System.String that specifies the text to display.</param>
             <param name="caption">A System.String that specifies the title bar caption to display.</param>
-            <param name="button">A System.Windows.MessageBoxButton value that specifies which button or buttons to display.</param>
+            <param name="button">A Utilities.MessageBoxButton value that specifies which button or buttons to display.</param>
             <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
         </member>
         <member name="M:Child_Talker.Utilities.MessageBox.ShowOK(System.String,System.String)">
@@ -489,6 +496,17 @@
             <param name="noButtonText">A System.String that specifies the text to display within the No button.</param>
             <param name="cancelButtonText">A System.String that specifies the text to display within the Cancel button.</param>
             <returns>A System.Windows.MessageBoxResult value that specifies which message box button is clicked by the user.</returns>
+        </member>
+        <member name="M:Child_Talker.Utilities.MessageBox.ShowYesModifyCancel(System.String,System.String,System.String,System.String)">
+            <summary>
+            Displays a message box that has a message, caption, and Yes/Modify/Cancel buttons with custom System.String values for the buttons' text;
+            and that returns a result.
+            </summary>
+            <param name="messageBoxText"></param>
+            <param name="yesButtonText"></param>
+            <param name="modifyButtonText"></param>
+            <param name="cancelButtonText"></param>
+            <returns></returns>
         </member>
         <member name="M:Child_Talker.Utilities.MessageBoxWindow.InitializeComponent">
             <summary>
@@ -652,45 +670,26 @@
             InitializeComponent
             </summary>
         </member>
-        <member name="T:Child_Talker.TalkerViews.PhrasesPage.ImageGeneratorTest">
+        <member name="T:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator">
             <summary>
-            Interaction logic for ImageGeneratorTest.xaml
+            Interaction logic for ImageGenerator.xaml
             </summary>
             <summary>
-            ImageGeneratorTest
+            ImageGenerator
             </summary>
         </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGeneratorTest.ShowImages">
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.ShowImages">
             <summary>
             Called to bring up window and provide user with images.
             Will return the path to the image that the user selected.
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGeneratorTest.ImageSelected(System.String)">
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.ImageSelected(System.String)">
             <summary>
             Attach this method to an image button as the event handler.
             Will grab the path for the image and store it in this class
             then close the window.
-            </summary>
-        </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGeneratorTest.setAutoscanFocus(System.Windows.Window)">
-            <summary>
-            what this class needs to set up on a new window
-            </summary>
-            <param name="newFocus"></param>
-        </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGeneratorTest.InitializeComponent">
-            <summary>
-            InitializeComponent
-            </summary>
-        </member>
-        <member name="T:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator">
-            <summary>
-            Interaction logic for UserControl1.xaml
-            </summary>
-            <summary>
-            ImageGenerator
             </summary>
         </member>
         <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.setAutoscanFocus(System.Windows.Window)">
@@ -698,6 +697,13 @@
             what this class needs to set up on a new window
             </summary>
             <param name="newFocus"></param>
+        </member>
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.SelectPress(System.Windows.DependencyObject,Child_Talker.Utilities.Autoscan.Autoscan2.DefaultEvents)">
+            <summary>
+            what to do when the Autoscan.SelectEvent Occurs
+            </summary>
+            <param name="currentObj"></param>
+            <param name="selectEvent"></param>
         </member>
         <member name="M:Child_Talker.TalkerViews.PhrasesPage.ImageGenerator.InitializeComponent">
             <summary>
@@ -734,9 +740,9 @@
         </member>
         <member name="F:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.Deleted">
             Deleted variable is lazy way around repetition issue when attempting to delete element. creates delay after window is opened
-             see <see cref="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.DeleteThis"/> for usage
+             see <see cref="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.ModifyThis"/> for usage
         </member>
-        <member name="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.DeleteThis">
+        <member name="M:Child_Talker.TalkerViews.PhrasesPage.PhraseButton.ModifyThis">
             <summary>
             A popup appears asking if The user would like to delete this element
             </summary>
