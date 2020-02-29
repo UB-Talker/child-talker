@@ -317,13 +317,6 @@
             <param name="parent"> will search through <see cref="T:System.Windows.Controls.Panel"/> to find all Children of type <see cref="!:T"/> </param>
             <param name="isReturnPoint"> when true adds newList to the top of <see cref="P:Child_Talker.Utilities.Autoscan.Autoscan2.ReturnPointList"/></param>
         </member>
-        <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.GetScrollViewers(System.Windows.DependencyObject)">
-            <summary>
-            obtains a list of all ScrollViewers that ancestral parents to current
-            </summary>
-            <param name="current"></param>
-            <returns></returns>
-        </member>
         <member name="M:Child_Talker.Utilities.Autoscan.Autoscan2.ScannableObjectCollector``1(System.Windows.DependencyObject,System.Collections.Generic.List{System.Windows.DependencyObject})">
             <summary>
             recursive function. all elements of type <see cref="!:T"/> that exist within <see cref="!:parent"/> will be added to the end of <see cref="!:logicalCollection"/>
@@ -338,7 +331,7 @@
             Functionality for autoscan to move to the next element while scanning
             </summary>
         </member>
-        <member name="T:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.ControlKeys">
+        <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.controlKeys">
             List of Keyboard Keys that are used for autoscan
         </member>
         <member name="F:Child_Talker.Utilities.HardwareIntegrations.KeyboardIntegration.reverseIsHeld">
@@ -1104,6 +1097,13 @@
             <summary>
             
             </summary>
+        </member>
+        <member name="M:Child_Talker.TalkerButton.Button.MeasureString(System.String)">
+            <summary>
+            A method to obtain the size of the incorporated textbox called BtnText and the height and width of the text it contains
+            </summary>
+            <param name="candidate"></param>
+            <returns> Tuple, Item1=Size of Text, Item2= Size of Holding TextBox</returns>
         </member>
         <member name="T:Child_Talker.App">
             <summary>

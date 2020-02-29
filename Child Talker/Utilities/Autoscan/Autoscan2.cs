@@ -15,6 +15,8 @@ namespace Child_Talker.Utilities.Autoscan
 {
     public partial class Autoscan2
     {
+
+
         private static Autoscan2 _instance;
         public static Autoscan2 Instance => _instance ?? (_instance = new Autoscan2());
 

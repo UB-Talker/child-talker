@@ -7,6 +7,13 @@ namespace Child_Talker.Utilities.Autoscan
 {
     public partial class Autoscan2
     {
+        public enum ControlOptions
+        {
+            GoBack,
+            Reverse,
+            Select
+        }
+
         /// If set to true, will Skip Default behavior once immediately after Invocation is called
         public bool IgnoreReversePressOnce = false;
         /// If set to true, will Skip Default behavior once immediately after Invocation is called

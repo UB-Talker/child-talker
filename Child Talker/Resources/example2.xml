@@ -42,9 +42,9 @@
         <ChildTalkerXml TileType="talker" Text="I need a hug" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
       </Children>
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="I need to go to the bathroom" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="I'm tired" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="What do you think" ImagePath="../../Resources/General_Icons\Essential\alarm.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="I need to go to the bathroom" ImagePath="../../Resources/General_Icons\Social_Media\041-deviantart.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="I'm tired" ImagePath="../../Resources/General_Icons\automobile\021-car.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="What do you think" ImagePath="../../Resources/General_Icons\Social_Media\002-yelp.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="Now who died" ImagePath="../../Resources/General_Icons\Multimedia\monitor.png" InColor="false" />
     <ChildTalkerXml TileType="talker" Text="My lotto" ImagePath="../../Resources/General_Icons\Time\023-clock-5.png" InColor="false" />
   </Children>

@@ -7,6 +7,6 @@
              xmlns:childTalker="clr-namespace:Child_Talker"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              mc:Ignorable="d" 
-             Width="300" Height="300" Margin="10" Layout="Vertical" 
+             Width="300" Height="300" Margin="10" Layout="Vertical"
              Click="LeftMouseButton_Click" MouseRightButtonUp="RightMouseButton_Up" Style="{StaticResource genButton}">
     </tb:Button>

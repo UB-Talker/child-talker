@@ -1,16 +1,24 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
+using System.Globalization;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Speech.Synthesis;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Child_Talker.TalkerButton;
+using System.Windows.Media;
 using Microsoft.VisualBasic;
+using Brushes = System.Drawing.Brushes;
+using Button = Child_Talker.TalkerButton.Button;
+using Image = System.Drawing.Image;
 using Timer = System.Timers.Timer;
 using MessageBox = Child_Talker.Utilities.MessageBox;
 using MessageBoxResult =Child_Talker.Utilities.MessageBoxResult;
 using MessageBoxButton =Child_Talker.Utilities.MessageBoxButton;
+using Size = System.Windows.Size;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {
@@ -26,8 +34,33 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         public PhraseButton()
         {
             InitializeComponent();
+            this.Loaded += (s, e) => { Text = Text; };
         }
 
+        private new string Text
+        {
+            get => (this as Button).Text;
+            set
+            {
+                (this as Button).Text = value;
+                if(IsLoaded)
+                {
+                    Size textsize = MeasureString(value);
+                    var fullSize = this.Width + this.Margin.Left + this.Margin.Right;
+                    var textWidth = textsize.Width;
+                    var txtblockwidth = 300.0;
+                    while (textWidth>= txtblockwidth-60)
+                    {
+                        this.Dispatcher.Invoke( () =>
+                        {
+                            this.Width += fullSize;
+                        });
+                        txtblockwidth += fullSize;
+                    }
+
+                }
+            }
+        }
         public void SetParent(Phrases _parent)
         {
             Root = _parent;
@@ -112,10 +145,11 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                     return true;
                 case MessageBoxResult.Modify:
                     var newPath = ImageGenerator.ImagePopup();
-                    if (newPath =="" || newPath==null) break;
+                    if (string.IsNullOrEmpty(newPath)) break;
                     ImageSource = newPath;
+                    this.IsSelected = false;
                     Root.UpdateSavedTiles(this, ImageSource);
-                    break;
+                    return true;
             }
 
             Timer t = new Timer(1000);
