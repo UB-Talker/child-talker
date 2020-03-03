@@ -18,7 +18,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         { 
             ImageGenerator ig = new ImageGenerator();
             return ig.ShowImages();
-
         }
 
         internal string path = "../../Resources/General_Icons";
@@ -48,7 +47,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             scan.GoBackPress += (hei, gbp) =>
                 this.GoBackIcon.RaiseEvent(
                     new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
-
+            
             this.setAutoscanFocus(this);
             this.Show<Panel>(ImagesPanel);
             
@@ -116,7 +115,11 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                     scan.NewListToScanThough(this.GetParents());
                     inMainGrid = true;
                 }
-                else (Window.GetWindow(this) as SecondaryWindow)?.Close();
+                else
+                {
+                    scan.IgnoreGoBackPressOnce=true;
+                    Close();
+                }
             }
         }
 
@@ -200,7 +203,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         public List<DependencyObject> GetParents()
         {
-            return new List<DependencyObject>() { ImagesPanel, CancelIcon };
+            return new List<DependencyObject>() { ImagesPanel, NavPanel };
         }
 
         private void PromptFileExplorer(object sender, RoutedEventArgs e)

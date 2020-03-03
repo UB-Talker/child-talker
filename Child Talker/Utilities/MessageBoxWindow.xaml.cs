@@ -75,6 +75,8 @@ namespace Child_Talker.Utilities
         }
         public MessageBoxResult Result { get; set; }
 
+        internal Autoscan2 scan = Autoscan2.Instance;
+
         internal MessageBoxWindow(string message)
         {
             InitializeComponent();

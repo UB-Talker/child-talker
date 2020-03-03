@@ -35,6 +35,12 @@ namespace Child_Talker
             scanThisOnClose = scan.ReturnPointList.Count != 0 ? scan.ReturnPointList.First() : null; //when Secondary window is closed, scan through the parentmost list from originwindow
             scan.NewWindow(this);
             this.Closed += CloseWindow; //scan.GoBackCloseSecondaryWindow triggered here
+#if DEBUG
+            Width = 1368;
+            Height = 900;
+            WindowState = WindowState.Normal;
+#endif
+
         }
 
         public SecondaryWindow(UIElement content)
@@ -44,6 +50,11 @@ namespace Child_Talker
             scan.NewWindow(this);
             this.Closed += CloseWindow; //scan.GoBackCloseSecondaryWindow triggered here
             Content = content;
+#if DEBUG
+            Width = 1368;
+            Height = 900;
+            WindowState = WindowState.Normal;
+#endif
         }
 
         public new void Show()
@@ -93,6 +104,16 @@ namespace Child_Talker
         /// <param name="e"></param>
         private void CloseWindow(object sender=null, EventArgs e=null)
         {
+            scan.PauseScan(false);
+            scan.CloseActiveWindow(this);
+            scan.ClearReturnPointList();
+            scan.NewListToScanThough(scanThisOnClose, true);
+        }
+        
+        
+        public void RestoreAutoscanList()
+        {
+            if (!this.IsVisible) return;
             scan.PauseScan(false);
             scan.CloseActiveWindow(this);
             scan.ClearReturnPointList();

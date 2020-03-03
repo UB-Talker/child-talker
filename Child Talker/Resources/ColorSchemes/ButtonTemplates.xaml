@@ -51,13 +51,13 @@
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.BaseColor}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.BaseColor}"></Setter>
             </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
+ <!--           <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.MouseHover}"></Setter>
                 <Setter Property="BorderBrush" Value="{StaticResource ColorScheme.Border.Highlighted}"></Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.MouseHover}"></Setter>
-            </Trigger>
+            </Trigger>  -->
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Event}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>

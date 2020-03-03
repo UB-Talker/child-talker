@@ -287,7 +287,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (tileName != "")
             {
                 string path = ImageGenerator.ImagePopup();
-
                 CreateTile(path, tileName);
             }
         }
@@ -300,11 +299,9 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         /// <param name="phrase">Phrase that will be spoken when the tile is clicked</param>
         private void CreateTile(string imagePath, string phrase)
         {
-            if (imagePath != "")
-            {
+            if (string.IsNullOrEmpty(imagePath)) return;
                 ChildTalkerTile ctItem = new ChildTalkerTile(phrase, imagePath, false);
                 AddSingleItem(ctItem);
-            }
         }
 
     }  

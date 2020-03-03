@@ -103,6 +103,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>HardareIntegration.settings</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Autoscan\Commands.cs" />
     <Compile Include="Utilities\Autoscan\DefaultBehavior.cs" />
     <Compile Include="Utilities\Autoscan\DependencyProperties.cs" />
     <Compile Include="Utilities\Autoscan\EventHandling.cs" />
@@ -296,7 +297,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Child Talker_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\AutoscanSettings.settings">

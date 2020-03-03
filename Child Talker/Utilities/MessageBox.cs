@@ -4,6 +4,7 @@
  */
 
 using System.Windows;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker.Utilities
 { 
@@ -21,7 +22,8 @@ namespace Child_Talker.Utilities
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText);
             msg.ShowDialog();
-
+            
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -30,6 +32,7 @@ namespace Child_Talker.Utilities
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, messageBoxContent);
             msg.ShowDialog();
 
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -45,6 +48,7 @@ namespace Child_Talker.Utilities
             msg.Owner = owner;
             msg.ShowDialog();
 
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
         
@@ -60,6 +64,7 @@ namespace Child_Talker.Utilities
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, button);
             msg.ShowDialog();
 
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -68,6 +73,7 @@ namespace Child_Talker.Utilities
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, messageBoxContent, button);
             msg.ShowDialog();
 
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -107,6 +113,7 @@ namespace Child_Talker.Utilities
 
             msg.ShowDialog();
             
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -129,6 +136,7 @@ namespace Child_Talker.Utilities
 
             msg.ShowDialog();
 
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
 
@@ -150,12 +158,13 @@ namespace Child_Talker.Utilities
                 NoButtonText = noButtonText,
                 CancelButtonText = cancelButtonText
             };
-
             msg.ShowDialog();
-
             
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
+
+
         /// <summary>
         /// Displays a message box that has a message, caption, and Yes/Modify/Cancel buttons with custom System.String values for the buttons' text;
         /// and that returns a result.
@@ -173,10 +182,9 @@ namespace Child_Talker.Utilities
                 ModifyButtonText = modifyButtonText,
                 CancelButtonText = cancelButtonText
             };
-
             msg.ShowDialog();
 
-            
+            msg.RestoreAutoscanList();
             return msg.Result;
         }
     }
