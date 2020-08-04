@@ -31,13 +31,21 @@ namespace Child_Talker
         private static MainWindow _instance;
         public static MainWindow Instance => _instance;
 
+
+
         public MainWindow()
         {
             InitializeComponent();
             _instance = this;
 
             //scan = AutoscanOriginal.Instance;
-                //this.Content = startScreen; //DataContext will give you the current view
+            //this.Content = startScreen; //DataContext will give you the current view
+
+#if DEBUG
+            Width = 1368;
+            Height = 900;
+            WindowState = WindowState.Normal;
+#endif
             scan.NewWindow(this);
             this.Closing += (sender, e) => { TextUtility.Instance.save(); };
             this.Closing += (sender, e) => { Application.Current.Shutdown(); };

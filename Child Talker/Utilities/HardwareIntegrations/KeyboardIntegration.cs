@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Navigation;
 using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker.Utilities.HardwareIntegrations
@@ -23,16 +25,15 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         }
 
         /// List of Keyboard Keys that are used for autoscan
-        // TODO find a better way to list all potential trigger events this is inefficient. Learn about RoutedCommands as one possibility
-        private enum ControlKeys
-        {
-            GoBack = Key.S,
-            Reverse = Key.Q,
-            Select = Key.E,
-            GoBack2 = Key.I,
-            Reverse2 = Key.J,
-            Select2 = Key.L
-        }
+        private readonly Dictionary<Key, Autoscan2.ControlOptions> controlKeys =
+            new Dictionary<Key, Autoscan2.ControlOptions>
+            {
+                {Key.S, Autoscan2.ControlOptions.GoBack},
+                {Key.A, Autoscan2.ControlOptions.Reverse},
+                {Key.D, Autoscan2.ControlOptions.Select},
+            };
+        
+
 
         /// keeps hold event from happening repeatedly
         private bool reverseIsHeld = false;
@@ -47,21 +48,28 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         private void KeyDown(object sender, KeyEventArgs e)
         {
             if (scan.TimerMode == Autoscan2.TimerModes.Off) return;
-            var k = e.Key;
+
+            Autoscan2.ControlOptions k;
+            try
+            {
+                k = controlKeys[e.Key];
+            }
+            catch
+            {
+                return;
+            }
+
             switch (k)
             {
-                case (Key) ControlKeys.Reverse when !reverseIsHeld:
-                case (Key) ControlKeys.Reverse2 when !reverseIsHeld:
+                case Autoscan2.ControlOptions.Reverse when !reverseIsHeld:
                     reverseIsHeld = true;
                     scan.ReverseHoldIntegration();
                     break;
-                case (Key) ControlKeys.Select when !selectIsHeld:
-                case (Key) ControlKeys.Select2 when !selectIsHeld:
+                case Autoscan2.ControlOptions.Select when !selectIsHeld:
                     selectIsHeld = true;
                     scan.SelectHoldIntegration();
                     break;
-                case (Key) ControlKeys.GoBack when !goBackIsHeld:
-                case (Key) ControlKeys.GoBack2 when !goBackIsHeld:
+                case Autoscan2.ControlOptions.GoBack when !goBackIsHeld:
                     goBackIsHeld = true;
                     scan.GoBackHoldIntegration();
                     break;
@@ -74,21 +82,26 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         private void KeyUp(object sender, KeyEventArgs e)
         {
             if (scan.TimerMode == Autoscan2.TimerModes.Off) return;
-            var k = e.Key;
+            Autoscan2.ControlOptions k;
+            try
+            {
+                k = controlKeys[e.Key];
+            }
+            catch
+            {
+                return;
+            }
             switch (k)
             {
-                case (Key) ControlKeys.Reverse:
-                case (Key) ControlKeys.Reverse2:
+                case Autoscan2.ControlOptions.Reverse:
                     scan.ReversePressIntegration();
                     reverseIsHeld = false;
                     break;
-                case (Key) ControlKeys.Select:
-                case (Key) ControlKeys.Select2:
+                case Autoscan2.ControlOptions.Select:
                     scan.SelectPressIntegration();
                     selectIsHeld = false;
                     break;
-                case (Key) ControlKeys.GoBack:
-                case (Key) ControlKeys.GoBack2:
+                case Autoscan2.ControlOptions.GoBack:
                     scan.GoBackPressIntegration();
                     goBackIsHeld = false;
                     break;

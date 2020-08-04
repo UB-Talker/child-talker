@@ -8,6 +8,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ct="clr-namespace:Child_Talker"
                     xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                    xmlns:as="clr-namespace:Child_Talker.Utilities.Autoscan"
                     Topmost="True"
                     TextOptions.TextFormattingMode="Display" TextOptions.TextRenderingMode="ClearType" UseLayoutRounding="True"
                     Style="{StaticResource PopupStyle.Blank}">
@@ -42,7 +43,7 @@
                     </Border>
                 </Grid>
                 <Grid Grid.Row="1" Background="{StaticResource ColorScheme.Page.SecondaryBackground}" MinHeight="80" HorizontalAlignment="Stretch">
-                    <DockPanel x:Name="ButtonDock" Margin="5,5" HorizontalAlignment="Stretch">
+                    <DockPanel x:Name="ButtonDock" Margin="5,5" HorizontalAlignment="Stretch" as:Autoscan2.ScanReverse="True">
 
                         <!-- Cancel Button -->
                         <tb:Button x:Name="Button_Cancel" MinWidth="170" MaxWidth="350" Margin="5,0" HorizontalAlignment="Right" VerticalAlignment="Stretch" Visibility="Collapsed" IsCancel="True"
@@ -67,7 +68,12 @@
                         DockPanel.Dock="Right" Click="Button_OK_Click" Text="OK">
                         </tb:Button>
                         <!-- End OK Button -->
-
+                        
+                        <!-- Modify Button -->
+                        <tb:Button x:Name="Button_Modify" MinWidth="170" MaxWidth="350" Margin="5,5" HorizontalAlignment="Center" VerticalAlignment="Stretch" Visibility="Collapsed"
+                        DockPanel.Dock="Right" Click="Button_Modify_Click" Text="Modify">
+                        </tb:Button>
+                        <!-- End Modify Button -->
                     </DockPanel>
                 </Grid>
             </Grid>

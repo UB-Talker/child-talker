@@ -1,38 +1,52 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ChildTalkerXmlWrapper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Children>
-    <ChildTalkerXml TileType="folder" Text="Hello World!" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
+    <ChildTalkerXml TileType="folder" Text="Greetings" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children>
+        <ChildTalkerXml TileType="talker" Text="Hello" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="How are you" ImagePath="../../Resources/General_Icons\Essential\add-3.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="I'm fine" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Hello" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Hello mom" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Hi baby" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+      </Children>
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="hh" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
+    <ChildTalkerXml TileType="folder" Text="Confirmations" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children>
+        <ChildTalkerXml TileType="talker" Text="Yes" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="No" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Maybe" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Absolutely not" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Definitely" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+      </Children>
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="j" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
-    <ChildTalkerXml TileType="folder" Text="j" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
+    <ChildTalkerXml TileType="folder" Text="Medical" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children>
+        <ChildTalkerXml TileType="talker" Text="Please help me" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Please come here" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="I have pain" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="I feel sick" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+      </Children>
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\007-call.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="hello " ImagePath="../../Resources/General_Icons\Medical\042-surgeon.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="c1" ImagePath="../../Resources/General_Icons\Essential\alarm-1.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="hhhh" ImagePath="../../Resources/General_Icons\Essential\add-1.png" InColor="false" />
-    <ChildTalkerXml TileType="folder" Text="g" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
+    <ChildTalkerXml TileType="folder" Text="Meals" ImagePath="../../Resources/folder.jpg" InColor="false">
+      <Children>
+        <ChildTalkerXml TileType="talker" Text="I'm Hungry" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="I'm Thirsty" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Whats for Breakfast" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Whats for Lunch" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+        <ChildTalkerXml TileType="talker" Text="Whats for Dinner" ImagePath="../../Resources/General_Icons\Essential\alarm-clock-1.png" InColor="false" />
+      </Children>
     </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="jk" ImagePath="../../Resources/General_Icons\Essential\video-player.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="hello" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="he" ImagePath="../../Resources/General_Icons\Multimedia\shopping-bag.png" InColor="false" />
-    <ChildTalkerXml TileType="talker" Text="hi" ImagePath="../../Resources/General_Icons\Essential\calendar-1.png" InColor="false" />
-
-    <ChildTalkerXml TileType="folder" Text="wassup ian" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="folder" Text="hello iii" ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="hhhh " ImagePath="../../Resources/General_Icons\automobile\007-transportation.png" InColor="false" />
-    <ChildTalkerXml TileType="folder" Text="1 " ImagePath="../../Resources/folder.jpg" InColor="false">
-      <Children />
-    </ChildTalkerXml>
-    <ChildTalkerXml TileType="talker" Text="z" ImagePath="../../Resources/General_Icons\automobile\001-car.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="I need to go to the bathroom" ImagePath="../../Resources/General_Icons\Time\006-alarm.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="I'm tired" ImagePath="../../Resources/General_Icons\automobile\021-car.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="What do you think" ImagePath="../../Resources/General_Icons\Essential\add.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="Now who died" ImagePath="../../Resources/General_Icons\Multimedia\monitor.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="My lotto" ImagePath="../../Resources/General_Icons\Time\023-clock-5.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="zz" ImagePath="../../Resources/General_Icons\Time\007-calendar.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="red" ImagePath="../../Resources/General_Icons\Time\006-alarm.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="k" ImagePath="../../Resources/General_Icons\Social Media\006-vine.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="i" ImagePath="../../Resources/General_Icons\Social Media\018-reddit.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="10 " ImagePath="../../Resources/General_Icons\basic-icons\building-on-fire.png" InColor="false" />
+    <ChildTalkerXml TileType="talker" Text="and " ImagePath="../../Resources/General_Icons\Essential\settings.png" InColor="false" />
   </Children>
 </ChildTalkerXmlWrapper>

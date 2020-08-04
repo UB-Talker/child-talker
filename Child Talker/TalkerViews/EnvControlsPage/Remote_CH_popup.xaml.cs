@@ -1,6 +1,7 @@
 ﻿using Child_Talker.Utilities;
 using System.Windows;
 using System.Windows.Controls;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker.TalkerViews.EnvControlsPage
 {

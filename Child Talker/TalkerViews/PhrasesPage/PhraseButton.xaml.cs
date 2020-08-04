@@ -1,14 +1,12 @@
 ﻿using System.Drawing;
-using System.Linq.Expressions;
 using System.Speech.Synthesis;
-using System.Threading;
 using System.Windows;
-using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using Child_Talker.TalkerButton;
-using Microsoft.VisualBasic;
+using Button = Child_Talker.TalkerButton.Button;
+using Image = System.Drawing.Image;
 using Timer = System.Timers.Timer;
 using MessageBox = Child_Talker.Utilities.MessageBox;
+using MessageBoxResult =Child_Talker.Utilities.MessageBoxResult;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {
@@ -24,8 +22,27 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         public PhraseButton()
         {
             InitializeComponent();
+            this.Loaded += OnLoadedEvent;
         }
 
+        private void OnLoadedEvent(object o, RoutedEventArgs e)
+        {
+            this.ResizeToText();
+            this.Loaded -= OnLoadedEvent;
+        }
+
+        private new string Text
+        {
+            get => (this as Button).Text;
+            set
+            {
+                (this as Button).Text = value;
+                if(IsLoaded)
+                {
+                     this.ResizeToText();
+                }
+            }
+        }
         public void SetParent(Phrases _parent)
         {
             Root = _parent;
@@ -85,28 +102,36 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         
         private void RightMouseButton_Up(object sender, MouseButtonEventArgs e)
         {
-            DeleteThis();
+            ModifyThis();
         }
         
         ///Deleted variable is lazy way around repetition issue when attempting to delete element. creates delay after window is opened
-        /// see <see cref="DeleteThis"/> for usage
+        /// see <see cref="ModifyThis"/> for usage
         private bool Deleted = false;
         /// <summary>
         /// A popup appears asking if The user would like to delete this element
         /// </summary>
         /// <returns> True if the deletion occurred</returns>
-        public bool DeleteThis()
+        public bool ModifyThis()
         {
             if (Deleted) return false;
             if (this.CtTile is ChildTalkerBackButton) return false;
 
             Deleted = true;
             //MsgBoxResult response = Interaction.MsgBox("Would you like to delete this tile?", MsgBoxStyle.YesNo, "Delete Tile");
-            MessageBoxResult response = MessageBox.Show("Would you like to delete this Tile", MessageBoxButton.YesNo);
-            if (response == MessageBoxResult.Yes)
+            MessageBoxResult response = MessageBox.ShowYesModifyCancel("Would you like to delete The following phrase? \n->\"" + this.Text+"\"","Yes", "Modify", "Cancel");
+            switch (response)
             {
-                Root.RemoveSingleTile(this);
-                return true;
+                case MessageBoxResult.Yes:
+                    Root.RemoveSingleTile(this);
+                    return true;
+                case MessageBoxResult.Modify:
+                    var newPath = ImageGenerator.ImagePopup();
+                    if (string.IsNullOrEmpty(newPath)) break;
+                    ImageSource = newPath;
+                    this.IsSelected = false;
+                    Root.UpdateSavedTiles(this, ImageSource);
+                    return true;
             }
 
             Timer t = new Timer(1000);

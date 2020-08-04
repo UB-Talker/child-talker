@@ -8,7 +8,7 @@
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              x:Name="actualButton" Margin="10,5,10,5" Click="ThisOnClick"
              mc:Ignorable="d" 
-             d:DesignHeight="240" d:DesignWidth="290"
+             d:DesignHeight="240" d:DesignWidth="240"
              Style="{StaticResource genButton}" Layout="ImageOnly"
              Height="240" Width="240">
 </tb:Button>

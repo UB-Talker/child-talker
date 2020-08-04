@@ -136,7 +136,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (!(currentObj is PhraseButton item)) return;
             scan.IgnoreGoBackPressOnce = true;
             scan.PauseScan(false);
-            if (item.DeleteThis())
+            if (item.ModifyThis())
                 scan.NewListToScanThough<PhraseButton>(items);
             else
                 item.IsSelected = false;
@@ -219,6 +219,12 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             SaveToXml(ProfilePath);
         }
 
+        public void UpdateSavedTiles(PhraseButton _itemToChange, String path)
+        {
+            _itemToChange.CtTile.Xml.ImagePath = path;
+            SaveToXml(ProfilePath);
+        }
+
         public void PopFolderView()
         {
             if (ViewParents.Count < 2)
@@ -280,9 +286,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
             if (tileName != "")
             {
-                ImageGeneratorTest test = new ImageGeneratorTest();
-                string path = test.ShowImages();
-
+                string path = ImageGenerator.ImagePopup();
                 CreateTile(path, tileName);
             }
         }
@@ -295,11 +299,9 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         /// <param name="phrase">Phrase that will be spoken when the tile is clicked</param>
         private void CreateTile(string imagePath, string phrase)
         {
-            if (imagePath != "")
-            {
+            if (string.IsNullOrEmpty(imagePath)) return;
                 ChildTalkerTile ctItem = new ChildTalkerTile(phrase, imagePath, false);
                 AddSingleItem(ctItem);
-            }
         }
 
     }  

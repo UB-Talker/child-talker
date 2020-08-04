@@ -10,30 +10,34 @@
              xmlns:phrases="clr-namespace:Child_Talker.TalkerViews.PhrasesPage"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              mc:Ignorable="d" Style="{StaticResource PopupStyle.Blank}"
-             d:DesignWidth="1550" d:DesignHeight="838">
-
-    <Grid Height="700"  x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="85*"/>
-            <RowDefinition Height="20*"/>
-        </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0" x:Name="scrollViewer" Padding="20,20,0,0">
-            <StackPanel x:Name="ImagesPanel" VerticalAlignment="Stretch"></StackPanel>
-        </ScrollViewer>
-        <Grid Grid.Row="1" Background="DarkGray" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="15*"/>
-                <ColumnDefinition Width="35*"/>
-                <ColumnDefinition Width="15*"/>
-            </Grid.ColumnDefinitions>
-            <tb:Button x:Name="CancelIcon" Grid.Column="1" Text="Cancel" Margin="7"></tb:Button>
-            <tb:Button x:Name="GoBackIcon" Grid.Column="0" Text="Back" Layout="Horizontal" Margin="7"
-                                  Click="GoBackPage" ImageSource="../../../Resources/back.png"/> <!-- works nots sure why image doesn't appear-->
-            <tb:Button x:Name="BrowseIcon" Grid.Column="2" Text="Browse" Margin="7"
+             d:DesignWidth="1920" d:DesignHeight="1280" >
+    <Border BorderBrush="{StaticResource ColorScheme.Border.Disabled}" BorderThickness="10">
+        
+        <Grid x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="85*"/>
+                <RowDefinition Height="20*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer Grid.Row="0" x:Name="scrollViewer" Width="Auto" >
+                <StackPanel x:Name="ImagesPanel" VerticalAlignment="Stretch" Margin="10">
+                    <StackPanel Orientation="Horizontal" Background="Gray">
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+            <Grid Grid.Row="1" x:Name="NavPanel" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="15*"/>
+                    <ColumnDefinition Width="35*"/>
+                    <ColumnDefinition Width="15*"/>
+                </Grid.ColumnDefinitions>
+                <tb:Button x:Name="CancelIcon" Grid.Column="1" Text="Cancel" Margin="7" Click="CancelIcon_OnClick"></tb:Button>
+                <tb:Button x:Name="GoBackIcon" Grid.Column="0" Text="Back" Layout="Horizontal" Margin="7"
+                                  Click="GoBackPage" ImageSource="../../../Resources/back.png"/>
+                <!-- works nots sure why image doesn't appear-->
+                <tb:Button x:Name="BrowseIcon" Grid.Column="2" Text="Browse" Margin="7"
                                   Click="PromptFileExplorer"></tb:Button>
+            </Grid>
         </Grid>
-
-    </Grid>
-
+    </Border>
 </custom:SecondaryWindow>
 

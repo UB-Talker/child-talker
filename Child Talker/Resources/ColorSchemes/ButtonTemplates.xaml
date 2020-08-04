@@ -51,13 +51,13 @@
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.BaseColor}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.BaseColor}"></Setter>
             </Trigger>
-            <Trigger Property="IsMouseOver" Value="True">
+ <!--           <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.MouseHover}"></Setter>
                 <Setter Property="BorderBrush" Value="{StaticResource ColorScheme.Border.Highlighted}"></Setter>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.MouseHover}"></Setter>
-            </Trigger>
+            </Trigger>  -->
             <Trigger Property="IsPressed" Value="True">
                 <Setter Property="Background" Value="{StaticResource ColorScheme.Background.Event}"></Setter>
                 <Setter Property="Foreground" Value="{StaticResource ColorScheme.Foreground.Highlighted}"></Setter>
@@ -89,24 +89,24 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="60"/>
                 </Grid.RowDefinitions>
-                <Border Name="Image" Grid.Row="0"  Background="{TemplateBinding Foreground}"  Margin="6" ></Border>
-                <TextBlock Name="TextBlock" Grid.Row="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}"
+                <Border Name="BtnImage" Grid.Row="0"  Background="{TemplateBinding Foreground}"  Margin="6" ></Border>
+                <TextBlock Name="BtnText" Grid.Row="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}"
                            Foreground="{TemplateBinding Foreground}" Text="{TemplateBinding Text}" >
                 </TextBlock>
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="InColor" Value="False">
-                <Setter TargetName="Image" Property="OpacityMask">
+                <Setter TargetName="BtnImage" Property="OpacityMask">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding Path=ImageSource, RelativeSource={RelativeSource TemplatedParent}}" Stretch="Uniform"/>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="Image"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
+                <Setter TargetName="BtnImage"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
             </Trigger>
             <Trigger Property="InColor" Value="True">
-                <Setter TargetName="Image" Property="OpacityMask" Value="#FF000000"></Setter>
-                <Setter TargetName="Image" Property="Background">
+                <Setter TargetName="BtnImage" Property="OpacityMask" Value="#FF000000"></Setter>
+                <Setter TargetName="BtnImage" Property="Background">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageSource}" Stretch="Uniform"></ImageBrush>
                     </Setter.Value>
@@ -125,27 +125,27 @@
                     <ColumnDefinition Width="4*"/>
                     <ColumnDefinition Width="6*"/>
                 </Grid.ColumnDefinitions>
-                <Border Name="Image" Grid.Column="0" Margin="20" 
+                <Border Name="BtnImage" Grid.Column="0" Margin="20" 
                         Background="{TemplateBinding Foreground}"
                         Height="{TemplateBinding Height}">
                 </Border>
-                <TextBlock Name="TextBlock" Grid.Column="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}" TextWrapping="Wrap" 
+                <TextBlock Name="BtnText" Grid.Column="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}" TextWrapping="Wrap" 
                            Foreground="{TemplateBinding Foreground}"
                            Text="{TemplateBinding Text}" />
             </Grid>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="InColor" Value="False">
-                <Setter TargetName="Image" Property="OpacityMask">
+                <Setter TargetName="BtnImage" Property="OpacityMask">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageSource}" Stretch="Uniform"></ImageBrush>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="Image"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
+                <Setter TargetName="BtnImage"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
             </Trigger>
             <Trigger Property="InColor" Value="True">
-                <Setter TargetName="Image" Property="OpacityMask" Value="#FF000000"></Setter>
-                <Setter TargetName="Image" Property="Background">
+                <Setter TargetName="BtnImage" Property="OpacityMask" Value="#FF000000"></Setter>
+                <Setter TargetName="BtnImage" Property="Background">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageSource}" Stretch="Uniform"></ImageBrush>
                     </Setter.Value>
@@ -159,7 +159,7 @@
                 Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" 
                 BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
                 BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
-            <TextBlock Name="TextBlock" Grid.Column="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}" 
+            <TextBlock Name="BtnText" Grid.Column="1" Margin="10,0,10,0" Style="{StaticResource genTextBlock}" 
                        Foreground="{TemplateBinding Foreground}"
                            Text="{Binding Path=Text, RelativeSource={RelativeSource TemplatedParent}}" />
         </Border>
@@ -170,22 +170,22 @@
                 Background="{Binding Path=Background, RelativeSource={RelativeSource TemplatedParent}}" 
                 BorderBrush="{Binding Path=BorderBrush, RelativeSource={RelativeSource TemplatedParent}}"
                 BorderThickness="{Binding Path=BorderThickness, RelativeSource={RelativeSource TemplatedParent}}">
-                <Border Name="Image" Grid.Column="0" Margin="20" Background="{TemplateBinding Foreground}"
+                <Border Name="BtnImage" Grid.Column="0" Margin="20" Background="{TemplateBinding Foreground}"
                         HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 </Border>
         </Border>
         <ControlTemplate.Triggers>
             <Trigger Property="InColor" Value="False">
-                <Setter TargetName="Image" Property="OpacityMask">
+                <Setter TargetName="BtnImage" Property="OpacityMask">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageSource}" Stretch="Uniform"></ImageBrush>
                     </Setter.Value>
                 </Setter>
-                <Setter TargetName="Image"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
+                <Setter TargetName="BtnImage"  Property="Background" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}"></Setter>
             </Trigger>
             <Trigger Property="InColor" Value="True">
-                <Setter TargetName="Image" Property="OpacityMask" Value="#FF000000"></Setter>
-                <Setter TargetName="Image" Property="Background">
+                <Setter TargetName="BtnImage" Property="OpacityMask" Value="#FF000000"></Setter>
+                <Setter TargetName="BtnImage" Property="Background">
                     <Setter.Value>
                         <ImageBrush ImageSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ImageSource}" Stretch="Uniform"></ImageBrush>
                     </Setter.Value>

@@ -14,6 +14,7 @@ namespace Child_Talker
     /// </summary>
     public partial class App : Application
     {
+        public static string StartupPath { private set; get; }
 
         /// <summary>
         /// Application Entry Point.
@@ -22,6 +23,10 @@ namespace Child_Talker
         public static void Main()
         {
             Child_Talker.App app = new Child_Talker.App();
+
+            StartupPath = Environment.CurrentDirectory.Split(new string[] {"bin"}, StringSplitOptions.None )[0];
+            
+            Console.WriteLine(StartupPath);
             ListEmbeddedResourceNames();
             ThreeButtonArduinoIntegration ai = new ThreeButtonArduinoIntegration();
 
