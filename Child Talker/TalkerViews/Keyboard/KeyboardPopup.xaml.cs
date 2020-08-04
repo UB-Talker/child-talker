@@ -30,8 +30,6 @@ namespace Child_Talker.TalkerViews.Keyboard
         /// </summary>
         public static readonly int UNLIMITED_LENGTH = 0;
 
-        private KeyboardLayout keyboard;
-        
         /// <summary>
         /// Will create a KeyboardPopup object with the textbox size set to the default length
         /// </summary>
@@ -40,7 +38,6 @@ namespace Child_Talker.TalkerViews.Keyboard
             InitializeComponent();
             prepareKeyboard(DEFAULT_LENGTH, "");
             
-            Content = keyboard;
             Margin = new Thickness(130, 0, 130, 0);
         }
 
@@ -76,9 +73,6 @@ namespace Child_Talker.TalkerViews.Keyboard
             {
                 characterLimit = 0;
             }
-
-            keyboard = new KeyboardLayout();
-            keyboard.Margin = new Thickness(15);
             keyboard.AddTextBox();
             keyboard.textBox.CharacterCasing = CharacterCasing.Lower;
             keyboard.textBox.MaxLength = characterLimit;
@@ -87,5 +81,7 @@ namespace Child_Talker.TalkerViews.Keyboard
             keyboard.EnterPress += (senderK, eK) => { this.Close(); };
 
         }
+
+        
     }
 }

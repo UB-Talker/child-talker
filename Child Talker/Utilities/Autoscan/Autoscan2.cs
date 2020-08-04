@@ -1,11 +1,13 @@
 ﻿using Child_Talker.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Linq;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using Child_Talker.Utilities.HardwareIntegrations;
 using SysButton = System.Windows.Controls.Button;
@@ -247,6 +249,15 @@ namespace Child_Talker.Utilities.Autoscan
 
             scanTimer.Start();
         }
+
+        private Panel Parent;
+
+        public void rescan<T>() where T : DependencyObject
+        {
+            NewListToScanThough<T>(Parent);
+
+        }
+
         /// <summary>
         /// Changes <see cref="activeScanList"/>. Will scan all immediate Children of type T from the provided Panel parent
         /// </summary>
@@ -260,7 +271,6 @@ namespace Child_Talker.Utilities.Autoscan
             scanTimer.Stop();
             windowHistory.Last().Focus();
             if (currentScanObject != null) SetIsHighlight(currentScanObject, false);
-
             var tempScanList = ScannableObjectCollector<T>(parent as DependencyObject, new List<DependencyObject>());
 
             //if xaml is Panel in Panel goes to lowest Level
@@ -281,6 +291,7 @@ namespace Child_Talker.Utilities.Autoscan
                 return;
             }
 
+            Parent = parent;
             activeScanList = tempScanList;
             Direction = GetScanReverse(parent) ? DirectionEnum.Reverse : DirectionEnum.Forward;
 

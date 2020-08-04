@@ -3,13 +3,23 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Child_Talker.TalkerViews.Keyboard"
+      xmlns:local="clr-namespace:Child_Talker.TalkerViews"
       xmlns:custom="clr-namespace:Child_Talker"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1280" d:DesignWidth="1920"
       Height="auto" Width="auto" Style="{StaticResource PopupStyle.Blank}">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition/>
+            <ColumnDefinition Width="10"  />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition/>
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        <local:KeyboardLayout x:Name="keyboard" Grid.Row="1" Grid.Column="1"/>
     </Grid>
 </custom:SecondaryWindow>

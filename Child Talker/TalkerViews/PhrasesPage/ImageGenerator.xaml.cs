@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Management;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -25,15 +27,21 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         private string selectedImagePath;
 
+
         public ImageGenerator()
         {
             InitializeComponent();
             scan = Autoscan2.Instance;
-
+            scan.ResetSelectEventHandlers();
+            
             ImagesPanel.ScrollOwner = scrollViewer;
+            ImagesPanel.Loaded += (s,e) =>
+            {
+                GetCurrentDirectoryContents(path);
+            };
             this.CancelIcon.Click += (bSender, bE) => this.Close();
-            GetCurrentDirectoryContents(path);
         }
+        
 
 
         /// <summary>
@@ -47,7 +55,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             scan.GoBackPress += (hei, gbp) =>
                 this.GoBackIcon.RaiseEvent(
                     new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent)); // how you simulate a button click in code
-            
             this.setAutoscanFocus(this);
             this.Show<Panel>(ImagesPanel);
             
@@ -129,76 +136,66 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             {
                 ImagesPanel.Children.Clear();
                 path = newPath;
-                string[] directories = Directory.GetDirectories(path);
-                string[] files = Directory.GetFiles(path);
+                string[] directories_ = Directory.GetDirectories(path);
+                string[] files_ = Directory.GetFiles(path);
+                
+                List<string> directories = directories_.ToList();
+                List<string> files = files_.ToList();
+                var both = directories.Concat(files);
                 StackPanel row = new StackPanel()
                 {
-                    Width = 1100,
+                    Width = ImagesPanel.ActualWidth,
                     Orientation = Orientation.Horizontal
                 };
-                int columnCount = 0;
-
-                foreach (var directory in directories)
+                double buttonsPerRow = 0;
+                foreach (string current in both)
                 {
-                    string[] firstFile = Directory.GetFiles(directory);
-                    if (firstFile.Length <= 0) continue;
-                    ImageGenButton button = new ImageGenButton(directory, firstFile[0])
-                    {
-                        ActionType = ImageGenButton.ActionTypeEnum.Folder,
-                        BorderBrush = Brushes.Blue
-                    };
+                    // get the file attributes for file or directory
+                    FileAttributes curAttr = File.GetAttributes(current);
 
-                    button.PassImageOnClick += GetCurrentDirectoryContents;
-                    if (columnCount < 4)
+                    ImageGenButton button;
+                    if (curAttr.HasFlag(FileAttributes.Directory))
+                    { 
+                        DirectoryInfo di = new DirectoryInfo(current);
+                        var imagePath = di.EnumerateFiles("*",SearchOption.AllDirectories).Select(f => f.FullName).FirstOrDefault();
+                        if (string.IsNullOrEmpty(imagePath)) continue;
+                        button = new ImageGenButton(current, imagePath) {
+                            ActionType = ImageGenButton.ActionTypeEnum.Folder,
+                            BorderBrush = Brushes.Blue  };
+                        button.PassImageOnClick += GetCurrentDirectoryContents;
+                        button.PassImageOnClick += (s) => { scan.rescan<Panel>(); };
+
+                    }
+                    else
+                    {
+                        button = new ImageGenButton(current, current) {
+                            ActionType = ImageGenButton.ActionTypeEnum.Folder,
+                            BorderBrush = Brushes.Red };
+                        button.PassImageOnClick += ImageSelected;
+                    }
+                    
+                    if (buttonsPerRow < row.Width-button.Width)
                     {
                         row.Children.Add(button);
-                        columnCount++;
+                        buttonsPerRow+=button.Width;
                     }
                     else
                     {
                         ImagesPanel.Children.Add(row);
-                        columnCount = 0;
+                        buttonsPerRow = 0;
                         row = new StackPanel()
                         {
-                            Width = 1100,
+                            Width = ImagesPanel.ActualWidth,
                             Orientation = Orientation.Horizontal
                         };
                     }
 
-                    Console.WriteLine(directory);
                 }
 
-                foreach (var file in files)
-                {
-                    ImageGenButton button = new ImageGenButton(file, file)
-                    {
-                        ActionType = ImageGenButton.ActionTypeEnum.Folder,
-                        BorderBrush = Brushes.Red
-                    };
-                    button.PassImageOnClick += ImageSelected;
-                    if (columnCount < 4)
-                    {
-                        row.Children.Add(button);
-                        columnCount++;
-                    }
-                    else
-                    {
-                        ImagesPanel.Children.Add(row);
-                        columnCount = 0;
-                        row = new StackPanel()
-                        {
-                            Width = 1100,
-                            Orientation = Orientation.Horizontal
-                        };
-                    }
-                    //Console.WriteLine(file);
-                }
-
-                if (columnCount != 0)
-                {
-                    ImagesPanel.Children.Add(row);
-                }
             });
+            scan.NewListToScanThough<Panel>(ImagesPanel);
+            
+
         }
 
         public List<DependencyObject> GetParents()

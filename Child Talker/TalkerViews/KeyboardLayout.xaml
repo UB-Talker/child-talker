@@ -9,7 +9,7 @@
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
              mc:Ignorable="d" x:Name="MainGrid"
-             Height="650" Width="1000" Background="Black">
+             MinHeight="650" MinWidth="1000" Background="Black">
     <Grid.Resources>
         <Style x:Key="localBTN" TargetType="{x:Type tb:Button}" BasedOn="{StaticResource genButton}" >
             <Setter Property="FontSize" Value="60px"/>

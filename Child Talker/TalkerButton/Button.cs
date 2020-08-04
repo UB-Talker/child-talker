@@ -51,6 +51,22 @@ namespace Child_Talker.TalkerButton
             return new Size(formattedText.Width, formattedText.Height);
         }
 
+        public void ResizeToText()
+        {
+            Size textsize = MeasureString(this.Text);
+            var fullSize = this.Width + this.Margin.Left + this.Margin.Right;
+            var textWidth = textsize.Width;
+            var txtblockwidth = fullSize;
+            while (textWidth>= txtblockwidth-60)
+            {
+                this.Dispatcher.Invoke( () =>
+                {
+                    this.Width += fullSize;
+                });
+                txtblockwidth += fullSize;
+            }
+        }
+
     }
 
 }

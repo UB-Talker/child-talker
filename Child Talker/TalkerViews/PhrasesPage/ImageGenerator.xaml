@@ -10,16 +10,18 @@
              xmlns:phrases="clr-namespace:Child_Talker.TalkerViews.PhrasesPage"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
              mc:Ignorable="d" Style="{StaticResource PopupStyle.Blank}"
-             d:DesignWidth="1550" d:DesignHeight="838" >
+             d:DesignWidth="1920" d:DesignHeight="1280" >
     <Border BorderBrush="{StaticResource ColorScheme.Border.Disabled}" BorderThickness="10">
-        <Grid Height="700" Width="1220" x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
+        
+        <Grid x:Name="MainGrid" Background="{StaticResource ColorScheme.Background.BaseColor}" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="85*"/>
                 <RowDefinition Height="20*"/>
             </Grid.RowDefinitions>
-            <ScrollViewer Grid.Row="0" x:Name="scrollViewer" Width="Auto" Padding="20,20,0,0">
-                <StackPanel x:Name="ImagesPanel" VerticalAlignment="Stretch">
-                    <StackPanel Orientation="Horizontal" Width="1100" Height="300" Background="Crimson"></StackPanel>
+            <ScrollViewer Grid.Row="0" x:Name="scrollViewer" Width="Auto" >
+                <StackPanel x:Name="ImagesPanel" VerticalAlignment="Stretch" Margin="10">
+                    <StackPanel Orientation="Horizontal" Background="Gray">
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
             <Grid Grid.Row="1" x:Name="NavPanel" >

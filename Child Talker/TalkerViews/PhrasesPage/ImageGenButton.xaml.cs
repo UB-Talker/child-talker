@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Child_Talker.TalkerButton;
+using Child_Talker.Utilities.Autoscan;
 
 namespace Child_Talker.TalkerViews.PhrasesPage
 {

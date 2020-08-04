@@ -22,7 +22,7 @@
                     <Border VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Background="{TemplateBinding Background}"
                                             Padding="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Padding}">
                         <Border Padding="20" >
-                            <ContentControl x:Name="Interior"
+                            <ContentControl Width="1720" Height="1080" HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="Interior"
                                             Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Content}"/>
                         </Border>
                     </Border>
