@@ -34,7 +34,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             ProfilePath = "../../Resources/example2.xml";
             backItem = new ChildTalkerBackButton("Back", "../../Resources/back.png", this, false);
             if (!File.Exists(ProfilePath))
-                File.Create(ProfilePath);
+                _ = File.Create(ProfilePath);
             else
                 this.LoadFromXml(ProfilePath);
             scan.GoBackHold += GoBackHold_DeleteItem;
@@ -172,7 +172,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 PhraseButton ui = new PhraseButton();
                 ui.SetItem(item);
                 ui.SetParent(this);
-                items.Children.Add(ui);
+                _ = items.Children.Add(ui);
             }
 
             if (calledFromLoad)
@@ -199,7 +199,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             PhraseButton ui = new PhraseButton();
             ui.SetItem(_ctTileToAdd);
             ui.SetParent(this);
-            items.Children.Add(ui);
+            _ = items.Children.Add(ui);
 
             SaveToXml(ProfilePath);
         }
@@ -213,8 +213,8 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             }
             else
             {
-                rootChildren.Remove(_itemToRemove.CtTile);
-                XmlWrapper.Children.Remove(_itemToRemove.CtTile.Xml);
+                _ = rootChildren.Remove(_itemToRemove.CtTile);
+                _ = XmlWrapper.Children.Remove(_itemToRemove.CtTile.Xml);
             }
             SaveToXml(ProfilePath);
         }
@@ -229,12 +229,12 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         {
             if (ViewParents.Count < 2)
             {
-                ViewParents.Pop();
+                _ = ViewParents.Pop();
                 LoadTiles(rootChildren);
             }
             else
             {
-                ViewParents.Pop();
+                _ = ViewParents.Pop();
                 List<IChildTalkerTile> children = ViewParents.Peek().Children;
                 LoadTiles(children);
             }

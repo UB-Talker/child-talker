@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using Child_Talker.TalkerViews.EnvControlsPage;
 using Child_Talker.TalkerViews.PhrasesPage;
 using Child_Talker.TalkerViews.SettingPage;
+using Child_Talker.TalkerViews.TVandRoku;
 using Child_Talker.Utilities;
 using EnvControls = Child_Talker.TalkerViews.EnvControlsPage.EnvControls;
 
@@ -80,6 +81,11 @@ namespace Child_Talker.TalkerViews
             };
 //            parents.Add(row3);
             return (parents);
+        }
+
+        private void OpenRoku(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ChangeView(new Remote());
         }
     }
     

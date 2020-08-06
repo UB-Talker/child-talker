@@ -21,7 +21,7 @@ namespace Child_Talker.Utilities
         public static MessageBoxResult Show(string messageBoxText)
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText);
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
             
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -30,7 +30,7 @@ namespace Child_Talker.Utilities
         public static MessageBoxResult Show(string messageBoxText, FrameworkElement messageBoxContent)
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, messageBoxContent);
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -46,7 +46,7 @@ namespace Child_Talker.Utilities
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText);
             msg.Owner = owner;
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -62,7 +62,7 @@ namespace Child_Talker.Utilities
         public static MessageBoxResult Show(string messageBoxText, MessageBoxButton button)
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, button);
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -71,7 +71,7 @@ namespace Child_Talker.Utilities
         public static MessageBoxResult Show(string messageBoxText, FrameworkElement messageBoxContent, MessageBoxButton button)
         {
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, messageBoxContent, button);
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -89,7 +89,7 @@ namespace Child_Talker.Utilities
             MessageBoxWindow msg = new MessageBoxWindow(messageBoxText, MessageBoxButton.OK);
             msg.OkButtonText = okButtonText;
 
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             return msg.Result;
         }
@@ -111,7 +111,7 @@ namespace Child_Talker.Utilities
                 CancelButtonText = cancelButtonText
             };
 
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
             
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -134,7 +134,7 @@ namespace Child_Talker.Utilities
                 NoButtonText = noButtonText
             };
 
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -158,7 +158,7 @@ namespace Child_Talker.Utilities
                 NoButtonText = noButtonText,
                 CancelButtonText = cancelButtonText
             };
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
             
             msg.RestoreAutoscanList();
             return msg.Result;
@@ -182,7 +182,7 @@ namespace Child_Talker.Utilities
                 ModifyButtonText = modifyButtonText,
                 CancelButtonText = cancelButtonText
             };
-            msg.ShowDialog();
+            _ = msg.ShowDialog();
 
             msg.RestoreAutoscanList();
             return msg.Result;

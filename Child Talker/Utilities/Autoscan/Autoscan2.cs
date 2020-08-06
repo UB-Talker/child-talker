@@ -124,6 +124,22 @@ namespace Child_Talker.Utilities.Autoscan
                 TimerMode = TimerModes.On;
             }
         }
+        
+        public void ManualScan(bool toggle)
+        {
+            if (TimerMode == TimerModes.Off) return;
+            if (toggle)
+            {
+                scanTimer.Stop();
+                TimerMode = TimerModes.Manual;
+                HighlightNext();
+            }
+            else
+            {
+                scanTimer.Start();
+                TimerMode = TimerModes.On;
+            }
+        }
 
         /// <summary>
         /// How autoscan knows if it is currently running scanning is paused or autoscan is disabled
@@ -197,7 +213,7 @@ namespace Child_Talker.Utilities.Autoscan
             if (windowHistory.Count > 0 && newWindow == windowHistory.Last()) return;
             if (windowHistory.Contains(newWindow)) return;
 
-            windowHistory.AddLast(newWindow);
+            _ = windowHistory.AddLast(newWindow);
             KeyboardIntegration.Instance.ApplyIntegration(newWindow);
         }
 
@@ -208,7 +224,7 @@ namespace Child_Talker.Utilities.Autoscan
         {
             if (windowHistory.Count <= 1 || TimerMode == TimerModes.Off) return;
             ResetEventHandlers();
-            windowHistory.Remove(closeThis);
+            _ = windowHistory.Remove(closeThis);
             var newWindow = windowHistory.Last();
             newWindow.Show();
         }
@@ -218,7 +234,7 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         /// <param name="newList"> a list of all elements to scan through</param>
         /// <param name="isReturnPoint"> when true adds newList to the top of <see cref="ReturnPointList"/></param>
-        public void NewListToScanThough(List<DependencyObject> newList, bool isReturnPoint = false)
+        public void NewListToScanThough(List<DependencyObject> newList, bool isReturnPoint = false, bool manualScan=false)
         {
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             scanTimer.Stop();
@@ -238,6 +254,7 @@ namespace Child_Talker.Utilities.Autoscan
             }
 
             Direction = DirectionEnum.Forward;
+            ManualScan(manualScan);
             currentScanIndex = activeScanList.Count - 1;
             currentScanObject = activeScanList[currentScanIndex];
             ScanTimerElapsed(null, null);
@@ -264,7 +281,7 @@ namespace Child_Talker.Utilities.Autoscan
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             if (parent == null) throw new NullReferenceException();
             scanTimer.Stop();
-            windowHistory.Last().Focus();
+            _ = windowHistory.Last().Focus();
             if (currentScanObject != null) SetIsHighlight(currentScanObject, false);
             
             var tempScanList = ScannableObjectCollector<T>(parent as DependencyObject, new List<DependencyObject>());
@@ -275,6 +292,9 @@ namespace Child_Talker.Utilities.Autoscan
                 tempScanList = ScannableObjectCollector<T>(newParent, new List<DependencyObject>());
                 parent = newParent;
             }
+
+
+
 
             //if after loop the list is empty, then scan the lowest Level For buttons
             if (tempScanList.Count == 0)
@@ -303,6 +323,7 @@ namespace Child_Talker.Utilities.Autoscan
 
             currentScanIndex = activeScanList.Count - 1;
             currentScanObject = activeScanList[currentScanIndex];
+            ManualScan(GetManualScan(parent));
             ScanTimerElapsed(null, null);
 
             scanTimer.Start();
@@ -333,7 +354,7 @@ namespace Child_Talker.Utilities.Autoscan
                         if (depChild is ScrollViewer sv)
                         {
                             if (sv.Content is StackPanel sp) sp.ScrollOwner = sv;
-                            ScannableObjectCollector<T>(depChild, logicalCollection);
+                            _ = ScannableObjectCollector<T>(depChild, logicalCollection);
                             continue;
                         }
                         // a Control must be both enabled and visible to be scanned
@@ -349,7 +370,7 @@ namespace Child_Talker.Utilities.Autoscan
                 }
                 else if (child is Decorator)
                 {
-                    ScannableObjectCollector<T>(depChild, logicalCollection); //If still in dependencyObject, go into depChild's children
+                    _ = ScannableObjectCollector<T>(depChild, logicalCollection); //If still in dependencyObject, go into depChild's children
                 }
             }
 
@@ -360,8 +381,15 @@ namespace Child_Talker.Utilities.Autoscan
         /// Functionality for autoscan to move to the next element while scanning
         /// </summary>
         private void ScanTimerElapsed(object sender, ElapsedEventArgs e)
+        { 
+            if (TimerMode != TimerModes.On) return;
+            scanTimer.Stop();
+            HighlightNext();
+            scanTimer.Start();
+        }
+        private void HighlightNext()
         {
-            if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
+            if (TimerMode == TimerModes.On || TimerMode == TimerModes.Manual) { } else { return;}
             if (activeScanList.Count == 0)
             {
                 throw new Exception("Autoscan List is empty");
@@ -370,8 +398,7 @@ namespace Child_Talker.Utilities.Autoscan
             //this MUST throw an error window history should never contain less than 1 element (MainWindow)
             windowHistory.Last().Dispatcher.Invoke(() =>
             {
-                if (TimerMode != TimerModes.On) return;
-                scanTimer.Stop();
+                if (TimerMode == TimerModes.On || TimerMode == TimerModes.Manual) { } else { return;}
                 if (currentScanObject != null)
                 {
                     currentScanIndex += (int) Direction;
@@ -395,7 +422,6 @@ namespace Child_Talker.Utilities.Autoscan
                     (currentScanObject as Panel)?.BringIntoView();
                 }
 
-                scanTimer.Start();
             });
         }
 

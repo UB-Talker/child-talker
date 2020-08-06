@@ -120,7 +120,7 @@ namespace Child_Talker.Utilities
                 case MessageBoxButton.OKCancel:
                     // Hide all but OK, Cancel
                     Button_OK.Visibility = System.Windows.Visibility.Visible;
-                    Button_OK.Focus();
+                    _ = Button_OK.Focus();
                     Button_Cancel.Visibility = System.Windows.Visibility.Visible;
 
                     Button_Yes.Visibility = System.Windows.Visibility.Collapsed;
@@ -130,7 +130,7 @@ namespace Child_Talker.Utilities
                 case MessageBoxButton.YesNo:
                     // Hide all but Yes, No
                     Button_Yes.Visibility = System.Windows.Visibility.Visible;
-                    Button_Yes.Focus();
+                    _ = Button_Yes.Focus();
                     Button_No.Visibility = System.Windows.Visibility.Visible;
 
                     Button_OK.Visibility = System.Windows.Visibility.Collapsed;
@@ -140,7 +140,7 @@ namespace Child_Talker.Utilities
                 case MessageBoxButton.YesNoCancel:
                     // Hide only OK
                     Button_Yes.Visibility = System.Windows.Visibility.Visible;
-                    Button_Yes.Focus();
+                    _ = Button_Yes.Focus();
                     Button_No.Visibility = System.Windows.Visibility.Visible;
                     Button_Cancel.Visibility = System.Windows.Visibility.Visible;
 
@@ -150,7 +150,7 @@ namespace Child_Talker.Utilities
                 case MessageBoxButton.YesModifyCancel:
                     // Hide all but Yes, No
                     Button_Yes.Visibility = System.Windows.Visibility.Visible;
-                    Button_Yes.Focus();
+                    _ = Button_Yes.Focus();
                     Button_Cancel.Visibility = System.Windows.Visibility.Visible;
                     Button_Modify.Visibility = System.Windows.Visibility.Visible;
 
@@ -160,7 +160,7 @@ namespace Child_Talker.Utilities
                 default:
                     // Hide all but OK
                     Button_OK.Visibility = System.Windows.Visibility.Visible;
-                    Button_OK.Focus();
+                    _ = Button_OK.Focus();
 
                     Button_Yes.Visibility = System.Windows.Visibility.Collapsed;
                     Button_No.Visibility = System.Windows.Visibility.Collapsed;

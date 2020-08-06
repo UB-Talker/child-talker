@@ -39,7 +39,7 @@ namespace Child_Talker.Utilities.Autoscan
             if (!GoBackDefaultEnabled) return;
             windowHistory.Last().Dispatcher.Invoke(() => SetIsHighlight(currentScanObject, false));
 
-            if (TimerMode == TimerModes.Paused)
+            if (TimerMode == TimerModes.Paused || TimerMode == TimerModes.Manual)
             {
                 TimerMode = TimerModes.On;
                 NewListToScanThough(ReturnPointList.Peek());
@@ -49,7 +49,7 @@ namespace Child_Talker.Utilities.Autoscan
 
             if (popReturnPointList == true)
             {
-                if (MainWindow.Instance.Navigator.CanGoBack || ReturnPointList.Count > 1) ReturnPointList.Pop();
+                if (MainWindow.Instance.Navigator.CanGoBack || ReturnPointList.Count > 1) _ = ReturnPointList.Pop();
                 if (ReturnPointList.Count > 0) // Path on page not Empty
                 {
                     NewListToScanThough(ReturnPointList.Peek());
@@ -78,6 +78,11 @@ namespace Child_Talker.Utilities.Autoscan
 
         public void ReversePressDefault()
         {
+            if (TimerMode == TimerModes.Manual)
+            {
+                HighlightNext();
+                return;
+            }
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             if (!ReverseDefaultEnabled) return;
             scanTimer.Stop();
@@ -87,7 +92,7 @@ namespace Child_Talker.Utilities.Autoscan
 
         public void ReverseHoldDefault()
         {
-            if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
+            if (TimerMode != TimerModes.On) return;
             if (!ReverseDefaultEnabled) return;
             scanTimer.Stop();
             //hei.indexHighlighted -= 1 * FLAG_direction; // go back 2 buttons (after KeyUp autoscanningButtons is called, which adds 1 to index           

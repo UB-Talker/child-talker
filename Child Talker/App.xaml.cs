@@ -31,8 +31,10 @@ namespace Child_Talker
             ThreeButtonArduinoIntegration ai = new ThreeButtonArduinoIntegration();
 
             AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+
             app.InitializeComponent();
-            app.Run();
+            _ = app.Run();
 
         }
 
@@ -50,7 +52,7 @@ namespace Child_Talker
             using (var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream("Child_Talker.EmbeddedReferences.Newtonsoft.Json.dll"))
             {
                 var assemblyData = new Byte[stream.Length];
-                stream.Read(assemblyData, 0, assemblyData.Length);
+                _ = stream.Read(assemblyData, 0, assemblyData.Length);
                 return Assembly.Load(assemblyData);
             }
         }

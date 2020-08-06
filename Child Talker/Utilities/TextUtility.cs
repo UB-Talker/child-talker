@@ -38,7 +38,7 @@ namespace Child_Talker.Utilities
 
                 if (!File.Exists(App.StartupPath + "/Utilities/SpeechHistory.txt"))
                 {
-                    File.Create(App.StartupPath + "/Utilities/SpeechHistory.txt");
+                    _ = File.Create(App.StartupPath + "/Utilities/SpeechHistory.txt");
                 }
                 else
                 {
@@ -47,7 +47,7 @@ namespace Child_Talker.Utilities
 
                 if (!File.Exists(App.StartupPath + "/Utilities/WordCount.txt"))
                 {
-                    File.Create(App.StartupPath + "/Utilities/WordCount.txt");
+                    _ = File.Create(App.StartupPath + "/Utilities/WordCount.txt");
                 }
                 else
                 {
@@ -88,7 +88,7 @@ namespace Child_Talker.Utilities
             Tuple<DateTime, string> phraseData = new Tuple<DateTime, string>(DateTime.Now, text);
             spokenPhrases.Add(phraseData);
 
-            synth.SpeakAsync(text);
+            _ = synth.SpeakAsync(text);
             text = removePunctuation(text);
             string[] words = text.Split(' ');
 

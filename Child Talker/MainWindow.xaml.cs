@@ -73,7 +73,7 @@ namespace Child_Talker
         // Method to change TalkerView, primarily called by TalkerView itself
         public void ChangeView(TalkerView view)
         {
-            Navigator.Navigate(view);
+            _ = Navigator.Navigate(view);
         }
 
         private void NewPageIsLoaded(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace Child_Talker
         public void ExecutedCustomCommand(object sender,
             ExecutedRoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Custom Command Executed");
+            _ = System.Windows.MessageBox.Show("Custom Command Executed");
         }
         public void CanExecuteCustomCommand(object sender,
             CanExecuteRoutedEventArgs e)

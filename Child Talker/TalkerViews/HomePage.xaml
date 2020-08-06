@@ -62,8 +62,8 @@
                        Text="Phrases" ImageSource="/Child Talker;component/Resources/MainMenu_images/phrases.png"/>
             <tb:Button Grid.Column="1" Click="OpenHistory" Layout="Horizontal"
                        Text="History" ImageSource="/Child Talker;component/Resources/MainMenu_images/history.png"/>
-            <tb:Button Grid.Column="2" Layout="Horizontal"
-                       Text="Story Mode" ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png"/>
+            <tb:Button Grid.Column="2" Click="OpenRoku"  Layout="Horizontal"
+                       Text="TV AND ROKU" ImageSource="/Child Talker;component/Resources/MainMenu_images/book.png"/>
         </Grid>
     </Grid>
 </local:TalkerView>

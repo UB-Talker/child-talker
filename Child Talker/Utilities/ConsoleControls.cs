@@ -19,7 +19,7 @@ namespace Child_Talker.Utilities
             cmd.StartInfo.CreateNoWindow = true;
             string arg = "echo " + relayValues[index - 1] + " > relay" + (index);
 
-            cmd.Start();
+            _ = cmd.Start();
             Thread.Sleep(200);
             cmd.StandardInput.WriteLine('y');
             Thread.Sleep(200);
@@ -43,7 +43,7 @@ namespace Child_Talker.Utilities
             cmd.StartInfo.RedirectStandardOutput = true;
             cmd.StartInfo.Arguments = "-ssh pi@192.168.1.11 -pw 9404CSE453 ";
             cmd.StartInfo.CreateNoWindow = true;
-            cmd.Start();
+            _ = cmd.Start();
             Thread.Sleep(200);
             cmd.StandardInput.WriteLine('y');
             Thread.Sleep(200);

@@ -65,7 +65,7 @@
                                          HighlightBackground="White" HighlightBorder="Red" HighlightForeground="Black"/>
                     </StackPanel>
                 </ScrollViewer>
-                <Grid HorizontalAlignment="Stretch">
+                <Grid HorizontalAlignment="Stretch" Height="210 ">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                         <ColumnDefinition/>
@@ -81,6 +81,8 @@
                     <tb:Button Grid.Column="3" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
                                Text="Fastest (1s)" Tag="1000"></tb:Button>
                 </Grid>
+                <tb:Button HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="ConnectToRoku_OnClick"
+                               Text="Setup To Roku"></tb:Button>
             </StackPanel>
         </ScrollViewer>
 

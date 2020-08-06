@@ -75,7 +75,26 @@ namespace Child_Talker.Utilities.Autoscan
         {
             obj.SetValue(DoNotScanProperty, value);
         }
+        
+        /// <summary>
+        /// Tells Autoscan whether or not to scan this element 
+        /// <para>    true - autoscan will ignore this item              </para>
+        /// <para>    false - autoscan continues as normal     (default) </para>
+        /// </summary>
+        public static readonly DependencyProperty ManualScanProperty = DependencyProperty.RegisterAttached(
+            "ManualScan", // Name of property on XAML
+            typeof(bool), // type of property on XAML
+            typeof(Autoscan2), // who inherits this property
+            new UIPropertyMetadata(false)); // eventHandler if property changes
+        public static bool GetManualScan(DependencyObject obj)
+        {
+            return (bool) obj.GetValue(ManualScanProperty);
+        }
 
+        public static void SetManualScan(DependencyObject obj, bool value)
+        {
+            obj.SetValue(ManualScanProperty, value);
+        }
 
         /// <summary>
         /// Is used for stylizing purposes.

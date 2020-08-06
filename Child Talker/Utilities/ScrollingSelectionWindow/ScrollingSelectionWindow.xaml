@@ -1,0 +1,15 @@
+﻿<custom:SecondaryWindow x:Class="Child_Talker.Utilities.ScrollingSelectionWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+      xmlns:custom="clr-namespace:Child_Talker"
+      mc:Ignorable="d" 
+      d:DesignHeight="1280" d:DesignWidth="1920"
+      Height="auto" Width="auto" Style="{StaticResource PopupStyle.Blank}">
+    <StackPanel Orientation="Vertical" Name="List" Background="Black">
+        <tb:Button Text="Test"></tb:Button>
+    </StackPanel>
+
+</custom:SecondaryWindow>

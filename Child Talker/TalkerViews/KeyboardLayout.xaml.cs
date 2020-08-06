@@ -204,7 +204,7 @@ namespace Child_Talker.TalkerViews
             foreach (Button b in util.getNextSuggestion(c))
             {
                 b.Click += AutoCorrectButton;
-                autofill.Children.Add(b);
+                _ = autofill.Children.Add(b);
             }
         }
 
@@ -221,7 +221,7 @@ namespace Child_Talker.TalkerViews
             foreach(Button b in util.getNextSuggestionsForString(s))
             {
                 b.Click += AutoCorrectButton;
-                autofill.Children.Add(b);
+                _ = autofill.Children.Add(b);
             }
         }
         

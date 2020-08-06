@@ -176,12 +176,12 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                     
                     if (buttonsPerRow < row.Width-button.Width)
                     {
-                        row.Children.Add(button);
+                        _ = row.Children.Add(button);
                         buttonsPerRow+=button.Width;
                     }
                     else
                     {
-                        ImagesPanel.Children.Add(row);
+                        _ = ImagesPanel.Children.Add(row);
                         buttonsPerRow = 0;
                         row = new StackPanel()
                         {
@@ -222,7 +222,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
+                    _ = System.Windows.MessageBox.Show("Error: Could not read file from disk. Original error: " + ex.Message);
                 }
             }
 

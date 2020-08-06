@@ -112,5 +112,10 @@ namespace Child_Talker.TalkerViews.SettingPage
             Properties.AutoscanSettings.Default.Save();
             ChangesMade = false;
         }
+
+        private void ConnectToRoku_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

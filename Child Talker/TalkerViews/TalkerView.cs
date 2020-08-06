@@ -18,7 +18,7 @@ namespace Child_Talker.TalkerViews
         /// <param name="args"></param>
         public void backToHome(object sender = null, RoutedEventArgs args = null)
         {
-            MainWindow.Instance.Navigator.Navigate(new HomePage());
+            _ = MainWindow.Instance.Navigator.Navigate(new HomePage());
         }
 
         /// <summary>

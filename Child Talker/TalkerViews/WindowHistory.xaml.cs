@@ -86,7 +86,7 @@ namespace Child_Talker.TalkerViews
                         Height = 140
                     };
                     phraseButton.Click += SelectText;
-                    phraseStack.Children.Add(phraseButton);
+                    _ = phraseStack.Children.Add(phraseButton);
                 }
             });
         }

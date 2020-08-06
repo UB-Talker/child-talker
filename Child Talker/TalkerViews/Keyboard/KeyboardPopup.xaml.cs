@@ -73,7 +73,7 @@ namespace Child_Talker.TalkerViews.Keyboard
             {
                 characterLimit = 0;
             }
-            keyboard.AddTextBox();
+            _ = keyboard.AddTextBox();
             keyboard.textBox.CharacterCasing = CharacterCasing.Lower;
             keyboard.textBox.MaxLength = characterLimit;
             keyboard.textBox.Text += text;

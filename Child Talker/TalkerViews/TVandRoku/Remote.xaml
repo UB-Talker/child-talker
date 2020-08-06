@@ -1,0 +1,91 @@
+﻿<local:TalkerView x:Class="Child_Talker.TalkerViews.TVandRoku.Remote"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:local="clr-namespace:Child_Talker.TalkerViews"
+                  xmlns:custom="clr-namespace:Child_Talker"
+                  xmlns:utilities="clr-namespace:Child_Talker.Utilities"
+                  xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+                  xmlns:autoscan="clr-namespace:Child_Talker.Utilities.Autoscan"
+                  mc:Ignorable="d"
+                  d:DesignHeight="1080" d:DesignWidth="1920"
+                  Height="auto" Width="auto" Background="Black">
+
+
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="Grid" BasedOn="{StaticResource PanelTriggers}"></Style>
+            <Style TargetType="StackPanel" BasedOn="{StaticResource PanelTriggers}"></Style>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="13*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,300,0" VerticalAlignment="Stretch" RowSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+
+            <tb:Button x:Name="MainMenu" Text="Main Menu"      HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="backToHome"/>
+            <tb:Button x:Name="Launcher" Text="Launch Channel" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Launcher_OnClick"/>
+
+        </Grid>
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" ColumnSpan="2" RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*"/>
+                <ColumnDefinition Width="491*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Name="Options" Grid.Column="0" HorizontalAlignment="Stretch" Margin="-140,10,120,10" VerticalAlignment="Stretch" autoscan:Autoscan2.ManualScan="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <tb:Button x:Name="HOME" Tag="Home" Text="HOME" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0"  Click="sendInput"/>
+                <tb:Button x:Name="BACK" Tag="Back" Text="BACK" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1"  Click="sendInput"/>
+                <tb:Button x:Name="INFO" Tag="Info" Text="INFO" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="2"  Click="sendInput"/>
+            </Grid>
+
+            <Grid Name="Arrows" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" autoscan:Autoscan2.ManualScan="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <tb:Button x:Name="UP"    Tag="Up"    Text="UP"    HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
+                <tb:Button x:Name="RIGHT" Tag="Right" Text="RIGHT" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="2" Click="sendInput"/>
+                <tb:Button x:Name="DOWN"  Tag="Down"  Text="DOWN"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Click="sendInput"/>
+                <tb:Button x:Name="LEFT"  Tag="Left"  Text="LEFT"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="sendInput"/>
+                <tb:Button x:Name="OK"   Tag="Select" Text="OK"    HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="sendInput"/>
+
+
+            </Grid>
+        </Grid>
+        <Grid Name="Media" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Margin="20,0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <tb:Button x:Name="REWIND"     Tag="Rev" Text="REWIND"      HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="sendInput"/>
+            <tb:Button x:Name="PLAY"       Tag="Play" Text="PLAY PAUSE"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
+            <tb:Button x:Name="FASTFOWARD" Tag="Fwd"  Text="FAST FOWARD" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="sendInput"/>
+
+        </Grid>
+    </Grid>
+</local:TalkerView>

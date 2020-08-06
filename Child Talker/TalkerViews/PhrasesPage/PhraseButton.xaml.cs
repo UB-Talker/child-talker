@@ -102,7 +102,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         
         private void RightMouseButton_Up(object sender, MouseButtonEventArgs e)
         {
-            ModifyThis();
+            _ = ModifyThis();
         }
         
         ///Deleted variable is lazy way around repetition issue when attempting to delete element. creates delay after window is opened

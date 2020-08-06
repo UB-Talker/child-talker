@@ -91,8 +91,8 @@ namespace Child_Talker
             if (_child != null)
             {
                 _child.Parent = null;
-                Children.Remove(_child);
-                XmlChildren.Remove(_child.Xml);
+                _ = Children.Remove(_child);
+                _ = XmlChildren.Remove(_child.Xml);
             }
         }
     }
