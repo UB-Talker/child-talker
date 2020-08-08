@@ -8,8 +8,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="1280" d:DesignWidth="1920"
       Height="auto" Width="auto" Style="{StaticResource PopupStyle.Blank}">
-    <StackPanel Orientation="Vertical" Name="List" Background="Black">
-        <tb:Button Text="Test"></tb:Button>
-    </StackPanel>
-
+    
+    <ScrollViewer>
+        <StackPanel Orientation="Vertical" Name="List" Background="Black" CanVerticallyScroll="True">
+            <tb:Button Text="test"></tb:Button>
+        </StackPanel>
+    </ScrollViewer>
 </custom:SecondaryWindow>

@@ -133,7 +133,7 @@ namespace Child_Talker.Utilities.Autoscan
                             System.Windows.Controls.Primitives.ButtonBase
                                 .ClickEvent)); // how you simulate a button click in code
                         //NewListToScanThough<DependencyObject>(goBackPath.Pop()); //pass in panel that was clicked 
-                        if (ReturnPointList.Count > 1)
+                        if (ReturnPointList.Count > 0)
                         {
                             NewListToScanThough(ReturnPointList.Peek());
                             popReturnPointList = true;

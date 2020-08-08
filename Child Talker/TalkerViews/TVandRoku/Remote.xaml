@@ -28,15 +28,15 @@
             <RowDefinition Height="27*"/>
             <RowDefinition Height="13*"/>
         </Grid.RowDefinitions>
-        <Grid Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,300,0" VerticalAlignment="Stretch" RowSpan="3">
+        <Grid Name="LeftColumn" Grid.Column="0" HorizontalAlignment="Stretch" Margin="0,0,300,0" VerticalAlignment="Stretch" RowSpan="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-            <tb:Button x:Name="MainMenu" Text="Main Menu"      HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="backToHome"/>
-            <tb:Button x:Name="Launcher" Text="Launch Channel" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Launcher_OnClick"/>
+            <tb:Button x:Name="MainMenu" Text="Main Menu"      HorizontalAlignment="Stretch" Margin="20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="backToHome"/>
+            <tb:Button x:Name="Launcher" Text="Launch Channel" HorizontalAlignment="Stretch" Margin="20" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Launcher_OnClick"/>
 
         </Grid>
         <Grid Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" ColumnSpan="2" RowSpan="2">
@@ -51,9 +51,9 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
-                <tb:Button x:Name="HOME" Tag="Home" Text="HOME" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0"  Click="sendInput"/>
-                <tb:Button x:Name="BACK" Tag="Back" Text="BACK" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1"  Click="sendInput"/>
-                <tb:Button x:Name="INFO" Tag="Info" Text="INFO" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="2"  Click="sendInput"/>
+                <tb:Button x:Name="HOME" Tag="Home" Text="HOME" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="0"  Click="sendInput"/>
+                <tb:Button x:Name="BACK" Tag="Back" Text="BACK" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="1"  Click="sendInput"/>
+                <tb:Button x:Name="INFO" Tag="Info" Text="INFO" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="2"  Click="sendInput"/>
             </Grid>
 
             <Grid Name="Arrows" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" autoscan:Autoscan2.ManualScan="True">
@@ -82,9 +82,9 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <tb:Button x:Name="REWIND"     Tag="Rev" Text="REWIND"      HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="sendInput"/>
-            <tb:Button x:Name="PLAY"       Tag="Play" Text="PLAY PAUSE"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
-            <tb:Button x:Name="FASTFOWARD" Tag="Fwd"  Text="FAST FOWARD" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="sendInput"/>
+            <tb:Button x:Name="REWIND"     Tag="Rev"  Text="REWIND"      HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="sendInput"/>
+            <tb:Button x:Name="PLAY"       Tag="Play" Text="PLAY PAUSE"  HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
+            <tb:Button x:Name="FASTFOWARD" Tag="Fwd"  Text="FAST FOWARD" HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="sendInput"/>
 
         </Grid>
     </Grid>

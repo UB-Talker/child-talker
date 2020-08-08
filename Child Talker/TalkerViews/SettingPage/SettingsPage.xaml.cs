@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Child_Talker.TalkerViews.Keyboard;
 using Child_Talker.Utilities;
 
 
@@ -115,7 +116,11 @@ namespace Child_Talker.TalkerViews.SettingPage
 
         private void ConnectToRoku_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            KeyboardPopup kp = new KeyboardPopup(KeyboardPopup.KeyboardLayout.numpad);
+            string ip_address = kp.GetUserInput();
+            Console.WriteLine(ip_address);
+            Properties.HardareIntegration.Default.Roku_IP = ip_address;
+            ChangesMade = true;
         }
     }
 }

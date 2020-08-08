@@ -36,9 +36,10 @@ namespace Child_Talker.TalkerViews.TVandRoku
         {
             List<DependencyObject> parents = new List<DependencyObject>()
                 {
+                    LeftColumn,
                     Options,
+                    Arrows,
                     Media,
-                    Arrows
                 };
             return (parents);
             
@@ -65,7 +66,7 @@ namespace Child_Talker.TalkerViews.TVandRoku
                         Tag = app.Id
                     };
                     ssw.addElement(btn);
-                    Autoscan2.Instance.GoBackPress += (s,_) => { ssw.Close(); };
+                    //Autoscan2.Instance.GoBackPress += (s,_) => { ssw.Close(); };
                     btn.Click += (s, _) =>
                     {
                         ssw.result = (string)btn.Tag;

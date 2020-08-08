@@ -157,6 +157,9 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>HardareIntegration.settings</DependentUpon>
     </Compile>
+    <Compile Include="TalkerViews\Keyboard\NumpadLayout.xaml.cs">
+      <DependentUpon>NumpadLayout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TalkerViews\TVandRoku\Remote.xaml.cs">
       <DependentUpon>Remote.xaml</DependentUpon>
     </Compile>
@@ -252,6 +255,10 @@
     <Page Include="Resources\ColorSchemes\SystemColors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TalkerViews\Keyboard\NumpadLayout.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="TalkerViews\Keyboard\KeyboardPopup.xaml">
       <SubType>Designer</SubType>

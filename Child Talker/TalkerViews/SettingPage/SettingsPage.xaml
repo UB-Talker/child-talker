@@ -82,7 +82,7 @@
                                Text="Fastest (1s)" Tag="1000"></tb:Button>
                 </Grid>
                 <tb:Button HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="ConnectToRoku_OnClick"
-                               Text="Setup To Roku"></tb:Button>
+                               Text="Connect To Roku (Enter the Roku IP address)"></tb:Button>
             </StackPanel>
         </ScrollViewer>
 

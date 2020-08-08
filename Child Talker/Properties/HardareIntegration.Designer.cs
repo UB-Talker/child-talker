@@ -12,7 +12,7 @@ namespace Child_Talker.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.9.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class HardareIntegration : global::System.Configuration.ApplicationSettingsBase {
         
         private static HardareIntegration defaultInstance = ((HardareIntegration)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new HardareIntegration())));
@@ -32,6 +32,18 @@ namespace Child_Talker.Properties {
             }
             set {
                 this["Active_COM_Port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.0.0.0")]
+        public string Roku_IP {
+            get {
+                return ((string)(this["Roku_IP"]));
+            }
+            set {
+                this["Roku_IP"] = value;
             }
         }
     }

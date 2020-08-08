@@ -38,7 +38,7 @@ namespace Child_Talker.Utilities
 
         public string prompt()
         {
-            this.Show();
+            this.Show<Button>(List);
             return result;
         }
 
