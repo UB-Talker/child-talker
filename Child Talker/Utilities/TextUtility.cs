@@ -25,6 +25,8 @@ namespace Child_Talker.Utilities
         private Dictionary<string, int> wordCounts;
         private SpeechSynthesizer synth;
         private ParseTree parseTree;
+        private static string filepath = App.StartupPath + "/Properties/";
+
 
         private TextUtility()
         {
@@ -33,30 +35,31 @@ namespace Child_Talker.Utilities
             string spokenPhrasesText = "";
             string wordCountText = "";
 
-            if (Directory.Exists(App.StartupPath + "/Utilities"))
+            if (!Directory.Exists(filepath))
             {
-
-                if (!File.Exists(App.StartupPath + "/Utilities/SpeechHistory.txt"))
-                {
-                    _ = File.Create(App.StartupPath + "/Utilities/SpeechHistory.txt");
-                }
-                else
-                {
-                    spokenPhrasesText = File.ReadAllText(App.StartupPath + "/Utilities/SpeechHistory.txt");
-                }
-
-                if (!File.Exists(App.StartupPath + "/Utilities/WordCount.txt"))
-                {
-                    _ = File.Create(App.StartupPath + "/Utilities/WordCount.txt");
-                }
-                else
-                {
-                    wordCountText = File.ReadAllText(App.StartupPath + "/Utilities/WordCount.txt");
-                }
-
-                spokenPhrases = JsonConvert.DeserializeObject<List<Tuple<DateTime, string>>>(spokenPhrasesText);
-                wordCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordCountText);
+                _ = Directory.CreateDirectory(filepath);
             }
+
+            if (!File.Exists(filepath + "SpeechHistory.txt"))
+            {
+                _ = File.Create(filepath + "SpeechHistory.txt");
+            }
+            else
+            {
+                spokenPhrasesText = File.ReadAllText(filepath + "SpeechHistory.txt");
+            }
+
+            if (!File.Exists(filepath + "WordCount.txt"))
+            {
+                _ = File.Create(filepath + "WordCount.txt");
+            }
+            else
+            {
+                wordCountText = File.ReadAllText(filepath + "WordCount.txt");
+            }
+
+            spokenPhrases = JsonConvert.DeserializeObject<List<Tuple<DateTime, string>>>(spokenPhrasesText);
+            wordCounts = JsonConvert.DeserializeObject<Dictionary<string, int>>(wordCountText);
 
             if(spokenPhrases == null)
             {
@@ -134,10 +137,10 @@ namespace Child_Talker.Utilities
             {
 
                 string speechHistoryData = JsonConvert.SerializeObject(spokenPhrases);
-                File.WriteAllText(App.StartupPath + "Utilities/SpeechHistory.txt", speechHistoryData);
+                File.WriteAllText(filepath + "SpeechHistory.txt", speechHistoryData);
 
                 string wordCountData = JsonConvert.SerializeObject(wordCounts);
-                File.WriteAllText(App.StartupPath + "Utilities/WordCount.txt", wordCountData);
+                File.WriteAllText(filepath + "WordCount.txt", wordCountData);
             }
 
             catch { }

@@ -157,6 +157,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>HardareIntegration.settings</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TalkerViews\Keyboard\NumpadLayout.xaml.cs">
       <DependentUpon>NumpadLayout.xaml</DependentUpon>
     </Compile>
@@ -190,11 +195,6 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AutoscanSettings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SecondaryWindow.cs" />
     <Compile Include="Settings.cs" />
@@ -396,11 +396,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\kris.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\example.xml">
-      <SubType>Designer</SubType>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\folder.jpg" />
@@ -977,7 +972,7 @@
     <Resource Include="Resources\General_Icons\Multimedia\upload.png" />
     <Resource Include="Resources\General_Icons\Multimedia\vector.png" />
     <Resource Include="Resources\back.png" />
-    <Resource Include="Resources\example2.xml" />
+    <Resource Include="Properties\PhraseLayout.xml" />
     <Resource Include="Resources\General_Icons\basic-icons\add-people-interface-symbol-of-black-person-close-up-with-plus-sign-in-small-circle.png" />
     <Resource Include="Resources\General_Icons\basic-icons\analysis-of-business-statistics-in-a-line-graphic-with-points.png" />
     <Resource Include="Resources\General_Icons\basic-icons\anchor-programing-tool-symbol.png" />
@@ -1303,6 +1298,25 @@
     <Resource Include="Resources\General_Icons\Social Media\048-android.png" />
     <Resource Include="Resources\General_Icons\Social Media\049-amazon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\Remote_Images\house.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Remote_Images\arrow-button-down.png" />
+    <Resource Include="Resources\Remote_Images\arrow-button-left.png" />
+    <Resource Include="Resources\Remote_Images\arrow-button-right.png" />
+    <Resource Include="Resources\Remote_Images\arrow-button-up.png" />
+    <Resource Include="Resources\Remote_Images\arrow-double-left.png" />
+    <Resource Include="Resources\Remote_Images\arrow-double-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Remote_Images\ok.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Remote_Images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Properties\BlankPhraseLayout.xml" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

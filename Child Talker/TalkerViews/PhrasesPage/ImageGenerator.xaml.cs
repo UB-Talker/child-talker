@@ -22,7 +22,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             return ig.ShowImages();
         }
 
-        internal string path = "../../Resources/General_Icons";
+        internal string path = App.StartupPath + "/Resources/General_Icons";
         private readonly Autoscan2 scan;
 
         private string selectedImagePath;
