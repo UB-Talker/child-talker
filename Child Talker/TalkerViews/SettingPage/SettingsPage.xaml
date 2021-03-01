@@ -35,15 +35,18 @@
 
         <ScrollViewer x:Name="ScrollMenu" Margin="0" Grid.Column="0" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="SettingsList" HorizontalAlignment="Stretch" autoscan:Autoscan2.IsReturnPoint="True">
+                <TextBlock Margin="0,10,0,0">Color Theme</TextBlock>
 
                 <ScrollViewer
                     HorizontalContentAlignment="Center" CanContentScroll="True" PanningMode="HorizontalOnly" SnapsToDevicePixels="True" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal" >
                         <StackPanel.Resources>
                             <Style x:Key="SchemeStyle" TargetType="{x:Type local:ColorSchemeButton}" BasedOn="{StaticResource ColorSchemeButtonStyle}">
                                 <Setter Property="Width" Value="300"/>
                             </Style>
                         </StackPanel.Resources>
+                        <Border Width="400"/>
+                        
                         <local:ColorSchemeButton Style="{StaticResource SchemeStyle}" Click="ColorSchemeButton_OnClick"
                                          PageBackground="Orange"
                                                   Background="Blue"     BorderBrush="Green"          Foreground="Crimson"
@@ -63,8 +66,13 @@
                                          PageBackground="Black"
                                                   Background="Black"     BorderBrush="White"          Foreground="White"
                                          HighlightBackground="White" HighlightBorder="Red" HighlightForeground="Black"/>
+
+                        <Border Width="400"/>
                     </StackPanel>
                 </ScrollViewer>
+
+                <TextBlock Margin="0,50,0,-20">How quickly should autoscan highlight</TextBlock>
+
                 <Grid HorizontalAlignment="Stretch" Height="210 ">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
@@ -81,6 +89,7 @@
                     <tb:Button Grid.Column="3" HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="AutoscanSpeedButtons_OnClick" 
                                Text="Fastest (1s)" Tag="1000"></tb:Button>
                 </Grid>
+                <TextBlock Margin="0,10,0,0">Roku Setup</TextBlock>
                 <tb:Button HorizontalAlignment="Stretch" Height="150" Margin="15,30" Click="ConnectToRoku_OnClick"
                                Text="Connect To Roku (Enter the Roku IP address)"></tb:Button>
             </StackPanel>

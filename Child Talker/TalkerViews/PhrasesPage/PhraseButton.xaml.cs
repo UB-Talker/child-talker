@@ -53,8 +53,8 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             CtTile = _ctItem;
             //this.Text = _ctItem.Text;
 
-            this.Width = 265;
-            this.Height = 265;
+            this.Width = 225;
+            this.Height = 225;
 
             this.Text = _ctItem.Text;
             this.ImageSource = _ctItem.ImagePath;
@@ -77,7 +77,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             }
             catch { return false; }
 
-
+            
             if ((img.Flags & 0x2) != 0)
             {
                 Bitmap image = new Bitmap(img);

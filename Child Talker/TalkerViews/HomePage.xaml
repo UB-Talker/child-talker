@@ -43,7 +43,7 @@
             <tb:Button Grid.Column="0"
                        PauseOnSelect="True"
                        Text="unknown" ImageSource="/Child Talker;component/Resources/MainMenu_images/../whelp.png"/>
-            <tb:Button Grid.Column="1" Click="OpenEnvControls" IsEnabled="False"
+            <tb:Button Grid.Column="1" Click="OpenEnvControls" 
                        Text="Interaction" ImageSource="/Child Talker;component/Resources/MainMenu_images/EnvControls.png" />
             <tb:Button Grid.Column="2" Click="OpenKeyboard" 
                        Text="Keyboard" ImageSource="/Child Talker;component/Resources/MainMenu_images/keyboard.png" />

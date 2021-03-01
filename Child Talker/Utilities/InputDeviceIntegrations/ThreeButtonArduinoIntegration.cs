@@ -14,7 +14,7 @@ namespace Child_Talker.Utilities.HardwareIntegrations
     public class ThreeButtonArduinoIntegration
     {
         public static ThreeButtonArduinoIntegration _instance;
-        public static ThreeButtonArduinoIntegration Instance => _instance ?? (_instance = new ThreeButtonArduinoIntegration());
+        public static ThreeButtonArduinoIntegration Instance => _instance ?? null; //(_instance = new ThreeButtonArduinoIntegration());
 
 
         private static Autoscan2 scan = Autoscan2.Instance;
@@ -75,7 +75,7 @@ namespace Child_Talker.Utilities.HardwareIntegrations
         static ThreeButtonArduinoIntegration()
         {
             string lastPort = Properties.HardareIntegration.Default.Active_COM_Port;
-            Handshake.Start();
+// Handshake.Start();
         }
 
 

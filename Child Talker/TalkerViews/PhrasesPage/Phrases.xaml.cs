@@ -20,25 +20,34 @@ namespace Child_Talker.TalkerViews.PhrasesPage
     /// </summary>
     public partial class Phrases : TalkerView
     {
-        private ChildTalkerXmlWrapper XmlWrapper;
-        private IChildTalkerTile backItem;
-        private string ProfilePath;
-        private List<IChildTalkerTile> rootChildren = new List<IChildTalkerTile>();
+        private ChildTalkerXmlWrapper _xmlWrapper;
+        private IChildTalkerTile _backItem;
+        private static string _profilePath = App.StartupPath + "/Properties/PhraseLayout.xml";
+        private List<IChildTalkerTile> _rootChildren = new List<IChildTalkerTile>();
         public Stack<ChildTalkerFolder> ViewParents = new Stack<ChildTalkerFolder>();
 
-        private static readonly Autoscan2 scan = Autoscan2.Instance;
+        private static readonly Autoscan2 Scan = Autoscan2.Instance;
+        
 
         public Phrases()
         {
             InitializeComponent();
-            ProfilePath = "../../Resources/example2.xml";
-            backItem = new ChildTalkerBackButton("Back", "../../Resources/back.png", this, false);
-            if (!File.Exists(ProfilePath))
-                _ = File.Create(ProfilePath);
-            else
-                this.LoadFromXml(ProfilePath);
-            scan.GoBackHold += GoBackHold_DeleteItem;
-            deletionTimer.Elapsed += DeletionTimerElapsed;
+
+            if (!Directory.Exists(App.StartupPath + "/Properties"))
+            {
+                _ = Directory.CreateDirectory(App.StartupPath + "/Properties");
+            }
+
+            if (!File.Exists(_profilePath))
+            {
+                File.Copy(App.StartupPath + "/Properties/BlankPhraseLayout.xml",_profilePath);
+            } 
+
+            this.LoadFromXml(_profilePath);
+             
+            _backItem = new ChildTalkerBackButton("Back",App.StartupPath + "/Resources/back.png", this, false);
+            Scan.GoBackHold += GoBackHold_DeleteItem;
+            _deletionTimer.Elapsed += DeletionTimerElapsed;
         }
 
         //required for all TalkerView  classes
@@ -61,18 +70,18 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             return ViewParents;
         }
 
-        public void LoadFromXml(string _path)
+        public void LoadFromXml(string path)
         {
-            ProfilePath = _path;
+            _profilePath = path;
             ViewParents = new Stack<ChildTalkerFolder>();
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            using (XmlReader reader = XmlReader.Create(_path))
+            using (XmlReader reader = XmlReader.Create(path))
             {
-                XmlWrapper = (ChildTalkerXmlWrapper)serializer.Deserialize(reader);
+                _xmlWrapper = (ChildTalkerXmlWrapper)serializer.Deserialize(reader);
             }
 
             List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
-            foreach (var child in XmlWrapper.Children)
+            foreach (var child in _xmlWrapper.Children)
             {
                 ctTiles.Add(ParseNode(child));
             }
@@ -80,30 +89,30 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             LoadTiles(ctTiles, true);
         }
 
-        public void SaveToXml(string _path)
+        public void SaveToXml(string path)
         {
             var serializerSettings = new XmlWriterSettings() { Indent = true };
             XmlSerializer serializer = XmlSerializer.FromTypes(new[] { typeof(ChildTalkerXmlWrapper) })[0];
-            using (XmlWriter writer = XmlWriter.Create(_path, serializerSettings))
+            using (XmlWriter writer = XmlWriter.Create(path, serializerSettings))
             {
-                serializer.Serialize(writer, XmlWrapper);
+                serializer.Serialize(writer, _xmlWrapper);
             }
         }
 
-        public IChildTalkerTile ParseNode(ChildTalkerXml _node)
+        public IChildTalkerTile ParseNode(ChildTalkerXml node)
         {
-            if (_node.TileType == ChildTalkerXml.Tile.talker)
+            if (node.TileType == ChildTalkerXml.Tile.talker)
             {
-                return new ChildTalkerTile(_node.Text, _node.ImagePath, _node.InColor);
+                return new ChildTalkerTile(node.Text, node.ImagePath, node.InColor);
             }
             else
             {
                 List<IChildTalkerTile> ctTiles = new List<IChildTalkerTile>();
-                foreach (var child in _node.Children)
+                foreach (var child in node.Children)
                 {
                     ctTiles.Add(ParseNode(child));
                 }
-                ChildTalkerFolder folder = new ChildTalkerFolder(_node.Text, _node.ImagePath, this, !_node.InColor);
+                ChildTalkerFolder folder = new ChildTalkerFolder(node.Text, node.ImagePath, this, !node.InColor);
                 folder.SetChildren(ctTiles);
                 return folder;
             }
@@ -113,7 +122,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         /// when running the gobackHold event is occuring
         /// when timer elapses a popup appears asking if you would like to delete the highlighted element
         /// </summary>
-        private readonly Timer deletionTimer = new Timer(scan.ScanTimerInterval * 2);
+        private readonly Timer _deletionTimer = new Timer(Scan.ScanTimerInterval * 2);
         /// <summary>
         /// Occurs when goBack is initially held down
         /// </summary>
@@ -123,10 +132,10 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         {
             if (currentObj is PhraseButton item)
             {
-                scan.PauseScan(true);
-                scan.GoBackPress += (curObj, gbd) => deletionTimer.Stop();
-                deletionTimer.Elapsed += (s, e) => { this.Dispatcher.Invoke(() => { item.IsSelected = true; }); };
-                deletionTimer.Start();
+                Scan.PauseScan(true);
+                Scan.GoBackPress += (curObj, gbd) => _deletionTimer.Stop();
+                _deletionTimer.Elapsed += (s, e) => { this.Dispatcher.Invoke(() => { item.IsSelected = true; }); };
+                _deletionTimer.Start();
 
             }
         }
@@ -134,40 +143,40 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         private void GoBackRelease_DeleteItem(DependencyObject currentObj, Autoscan2.DefaultEvents goBackDefaultEvent)
         {
             if (!(currentObj is PhraseButton item)) return;
-            scan.IgnoreGoBackPressOnce = true;
-            scan.PauseScan(false);
+            Scan.IgnoreGoBackPressOnce = true;
+            Scan.PauseScan(false);
             if (item.ModifyThis())
-                scan.NewListToScanThough<PhraseButton>(items);
+                Scan.NewListToScanThough<PhraseButton>(items);
             else
                 item.IsSelected = false;
-            scan.GoBackPress -= GoBackRelease_DeleteItem;
+            Scan.GoBackPress -= GoBackRelease_DeleteItem;
         }
 
         private void DeletionTimerElapsed(object sender, ElapsedEventArgs e)
         {
-            scan.GoBackPress += GoBackRelease_DeleteItem;
-            scan.IgnoreGoBackPressOnce = true;
-            deletionTimer.Stop();
+            Scan.GoBackPress += GoBackRelease_DeleteItem;
+            Scan.IgnoreGoBackPressOnce = true;
+            _deletionTimer.Stop();
         }
 
-        public void LoadTiles(List<IChildTalkerTile> _ctTiles, Boolean calledFromLoad = false)
+        public void LoadTiles(List<IChildTalkerTile> ctTiles, Boolean calledFromLoad = false)
         {
             //only true when page is first opened
             if (calledFromLoad)
             {
-                rootChildren = _ctTiles;
+                _rootChildren = ctTiles;
             }
             else
             {
-                if (!_ctTiles.Contains(backItem) && ViewParents.Count > 0)
+                if (!ctTiles.Contains(_backItem) && ViewParents.Count > 0)
                 {
-                    _ctTiles.Insert(0, backItem);
-                    ViewParents.Peek().SetChildren(_ctTiles);
+                    ctTiles.Insert(0, _backItem);
+                    ViewParents.Peek().SetChildren(ctTiles);
                 }
             }
 
             items.Children.Clear();
-            foreach (IChildTalkerTile item in _ctTiles)
+            foreach (IChildTalkerTile item in ctTiles)
             {
                 PhraseButton ui = new PhraseButton();
                 ui.SetItem(item);
@@ -177,52 +186,52 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
             if (calledFromLoad)
             {
-                XmlWrapper.Children = new List<ChildTalkerXml>();
-                foreach (IChildTalkerTile rootChild in _ctTiles)
+                _xmlWrapper.Children = new List<ChildTalkerXml>();
+                foreach (IChildTalkerTile rootChild in ctTiles)
                 {
-                    XmlWrapper.Children.Add(rootChild.Xml);
+                    _xmlWrapper.Children.Add(rootChild.Xml);
                 }
             }
         }
 
-        public void AddSingleItem(IChildTalkerTile _ctTileToAdd)
+        public void AddSingleItem(IChildTalkerTile ctTileToAdd)
         {
             if (ViewParents.Count > 0)
             {
-                ViewParents.Peek().AddChild(_ctTileToAdd);
+                ViewParents.Peek().AddChild(ctTileToAdd);
             }
             else
             {
-                rootChildren.Add(_ctTileToAdd);
-                XmlWrapper.Children.Add(_ctTileToAdd.Xml);
+                _rootChildren.Add(ctTileToAdd);
+                _xmlWrapper.Children.Add(ctTileToAdd.Xml);
             }
             PhraseButton ui = new PhraseButton();
-            ui.SetItem(_ctTileToAdd);
+            ui.SetItem(ctTileToAdd);
             ui.SetParent(this);
             _ = items.Children.Add(ui);
 
-            SaveToXml(ProfilePath);
+            SaveToXml(_profilePath);
         }
 
-        public void RemoveSingleTile(PhraseButton _itemToRemove)
+        public void RemoveSingleTile(PhraseButton itemToRemove)
         {
-            items.Children.Remove(_itemToRemove);
+            items.Children.Remove(itemToRemove);
             if (ViewParents.Count > 0)
             {
-                ViewParents.Peek().RemoveChild(_itemToRemove.CtTile);
+                ViewParents.Peek().RemoveChild(itemToRemove.CtTile);
             }
             else
             {
-                _ = rootChildren.Remove(_itemToRemove.CtTile);
-                _ = XmlWrapper.Children.Remove(_itemToRemove.CtTile.Xml);
+                _ = _rootChildren.Remove(itemToRemove.CtTile);
+                _ = _xmlWrapper.Children.Remove(itemToRemove.CtTile.Xml);
             }
-            SaveToXml(ProfilePath);
+            SaveToXml(_profilePath);
         }
 
-        public void UpdateSavedTiles(PhraseButton _itemToChange, String path)
+        public void UpdateSavedTiles(PhraseButton itemToChange, String path)
         {
-            _itemToChange.CtTile.Xml.ImagePath = path;
-            SaveToXml(ProfilePath);
+            itemToChange.CtTile.Xml.ImagePath = path;
+            SaveToXml(_profilePath);
         }
 
         public void PopFolderView()
@@ -230,7 +239,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             if (ViewParents.Count < 2)
             {
                 _ = ViewParents.Pop();
-                LoadTiles(rootChildren);
+                LoadTiles(_rootChildren);
             }
             else
             {
@@ -240,8 +249,8 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             }
         }
 
-        private SecondaryWindow popupWindow;
-        private KeyboardLayout keyboard;
+        private SecondaryWindow _popupWindow;
+        private KeyboardLayout _keyboard;
 
         /// <summary>
         /// Creates a folder with the provided name. If the name is empty then the folder will not be created
@@ -251,7 +260,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
         {
             if (folderName != "")
             {
-                ChildTalkerFolder ctFolder = new ChildTalkerFolder(folderName, "../../Resources/folder.jpg", this, false);
+                ChildTalkerFolder ctFolder = new ChildTalkerFolder(folderName, App.StartupPath + "/Resources/folder.jpg", this, false);
                 AddSingleItem(ctFolder);
             }
         }
@@ -303,6 +312,8 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 ChildTalkerTile ctItem = new ChildTalkerTile(phrase, imagePath, false);
                 AddSingleItem(ctItem);
         }
+
+        
 
     }  
 }

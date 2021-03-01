@@ -57,13 +57,23 @@ namespace Child_Talker.TalkerButton
             var fullSize = this.Width + this.Margin.Left + this.Margin.Right;
             var textWidth = textsize.Width;
             var txtblockwidth = fullSize;
-            while (textWidth>= txtblockwidth-60)
+            /*while (textWidth>= txtblockwidth-60)
             {
                 this.Dispatcher.Invoke( () =>
                 {
                     this.Width += fullSize;
                 });
                 txtblockwidth += fullSize;
+            }
+            */
+
+            if (textWidth >= txtblockwidth - 60)
+            {
+                this.Dispatcher.Invoke( () =>
+                {
+                    this.Width = textWidth + 60;
+                });
+
             }
         }
 

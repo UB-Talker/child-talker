@@ -36,7 +36,7 @@
             </Grid.RowDefinitions>
 
             <tb:Button x:Name="MainMenu" Text="Main Menu"      HorizontalAlignment="Stretch" Margin="20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="backToHome"/>
-            <tb:Button x:Name="Launcher" Text="Launch Channel" HorizontalAlignment="Stretch" Margin="20" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Launcher_OnClick"/>
+            <tb:Button x:Name="Launcher" Text="Launch&#xA;Channel" HorizontalAlignment="Stretch" Margin="20" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="Launcher_OnClick"/>
 
         </Grid>
         <Grid Grid.Column="1" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" ColumnSpan="2" RowSpan="2">
@@ -51,8 +51,14 @@
                     <RowDefinition Height="3*"/>
                     <RowDefinition Height="3*"/>
                 </Grid.RowDefinitions>
-                <tb:Button x:Name="HOME" Tag="Home" Text="HOME" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="0"  Click="sendInput"/>
-                <tb:Button x:Name="BACK" Tag="Back" Text="BACK" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="1"  Click="sendInput"/>
+                <tb:Button x:Name="HOME" Tag="Home" Text="HOME" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           Margin="40,10" Grid.Row="0"  Click="sendInput"
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/house.png"
+                           />
+                <tb:Button x:Name="BACK" Tag="Back" Text="BACK" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                           Margin="40,10" Grid.Row="1"  Click="sendInput"/>
                 <tb:Button x:Name="INFO" Tag="Info" Text="INFO" HorizontalAlignment="Stretch" Margin="40,10" VerticalAlignment="Stretch" Grid.Row="2"  Click="sendInput"/>
             </Grid>
 
@@ -67,11 +73,31 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="3*"/>
                 </Grid.ColumnDefinitions>
-                <tb:Button x:Name="UP"    Tag="Up"    Text="UP"    HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
-                <tb:Button x:Name="RIGHT" Tag="Right" Text="RIGHT" HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="2" Click="sendInput"/>
-                <tb:Button x:Name="DOWN"  Tag="Down"  Text="DOWN"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="2" Grid.Column="1" Click="sendInput"/>
-                <tb:Button x:Name="LEFT"  Tag="Left"  Text="LEFT"  HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Click="sendInput"/>
-                <tb:Button x:Name="OK"   Tag="Select" Text="OK"    HorizontalAlignment="Stretch" Margin="10" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Click="sendInput"/>
+                <tb:Button x:Name="UP"    Tag="Up"    Text="UP"    Margin="10" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/house.png"
+                           Grid.Row="0" Grid.Column="1" Click="sendInput"
+                           />
+                <tb:Button x:Name="RIGHT" Tag="Right" Text="RIGHT" Margin="10" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/arrow-button-right.png"
+                           Grid.Row="1" Grid.Column="2" Click="sendInput"
+                           />
+                <tb:Button x:Name="DOWN"  Tag="Down"  Text="DOWN"  Margin="10" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/arrow-button-down.png"
+                           Grid.Row="2" Grid.Column="1" Click="sendInput"
+                           />
+                <tb:Button x:Name="LEFT"  Tag="Left"  Text="LEFT"  Margin="10" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/arrow-button-left.png"
+                           Grid.Row="1" Grid.Column="0" Click="sendInput"
+                           />
+                <tb:Button x:Name="OK"   Tag="Select" Text="OK"    Margin="10" 
+                           HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                           ImageSource="/Child Talker;component/Resources/Remote_Images/ok.png"
+                           Grid.Row="1" Grid.Column="1" Click="sendInput"
+                           />
 
 
             </Grid>
@@ -82,9 +108,18 @@
                 <ColumnDefinition Width="3*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <tb:Button x:Name="REWIND"     Tag="Rev"  Text="REWIND"      HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" Click="sendInput"/>
-            <tb:Button x:Name="PLAY"       Tag="Play" Text="PLAY PAUSE"  HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="1" Click="sendInput"/>
-            <tb:Button x:Name="FASTFOWARD" Tag="Fwd"  Text="FAST FOWARD" HorizontalAlignment="Stretch" Margin="20,20" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="2" Click="sendInput"/>
+            <tb:Button x:Name="REWIND"     Tag="Rev"  Text="REWIND"      
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20"
+                       Grid.Row="0" Grid.Column="0" Click="sendInput"
+                       ImageSource="/Child Talker;component/Resources/Remote_Images/arrow-double-left.png"/>
+            <tb:Button x:Name="PLAY"       Tag="Play" Text="PLAY PAUSE"  
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20"
+                       Grid.Row="0" Grid.Column="1" Click="sendInput"
+                       ImageSource="/Child Talker;component/Resources/Remote_Images/ok.png"/>
+            <tb:Button x:Name="FASTFOWARD" Tag="Fwd"  Text="FAST FOWARD" 
+                       HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="20,20"
+                       Grid.Row="0" Grid.Column="2" Click="sendInput"
+                       ImageSource="/Child Talker;component/Resources/Remote_Images/arrow-double-right.png"/>
 
         </Grid>
     </Grid>

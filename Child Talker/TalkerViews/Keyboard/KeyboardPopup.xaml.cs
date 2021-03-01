@@ -52,11 +52,16 @@ namespace Child_Talker.TalkerViews.Keyboard
                         prepareKeyboard(DEFAULT_LENGTH, "");
                         keyboard.Visibility = Visibility.Visible;
                         numpad.Visibility = Visibility.Hidden;
+                        kBorder.Visibility = Visibility.Visible;
+                        nBorder.Visibility = Visibility.Hidden;
+
                         break;
                     case KeyboardLayout.numpad:
                         prepareNumpad(DEFAULT_LENGTH, "");
                         keyboard.Visibility = Visibility.Hidden;
                         numpad.Visibility = Visibility.Visible;
+                        kBorder.Visibility = Visibility.Hidden;
+                        nBorder.Visibility = Visibility.Visible;
                         break;
                 }
 

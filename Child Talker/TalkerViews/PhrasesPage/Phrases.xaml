@@ -7,6 +7,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:custom="clr-namespace:Child_Talker"
              xmlns:tb="clr-namespace:Child_Talker.TalkerButton"
+             xmlns:scan="clr-namespace:Child_Talker.Utilities.Autoscan"
+
              mc:Ignorable="d" 
             d:DesignWidth="1550" d:DesignHeight="838">
     <Grid>
@@ -45,7 +47,7 @@
                 </Style>
             </ScrollViewer.Resources>
         
-            <WrapPanel x:Name="items" Orientation="Horizontal" >
+            <WrapPanel x:Name="items" Orientation="Horizontal">
             </WrapPanel>
         </ScrollViewer>
     </Grid>

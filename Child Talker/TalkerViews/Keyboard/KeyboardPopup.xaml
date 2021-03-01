@@ -21,7 +21,13 @@
             <RowDefinition/>
             <RowDefinition Height="10" />
         </Grid.RowDefinitions>
-        <local:KeyboardLayout  x:Name="keyboard" Grid.Row="1" Grid.Column="1"/>
-        <numpad:NumpadLayout x:Name="numpad" Grid.Row="1" Grid.Column="1"/>
+        <Border  Name="nBorder" Grid.Row="1" Grid.Column="1" Margin="500,10" Padding="10"
+                 BorderThickness="30" BorderBrush="DarkSlateGray" Background="Black">
+            <numpad:NumpadLayout x:Name="numpad" />
+        </Border>
+        <Border Name="kBorder" Grid.Row="1" Grid.Column="1"  Margin="-10,-10" Padding="20"
+                BorderThickness="30" BorderBrush="DarkSlateGray" Background="Black">
+            <local:KeyboardLayout  x:Name="keyboard" />
+        </Border>
     </Grid>
 </custom:SecondaryWindow>

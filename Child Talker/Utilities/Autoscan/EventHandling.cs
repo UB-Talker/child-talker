@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Input;
 
 namespace Child_Talker.Utilities.Autoscan
@@ -31,10 +32,9 @@ namespace Child_Talker.Utilities.Autoscan
 
         /// <summary> occurs once when Reverse is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler ReverseHold;
-
+        
         /// <summary> occurs when a GoBack button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreGoBackPressOnce = true) </summary>
         public event ScanEventHandler GoBackPress;
-
         /// <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler GoBackHold;
 
@@ -81,7 +81,7 @@ namespace Child_Talker.Utilities.Autoscan
             SelectHold = null;
             GoBackDefaultEnabled = true;
         }
+
+
     }
-
-
 }
