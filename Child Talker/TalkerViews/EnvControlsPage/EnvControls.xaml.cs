@@ -14,7 +14,6 @@ namespace Child_Talker.TalkerViews.EnvControlsPage
     public partial class EnvControls : TalkerView
     {
         private ConsoleControls cc = new ConsoleControls();
-        private SecondaryWindow sw;
 
         private Remote_VOL_popup vol;
         private Remote_CH_popup ch;

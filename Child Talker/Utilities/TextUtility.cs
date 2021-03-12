@@ -161,7 +161,7 @@ namespace Child_Talker.Utilities
         /*
          * Gets the next suggestions based on the given input c
          */
-        public List<Button> getNextSuggestion(char c)
+        public List<Button> getNextSuggestion(char c,int NumSuggest)
         {
             if (c == '_')
             {
@@ -171,16 +171,16 @@ namespace Child_Talker.Utilities
             {
                 parseTree.GoDownTree(char.ToLower(c));
             }
-            return getNSuggestions(10);
+            return getNSuggestions(NumSuggest);
         }
 
-        public List<Button> getNextSuggestionsForString(string s)
+        public List<Button> getNextSuggestionsForString(string s, int NumSuggest)
         {
             if (parseTree.IsTreeReset())
             {
                 parseTree.GoDownTree(s);
             }
-            return getNSuggestions(3);
+            return getNSuggestions(NumSuggest);
         }
         /*
          * Generate n buttons that will be used as suggestions

@@ -151,7 +151,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         public void ReversePressIntegration()
         {
+            ReversePressOnce?.Invoke(currentScanObject, ReversePressDefault);
             ReversePress?.Invoke(currentScanObject, ReversePressDefault);
+            ReversePressOnce=null;
             if (!IgnoreReversePressOnce) ReversePressDefault();
             IgnoreReversePressOnce = false;
         }
@@ -161,7 +163,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         public void SelectPressIntegration()
         {
+            SelectPressOnce?.Invoke(currentScanObject, SelectPressDefault);
             SelectPress?.Invoke(currentScanObject, SelectPressDefault);
+            SelectPressOnce=null;
             if (!IgnoreSelectPressOnce) SelectPressDefault();
             IgnoreSelectPressOnce = false;
         }
@@ -171,7 +175,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         public void GoBackPressIntegration()
         {
+            GoBackPressOnce?.Invoke(currentScanObject, GoBackPressDefault);
             GoBackPress?.Invoke(currentScanObject, GoBackPressDefault);
+            GoBackPressOnce=null;
             //this if statement is used so that the default can be ignored for only one press if set by user
             if (!IgnoreGoBackPressOnce) GoBackPressDefault();
             IgnoreGoBackPressOnce = false;
@@ -182,7 +188,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         public void ReverseHoldIntegration()
         {
+            ReverseHoldOnce?.Invoke(currentScanObject, ReversePressDefault); // equivalent to saying if( ReverseHold != null ){ ReverseHold(); }  //this is a delegate Event for other objects to add methods
             ReverseHold?.Invoke(currentScanObject, ReversePressDefault); // equivalent to saying if( ReverseHold != null ){ ReverseHold(); }  //this is a delegate Event for other objects to add methods
+            ReverseHold=null;
             ReverseHoldDefault();
         }
 
@@ -191,7 +199,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// </summary>
         public void SelectHoldIntegration()
         {
+            SelectHoldOnce?.Invoke(currentScanObject);
             SelectHold?.Invoke(currentScanObject);
+            SelectHoldOnce=null;
         }
 
         /// <summary>
@@ -200,6 +210,7 @@ namespace Child_Talker.Utilities.Autoscan
         public void GoBackHoldIntegration()
         {
             GoBackHold?.Invoke(currentScanObject);
+            GoBackHoldOnce?.Invoke(currentScanObject);
         }
     }
 }

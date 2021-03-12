@@ -3,10 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Speech.Synthesis.TtsEngine;
 using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using Child_Talker.Utilities.HardwareIntegrations;
+using Control = System.Windows.Controls.Control;
+using Panel = System.Windows.Controls.Panel;
 using SysButton = System.Windows.Controls.Button;
 using Timer = System.Timers.Timer;
 
@@ -229,13 +233,16 @@ namespace Child_Talker.Utilities.Autoscan
             newWindow.Show();
         }
 
+        private bool skipNextScan = false;
         /// <summary>
         /// Changes <see cref="activeScanList"/>. Will scan though all elements from the provided list
         /// </summary>
         /// <param name="newList"> a list of all elements to scan through</param>
         /// <param name="isReturnPoint"> when true adds newList to the top of <see cref="ReturnPointList"/></param>
-        public void NewListToScanThough(List<DependencyObject> newList, bool isReturnPoint = false, bool manualScan=false)
+        public void NewListToScanThough(List<DependencyObject> newList, bool isReturnPoint = false, bool manualScan=false, bool skipnextscan = false)
         {
+            if (skipNextScan) { skipNextScan = false; return; }
+            
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             scanTimer.Stop();
             
@@ -243,15 +250,13 @@ namespace Child_Talker.Utilities.Autoscan
 
             if(newList.Count == 0) throw  new NullReferenceException("newList to autoscan through is empty");
             activeScanList = newList ?? throw new NullReferenceException("New list to autoscan through does not exists");
+            
             if (isReturnPoint || !ReturnPointList.Any())
-            {
+            { 
                 ReturnPointList.Push(newList);
                 popReturnPointList = true;
             }
-            else
-            {
-                popReturnPointList = false;
-            }
+            else popReturnPointList = false; 
 
             Direction = DirectionEnum.Forward;
             ManualScan(manualScan);
@@ -260,6 +265,7 @@ namespace Child_Talker.Utilities.Autoscan
             ScanTimerElapsed(null, null);
 
             scanTimer.Start();
+            skipNextScan = skipnextscan;
         }
 
         private Panel Parent;
@@ -276,8 +282,9 @@ namespace Child_Talker.Utilities.Autoscan
         /// <typeparam name="T"> what type of <see cref="DependencyObject"/> to add to active scan list. (when set to Dependency object all scannable children will be added to <see cref="activeScanList"/>) </typeparam>
         /// <param name="parent"> will search through <see cref="Panel"/> to find all Children of type <see cref="T"/> </param>
         /// <param name="isReturnPoint"> when true adds newList to the top of <see cref="ReturnPointList"/></param>
-        public void NewListToScanThough<T>(Panel parent, bool isReturnPoint = false) where T : DependencyObject
+        public void NewListToScanThough<T>(Panel parent, bool isReturnPoint = false, bool skipnextscan = false) where T : DependencyObject
         {
+            if (skipNextScan) { skipNextScan = false; return; }
             if (TimerMode == TimerModes.Off || TimerMode == TimerModes.Paused) return;
             if (parent == null) throw new NullReferenceException();
             scanTimer.Stop();
@@ -327,6 +334,7 @@ namespace Child_Talker.Utilities.Autoscan
             ScanTimerElapsed(null, null);
 
             scanTimer.Start();
+            skipNextScan = skipnextscan;
         }
         
         /// <summary>

@@ -33,7 +33,6 @@ namespace Child_Talker.TalkerViews.Keyboard
         public static readonly DependencyProperty SpacePressProperty = DependencyProperty.Register ( "SpacePress", typeof(RoutedEventHandler), typeof(NumpadLayout), new PropertyMetadata() );
         public static readonly DependencyProperty EnterPressProperty = DependencyProperty.Register ( "BackPress", typeof(RoutedEventHandler), typeof(NumpadLayout), new PropertyMetadata() );
 
-        public TextUtility util;
 
         
         // event
@@ -76,7 +75,6 @@ namespace Child_Talker.TalkerViews.Keyboard
         /// this will only trigger when default back behavior is enabled and the are no more characters to delete
         /// </summary>
         public event RoutedEventHandler BackPressWhenEmpty;
-        public event RoutedEventHandler SpacePress;
         public event RoutedEventHandler EscapePress;
         public TextBox textBox;
 
@@ -84,8 +82,6 @@ namespace Child_Talker.TalkerViews.Keyboard
         {
             InitializeComponent();
 
-            util = TextUtility.Instance;
-            util.resetAutocorrect();
             this.KeyUp += PhysicalKeyboardKeyUp;
 
             textBox = destination;
@@ -96,19 +92,15 @@ namespace Child_Talker.TalkerViews.Keyboard
         {
             InitializeComponent();
 
-            util = TextUtility.Instance;
-            util.resetAutocorrect();
             this.KeyUp += PhysicalKeyboardKeyUp;
 
             this.PhysicalPress += PhysicalPressPropertyHandler;
             this.VirtualPress += VirtualPressPropertyHandler;
             this.EnterPress += EnterPressPropertyHandler;
             this.BackPress += BackPressPropertyHandler;
-            this.SpacePress += SpacePressPropertyHandler;
         }
         ~NumpadLayout()
         {
-            util?.resetAutocorrect();
             this.KeyUp -= PhysicalKeyboardKeyUp;
         }
 
@@ -156,25 +148,17 @@ namespace Child_Talker.TalkerViews.Keyboard
                 case "BACKSPACE" :
                     try
                     {
-                        if (defaultBackPress)
-                        {
-                            if (textBox.Text.Length <= 0)
-                            {
+                        if (defaultBackPress) {
+                            if (textBox.Text.Length <= 0) {
                                 BackPressWhenEmpty?.Invoke(this, null);
                                 break;
-                            }
-                            else
-                            {
+                            } else {
                                 BackPressDefault();
                             }
                         }
                         BackPress?.Invoke(sender, e);
                     }
-                    catch (ArgumentOutOfRangeException)
-                    {
-                        Console.WriteLine("There are no characters to delete!");
-                        BackPressWhenEmpty?.Invoke(this, null); //probably never called but just to be safe until verified
-                    }
+                    catch (ArgumentOutOfRangeException) { BackPressWhenEmpty?.Invoke(this, null);  } //probably never called but just to be safe until verified
                     break;
                 case "ENTER":
                     EnterPress?.Invoke(sender, e);
@@ -187,37 +171,6 @@ namespace Child_Talker.TalkerViews.Keyboard
         }
 
         /// <summary>
-        /// Gets autofill suggestions after the char c is typed
-        /// </summary>
-        /// <param name="c"></param>
-        public void AddAutocorrect(char c)
-        {
-            autofill.Children.Clear();
-            foreach (Button b in util.getNextSuggestion(c))
-            {
-                b.Click += AutoCorrectButton;
-                _ = autofill.Children.Add(b);
-            }
-        }
-
-
-
-        /// <summary>
-        /// Gets autofill suggestions for a given string replaces the autofill bar contents with results
-        /// </summary>
-        /// <param name="s"></param>
-        private void AddAutoFill(string s)
-        {
-            FormTextBox tb = new FormTextBox();
-            autofill.Children.Clear();
-            foreach(Button b in util.getNextSuggestionsForString(s))
-            {
-                b.Click += AutoCorrectButton;
-                _ = autofill.Children.Add(b);
-            }
-        }
-        
-        /// <summary>
         /// creates a textbox to be used by keyboard
         /// textBox can be manually assigned as well if desired
         /// </summary>
@@ -225,51 +178,14 @@ namespace Child_Talker.TalkerViews.Keyboard
         public TextBox AddTextBox()
         {
             MainGrid.RowDefinitions[0].Height = new GridLength(125);
-            /*
-             textBox = new TextBox();
-            textBox.Background = Brushes.Green;
-            textBox.Foreground = Brushes.White;
-            textBox.FontSize = 40;
-            textBox.Height = 100;
-            textBox.Width = 100;
-            Grid.SetRow(textBox, 0);
-            */
             textBox = OptTextBox;
             return textBox;
         }
 
-
-        
-
-        private void AutoCorrectButton(object sender, RoutedEventArgs args)
-        {
-            Button b = sender as Button;
-
-            string s = textBox.Text;
-            int i = s.LastIndexOf(' ');
-            s = s.Substring(0, i + 1);
-            s += b.Text + ' ';
-            textBox.Text = s;
-            util.resetAutocorrect();
-            autofill.Children.Clear();
-        }
-
-
-
-
         private void EnterPressDefault()
         {
             if (!defaultEnterPress) return;
-            util.Speak(textBox.Text);
             textBox.Text = "";
-        }
-
-        private void SpacePressDefault()
-        {
-            if (!defaultSpacePress) return; 
-            textBox.Text += " ";
-            util.resetAutocorrect();
-            autofill.Children.Clear();
         }
 
         private void BackPressDefault()
@@ -277,15 +193,12 @@ namespace Child_Talker.TalkerViews.Keyboard
             if (!defaultBackPress) return;
 
             textBox.Text = textBox.Text.Substring(0, textBox.Text.Length - 1);
-            AddAutocorrect('_');
             string[] words = textBox.Text.Split(' ');
-            AddAutoFill(words.Last<string>());
         }
 
         private void CharacterPressDefault(string s)
         {
             textBox.Text += s.ToLower();
-            AddAutocorrect(s[0]);
         }
     }
 }

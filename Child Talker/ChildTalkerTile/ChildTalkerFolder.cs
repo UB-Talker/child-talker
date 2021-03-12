@@ -51,8 +51,7 @@ namespace Child_Talker
         {
             Root.ViewParents.Push(this);
             Root.LoadTiles(Children);
-            scan.NewListToScanThough<TalkerViews.PhrasesPage.PhraseButton>(Root.items);
-            
+
         }
 
         public void SetChildren(List<IChildTalkerTile> _children)

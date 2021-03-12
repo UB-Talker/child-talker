@@ -136,6 +136,11 @@ namespace Child_Talker.TalkerViews
                         SpacePressDefault();
                         break;
                     case Key.Back:
+                        if (textBox.Text.Length <= 0)
+                        {
+                            BackPressWhenEmpty?.Invoke(this, null);
+                            break;
+                        }
                         BackPressDefault();
                         break;
                     case Key.Enter:
@@ -201,7 +206,7 @@ namespace Child_Talker.TalkerViews
         public void AddAutocorrect(char c)
         {
             autofill.Children.Clear();
-            foreach (Button b in util.getNextSuggestion(c))
+            foreach (Button b in util.getNextSuggestion(c, 10))
             {
                 b.Click += AutoCorrectButton;
                 _ = autofill.Children.Add(b);
@@ -216,9 +221,8 @@ namespace Child_Talker.TalkerViews
         /// <param name="s"></param>
         private void AddAutoFill(string s)
         {
-            FormTextBox tb = new FormTextBox();
             autofill.Children.Clear();
-            foreach(Button b in util.getNextSuggestionsForString(s))
+            foreach(Button b in util.getNextSuggestionsForString(s, 10))
             {
                 b.Click += AutoCorrectButton;
                 _ = autofill.Children.Add(b);

@@ -161,6 +161,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
 
         public void LoadTiles(List<IChildTalkerTile> ctTiles, Boolean calledFromLoad = false)
         {
+            
             //only true when page is first opened
             if (calledFromLoad)
             {
@@ -172,6 +173,7 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 {
                     ctTiles.Insert(0, _backItem);
                     ViewParents.Peek().SetChildren(ctTiles);
+
                 }
             }
 
@@ -191,6 +193,10 @@ namespace Child_Talker.TalkerViews.PhrasesPage
                 {
                     _xmlWrapper.Children.Add(rootChild.Xml);
                 }
+            }
+            else
+            { 
+                Scan.NewListToScanThough<PhraseButton>(items, skipnextscan:true);
             }
         }
 
@@ -249,8 +255,6 @@ namespace Child_Talker.TalkerViews.PhrasesPage
             }
         }
 
-        private SecondaryWindow _popupWindow;
-        private KeyboardLayout _keyboard;
 
         /// <summary>
         /// Creates a folder with the provided name. If the name is empty then the folder will not be created

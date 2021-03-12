@@ -23,20 +23,27 @@ namespace Child_Talker.Utilities.Autoscan
 
         /// <summary> occurs when a select button is pressed before default behavior occurs (to disable default behavior just once set ignoreSelectPressOnce = true) </summary>
         public event ScanEventHandler SelectPress;
+        public event ScanEventHandler SelectPressOnce;
 
         /// <summary> occurs once when select is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler SelectHold;
+        public event ScanEventHandler SelectHoldOnce;
 
         /// <summary> occurs when a reverse button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreReversePressOnce = true) </summary>
         public event ScanEventHandler ReversePress;
+        public event ScanEventHandler ReversePressOnce;
 
         /// <summary> occurs once when Reverse is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler ReverseHold;
+        public event ScanEventHandler ReverseHoldOnce;
         
         /// <summary> occurs when a GoBack button is pressed before default behavior occurs (to ignore default behavior after occurring set ignoreGoBackPressOnce = true) </summary>
         public event ScanEventHandler GoBackPress;
+        public event ScanEventHandler GoBackPressOnce;
+        
         /// <summary> occurs once when GoBack is first held down (**may not exist depending on input method) </summary>
         public event ScanEventHandler GoBackHold;
+        public event ScanEventHandler GoBackHoldOnce;
 
         /// <summary>
         /// Resets all  <see cref="Autoscan2"/> EventHandlers
@@ -57,6 +64,8 @@ namespace Child_Talker.Utilities.Autoscan
         {
             ReversePress = null;
             ReverseHold = null;
+            ReversePressOnce = null;
+            ReverseHoldOnce = null;
             ReverseDefaultEnabled = true;
         }
 
@@ -68,6 +77,8 @@ namespace Child_Talker.Utilities.Autoscan
         {
             GoBackPress = null;
             GoBackHold = null;
+            GoBackPressOnce = null;
+            GoBackHoldOnce = null;
             GoBackDefaultEnabled = true;
         }
 
@@ -79,6 +90,8 @@ namespace Child_Talker.Utilities.Autoscan
         {
             SelectPress = null;
             SelectHold = null;
+            SelectPressOnce = null;
+            SelectHoldOnce = null;
             GoBackDefaultEnabled = true;
         }
 
